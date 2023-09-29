@@ -12,7 +12,13 @@ function Dashboard() {
         menuItemStyles={{
           button: ({ level, active, disabled }) => {
             // only apply styles on first level elements of the tree
-            // if (level === 0)
+            // if (level === 0) 
+
+              // return {
+              //   color: disabled ? '#FDD2BF' : '#9B5151',
+              //   backgroundColor: active ? '#ffffff' : '#A5A2A2',
+              // };
+
               return {
                 color: disabled ? '#f5d9ff' : '#d359ff',
                 backgroundColor: active ? '#eecef9' : undefined,
