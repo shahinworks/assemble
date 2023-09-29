@@ -857,7 +857,9 @@ body {
   # Portfolio
   --------------------------------------------------------------*/
   .portfolio {
-    width: 90%;
+    /* width: 90%; */
+    align-items: center;
+    justify-content: center;
   }
   
   .portfolio div {
@@ -866,6 +868,9 @@ body {
     width: 300px;
     background-repeat: no-repeat;
     background-size: contain;
+    justify-content: center;
+    align-items: center;
+
   
   }
   
