@@ -10,6 +10,8 @@ import CreateSubCategory from '../Components/Admin/SubCategory/CreateSubCategory
 import ListSubCategory from '../Components/Admin/SubCategory/ListSubCategory';
 import CreateCart from '../Components/Admin/Cart/CreateCart';
 import ListCart from '../Components/Admin/Cart/ListCart';
+import Login from '../Components/SuperComponent/Login';
+import Register from '../Components/SuperComponent/Register';
  
 function PageRoutes() {
   return (
@@ -25,6 +27,14 @@ function PageRoutes() {
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>
       {/* <Route path='/' element={<Demo />}/> */}
+
+
+
+
+      <Route path='/login' element={<Login />}/>
+      <Route path='/register' element={<Register />}/>
+      <Route path='/rough' element={<Demo />}/>
+      <Route path='/rough' element={<Demo />}/>
     </Routes>
   )
 }
