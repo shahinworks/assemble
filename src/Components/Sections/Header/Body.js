@@ -74,7 +74,7 @@ function Body() {
 
 
 
-<section id="about" className="about">
+{/* <section id="about" className="about">
   <p className="text-center">#BEDRESSPONSIBLE</p>
   <h1 className="text-center">The Vagabond Hipster Series</h1> <br />
   <br />
@@ -199,7 +199,7 @@ function Body() {
           aria-hidden="true"
         />
         {/* <span class="sr-only">Previous</span> */}
-      </a>
+      {/* </a>
       <a
         className="carousel-control-next"
         href="#carouselExampleControls"
@@ -211,10 +211,10 @@ function Body() {
           aria-hidden="true"
         />
         {/* <span class="sr-only">Next</span> */}
-      </a>
+    {/*   </a>
     </div>
   </div>
-</section>
+</section> */}
 
 
 

@@ -33,13 +33,13 @@ function MidSection() {
           </button>
 
 
-    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-          <i class="bi bi-arrow-bar-left carousel-control-prev-icon" aria-hidden="true"></i>
+    <a className="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <i className="bi bi-arrow-bar-left carousel-control-prev-icon" aria-hidden="true"></i>
 
       </a>
 
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-          <i class="bi bi-arrow-bar-right carousel-control-next-icon" aria-hidden="true"></i>
+      <a className="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <i className="bi bi-arrow-bar-right carousel-control-next-icon" aria-hidden="true"></i>
       </a>
 
 
@@ -47,25 +47,25 @@ function MidSection() {
 </section> */}
 
 <section  id="hero" >
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="assets/img/hero-bg.jpg" alt="First slide" />
+    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+  <div className="carousel-inner">
+    <div className="carousel-item active">
+      <img className="d-block w-100" src="assets/img/hero-bg.jpg" alt="First slide" />
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src='assets/img/trendy-stylish-woman-rejoicing-with-sales-shopping-time-isolated-pink-wearing-casual-outfit_273443-4585.avif' alt="Second slide" />
+    <div className="carousel-item">
+      <img className="d-block w-100" src='assets/img/trendy-stylish-woman-rejoicing-with-sales-shopping-time-isolated-pink-wearing-casual-outfit_273443-4585.avif' alt="Second slide" />
     </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp" alt="Third slide" />
+    <div className="carousel-item">
+      <img className="d-block w-100" src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp" alt="Third slide" />
     </div>
   </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true">
+  <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true">
     <CaretLeft color='black' size={33} />
     </span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true">
+  <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true">
     <CaretRight color='black' size={33} /> 
     </span>
   </a>
