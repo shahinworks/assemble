@@ -1,6 +1,7 @@
 import './App.css';
 import Body from './Components/Sections/Header/Body';
 import Clients from './Components/Sections/Header/Clients';
+import Frame from './Components/Sections/Header/Frame';
 import Header from './Components/Sections/Header/Header';
 import MidSection from './Components/Sections/Header/MidSection';
 import SecondMidSection from './Components/Sections/Header/SecondMidSection';
@@ -14,6 +15,7 @@ function App() {
       <MidSection />
       <SecondMidSection />
       <Clients />
+      <Frame />
       {/* <Body />  */}
       {/* <PageRoutes /> */}
       </div>
