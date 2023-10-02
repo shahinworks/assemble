@@ -13,11 +13,13 @@ import ListCart from '../Components/Admin/Cart/ListCart';
 import Login from '../Components/SuperComponent/Login';
 import Register from '../Components/SuperComponent/Register';
 import Dash from '../Components/Admin/Dashboard/Dash';
+import Body from '../Components/Sections/Header/Body';
+import Home from '../Components/Home/Home';
  
 function PageRoutes() {
   return (
     <Routes>
-      <Route path='/' element={<Dashboard />}/>
+      <Route path='/' element={<Home />}/>
       <Route exact path="admin" element={<Dash />} >
       <Route exact path='CreateProduct' element={<CreateProduct />}/>
       <Route exact path='ListProduct' element={<ListProduct />}/>

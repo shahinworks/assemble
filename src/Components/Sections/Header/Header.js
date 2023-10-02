@@ -24,7 +24,7 @@ function Header() {
 
   return (   
     <header className={header}>
-      <div className="container d-flex justify-content-between align-items-center">
+      <div className="navbar-sticky sticky-top d-flex justify-content-between align-items-center">
       <div id="logo" className='logo'>
       <a href="index.html">
         <h2 className="text-dark" style={{ textDecoration: "none" }}> LOGO </h2>

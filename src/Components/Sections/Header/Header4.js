@@ -101,12 +101,6 @@ function Header() {
              <p > Your Cart is Currently Empty </p> 
             </Modal.Body>
             <Modal.Footer className="border-0">
-              {/* <Button variant="primary" className="btn-icon btn-icon-start" type="button"
-              //</Modal.Footer> onClick={() => handleSave()}
-              >
-                <CsLineIcons icon="save" /> 
-                <span>Save</span>
-              </Button> */}
             </Modal.Footer>
           </Modal>
 

@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { ArrowRight, Calendar, Cart, Airplane , Balloon, Speedometer} from 'react-bootstrap-icons';
 
-
 function Dashboard() {
-  return (
+  return (<>
+   
     <div style={{ display: 'flex', height: '100%', backgroundColor: "black" }}>
     <Sidebar>
       <Menu
@@ -55,7 +55,7 @@ function Dashboard() {
       </Menu>
     </Sidebar>
   </div>
-  )
+  </>)
 }
 
 export default Dashboard;
