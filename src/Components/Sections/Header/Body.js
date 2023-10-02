@@ -219,7 +219,7 @@ function Body() {
 
 
 
-<section id="clients" className="clients">
+{/* <section id="clients" className="clients">
   <div className="container" data-aos="zoom-in">
     <div className=" row row2 align-items-center">
       <div className="col-lg-6 col-md-6 col-sm-12 d-flex justify-content-center">
@@ -288,7 +288,7 @@ function Body() {
       <h1 className="text-light">Ponsible</h1>
     </div>
   </div>
-</section>
+</section> */}
 
 
   <section id="instagram">
