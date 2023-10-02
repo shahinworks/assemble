@@ -1,8 +1,10 @@
 import React from 'react'
 
 function Instagram() {
-  return (
-    <div>Instagram</div>
+  return (<>
+   <div>Instagram</div>
+  </>
+   
   )
 }
 
