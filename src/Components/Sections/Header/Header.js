@@ -23,36 +23,49 @@ function Header() {
   const [ editModal, setEditModal] = useState(false);
 
   return (   
+    <>
     <header className={header}>
-      <div className="navbar-sticky sticky-top d-flex justify-content-between align-items-center">
-      <div id="logo" className='logo'>
-      <a href="index.html">
-        <h2 className="text-dark" style={{ textDecoration: "none" }}> LOGO </h2>
-      </a>
-      {/* Uncomment below if you prefer to use a text logo */}
-      {/*<h1><a href="index.html">Regna</a></h1>*/}
-    </div>
-    {/* <div className="logo">Logo</div> */}
-    <nav id="navbar" className="navbar">
-      <ul className="links">
-        <li><a className="link-item nav-link scrollto" href="index.html"> Home </a> </li>
-        <li> <a className="link-item nav-link scrollto" href="shop.html">  Shop </a> </li>
-        <li> <a className="link-item nav-link scrollto" href="services.html"> Returns/Exchange </a> </li>
-        <li> <a className="link-item nav-link scrollto" href="book.html"> Track </a> </li>
-        <li> <a className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
-        <li> <a className="link-item nav-link scrollto" href=" contact.html">  About US </a> </li>
-    </ul>
-    <div className="d-flex">
-      
-    <Person className='mx-1' color='black' size={28} />
-   
-    <Search  className='mx-1' color='black' size={28} />
-    <Bag  className='mx-1' color='black' size={28} />
+    <div className="navbar-sticky sticky-top d-flex justify-content-between align-items-center">
+    <div id="logo" className='logo'>
+    <a href="index.html">
+      <h2 className="text-dark" style={{ textDecoration: "none" }}> LOGO </h2>
+    </a>
+    {/* Uncomment below if you prefer to use a text logo */}
+    {/*<h1><a href="index.html">Regna</a></h1>*/}
+  </div>
+  {/* <div className="logo">Logo</div> */}
+  <nav id="navbar" className="navbar">
+    <ul className="links">
+      <li><a className="link-item nav-link scrollto" href="/"> Home </a> </li>
+      <li> <a className="link-item nav-link scrollto" href="shop.html">  Shop </a> </li>
+      <li> <a className="link-item nav-link scrollto" href="services.html"> Returns/Exchange </a> </li>
+      <li> <a className="link-item nav-link scrollto" href="book.html"> Track </a> </li>
+      <li> <a className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
+      <li> <a className="link-item nav-link scrollto" href=" contact.html">  About US </a> </li>
+  </ul>
+  <div className="d-flex">
+    
+  <Person className='mx-1' color='black' size={28} />
  
-      </div>
-    </nav>
+  <Search  className='mx-1' color='black' size={28} />
+  <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} />
+
     </div>
-  </header> 
+  </nav>
+  </div>
+</header> 
+
+<Modal className="modal-right scroll-out-negative" show={editModal} onHide={() => setEditModal(false)} scrollable dialogClassName="full">
+<Modal.Header closeButton>
+  <Modal.Title className='fw-bold' as="h5">Cart</Modal.Title>
+</Modal.Header>
+<Modal.Body>
+ <p > Your Cart is Currently Empty </p> 
+</Modal.Body>
+<Modal.Footer className="border-0">
+</Modal.Footer>
+</Modal>
+</>
   )
 }
 

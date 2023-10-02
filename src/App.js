@@ -1,4 +1,5 @@
 import './App.css';
+import Footer from './Components/Sections/Footer/Footer';
 import Body from './Components/Sections/Header/Body';
 import Clients from './Components/Sections/Header/Clients';
 import Foot from './Components/Sections/Header/Foot';
@@ -25,8 +26,9 @@ function App() {
 
       
       {/* <Body />  */}
-      
+      <Header />
       <PageRoutes />
+      <Footer />
       </div>
  
   );
