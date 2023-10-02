@@ -11,10 +11,10 @@ function Dash() {
       {/* <AdminNavbar /> */}
       <div className="container-fluid">
       <div className="row">
-        <div className="col-3">
+        <div className="col-3 mx-0 px-0" style={{ backgroundColor: "black"}}>
           <Dashboard />
         </div>
-        <div className="col-9">
+        <div className="col-9 mx-0 px-0" style={{ backgroundColor: "black", color: "white"}}>
           <Outlet />
         </div>
       </div>
