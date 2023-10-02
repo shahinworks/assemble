@@ -28,10 +28,10 @@ function Dashboard() {
           },
         }}
       >  
-        <MenuItem component={<Link to="/" />} active icon={<Speedometer color='black' size={16} />}>
+        <MenuItem component={<Link to="/" />} active icon={<Speedometer color='black' size={20} />}>
           Dashboard
         </MenuItem>
-        <SubMenu active label="Category" icon={<Balloon color='black' size={16} />}>
+        <SubMenu active label="Category" icon={<Balloon color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateCategory" />} > Create Category</MenuItem>
           <MenuItem component={<Link to="/admin/ListCategory" />} > List Category</MenuItem>
         </SubMenu>
@@ -39,19 +39,19 @@ function Dashboard() {
           <MenuItem component={<Link to="/admin/CreateProduct" />} > Create Product </MenuItem>
           <MenuItem component={<Link to="/admin/ListProduct" />} > List Product </MenuItem>
         </SubMenu>
-        <SubMenu active label="SubCategory" icon={<Balloon color='black' size={16} />}>
+        <SubMenu active label="SubCategory" icon={<Balloon color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSubCategory" />} >Create SubCategory </MenuItem>
           <MenuItem component={<Link to="/admin/ListSubCategory" />} >List SubCategory </MenuItem>
         </SubMenu>
-        <SubMenu active label="Cart" icon={<Cart color='black' size={16} />}>
+        <SubMenu active label="Cart" icon={<Cart color='black' size={20} />}>
           <MenuItem component={<Link to="/CreateCart" />} >Create Cart</MenuItem>
           <MenuItem component={<Link to="/ListCart" />} >List Cart</MenuItem>
         </SubMenu>
-        <MenuItem active icon={<Cart color='black' size={16}  />}>
+        <MenuItem active icon={<Cart color='black' size={20}  />}>
           Cart
         </MenuItem>
         
-        <MenuItem active icon={<Airplane color='black' size={16}  />} > Examples</MenuItem>
+        <MenuItem active icon={<Airplane color='black' size={20}  />} > Examples</MenuItem>
       </Menu>
     </Sidebar>
   </div>
