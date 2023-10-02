@@ -25,7 +25,7 @@ function Header() {
   return (   
     <>
     <header className={header}>
-    <div className="navbar-sticky sticky-top d-flex justify-content-between align-items-center">
+    <div className="d-flex justify-content-between align-items-center">
     <div id="logo" className='logo'>
     <a href="index.html">
       <h2 className="text-dark" style={{ textDecoration: "none" }}> LOGO </h2>
@@ -37,7 +37,7 @@ function Header() {
   <nav id="navbar" className="navbar">
     <ul className="links">
       <li><a className="link-item nav-link scrollto" href="/"> Home </a> </li>
-      <li> <a className="link-item nav-link scrollto" href="shop.html">  Shop </a> </li>
+      <li> <a className="link-item nav-link scrollto" href="/shop">  Shop </a> </li>
       <li> <a className="link-item nav-link scrollto" href="services.html"> Returns/Exchange </a> </li>
       <li> <a className="link-item nav-link scrollto" href="book.html"> Track </a> </li>
       <li> <a className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
