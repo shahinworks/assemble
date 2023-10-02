@@ -30,16 +30,16 @@ function Dashboard() {
           Dashboard
         </MenuItem>
         <SubMenu active label="Category" icon={<Balloon color='#d359ff' size={16} />}>
-          <MenuItem component={<Link to="/CreateCategory" />} > Create Category</MenuItem>
-          <MenuItem component={<Link to="/ListCategory" />} > List Category</MenuItem>
+          <MenuItem component={<Link to="/admin/CreateCategory" />} > Create Category</MenuItem>
+          <MenuItem component={<Link to="/admin/ListCategory" />} > List Category</MenuItem>
         </SubMenu>
         <SubMenu active label="Product" icon={<Balloon color='#d359ff' size={16} />}>
-          <MenuItem component={<Link to="/CreateProduct" />} > Create Product </MenuItem>
-          <MenuItem component={<Link to="/ListProduct" />} > List Product </MenuItem>
+          <MenuItem component={<Link to="/admin/CreateProduct" />} > Create Product </MenuItem>
+          <MenuItem component={<Link to="/admin/ListProduct" />} > List Product </MenuItem>
         </SubMenu>
         <SubMenu active label="SubCategory" icon={<Balloon color='#d359ff' size={16} />}>
-          <MenuItem component={<Link to="/CreateSubCategory" />} >Create SubCategory </MenuItem>
-          <MenuItem component={<Link to="/ListSubCategory" />} >List SubCategory </MenuItem>
+          <MenuItem component={<Link to="/admin/CreateSubCategory" />} >Create SubCategory </MenuItem>
+          <MenuItem component={<Link to="/admin/ListSubCategory" />} >List SubCategory </MenuItem>
         </SubMenu>
         <SubMenu active label="Cart" icon={<Cart color='#d359ff' size={16} />}>
           <MenuItem component={<Link to="/CreateCart" />} >Create Cart</MenuItem>

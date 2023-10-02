@@ -12,14 +12,17 @@ function App() {
   return (
     <div className="App">
        {/* <div className="wrapper"> */}
-      <Header />
+      {/* <Header />
       <MidSection />
       <SecondMidSection />
       <Clients />
       <Frame />
-      <Instagram />
+      <Instagram /> */}
+
+
+      
       {/* <Body />  */}
-      {/* <PageRoutes /> */}
+      <PageRoutes />
       </div>
     // </div>
   );

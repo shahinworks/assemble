@@ -12,17 +12,20 @@ import CreateCart from '../Components/Admin/Cart/CreateCart';
 import ListCart from '../Components/Admin/Cart/ListCart';
 import Login from '../Components/SuperComponent/Login';
 import Register from '../Components/SuperComponent/Register';
+import Dash from '../Components/Admin/Dashboard/Dash';
  
 function PageRoutes() {
   return (
     <Routes>
       <Route path='/' element={<Dashboard />}/>
-      <Route path='/CreateProduct' element={<CreateProduct />}/>
-      <Route path='/ListProduct' element={<ListProduct />}/>
-      <Route path='/CreateSubCategory' element={<CreateSubCategory />}/>
-      <Route path='/ListSubCategory' element={<ListSubCategory />}/>
-      <Route path='/CreateCategory' element={<CreateCategory />}/>
-      <Route path='/ListCategory' element={<ListCategory />}/>
+      <Route exact path="admin" element={<Dash />} >
+      <Route exact path='CreateProduct' element={<CreateProduct />}/>
+      <Route exact path='ListProduct' element={<ListProduct />}/>
+      <Route exact path='CreateSubCategory' element={<CreateSubCategory />}/>
+      <Route exact path='ListSubCategory' element={<ListSubCategory />}/>
+      <Route exact path='CreateCategory' element={<CreateCategory />}/>
+      <Route exact path='ListCategory' element={<ListCategory />}/>
+      </Route>
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>
