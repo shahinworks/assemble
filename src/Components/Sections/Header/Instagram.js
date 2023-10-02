@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function Instagram() {
   return (<>
@@ -6,4 +6,4 @@ function Instagram() {
   </>)
 }
 
-export default Instagram
+export default Instagram;
