@@ -2,13 +2,12 @@ import React from 'react';
 
 function Instagram() {
   return (<>
-  <h1>Instagram Section </h1>
   <section id="instagram">
     <h1 className="text-center">Check out our Instagram</h1>
     <p className="text-center">#BeDressponsible</p>
     <br />
     <br />
-    <div className="container justify-content-center" style={{ marginLeft: "20% !important" }}>
+    <div className="container justify-content-center" style={{ marginLeft: "20% !important", paddingLeft: "100px" , paddingRight: "20px"}}>
       <div className="row portfolio text-light">
         <div className="col-lg-4 col-md-6 col-sm-6 div1">
           <div style={{ width: "80%" }} className="minilogo ">

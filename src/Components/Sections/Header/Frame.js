@@ -24,11 +24,10 @@ function Frame() {
           data-gtm-yt-inspected-11="true"
         />
 
-<div className='text-left position-absolute ' style={{paddingLeft: "80px"}}>
+  <div className='text-left position-absolute' style={{paddingLeft: "80px", paddingTop:"80px"}}>
     <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>#BE</h1>
     <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>DRESS</h1>
     <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>PONSIBLE</h1>
-
    </div>
         </div>
     </Row>
