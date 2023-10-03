@@ -120,7 +120,10 @@ font-weight: 900;
 display: block !important;
 }
 #myTabContent li{
-padding-top: 10px;    
+padding-top: 10px;  
+padding-left: 0px;  
+margin-left: 0px;
+margin-right: 0px;
 }
 .shade:hover{
 opacity: 0.6;

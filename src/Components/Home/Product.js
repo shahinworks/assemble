@@ -301,9 +301,10 @@ function Product() {
                   </button>
                 </li>
               </ul>
-              <div className="tab-content" id="myTabContent">
-                <div
-                  className="tab-pane fade show active container"
+              <div style={{marginLeft: "0px", paddingLeft: "0px"}} >
+              {/* className="tab-content" id="myTabContent"> */}
+                <div  style={{paddingLeft: "0px", marginLeft: "0px"}}
+                  // className="tab-pane fade show active container"
                   id="home"
                   role="tabpanel"
                   aria-labelledby="home-tab"
@@ -311,15 +312,15 @@ function Product() {
                   <p style={{ paddingTop: 20 }}>
                     <b>Free Size:</b>
                   </p>
-                  <ul>
+                  <ul className='px-0 mx-0'  style={{paddingLeft: "0px", marginLeft: "0px"}}>
                     <li>
                       <b>
                         Waist : 26" - 48" (Full Elasticated Waist with
                         tightening lace)
                       </b>
                     </li>
-                    <li>
-                      <b>Height : 40" </b>
+                    <li className='px-0 mx-0' style={{paddingLeft: "0px", marginLeft: "0px"}}>
+                      <b className='px-0 mx-0'  style={{paddingLeft: "0px", marginLeft: "0px"}}>Height : 40" </b>
                     </li>
                   </ul>
                   <p style={{ paddingTop: 20 }}>
