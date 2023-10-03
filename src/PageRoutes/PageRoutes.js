@@ -16,6 +16,7 @@ import Dash from '../Components/Admin/Dashboard/Dash';
 import Body from '../Components/Sections/Header/Body';
 import Home from '../Components/Home/Home';
 import Shop from '../Components/Home/Shop';
+import About from '../Components/Home/About';
  
 function PageRoutes() {
   return (
@@ -33,6 +34,7 @@ function PageRoutes() {
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>
       <Route path='/shop' element={<Shop />}/>
+      <Route path='/about' element={<About />}/>
 
 
 

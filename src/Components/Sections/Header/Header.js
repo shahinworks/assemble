@@ -41,7 +41,7 @@ function Header() {
       <li> <a className="link-item nav-link scrollto" href="services.html"> Returns/Exchange </a> </li>
       <li> <a className="link-item nav-link scrollto" href="book.html"> Track </a> </li>
       <li> <a className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
-      <li> <a className="link-item nav-link scrollto" href=" contact.html">  About US </a> </li>
+      <li> <a className="link-item nav-link scrollto" href="/about">  About US </a> </li>
   </ul>
   <div className="d-flex">
     
