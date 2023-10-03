@@ -17,6 +17,7 @@ import Body from '../Components/Sections/Header/Body';
 import Home from '../Components/Home/Home';
 import Shop from '../Components/Home/Shop';
 import About from '../Components/Home/About';
+import Product from '../Components/Home/Product';
  
 function PageRoutes() {
   return (
@@ -35,10 +36,10 @@ function PageRoutes() {
       <Route path='/rough' element={<Demo />}/>
       <Route path='/shop' element={<Shop />}/>
       <Route path='/about' element={<About />}/>
+      <Route path='/product' element={<Product />}/>
 
 
-
-
+      
       <Route path='/login' element={<Login />}/>
       <Route path='/register' element={<Register />}/>
       <Route path='/rough' element={<Demo />}/>

@@ -11,7 +11,7 @@ function Shop() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="product.html" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/1.jpg" />
                   </a>
                 </li>
@@ -28,7 +28,7 @@ function Shop() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="product.html" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/TheVeshtiCompanyHaremPants50_540x.webp" />
                   </a>
                 </li>
@@ -45,7 +45,7 @@ function Shop() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="product.html" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_360x.webp" />
                   </a>
                 </li>
@@ -62,7 +62,7 @@ function Shop() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="product.html" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/23.webp" />
                   </a>
                 </li>
@@ -79,7 +79,7 @@ function Shop() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="product.html" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/24.webp" />
                   </a>
                 </li>
@@ -96,7 +96,7 @@ function Shop() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="product.html" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/25.webp" />
                   </a>
                 </li>
@@ -113,7 +113,7 @@ function Shop() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="product.html" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/1.jpg" />
                   </a>
                 </li>
@@ -130,7 +130,7 @@ function Shop() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="product.html" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/2.jpg" />
                   </a>
                 </li>
