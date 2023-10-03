@@ -660,20 +660,24 @@ function Product() {
             src="assets/img/TheVeshtiCompanyHaremPants1_medium.avif"
             alt=""
           />
-          <h4
+          <p
             style={{
               color: "white",
               background: "#b77b12",
               borderRadius: "50%",
-              marginLeft: "-25px",
+              marginLeft: "-30px",
               zIndex: 0,
               height: 50,
               display: "flex",
-              alignItems: "center"
+              alignItems: "center",
+              fontSize: "15px",
+              fontWeight: "bold",
+              padding: "0px 10px",
+              marginTop: "-10px"
             }}
           >
             33%
-          </h4>
+          </p>
         </div>
         <p style={{ paddingTop: 6, marginLeft: "-14px", marginBottom: 0 }}>
           <b>Terra Fragments</b>
