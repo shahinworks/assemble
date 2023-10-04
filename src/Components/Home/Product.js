@@ -122,10 +122,53 @@ function Product() {
                 </div>
               </div>
               <br />
-              <h6>
+              {/* <h6>
                 <b>Colour</b>
+              </h6> */}
+              <h6 className='fw-bold mx-2 text-left'>
+                Colour
               </h6>
-              <div className="row row2 text-uppercase">
+              <div className='ms-0 d-flex'>
+              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+                ORANGE
+              </div>
+              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+                ORANGE
+              </div>
+              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+                ORANGE
+              </div>
+              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+                ORANGE
+              </div>
+              </div>
+              <h6 className='fw-bold mx-2 text-left'>
+                Gender
+              </h6>
+              <div className='ms-0 d-flex'>
+              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+                MEN
+              </div>
+              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+                WOMEN
+              </div>
+              </div>
+              <h6 className='fw-bold mx-2 text-left'>
+                Size
+              </h6>
+              <div className='ms-0 d-flex'>
+              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+                 FREE SIZE
+              </div>
+              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+                MEDIUM
+              </div>
+              </div>
+
+
+
+
+              {/* <div className="row row2 text-uppercase">
                 <div
                   className="col-lg-2 variant text-center"
                   data-image="assets/img/orange.webp"
@@ -179,18 +222,18 @@ function Product() {
               <div className="row row2 text-uppercase">
                 <div className="col-lg-2 col-md-2 col-sm-6">men</div>
                 <div className="col-lg-2  col-md-2 col-sm-6 ">women</div>
-              </div>
+              </div> */}
             </div>
             <br />
-            <h6>
+            {/* <h6>
               <b>Size</b>
             </h6>
             <div className="row row2 text-uppercase">
               <div className="col-lg-2 col-md-2 col-sm-6">Freesize</div>
               <div className="col-lg-2 col-md-2 col-sm-6">medium</div>
-            </div>
+            </div> */}
             <br />
-            <div className="d-flex align-items-center">
+            <div className="mx-2 d-flex align-items-center">
               <svg
                 style={{ marginRight: 9 }}
                 xmlns="http://www.w3.org/2000/svg"
@@ -207,7 +250,7 @@ function Product() {
               </h6>
             </div>
             <br />
-            <div className="d-flex align-items-flexstart">
+            <div className="mx-2  d-flex align-items-flexstart">
               <svg height={20} width={20}>
                 <circle
                   cx={10}
@@ -220,7 +263,7 @@ function Product() {
               </svg>
               <p style={{ paddingLeft: 13, marginTop: "-3px" }}>
                 {" "}
-                In stoke ,ready to ship
+                In stock, ready to ship
               </p>
             </div>
             <br />
