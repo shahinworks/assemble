@@ -1,5 +1,6 @@
 import React from 'react';
 import './Product.css';
+import { Tab, TabContainer, TabContent, Tabs } from 'react-bootstrap';
 
 function Product() {
   return (<>
@@ -298,7 +299,66 @@ function Product() {
               </button>
             </div>
             <br />
-            <dir>
+           
+
+
+           <h1>Hello it stars here</h1>
+         <Tabs>
+          <Tab eventKey="measurement" title="Measurement" className='my-3'>
+          <h6 className='fw-bold mx-2 my-3 text-left'>
+                Free Size : 
+              </h6>
+            <ul>
+              <li style={{fontWeight: "bold", textAlign: "left"}} className='my-2'> Waist : 26" - 48" (Full Elasticated Waist with
+                        tightening lace)</li>
+              
+              <li style={{fontWeight: "bold", textAlign: "left"}} className='my-2'>Height : 40"</li>
+              </ul>
+              <h6 className='fw-bold mx-2 my-3 text-left'>
+                Medium : 
+              </h6>
+            <ul>
+              <li style={{fontWeight: "bold", textAlign: "left"}} className='my-2'> Waist : 26" - 48" (Full Elasticated Waist with
+                        tightening lace)</li>
+              
+              <li style={{fontWeight: "bold", textAlign: "left"}} className='my-2'>Height : 40"</li>
+              </ul>
+              <h6 className='fw-bold mx-2 my-3 text-left'>
+                Features : 
+              </h6>
+            <ul>
+              <li style={{fontWeight: "bold", textAlign: "left"}} className='my-2'>
+                Finest Long Staple 100% cotton</li>
+                <li style={{fontWeight: "bold", textAlign: "left"}} className='my-2'>
+               Super Sized Pocket</li>
+               <li style={{fontWeight: "bold", textAlign: "left"}} className='my-2'>
+               High quality Skin safe colours</li>
+            
+              </ul>
+          </Tab>
+          <Tab eventKey="description" title="Description">
+            <div className="my-3" style={{fontWeight: "bold" , textAlign: "left"}}>
+            Elevate your style and feel oh so comfortable in the Tribal Stone pants! These harem pants are everything you need and more to feel truly comfortable and at easy. The pants are made of 100% cotton and feature a full elasticated waist. Pair the pants with a simple&nbsp;tank top and some comfortable&nbsp;footwear for a complete look. Treat yourself to comfort today!
+            </div>
+          </Tab>
+          <Tab eventKey="size" title="Size">
+          <h6 className='fw-bold mx-2 text-left'>
+                Features : 
+              </h6>
+            <ul>
+              <li style={{fontWeight: "bold", textAlign: "left"}}>
+                Finest Long Staple 100% cotton</li>
+                <li style={{fontWeight: "bold", textAlign: "left"}}>
+               Super Sized Pocket</li>
+               <li style={{fontWeight: "bold", textAlign: "left"}}>
+               High quality SKin safe colours</li>
+            
+              </ul>
+          </Tab>
+         </Tabs>
+
+
+            {/* <dir>
               <ul className="nav nav-tabs" id="myTab" role="tablist">
                 <li className="nav-item text-dark" role="presentation">
                   <button
@@ -345,7 +405,7 @@ function Product() {
                 </li>
               </ul>
               <div style={{marginLeft: "0px", paddingLeft: "0px"}} >
-              {/* className="tab-content" id="myTabContent"> */}
+             
                 <div  style={{paddingLeft: "0px", marginLeft: "0px"}}
                   // className="tab-pane fade show active container"
                   id="home"
@@ -450,7 +510,7 @@ function Product() {
                 <b></b>
               </div>
               <b></b>
-            </dir>
+            </dir> */}
             <hr />
             <b>
               <div className="d-flex">
