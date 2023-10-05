@@ -8,7 +8,7 @@ import logo2 from './logo-TRP.png';
 
 function Header() {
   const [header, setHeader] = useState("header");
-  const [logo, setLogo] = useState(logo2);
+   const [logo, setLogo] = useState(logo2);
 
   const listenScrollEvent = event => {
     if (window.scrollY < 73) {
@@ -34,7 +34,7 @@ function Header() {
     <div id="logo" className='logo'>
     <a href="index.html">
       {/* <h2 className="text-dark" style={{ textDecoration: "none" }}> LOGO </h2> */}
-      <img style={{ height: "100px", width: "100px", borderRadius: "25px"}} src={logo} alt='Logo'/>
+      <img style={{ height: "100px", width: "100px", borderRadius: "25px"}} src={logo1} alt='Logo'/>
     </a>
     {/* Uncomment below if you prefer to use a text logo */}
     {/*<h1><a href="index.html">Regna</a></h1>*/}
