@@ -41,7 +41,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="col-lg-4 col-md-4 col-sm-6">
+          <div className="col-lg-4 col-md-4 col-sm-6 text-start">
             <h4>Main Menu</h4>
             <ul>
               <li>
