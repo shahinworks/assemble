@@ -163,8 +163,8 @@ function Home() {
       </div>
     </section>
 
-    <Row style={{paddingTop: "100px", marginTop: "30px"}}>
-            <Col className='col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center' style={{paddingLeft: "80px", marginRight: "25px", fontSize: "24px"}}> 
+        <Row className='SideRow' >
+            <Col className='SideColLeft col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center'> 
             <Row>
             <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway" , letterSpacing: "2px"}} className='mx-4 text-left'>UNIQUE & UNISEX</h4>
             <h5 style={{fontSize: "50px", fontFamily: "league gothic"}} className='mx-4 text-left'>Hipster Series</h5>
@@ -181,11 +181,11 @@ function Home() {
             <img src="assets/img/HD-wallpaper-d-red-model-shopping-yellow-woman-laptop-girl-funny-white-thumbnail.jpg" alt="" />
             </Col>
         </Row>
-        <Row style={{paddingTop: "100px", marginTop: "30px"}}>
+        <Row  className='SideRow'>
         <Col className='col-lg-6 col-md-6 col-sm-12  justify-content-center'>
             <img src="assets/img/HD-wallpaper-d-red-model-shopping-yellow-woman-laptop-girl-funny-white-thumbnail.jpg" alt="" />
             </Col>
-            <Col className='col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center' style={{paddingRight: "80px", marginRight: "25px", fontSize: "24px"}}> 
+            <Col className='col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center SideColRight' > 
             <Row>
             <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}} className='mx-4 text-left'>#BEDRESSPONSIBLE</h4>
             <h5 style={{fontSize: "50px", fontFamily: "league gothic"}} className='mx-4 text-left'>The Vagabond</h5>
@@ -201,11 +201,8 @@ function Home() {
             </Col>
         </Row>  
 
-        <Row  style={{paddingTop: "100px", marginTop: "30px"}}>
-  
-
-
-  <div className="position-relative">
+        <Row  className='SideRow'>
+       <div className="position-relative">
        <iframe
         id="YouTubeVideo-template--16577403715829__hero-video"
         className="video-div iframe"
@@ -228,7 +225,7 @@ function Home() {
    <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>PONSIBLE</h1>
   </div>
        </div>
-   </Row>
+      </Row>
 
    <section id="instagram">
     <h1 className="text-center mt-5" style={{marginTop: "30px"}}>Check out our Instagram</h1>
