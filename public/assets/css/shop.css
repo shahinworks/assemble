@@ -1003,9 +1003,6 @@ body {
   #instagram{
     padding: 0 !important;
   }
-  
-  
-  
   .position-absolute {
     left: 10%;
     top: 20%;
@@ -1047,7 +1044,7 @@ body {
   }
   .input1{
     border: 0.2px solid whitesmoke;
-    width: 50%;
+    width: 80%;
     justify-content: space-evenly;
     height: 30px;
     align-items: center;

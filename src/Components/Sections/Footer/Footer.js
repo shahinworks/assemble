@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Envelope } from 'react-bootstrap-icons';
 
 function Footer() {
   return (<>
@@ -84,9 +85,9 @@ function Footer() {
             </p>
             <br />
             <div className="start-info">
-              <div className="input">
-                <div className="input1 d-flex ">
-                  <i className="bi bi-envelope" />{" "}
+              <div className="input text-center" style={{textAlign: "center"}}>
+                <div className="input1 d-flex " style={{width: "100%"}}>
+                <Envelope color='white' size={20}/>
                   <input type="email" placeholder="Enter Your Email" id="" />
                 </div>
               </div>
@@ -139,4 +140,4 @@ function Footer() {
   </>)
 }
 
-export default Footer
+export default Footer;
