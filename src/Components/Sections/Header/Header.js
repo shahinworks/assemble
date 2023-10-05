@@ -46,7 +46,7 @@ function Header() {
     <div id="logo" className='logo'>
     <a href="index.html">
       {/* <h2 className="text-dark" style={{ textDecoration: "none" }}> LOGO </h2> */}
-      <img className='mt-2 logo-img' style={{ height: "100px", width: "100px", borderRadius: "25px"}} src={logo2} alt='Logo'/>
+      <img className='mt-2 logo-img' style={{ height: "100px", width: "100px", borderRadius: "25px"}} src={logo} alt='Logo'/>
     </a>
     {/* Uncomment below if you prefer to use a text logo */}
     {/*<h1><a href="index.html">Regna</a></h1>*/}
