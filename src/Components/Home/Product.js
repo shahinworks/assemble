@@ -578,12 +578,29 @@ function Product() {
 
 
 <section className="slider">
-  <h1 className="text-center">
-    <b>You my also like</b>
+  <h1 className="text-center" style={{ fontFamily: "poppins", fontWeight: "bolder", fontSize: "30px" }}>
+    You may also like 
   </h1>
   <div className="container">
     <div className="row">
-      <div className="flexslider col-lg-3 col-md-6 col-sm-12">
+    <div className="flexslider col-lg-3 col-md-6 col-sm-12" >
+            <div className="flexslider">
+              <ul className="slides" style={{listStyle: "none"}} >
+                <li data-thumb="assets/img/1.jpg">
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
+                    <img style={{ height: 350, objectFit: "contain" }} src="assets/img/1.jpg" />
+                  </a>
+                </li>
+                <div className='text-center'>
+                  <h2 className='mt-2' style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}}> Mythical Mana </h2>
+                  <p>
+                    <del> ₹3,000</del> ₹1999
+                  </p>
+                </div>
+              </ul>
+            </div>
+          </div>
+      {/* <div className="flexslider col-lg-3 col-md-6 col-sm-12">
         <div className="flexslider">
           <ul className="slides">
             <li data-thumb="assets/img/TheVeshtiCompanyHaremPants50_540x.webp">
@@ -742,7 +759,7 @@ function Product() {
         <p style={{ position: "absolute", left: 100, top: 400 }}>
           <del> ₹3,000</del> ₹1999
         </p>{" "}
-      </div>
+      </div> */}
     </div>
   </div>
 </section>
@@ -831,7 +848,7 @@ function Product() {
           </a>
         </div>
       </div>
-      <div className="col-lg-2 col-md-3 col-md-6 d-flex flex-column align-items-center">
+      {/* <div className="col-lg-2 col-md-3 col-md-6 d-flex flex-column align-items-center">
         <div className="d-flex ">
           <img
             style={{
@@ -1200,7 +1217,7 @@ function Product() {
             </p>
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   </div>
 </section>
