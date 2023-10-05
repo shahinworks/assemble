@@ -7,6 +7,12 @@ import logo2 from './logo-TRP.png';
 
 
 function Header() {
+
+  const ice = {
+    maxWidth: "1000px",
+    margin: "0 auto"
+  }
+
   const [header, setHeader] = useState("header");
    const [logo, setLogo] = useState(logo2);
 
@@ -26,6 +32,12 @@ function Header() {
   }, []);
 
   const [ editModal, setEditModal] = useState(false);
+
+  const [nav, setNav] = useState(false);
+   
+  // const handleNavbar = () => {
+  //   console.log("handleNavbar");
+  // }
 
   return (   
     <>
@@ -49,12 +61,16 @@ function Header() {
       <li> <a style={{fontSize: "20px"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
       <li> <a style={{fontSize: "20px"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
   </ul>
-  <div className="d-flex mx-2">
-   
-  <Person className='mx-1' color='black' size={28} />
- 
-  <Search  className='mx-1' color='black' size={28} />
-  <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} />
+  <div className="nav-item d-flex mx-2">
+    <ul>
+      <li> <Person className=' mx-1' color='black' size={28} /></li>
+      <li> <Search  className='  mx-1' color='black' size={28} /> </li>
+      <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} /></li>
+    </ul>
+  
+    {/* <Button onClick={() => handleNavbar(true)} type="button" variant="outline-link"> */}
+      <List onClick={() => setNav(true)} className='me-0 pe-0 mx-1 d-lg-none ' color='black' size={28}  />
+    {/* </Button> */}
   </div> 
   </nav>
   </div>
@@ -66,6 +82,25 @@ function Header() {
 </Modal.Header>
 <Modal.Body>
  <p > Your Cart is Currently Empty </p> 
+</Modal.Body>
+<Modal.Footer className="border-0">
+</Modal.Footer>
+</Modal>
+
+
+<Modal    className="modal-right scroll-out-negative" show={nav} onHide={() => setNav(false)} scrollable dialogClassName="full">
+<Modal.Header closeButton>
+  <Modal.Title className='fw-bold' as="h5">Cart</Modal.Title>
+</Modal.Header>
+<Modal.Body style={ice}>
+<ul className="links nav-item" >
+      <li> <a style={{fontSize: "20px"}} className="link-item nav-link scrollto" href="/"  > Home </a> </li>
+      <li> <a style={{fontSize: "20px"}} className="link-item nav-link scrollto" href="/shop" >  Shop </a> </li>
+      <li> <a style={{fontSize: "20px"}} className="link-item nav-link scrollto" href="services.html" > Returns/Exchange </a> </li>
+      <li> <a style={{fontSize: "20px"}} className="link-item nav-link scrollto" href="book.html" > Track </a> </li>
+      <li> <a style={{fontSize: "20px"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
+      <li> <a style={{fontSize: "20px"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
+  </ul>
 </Modal.Body>
 <Modal.Footer className="border-0">
 </Modal.Footer>

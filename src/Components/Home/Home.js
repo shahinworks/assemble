@@ -24,32 +24,28 @@ function Home() {
   const [ editModal, setEditModal] = useState(false);
 
   return (<>
-
-  <section  id="hero" >
     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img className="d-block w-100" src="assets/img/hero-bg.jpg" alt="First slide" />
-    </div>
-    <div className="carousel-item">
-      <img className="d-block w-100" src='assets/img/trendy-stylish-woman-rejoicing-with-sales-shopping-time-isolated-pink-wearing-casual-outfit_273443-4585.avif' alt="Second slide" />
-    </div>
-    <div className="carousel-item">
+      <div className="carousel-inner">
+        <div className="carousel-item active">
+          <img className="d-block w-100" src="assets/img/hero-bg.jpg" alt="First slide" />
+        </div>
+        <div className="carousel-item">
+          <img className="d-block w-100" src='assets/img/trendy-stylish-woman-rejoicing-with-sales-shopping-time-isolated-pink-wearing-casual-outfit_273443-4585.avif' alt="Second slide" />
+        </div>
+    {/* <div className="carousel-item">
       <img className="d-block w-100" src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp" alt="Third slide" />
-    </div>
-  </div>
-  <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true">
-    <CaretLeft color='black' size={33} />
-    </span>
-  </a>
-  <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true">
-    <CaretRight color='black' size={33} /> 
-    </span>
-  </a>
+    </div> */}
+      </div>
+      <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span className="carousel-control-prev-icon" aria-hidden="true" /> 
+    {/* <CaretLeft color='black' size={33} /> */}
+    </a>
+    <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span className="carousel-control-next-icon" aria-hidden="true" /> 
+    {/* <CaretRight color='black' size={33} />  */}
+    </a>
     </div> 
-    </section>
+
 
     <section id="about" className="about">
       <p className="text-center">#BEDRESSPONSIBLE</p>

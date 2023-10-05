@@ -7,6 +7,7 @@ import Frame from './Components/Sections/Header/Frame';
 import Header from './Components/Sections/Header/Header';
 import Instagram from './Components/Sections/Header/Instagram';
 import MidSection from './Components/Sections/Header/MidSection';
+import Navbar from './Components/Sections/Header/Navbar';
 import SecondMidSection from './Components/Sections/Header/SecondMidSection';
 import PageRoutes from './PageRoutes/PageRoutes';
 
