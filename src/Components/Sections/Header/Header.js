@@ -133,26 +133,22 @@ function Header() {
    </nav>
    </MediaQuery>
 
+</div>
 
-
-   </div>
+   
   <MediaQuery maxWidth={768}>
-  <div className="d-flex justify-content-left align-items-start" style={{textAlign: "start", marginLeft: "0px", paddingLeft: "0px"}}>
+  <div className="justify align-items-left" style={{alignContent: "left", justifyItems: "left", marginLeft: "0px", paddingLeft: "0px"}}>
   <div id="logo" className='logo'>
     <a href="index.html">
-      <img className='mt-2 logo-img text-left' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo} alt='Logo'/>
+      <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo} alt='Logo'/>
     </a>
   </div>
   </div>
-
-  {/* <Button style={{marginRight: "1px", paddingRight: "0px", textAlign: "right"}} type="button" variant="outline-link"> */}
+  <div style={{marginRight: "0px", paddingRight: "0px"}}>
     {!nav &&  <List onClick={() => setNav(true)} className='me-4 mt-0 pt-0' color='black' size={28}  />}
-    {/* </Button> */}
-    </MediaQuery>
-   
+  </div>
+  </MediaQuery>
 </header> 
-
-
 
 {/* modal-right scroll-out-negative   */}
 
