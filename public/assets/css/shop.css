@@ -336,7 +336,8 @@ body {
   }
   
     .navbar ul {
-      display: none;
+      /* display: none; */
+      /* font-size: 2px !important; */
     }
   }
   nav#navbar {
