@@ -86,3 +86,22 @@
     }
   }
   
+  .toggle{
+    max-width: 1000px !important;
+    width: 100% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 0 !important;
+    margin: 0 !important;
+    background-color: white;
+    border: none !important;
+  }
+
+  /* .modalHead{
+    background-color: chartreuse;
+  }
+
+  .modalBod{
+    background-color: aqua;
+  } */

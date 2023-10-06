@@ -72,25 +72,26 @@ function Header() {
   </div>
 
   {/* <Button style={{marginRight: "1px", paddingRight: "0px", textAlign: "right"}} type="button" variant="outline-link"> */}
-    {!nav &&  <List onClick={() => setNav(true)} className='me-4 mt-0 pt-0 d-lg-none ' color='black' size={28}  />}
+    {!nav &&  <List onClick={() => setNav(true)} className='me-4 mt-0 pt-0 d-lg-none' color='black' size={28}  />}
     {/* </Button> */}
 </header> 
 
 
 
+{/* modal-right scroll-out-negative   */}
 
-<Modal    className="px-0 mx-0 modal-right scroll-out-negative" show={nav} onHide={() => setNav(false)} scrollable dialogClassName="full">
-<Modal.Header closeButton>
+<Modal className="px-0 mx-0 toggle" show={nav} onHide={() => setNav(false)} scrollable dialogClassName="full">
+{/* <Modal.Header closeButton className='modalHead'>
   <Modal.Title className='fw-bold' as="h5">MENU ITEMS</Modal.Title>
-</Modal.Header>
-<Modal.Body style={ice} className='px-0 mx-0'>
+</Modal.Header> */}
+<Modal.Body  style={ice} className='px-0 mx-0 modalBod'>
 <ul className="links nav-item"  style={{listStyle: "none", textAlign: "left"}}>
-      <li> <a style={{fontSize: "20px"}} className="link-item nav-link" href="/"  > Home </a> </li>
-      <li> <a style={{fontSize: "20px"}} className="link-item nav-link" href="/shop" >  Shop </a> </li>
-      <li> <a style={{fontSize: "20px"}} className="link-item nav-link" href="services.html" > Returns/Exchange </a> </li>
-      <li> <a style={{fontSize: "20px"}} className="link-item nav-link" href="book.html" > Track </a> </li>
-      <li> <a style={{fontSize: "20px"}} className="link-item nav-link" href="photo.html"> FAQ's </a> </li>
-      <li> <a style={{fontSize: "20px"}} className="link-item nav-link" href="/about">  About US </a> </li>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="/"  > Home </a> </li> <hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="/shop" >  Shop </a> </li><hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="services.html" > Returns/Exchange </a> </li><hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="book.html" > Track </a> </li><hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="photo.html"> FAQ's </a> </li><hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="/about">  About US </a> </li><hr/>
   </ul>
 </Modal.Body>
 <Modal.Footer className="border-0">

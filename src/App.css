@@ -53,6 +53,8 @@
         /* Styles for the modal content */
         .modal-content {
             padding: 20px;
+            /* background-color: chocolate; */
+            border: none;
         }
 
         /* Button to open the modal */
@@ -102,10 +104,11 @@
 
         .modal-right .modal-content {
           min-height: 100%;
-          border: initial;
+          
+          /* border: initial;
           border-radius: initial;
           border-top-left-radius: var(--border-radius-lg);
-          border-bottom-left-radius: var(--border-radius-lg);
+          border-bottom-left-radius: var(--border-radius-lg); */
         }
 
 
