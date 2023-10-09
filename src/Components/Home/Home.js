@@ -3,6 +3,7 @@ import {Speedometer, List, Person, Search, Cart, Bag, CaretLeft, CaretRight, Che
 import { Button, Modal, Card, Row, Col } from 'react-bootstrap';
 
 import './Home.css';
+import MediaQuery from 'react-responsive';
 
 function Home() {
   const [header, setHeader] = useState("header");
@@ -45,7 +46,6 @@ function Home() {
     {/* <CaretRight color='black' size={33} />  */}
     </a>
     </div> 
-
 
     <section id="about" className="about">
       <p className="text-center">#BEDRESSPONSIBLE</p>
@@ -162,7 +162,7 @@ function Home() {
         </div>
       </div>
     </section>
-
+      <MediaQuery minWidth={769} >
         <Row className='SideRow' >
             <Col className='SideColLeft col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center'> 
             <Row>
@@ -172,9 +172,11 @@ function Home() {
             </p> 
             <Col className='ms-4 text-left'>
             <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
-                Shop Hipster Series</Button> </Col>
+                Shop Hipster Series</Button> 
+                </Col>
                <Col   className='me-4 text-left'> <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
-                Shop ALL</Button> </Col>
+                Shop ALL</Button> 
+              </Col>
                 </Row>
             </Col>
             <Col className='col-lg-6 col-md-6 col-sm-12  justify-content-right'>
@@ -200,10 +202,49 @@ function Home() {
                 </Row>
             </Col>
         </Row>  
+      </MediaQuery>
 
-        <Row  className='SideRow'>
-       <div className="position-relative">
-       <iframe
+      <MediaQuery maxWidth={768}>
+        <Row className='mx-2'>
+          <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway" , letterSpacing: "2px"}}
+            className='mx-4 text-left'>UNIQUE & UNISEX</h4>
+          <h5 style={{fontSize: "50px", fontFamily: "league gothic"}} className='mx-4 text-left'>Hipster Series</h5>
+          <div style={{ fontFamily: "raleway", fontSize: "20px", marginRight: "35px", paddingRight: "35px"}} className='mx-4 text-left d-flex'>The Hipster Series compliments all your quirks and crazines. 
+          Explore Playful prints, 
+          Fun colors and Unique designs that flatters your every move.
+          </div> 
+          <Col className='mt-4 ms-4 text-left'>
+            <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
+                Shop Hipster Series
+            </Button> 
+          </Col>
+          <Col className='mt-4 ms-4 text-left'>
+            <Button style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
+                Shop ALL
+            </Button> 
+          </Col>
+        </Row>
+        <Row className='my-5'> <img src="assets/img/HD-wallpaper-d-red-model-shopping-yellow-woman-laptop-girl-funny-white-thumbnail.jpg" alt="" /></Row>
+        <Row className='mx-2'>
+        <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}} className='mx-4 text-left'>#BEDRESSPONSIBLE</h4>
+            <h5 style={{fontSize: "50px", fontFamily: "league gothic"}} className='mx-4 text-left'>The Vagabond</h5>
+           <p style={{ fontFamily: "raleway", fontSize: "20px"}} className='mx-4 text-left'> 
+           Inspired from the earthy roots of Bohemian Culture, The vagabond collection transcends the realm of ordinary fashion with bewitching bohemian harem pants.
+            </p> 
+            <Col className='mt-4  ms-4 text-left'>
+            <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
+                Shop The Vagabond</Button> </Col>
+               <Col   className='mt-4  ms-4 text-left'> <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
+                Shop ALL</Button> </Col>
+        </Row>
+        <Row className='my-5'> 
+        <img  src="assets/img/HD-wallpaper-d-red-model-shopping-yellow-woman-laptop-girl-funny-white-thumbnail.jpg" alt="" /></Row>
+      </MediaQuery>
+
+
+      <Row  className='SideRow'>
+        <div className="position-relative">
+        <iframe
         id="YouTubeVideo-template--16577403715829__hero-video"
         className="video-div iframe"
         data-type="youtube"
@@ -217,7 +258,7 @@ function Home() {
          src="https://www.youtube.com/embed/CSp5KEg4K-g?autohide=0&cc_load_policy=0&controls=0&fs=0&iv_load_policy=3&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&&autoplay=1;origin=https%3A%2F%2Ftheveshticompany.com&widgetid=1?autoplay=1&mute=1"
          tabIndex={-1}
          data-gtm-yt-inspected-11="true"
-       />
+      />
 
  <div className='text-left position-absolute' style={{paddingLeft: "80px", paddingTop:"80px"}}>
    <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>#BE</h1>
