@@ -1,4 +1,5 @@
 import './App.css';
+import PhotosetComponent from './Components/Home/PhotosetComponent';
 import Footer from './Components/Sections/Footer/Footer';
 import Body from './Components/Sections/Header/Body';
 import Clients from './Components/Sections/Header/Clients';
@@ -27,9 +28,11 @@ function App() {
 
       
       {/* <Body />  */}
-      <Header />
+      {/* <Header />
       <PageRoutes />
-      <Footer />
+      <Footer /> */}
+
+      <PhotosetComponent />
       </div>
  
   );

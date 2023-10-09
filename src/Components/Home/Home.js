@@ -80,6 +80,7 @@ function Home() {
               </div>
               <div className="carousel-item">
           <div className="row row1">
+           <MediaQuery minWidth={769} >
             <div className="col-lg-4 col-md-4 col-sm-6">
               <img
                 src='assets/img/31.jpg'
@@ -89,7 +90,7 @@ function Home() {
               <p className="text-center">
                 <del>333333</del>999
               </p>
-            </div>
+            </div> </MediaQuery>
             <div className="col-lg-4 col-md-4 col-sm-6">
               <img
                 src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp"
@@ -113,6 +114,7 @@ function Home() {
               </div>
               <div className="carousel-item">
           <div className="row row1">
+          <MediaQuery minWidth={769} > 
             <div className="col-lg-4 col-md-4 col-sm-6">
               <img
                 src="assets/img/TheVeshtiCompanyHaremPants50_540x.webp"
@@ -122,7 +124,7 @@ function Home() {
               <p className="text-center">
                 <del>7777777777</del>999
               </p>
-            </div>
+            </div> </MediaQuery>
             <div className="col-lg-4 col-md-4 col-sm-6">
               <img
                 src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp"
@@ -145,20 +147,14 @@ function Home() {
           </div>
               </div>
           </div>
+          <MediaQuery minWidth={576} >
           <a className="carousel-control-prev" href="#carouselExampleControlsDamn" role="button"  data-slide="prev" >
-            {/* <span className="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true" /> */}
-            {/* <span class="carousel-control-prev-icon" aria-hidden="true"> */}
               <ChevronLeft color='black' size={33} />
-            {/* </span> */}
-           {/* <span class="sr-only">Previous</span> */}
           </a>
           <a className="carousel-control-next" href="#carouselExampleControlsDamn" role="button" data-slide="next" >
-            {/* <span className="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true" /> */}
-        {/* <span class="sr-only">Next</span> */}
-            {/* <span class="carousel-control-next-icon" aria-hidden="true"> */}
               <ChevronRight color='black' size={33} />
-            {/* </span> */}
           </a>
+          </MediaQuery>
         </div>
       </div>
     </section>
