@@ -56,7 +56,7 @@ function Header() {
   <MediaQuery minWidth={1200}>
   <div id="logo" className='logo'>
     <a href="index.html">
-      <img className='mt-2 logo-img' style={{ height: "100px", width: "100px", borderRadius: "25px"}} src={logo} alt='Logo'/>
+      <img className='mt-2 logo-img' style={{ height: "80px", width: "80px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
     </a>
   </div>
   <nav id="navbar" className="navbar mx-2" >
@@ -82,7 +82,7 @@ function Header() {
     <MediaQuery minWidth={1021} maxWidth={1199}>
     <div id="logo" className='logo'>
     <a href="index.html">
-      <img className='mt-2 logo-img' style={{ height: "100px", width: "100px", borderRadius: "25px"}} src={logo} alt='Logo'/>
+      <img className='mt-2 logo-img' style={{ height: "100px", width: "100px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
     </a>
   </div>
    
@@ -109,7 +109,7 @@ function Header() {
   <MediaQuery minWidth={769} maxWidth={1020}>
   <div id="logo" className='logo'>
     <a href="index.html">
-      <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo} alt='Logo'/>
+      <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
     </a>
   </div>
    
@@ -140,7 +140,7 @@ function Header() {
   <div className="justify align-items-left" style={{alignContent: "left", justifyItems: "left", marginLeft: "0px", paddingLeft: "0px"}}>
   <div id="logo" className='logo'>
     <a href="index.html">
-      <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo} alt='Logo'/>
+      <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
     </a>
   </div>
   </div>
