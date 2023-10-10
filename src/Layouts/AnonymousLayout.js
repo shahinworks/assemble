@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-function AnonymousLayout() {
+const AnonymousLayout = () => {
   return (
-    <div>AnonymousLayout</div>
+    <Outlet />
   )
 }
 

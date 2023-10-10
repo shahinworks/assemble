@@ -54,3 +54,6 @@ export const Routes = [
     ]
   }
 ];
+
+
+// export const Routes = renderRoutes(routes);
