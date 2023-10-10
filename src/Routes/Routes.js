@@ -8,7 +8,7 @@ import Home from "../Pages/Home";
 import CreateUser from "../Pages/CreateUser";
 import ListUsers from "../Pages/ListUser";
 
-export const Routes = [
+export const routes = [
 {
     layout: AnonymousLayout,
     routes: [
