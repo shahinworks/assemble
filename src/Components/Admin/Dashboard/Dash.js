@@ -10,7 +10,7 @@ function Dash() {
     <div className="your-element" style={{backgroundImage:"url('/barner2.png')",backgroundSize:"cover", position:" relative",backgroundReapeat:"no-repeat"
      }}>
       {/* <AdminNavbar /> */}
-      <Header />
+      {/* <Header /> */}
       <div className="container-fluid">
       <div className="row">
         <div className="col-3 mx-0 px-0" style={{ backgroundColor: "black"}}>
