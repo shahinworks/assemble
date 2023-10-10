@@ -37,7 +37,7 @@ function CreateCategory() {
   // };
 
   return (<>
-    <h2 className='text-center'>Create Category</h2>
+    <h2 className='text-center my-2'>Create Category</h2>
     {/* <Card className='mt-4 mb-2 mx-2 border-0 bg-dark text-light'> */}
     <Card style={{ backgroundColor: "black", color: "white"}}>
       <Card.Body>
