@@ -13,8 +13,8 @@ import SecondMidSection from './Components/Sections/Header/SecondMidSection';
 import PageRoutes from './PageRoutes/PageRoutes';
 
 function App() {
-  return (
-    <div className="App">
+  return (<>
+    {/* // <div className="App"> */}
        {/* <div className="wrapper"> */}
 
         {/* <Header /> */}
@@ -33,7 +33,9 @@ function App() {
       {/* <Footer /> */}
 
       {/* <PhotosetComponent /> */}
-      </div>
+      {/* // </div> */}
+
+      </>
  
   );
 }
