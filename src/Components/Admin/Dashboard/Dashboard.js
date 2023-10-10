@@ -14,17 +14,22 @@ function Dashboard() {
             // only apply styles on first level elements of the tree
             // if (level === 0) 
 
-              return {
-                color: disabled ? '#808080' : 'black',
-                backgroundColor: active ? '#C5C5C5' : '#dfdfdf',
-                fontSize: "14px",
-                fontWeight: "bold"
-              };
+              // return {
+              //   color: disabled ? '#808080' : 'black',
+              //   backgroundColor: active ? '#C5C5C5' : '#dfdfdf',
+              //   fontSize: "14px",
+              //   fontWeight: "bold"
+              // };
 
               // return {
               //   color: disabled ? '#f5d9ff' : '#d359ff',
               //   backgroundColor: active ? '#eecef9' : undefined,
               // };
+
+              return {
+                color: disabled ? 'grey' : 'black',
+                backgroundColor: active ? 'white' : "whitesmoke",
+              };
           },
         }}
       >  
