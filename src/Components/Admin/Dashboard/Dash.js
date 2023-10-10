@@ -13,10 +13,10 @@ function Dash() {
       {/* <Header /> */}
       <div className="container-fluid">
       <div className="row">
-        <div className="col-3 mx-0 px-0" style={{ backgroundColor: "#171616"}}>
+        <div className="col-3 mx-0 px-0" style={{ backgroundColor: "black"}}>
           <Dashboard />
         </div>
-        <div className="col-9 mx-0 px-0" style={{ backgroundColor: "#171616", color: "white"}}>
+        <div className="col-9 mx-0 px-0" style={{ backgroundColor: "black", color: "white"}}>
           <Outlet />
         </div>
       </div>

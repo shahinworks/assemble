@@ -6,7 +6,7 @@ import { ArrowRight, Calendar, Cart, Airplane , Balloon, Speedometer} from 'reac
 function Dashboard() {
   return (<>
    
-    <div style={{ display: 'flex', height: '100%', backgroundColor: "#171616" }}>
+    <div style={{ display: 'flex', height: '100%', backgroundColor: "black" }}>
     <Sidebar>
       <Menu
         menuItemStyles={{
