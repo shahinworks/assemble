@@ -52,6 +52,36 @@ function ListCategory() {
     });
   }
 
+
+  // Delete 
+
+  const [deleteId, setDeleteId] = useState("");
+
+  const DELETE = gql`
+    mutation DeleteCategory($deleteCategoryId: ID!) {
+      deleteCategory(id: $deleteCategoryId) {
+        id
+        categoryName
+      }
+    }
+  `;
+
+  const [deleteCategory, {data: deleteCat} ]= useMutation(DELETE );
+
+  if(deleteCat){
+    console.log("deleteCat", deleteCat);
+  }
+
+  function handleDelete(id){
+    setDeleteId(id);
+    deleteCategory({
+      variables: {
+        deleteCategoryId: id
+      }
+    });
+  }
+
+
   return (
     <>
       <Row>
@@ -79,7 +109,7 @@ function ListCategory() {
                         <Pencil size={20} color="black"/>
                        </Button>
 
-                       <Button className="btn btn-sm btn-light"> 
+                       <Button className="btn btn-sm btn-light"  onClick={() => handleDelete(item.id)}> 
                         <Trash size={20} color="black" />
                        </Button>
                      </td>
