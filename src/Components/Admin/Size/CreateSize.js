@@ -8,9 +8,6 @@ function CreateSize() {
 
   const [size, setSize] = useState("");
 
-
-
-
   const CREATE_SIZE_MUTATION = gql`mutation CreateSize($sizeName: String) {
   createSize(sizeName: $sizeName) {
     sizeName
