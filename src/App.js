@@ -30,7 +30,7 @@ function App() {
       {/* <Body />  */}
       {/* <Header /> */}
       <PageRoutes />
-      {/* <Footer /> */}
+      <Footer />
 
       {/* <PhotosetComponent /> */}
       {/* // </div> */}

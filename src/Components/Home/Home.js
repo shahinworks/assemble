@@ -4,6 +4,7 @@ import { Button, Modal, Card, Row, Col } from 'react-bootstrap';
 
 import './Home.css';
 import MediaQuery from 'react-responsive';
+import Header from '../Sections/Header/Header';
 
 function Home() {
   const [header, setHeader] = useState("header");
@@ -25,6 +26,7 @@ function Home() {
   const [ editModal, setEditModal] = useState(false);
 
   return (<>
+  <Header />
     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
       <div className="carousel-inner">
         <div className="carousel-item active">
