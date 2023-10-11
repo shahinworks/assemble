@@ -14,3 +14,14 @@
   margin-right: 25px;
   font-size: 24px;
 }
+
+.SideColLeftImage {
+  padding-left: 150px;
+  margin-right: 25px;
+}
+
+.SideColRightImage {
+  padding-left: 60px;
+  margin-right: 0px;
+  padding-right: 0px;
+}

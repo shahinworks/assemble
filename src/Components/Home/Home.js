@@ -175,28 +175,30 @@ function Home() {
               </Col>
                 </Row>
             </Col>
-            <Col className='col-lg-6 col-md-6 col-sm-12  justify-content-right'>
+            <Col className='col-lg-6 col-md-6 col-sm-12  justify-content-center  SideColRightImage'>
             <img src="assets/img/HD-wallpaper-d-red-model-shopping-yellow-woman-laptop-girl-funny-white-thumbnail.jpg" alt="" />
             </Col>
         </Row>
         <Row  className='SideRow'>
-        <Col className='col-lg-6 col-md-6 col-sm-12  justify-content-center'>
+          <Col className='SideColLeftImage  col-lg-6 col-md-6 col-sm-12'>
             <img src="assets/img/HD-wallpaper-d-red-model-shopping-yellow-woman-laptop-girl-funny-white-thumbnail.jpg" alt="" />
-            </Col>
-            <Col className='col-lg-5 col-md-5 col-sm-12 d-flex justify-content-center SideColRight' > 
+          </Col>
+          <Col className='col-lg-5 col-md-5 col-sm-12 d-flex SideColRight ' > 
             <Row>
-            <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}} className='mx-4 text-left'>#BEDRESSPONSIBLE</h4>
-            <h5 style={{fontSize: "50px", fontFamily: "league gothic"}} className='mx-4 text-left'>The Vagabond</h5>
-           <p style={{ fontFamily: "raleway", fontSize: "20px"}} className='mx-4 text-left'> 
+              <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}} className='mx-4 text-left'>#BEDRESSPONSIBLE</h4>
+              <h5 style={{fontSize: "50px", fontFamily: "league gothic"}} className='mx-4 text-left'>The Vagabond</h5>
+              <p style={{ fontFamily: "raleway", fontSize: "20px"}} className='mx-4 text-left'> 
            Inspired from the earthy roots of Bohemian Culture, The vagabond collection transcends the realm of ordinary fashion with bewitching bohemian harem pants.
-            </p> 
-            <Col className='ms-4 text-left'>
-            <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
-                Shop The Vagabond</Button> </Col>
-               <Col   className='me-4 text-left'> <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
-                Shop ALL</Button> </Col>
-                </Row>
-            </Col>
+              </p> 
+              <Col className='ms-4 text-left'>
+                <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
+                Shop The Vagabond</Button>
+              </Col>
+              <Col className='me-4 text-left'> <Button  style={{backgroundColor: "black", color: "white", fontWeight: "bolder", borderRadius: "0px"}}>
+                Shop ALL</Button>
+              </Col>
+            </Row>
+          </Col>
         </Row>  
       </MediaQuery>
 
