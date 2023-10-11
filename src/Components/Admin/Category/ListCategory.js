@@ -38,9 +38,10 @@ function ListCategory() {
 
   const [editCategory , {data: dataEdit}] = useMutation(EDIT_CATEGORY);
 
-  function handleEdit(id) {
+  function handleEdit(id, name) {
     showModal(true);
     setCategoryId(id);
+    setCategoryName(name)
   }
 
   const handleSubmit = async () => {
@@ -50,6 +51,7 @@ function ListCategory() {
         categoryName: categoryName
       }
     });
+    showModal(false);
   }
 
 
@@ -105,7 +107,7 @@ function ListCategory() {
                      <td  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >{index + 1}</td>
                      <td  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >{item.categoryName}</td>
                      <td  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >
-                       <Button className="btn btn-sm btn-light mx-2" onClick={() => handleEdit(item.id)}>
+                       <Button className="btn btn-sm btn-light mx-2" onClick={() => handleEdit(item.id, item.categoryName)}>
                         <Pencil size={20} color="black"/>
                        </Button>
 
