@@ -11,6 +11,7 @@ function Dash() {
      }}>
       {/* <AdminNavbar /> */}
       {/* <Header /> */}
+      <h1>Header</h1>
       <div className="container-fluid">
       <div className="row">
         <div className="col-3 mx-0 px-0" style={{ backgroundColor: "black"}}>

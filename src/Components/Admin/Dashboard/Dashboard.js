@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import { ArrowRight, Calendar, Cart, Airplane , Balloon, Speedometer} from 'react-bootstrap-icons';
+import { Button } from 'react-bootstrap';
+import { ArrowRight, Calendar, Cart, Airplane , Balloon, Speedometer, List} from 'react-bootstrap-icons';
 
 function Dashboard() {
+
+  const [toggled, setToggled] = useState(false);
+  const [broken, setBroken] = useState(window.matchMedia('(max-width: 800px)').matches);
+
   return (<>
    
     <div style={{ display: 'flex', height: '100%', backgroundColor: "black" }}>
-    <Sidebar>
+    <Sidebar onBackdropClick={() => setToggled(false)} toggled={toggled} customBreakPoint="800px" onBreakPoint={setBroken}>
       <Menu
         menuItemStyles={{
           button: ({ level, active, disabled }) => {
@@ -67,6 +72,15 @@ function Dashboard() {
         <MenuItem active icon={<Airplane color='black' size={20}  />} > Examples</MenuItem>
       </Menu>
     </Sidebar>
+    <main style={{ padding: 10 }}>
+        <div>
+          {broken && (
+            <Button className="btn btn-dark " onClick={() => setToggled(!toggled)}>
+             <List size={20} />
+            </Button>
+          )}
+        </div>
+      </main>
   </div>
   </>)
 }
