@@ -1,8 +1,10 @@
 import React from 'react';
+import Header from '../Sections/Header/Header';
 
 function Shop() {
 
   return (<>
+  <Header />
     <section className="slider" style={{ paddingTop: "10%" }}>
       <h1 className="text-center ">All Products</h1>
       <div className="container mx-3">
