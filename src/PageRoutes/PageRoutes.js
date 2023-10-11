@@ -18,6 +18,10 @@ import Home from '../Components/Home/Home';
 import Shop from '../Components/Home/Shop';
 import About from '../Components/Home/About';
 import Product from '../Components/Home/Product';
+import CreateSize from '../Components/Admin/Size/CreateSize';
+import ListSize from '../Components/Admin/Size/ListSize';
+import CreateColor from '../Components/Admin/Color/CreateColor';
+import ListColor from '../Components/Admin/Color/ListColor';
  
 function PageRoutes() {
   return (
@@ -30,6 +34,10 @@ function PageRoutes() {
       <Route exact path='ListSubCategory' element={<ListSubCategory />}/>
       <Route exact path='CreateCategory' element={<CreateCategory />}/>
       <Route exact path='ListCategory' element={<ListCategory />}/>
+      <Route exact path='CreateSize' element={<CreateSize />}/>
+      <Route exact path='ListSize' element={<ListSize />}/>
+      <Route exact path='CreateColor' element={<CreateColor />}/>
+      <Route exact path='ListColor' element={<ListColor />}/>
       </Route>
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>

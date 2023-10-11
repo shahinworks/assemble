@@ -48,6 +48,14 @@ function Dashboard() {
           <MenuItem component={<Link to="/admin/CreateSubCategory" />} >Create SubCategory </MenuItem>
           <MenuItem component={<Link to="/admin/ListSubCategory" />} >List SubCategory </MenuItem>
         </SubMenu>
+        <SubMenu active label="Color" icon={<Balloon color='black' size={20} />}>
+          <MenuItem component={<Link to="/admin/CreateColor" />} >Create Color </MenuItem>
+          <MenuItem component={<Link to="/admin/ListColor" />} >List Color </MenuItem>
+        </SubMenu>
+        <SubMenu active label="Size" icon={<Balloon color='black' size={20} />}>
+          <MenuItem component={<Link to="/admin/CreateSize" />} >Create Size </MenuItem>
+          <MenuItem component={<Link to="/admin/ListSize" />} >List Size </MenuItem>
+        </SubMenu>
         <SubMenu active label="Cart" icon={<Cart color='black' size={20} />}>
           <MenuItem component={<Link to="/CreateCart" />} >Create Cart</MenuItem>
           <MenuItem component={<Link to="/ListCart" />} >List Cart</MenuItem>
