@@ -1,9 +1,11 @@
 import React from 'react';
 import './Product.css';
 import { Tab, TabContainer, TabContent, Tabs } from 'react-bootstrap';
+import Header from '../Sections/Header/Header';
 
 function Product() {
   return (<>
+  <Header />
   <>
   <div className="container">
     <section className="slider" style={{ paddingTop: "10%" }}>
