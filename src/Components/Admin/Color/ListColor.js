@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Button, Modal, Form } from "react-bootstrap";
 import {Pencil, Trash} from 'react-bootstrap-icons';
 
-function Listcolor() {
+function ListColor() {
 
   const [modal, showModal] = useState(false);
   const [colorName, setColorName] = useState('');
@@ -167,4 +167,4 @@ query GetAllColor {
   );
 }
 
-export default Listcolor;
+export default ListColor;
