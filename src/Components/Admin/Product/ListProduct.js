@@ -1,6 +1,7 @@
 import React, { useEffect , useState} from "react";
 import { Card, Col, Row, Button, Table, Form, Modal } from "react-bootstrap";
 import { gql, useMutation, useQuery } from "@apollo/client";
+import {Pencil, Trash} from 'react-bootstrap-icons';
 import Select from 'react-select';
 
 function ListProduct() {
@@ -18,21 +19,21 @@ function ListProduct() {
   const [modal, showModal] = useState(false);
 
   const GET_ALL_PRODUCT = gql`
-    query Query {
-    getAllProducts {
-      id
-      productName
-      priveiwName
-      sellingPrice
-      purchasePrice
-      images
-      size
-      color
-      gender
-      discount
-      description
-      stock
-    }
+    query GetAllProducts {
+      getAllProducts {
+        id
+        productName
+        priveiwName
+        sellingPrice
+        images
+        size
+        color
+        gender
+        discount
+        gst
+        description
+        stock
+      }
     }
   `;
 
@@ -80,24 +81,25 @@ function ListProduct() {
   const [allcolor, setAllcolor] = useState([]);
   const [size, setSize] = useState("");
   const [description, setDescription] = useState("");
+  const [gst, setGST] = useState("");
 
   const EDIT_PRODUCT = gql`
-  mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $purchasePrice: Float, $discount: Float, $description: String, $productImages: [Upload], $stock: Int) {
-    updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, purchasePrice: $purchasePrice, discount: $discount, description: $description, productImages: $productImages, stock: $stock) {
-      id
-      productName
-      priveiwName
-      sellingPrice
-      purchasePrice
-      images
-      size
-      color
-      gender
-      discount
-      description
-      stock
+    mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $purchasePrice: Float, $discount: Float, $gst: Float, $description: String, $productImages: [Upload], $stock: Int) {
+      updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, purchasePrice: $purchasePrice, discount: $discount, gst: $gst, description: $description, productImages: $productImages, stock: $stock) {
+        id
+        productName
+        priveiwName
+        sellingPrice
+        images
+        size
+        color
+        gender
+        discount
+        gst
+        description
+        stock
+      }
     }
-  }
   `;
   
 
@@ -156,23 +158,22 @@ function ListProduct() {
     const ConfirmUpdate = async () => {
       await editProduct({
         variables : {
-          updateProductId,
-          productName,
+          updateProductId: updateProductId,
+          productName: productName,
           priveiwName: previewName,
-          productImages: images,
-          discount: parseFloat(discount),
-          stock: parseInt(stock),
+          size,
+          color: allcolor,
+          gender,
           sellingPrice: parseFloat(sellingPrice),
           purchasePrice: parseFloat(purchasePrice),
-          gender,
-          color: allcolor,
-          size,
-          description,
-        }
+          discount: parseFloat(discount),
+          gst: parseFloat(gst),
+          description: description,
+          productImages: images,
+          stock: parseInt(stock),
+        },
       })
     }
-
-    const [change, handleChange] = useState("");
 
   return (<>
     <Row className="mx-auto my-5">
@@ -217,10 +218,10 @@ function ListProduct() {
                     <td> {item.stock} </td>
                     <td>
                       <Button className="btn btn-sm" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.purchasePrice , item.size, item.color, item.discount, item.gender, item.description, item.stock )}>
-                        <i className="bi bi-pencil-square"></i>
+                        <Pencil size={20} color="black"/>
                       </Button>{" "}
                       <Button className="btn btn-sm" onClick={() => handleDelete(item.id)}>
-                        <i className="bi bi-trash"></i>
+                        <Trash size={20} color="black" />
                       </Button>
                     </td>
                   </tr>
@@ -272,6 +273,10 @@ function ListProduct() {
               <Form.Group>
                 <Form.Label>Purchase Price</Form.Label>
                 <Form.Control type="text" value={purchasePrice} onChange={(e) => setPurchasePrice(e.target.value)} />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>GST</Form.Label>
+                <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
               </Form.Group>
 
               <div className="mt-3">

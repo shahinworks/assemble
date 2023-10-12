@@ -50,13 +50,12 @@ function CreateProduct() {
 
 
   const CREATE_PRODUCT_MUTATION = gql`
-    mutation Mutation($priveiwName: String, $productName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $purchasePrice: Float, $discount: Float, $description: String, $productImages: [Upload], $stock: Int, $gst: Float) {
-      createProduct(priveiwName: $priveiwName, productName: $productName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, purchasePrice: $purchasePrice, discount: $discount, description: $description, productImages: $productImages, stock: $stock, gst: $gst) {
+    mutation CreateProduct($productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $discount: Float, $gst: Float, $description: String, $productImages: [Upload], $stock: Int) {
+      createProduct(productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, discount: $discount, gst: $gst, description: $description, productImages: $productImages, stock: $stock) {
         id
         productName
         priveiwName
         sellingPrice
-        purchasePrice
         images
         size
         color
@@ -85,18 +84,17 @@ function CreateProduct() {
     try {
       const { data } = await createProduct({
         variables: {
-          productName,
-          priveiwName: previewName,
-          productImages: images,
-          discount: parseFloat(discount),
-          stock: parseInt(stock),
-          sellingPrice: parseFloat(sellingPrice),
-          purchasePrice: parseFloat(purchasePrice),
-          gender,
-          color: allcolor,
-          size,
-          description,
-          gst,
+            productName,
+            priveiwName: previewName,
+            size,
+            color: allcolor,
+            gender,
+            sellingPrice: parseFloat(sellingPrice),
+            discount: parseFloat(discount),
+            gst: parseFloat(gst),
+            description: description,
+            productImages: images,
+            stock: parseInt(stock),
         },
       });
 
@@ -164,7 +162,7 @@ const { data: color } = useQuery(GET_ALL_COLOUR);
 
               <Form.Group>
                 <Form.Label>GST</Form.Label>
-                <Form.Control type="text" value={purchasePrice} onChange={(e) => setGST(e.target.value)} />
+                <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
               </Form.Group>
 
               <div className="mt-3">
