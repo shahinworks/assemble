@@ -9,7 +9,8 @@ function ListSize() {
   const [sizeId, setSizeId] = useState('');
 
 
-  const GET_ALL_SIZE = gql`query GetAllSize {
+  const GET_ALL_SIZE = gql`
+  query GetAllSize {
     getAllSize {
       id
       sizeName
@@ -18,13 +19,18 @@ function ListSize() {
 
   const { data, refetch } = useQuery(GET_ALL_SIZE);
 
+  if(data){
+    console.log("data", data);
+  }
+
 
   //------------------------------------------------------
   // --------------function for handle EDIT start---------
   //------------------------------------------------------
 
 
-  const EDIT_SIZE = gql`mutation UpdateSize($updateSizeId: ID, $sizeName: String) {
+  const EDIT_SIZE = gql`
+  mutation UpdateSize($updateSizeId: ID, $sizeName: String) {
     updateSize(id: $updateSizeId, sizeName: $sizeName) {
       id
       sizeName
