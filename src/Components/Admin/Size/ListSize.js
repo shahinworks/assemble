@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
 import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Button, Modal, Form } from "react-bootstrap";
+import {Pencil, Trash} from 'react-bootstrap-icons';
 
 function ListSize() {
 
@@ -132,12 +133,12 @@ function ListSize() {
                       <td className="border">{item.sizeName}</td>
                       <td className="border">
                         <Button className="btn btn-sm" onClick={() => hadleEdit(item.id,item.sizeName )}>
-                          <i className="bi bi-pencil-square"></i>
+                           <Pencil size={20} color="black"/>
                         </Button>
                       </td>
                       <td className="border">
                         <Button className="btn btn-sm" onClick={() => handleDelete(item.id, item.sizeName)} >
-                          <i className="bi bi-trash"></i>
+                          <Trash size={20} color="black" />
                         </Button>
                       </td>
                     </tr>
