@@ -41,6 +41,9 @@ function Dashboard() {
         <MenuItem component={<Link to="/" />} active icon={<Speedometer color='black' size={20} />}>
           Dashboard
         </MenuItem>
+        <SubMenu active label="User" icon={<Balloon color='black' size={20} />}>
+          <MenuItem component={<Link to="/admin/User" />} >User</MenuItem>
+        </SubMenu>
         <SubMenu active label="Category" icon={<Balloon color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateCategory" />} > Create Category</MenuItem>
           <MenuItem component={<Link to="/admin/ListCategory" />} > List Category</MenuItem>
@@ -60,6 +63,10 @@ function Dashboard() {
         <SubMenu active label="Size" icon={<Balloon color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSize" />} >Create Size </MenuItem>
           <MenuItem component={<Link to="/admin/ListSize" />} >List Size </MenuItem>
+        </SubMenu>
+        <SubMenu active label="Slider" icon={<Balloon color='black' size={20} />}>
+          <MenuItem component={<Link to="/admin/slider" />} >Add  Slider</MenuItem>
+          {/* <MenuItem component={<Link to="/admin/ListSize" />} >List Size </MenuItem> */}
         </SubMenu>
         <SubMenu active label="Cart" icon={<Cart color='black' size={20} />}>
           <MenuItem component={<Link to="/CreateCart" />} >Create Cart</MenuItem>

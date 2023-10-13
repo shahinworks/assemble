@@ -22,12 +22,15 @@ import CreateSize from '../Components/Admin/Size/CreateSize';
 import ListSize from '../Components/Admin/Size/ListSize';
 import CreateColor from '../Components/Admin/Color/CreateColor';
 import ListColor from '../Components/Admin/Color/ListColor';
+import HomePageSlider from '../Components/Admin/HomePageSlider/HomePageSlider';
+import User from '../Components/Admin/User/User';
  
 function PageRoutes() {
   return (
     <Routes>
       <Route path='/' element={<Home />}/>
       <Route exact path="admin" element={<Dash />} >
+      <Route exact path='User' element={<User />}/>
       <Route exact path='CreateProduct' element={<CreateProduct />}/>
       <Route exact path='ListProduct' element={<ListProduct />}/>
       <Route exact path='CreateSubCategory' element={<CreateSubCategory />}/>
@@ -38,13 +41,14 @@ function PageRoutes() {
       <Route exact path='ListSize' element={<ListSize />}/>
       <Route exact path='CreateColor' element={<CreateColor />}/>
       <Route exact path='ListColor' element={<ListColor />}/>
+      <Route exact path='slider' element={<HomePageSlider />}/>
       </Route>
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>
       <Route path='/shop' element={<Shop />}/>
       <Route path='/about' element={<About />}/>
-      <Route path='/product' element={<Product />}/>
+      <Route path='/product/:id' element={<Product />}/>
 
 
       
