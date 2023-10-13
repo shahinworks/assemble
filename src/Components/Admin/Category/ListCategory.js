@@ -36,7 +36,11 @@ function ListCategory() {
     }
   `;
 
-  const [editCategory , {data: dataEdit}] = useMutation(EDIT_CATEGORY);
+  const [editCategory , {data: dataEdit}] = useMutation(EDIT_CATEGORY, {
+    onCompleted: () => {
+      refetch();
+    }
+  });
 
   function handleEdit(id, name) {
     showModal(true);
@@ -68,7 +72,11 @@ function ListCategory() {
     }
   `;
 
-  const [deleteCategory, {data: deleteCat} ]= useMutation(DELETE );
+  const [deleteCategory, {data: deleteCat} ]= useMutation(DELETE, {
+    onCompleted: () => {
+      refetch();
+    }
+  });
 
   if(deleteCat){
     console.log("deleteCat", deleteCat);

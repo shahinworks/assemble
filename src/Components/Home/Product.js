@@ -317,9 +317,6 @@ function Product() {
             </div>
             <br />
            
-
-
-           <h1>Hello it stars here</h1>
          <Tabs>
           <Tab eventKey="measurement" title="Measurement" className='my-3'>
           <h6 className='fw-bold mx-2 my-3 text-left'>
