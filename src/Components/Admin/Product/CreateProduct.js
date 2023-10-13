@@ -132,66 +132,53 @@ function CreateProduct() {
             <h2>Add Product</h2>
             <Form onSubmit={handleSubmit}>
 
-              <Form.Group>
-                <Form.Label>Product Full Name</Form.Label>
+                <Form.Label className="my-1">Product Full Name</Form.Label>
                 <Form.Control type="text" value={productName} onChange={(e) => setProductName(e.target.value)} />
-              </Form.Group>
               
-              <Form.Group>
-                <Form.Label>Product Preview Name</Form.Label>
+                <Form.Label className="my-1">Product Preview Name</Form.Label>
                 <Form.Control type="text" value={previewName} onChange={(e) => setPreviewName(e.target.value)} />
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Label>Product Images</Form.Label>
+             
+                <Form.Label className="my-1">Product Images</Form.Label>
                 <Form.Control type="file" multiple onChange={(e) => setImages(e.target.files[0])} />
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Label>Discount</Form.Label>
+              
+                <Form.Label className="my-1">Discount</Form.Label>
                 <Form.Control type="text" value={discount} onChange={(e) => setDiscount(e.target.value)} />
-              </Form.Group>
-
-              <Form.Group>
-                <Form.Label>Stock</Form.Label>
+              
+                <Form.Label className="my-1">Stock</Form.Label>
                 <Form.Control type="text" value={stock} onChange={(e) => setStock(e.target.value)} />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Selling Price</Form.Label>
+            
+                <Form.Label className="my-1">Selling Price</Form.Label>
                 <Form.Control type="text" value={sellingPrice} onChange={(e) => setSellingPrice(e.target.value)} />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>GST</Form.Label>
+             
+                <Form.Label className="my-1">GST</Form.Label>
                 <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
-              </Form.Group>
-              <div className="mt-3">
-                <Form.Group>
-                  <Form.Label>gender : </Form.Label>
+            
+              <Form.Group>
+                  <Form.Label className="my-1">Gender : </Form.Label>
                   <input className="mx-1" value="Men" type="checkbox" onChange={handleGenderChange} />
                   <span>Men</span>
                   <input className="mx-1" value="Women" type="checkbox" onChange={handleGenderChange} />
                   <span>Women</span>
-                </Form.Group>
-              </div>
-              <Form.Group>
-                <Form.Label>Color: </Form.Label> 
+                  </Form.Group>
+                  <Form.Group>
+                <Form.Label className="my-1">Color : </Form.Label> 
                 {color?.getAllColor && color?.getAllColor?.map((colors) => 
-              <div key={colors.id}>
+              <div key={colors.id} className="d-inline">
                 <input className="mx-1" value={colors?.colorName} type="checkbox" 
-               onChange={handleColorBox} />
-                <span>{colors?.colorName}</span> </div>
+                  onChange={handleColorBox} />
+                <span>{colors?.colorName}</span></div>
                 )}
-              </Form.Group>
+                  </Form.Group>
+                  <Form.Group>
 
-              <Form.Group>
-                <Form.Label>Size: </Form.Label> 
+                <Form.Label className="my-1">Size : </Form.Label> 
                 {sizedata?.getAllSize && sizedata?.getAllSize?.map((size) => 
-              <div key={size.id} className="d-flex">
+              <div key={size.id} className="d-inline">
                 <input className="mx-1" value={size?.sizeName} type="checkbox" 
-               onChange={handleSizeChange} />
+                  onChange={handleSizeChange} />
                 <span>{size?.sizeName}</span> </div>
                 )}
-              </Form.Group>
+                  </Form.Group>
 
 
               {/* <Form.Group>
@@ -213,12 +200,12 @@ function CreateProduct() {
               </Form.Group> */}
 
 
-              <Form.Group>
+              <Form.Group className="my-1">
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
               </Form.Group>
               <Button variant="success" type="submit" className="mt-2">
-                ADD
+                Save Product
               </Button>
             </Form>
           </Card.Body>
