@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import './App.css';
 import PhotosetComponent from './Components/Home/PhotosetComponent';
 import Footer from './Components/Sections/Footer/Footer';
@@ -14,6 +15,7 @@ import PageRoutes from './PageRoutes/PageRoutes';
 
 function App() {
   return (<>
+    <Toaster />
     {/* // <div className="App"> */}
        {/* <div className="wrapper"> */}
 

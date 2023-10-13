@@ -71,11 +71,16 @@ function CreateProduct() {
       console.log("Data sent Successfully");
       toast.success("Product Created Successfully");
       setProductName("");
+    },
+    onError: (err) => {
+      console.error("ERROR", err.message);
     }
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    toast.success("hey")
 
     try {
       const { data } = await createProduct({

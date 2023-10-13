@@ -245,10 +245,10 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
         </Card>
       </Col>
     </Row> 
-    <Modal className="modal-right scroll-out-negative" show={modal} onHide={() => showModal(false)}
+    <Modal style={{width: "100%"}}  show={modal} onHide={() => showModal(false)}
        scrollable dialogClassName="full" >
       <Modal.Header closeButton>
-        <Modal.Title as="h5">Update Category</Modal.Title>
+        <Modal.Title as="h5">Edit Product Details</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form.Group>
@@ -292,7 +292,7 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
               <div className="mt-3">
                 <Form.Group>
-                  <Form.Label>gender : </Form.Label>
+                  <Form.Label>Gender : </Form.Label>
                   <input className="mx-1" value="Men" type="checkbox" onChange={handleGenderChange} />
                   <span>Men</span>
 
@@ -304,7 +304,7 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
               </div>
 
              
-                <Form.Label>color : </Form.Label> 
+                <Form.Label>Color : </Form.Label> 
                 {/* <Select options={options} /> */}
               {color?.getAllColor && color?.getAllColor?.map((colors) => 
               <div key={colors.id}>

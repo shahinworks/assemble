@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import {Speedometer, List, Person, Search, Cart, Bag, CaretLeft, CaretRight, ChevronLeft, ChevronRight} from 'react-bootstrap-icons';
 import { Button, Modal, Card, Row, Col } from 'react-bootstrap';
+import { gql, useQuery } from '@apollo/client';
 
 import './Home.css';
 import MediaQuery from 'react-responsive';
@@ -24,6 +25,30 @@ function Home() {
   }, []);
 
   const [ editModal, setEditModal] = useState(false);
+
+  // GETTING DATA
+  const GET_ALL_PRODUCT = gql`
+    query GetAllProducts {
+      getAllProducts {
+        id
+        productName
+        priveiwName
+        sellingPrice
+        images
+        size
+        color
+        gender
+        discount
+        gst
+        description
+        stock
+      }
+    }
+  `;
+
+  const { data: product, refetch } = useQuery(GET_ALL_PRODUCT);
+
+
 
   return (<>
   <Header />
@@ -55,32 +80,33 @@ function Home() {
       <div className="container">
         <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
           <div className="carousel-inner">
-              <div className="carousel-item active">
-                <div className="row row1">
-                  <div className="col-lg-4 col-md-4 col-sm-6">
-                    <img src="assets/img/TheVeshtiCompanyHaremPants50_540x.webp" alt="" />
-                    <h4 className="text-center">Lorem, ipsum dolor.</h4>
-                    <p className="text-center"> <del>121212</del>999 </p>
-                  </div>
-                  <div className="col-lg-4 col-md-4 col-sm-6">
-                  <img src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp" alt="" />
+            {product && product?.getAllProducts?.map((data) => 
+             <div key={data.id} className="carousel-item active">
+             <div className="row row1">
+               <div className="col-lg-4 col-md-4 col-sm-6">
+                 <img src="assets/img/TheVeshtiCompanyHaremPants50_540x.webp" alt="" />
                  <h4 className="text-center">Lorem, ipsum dolor.</h4>
-              <p className="text-center">
-                <del>4534534</del>999
-              </p>
-                  </div>
-                  <div className="col-lg-4 col-md-4 col-sm-6">
-              <img
-                src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp"
-                alt=""
-              />
+                 <p className="text-center"> <del>121212</del>999 </p>
+               </div>
+               <div className="col-lg-4 col-md-4 col-sm-6">
+               <img src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp" alt="" />
               <h4 className="text-center">Lorem, ipsum dolor.</h4>
-              <p className="text-center">
-0932              </p>
-                  </div>
-                </div>
-              </div>
-              <div className="carousel-item">
+           <p className="text-center">
+             <del>4534534</del>999
+           </p>
+               </div>
+               <div className="col-lg-4 col-md-4 col-sm-6">
+           <img
+             src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp"
+             alt=""
+           />
+           <h4 className="text-center">Lorem, ipsum dolor.</h4>
+           <p className="text-center">0932 </p>
+               </div>
+             </div>
+           </div>
+           )}
+              {/* <div className="carousel-item">
           <div className="row row1">
            <MediaQuery minWidth={769} >
             <div className="col-lg-4 col-md-4 col-sm-6">
@@ -147,7 +173,7 @@ function Home() {
               </p>
             </div>
           </div>
-              </div>
+              </div> */}
           </div>
           <MediaQuery minWidth={576} >
           <a className="carousel-control-prev" href="#carouselExampleControlsDamn" role="button"  data-slide="prev" >
