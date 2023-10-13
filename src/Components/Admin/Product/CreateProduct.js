@@ -175,7 +175,7 @@ function CreateProduct() {
                   <Form.Group>
                 <Form.Label className="my-1">Color : </Form.Label> 
                 {color?.getAllColor && color?.getAllColor?.map((colors) => 
-              <div key={colors.id} className="d-inline">
+                <div key={colors.id} className="d-inline">
                 <input className="mx-1" value={colors?.colorName} type="checkbox" 
                   onChange={handleColorBox} />
                 <span>{colors?.colorName}</span></div>
