@@ -3,7 +3,8 @@ import './Product.css';
 import { Tab, TabContainer, TabContent, Tabs } from 'react-bootstrap';
 import Header from '../Sections/Header/Header';
 import { useParams } from 'react-router-dom';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, gql, useMutation } from '@apollo/client';
+import toast from "react-hot-toast";
 
 function Product() {
   const { id } = useParams();
@@ -37,8 +38,38 @@ function Product() {
     console.log(product);
   }
 
-  const addToCart = () => {
+
+  const ADD_TO_CART = gql`
+    mutation AddToCart($productId: ID!, $quantity: Int!) {
+      addToCart(productId: $productId, quantity: $quantity) {
+        _id
+      }
+    }
+  `;
+  
+  const [addToCart, {data}] = useMutation(ADD_TO_CART, {
+    onCompleted : () => {
+      toast.success("Product Added Successfully in cart");
+    },
+    onError : (error) => {
+      toast.error("Error Occured");
+      console.error("ERROR: ", error.message)
+    }
+  });
+  if(data) {
+    console.log("data", data );
+  }
+  
+  const handleAddToCart = async (id) => {
     console.log("Add to Cart");
+    await addToCart({
+      variables: {  
+        productId: id,
+        quantity: 2
+      }
+    })
+
+    
   }
 
   return (<>
@@ -286,7 +317,7 @@ function Product() {
             </div>
             <br />
             <div className="d-flex justify-content-center">
-              <button className="button  d-flex justify-content-evenly" onClick={() => addToCart()}>
+              <button className="button  d-flex justify-content-evenly" onClick={() => handleAddToCart(product?.getProduct?.id)}>
                 <a href="#" className="text-center">
                   Add to cart
                 </a>

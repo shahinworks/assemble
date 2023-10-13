@@ -30,7 +30,7 @@ function App() {
 
       
       {/* <Body />  */}
-      <Header />
+      {/* <Header /> */}
       <PageRoutes />
       <Footer />
 
