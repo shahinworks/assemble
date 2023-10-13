@@ -3,8 +3,6 @@ import { Form, Card, Col, Row, Button } from "react-bootstrap";
 import { gql, useMutation } from "@apollo/client"; 
 import toast from "react-hot-toast";
 
-
-
 function CreateColor() {
   const CREATE_COLOR_MUTATION = gql`
     mutation CreateColor($colorName: String) {

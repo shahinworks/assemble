@@ -1,6 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import { Button, Card, Form } from 'react-bootstrap';
+import toast from "react-hot-toast";
 
 function CreateCategory() {
   const [categoryName, setCategoryName] = useState('');
@@ -14,9 +15,13 @@ function CreateCategory() {
     }
   `;
 
-  const [createCategory, {data, loading, error}] = useMutation(CREATE_CATEGROY,{
-    onCompleted: () => {
-      console.log("Category created successfully!");
+  const [createCategory, {data, loading, error}] = useMutation(CREATE_CATEGROY, {
+    onCompleted : () => {
+      toast.success("Category Added Successfully")
+    },
+    onError : (error) => {
+      toast.error("Error Occured");
+      console.error("ERROR: ", error.message)
     }
   });
 

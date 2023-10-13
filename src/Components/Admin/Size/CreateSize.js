@@ -1,8 +1,7 @@
 import { useMutation, gql } from "@apollo/client";
 import React, { useState } from "react";
 import { Form, Card, Col, Row, Button } from "react-bootstrap";
-
-
+import toast from "react-hot-toast";
 
 function CreateSize() {
 
@@ -15,7 +14,15 @@ function CreateSize() {
   }
 }`;
 
-  const [createSize] = useMutation(CREATE_SIZE_MUTATION);
+  const [createSize] = useMutation(CREATE_SIZE_MUTATION, {
+    onCompleted : () => {
+      toast.success("Size Added Successfully")
+    },
+    onError : (error) => {
+      toast.error("Error Occured");
+      console.error("ERROR: ", error.message)
+    }
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();

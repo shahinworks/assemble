@@ -68,12 +68,12 @@ function CreateProduct() {
 
   const [createProduct] = useMutation(CREATE_PRODUCT_MUTATION, {
     onCompleted: () => {
-      console.log("Data sent Successfully");
       toast.success("Product Created Successfully");
       setProductName("");
     },
-    onError: (err) => {
-      console.error("ERROR", err.message);
+    onError: (error) => {
+      toast.error("Error Occured");
+      console.error("ERROR: ", error.message);
     }
   });
 
