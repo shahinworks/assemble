@@ -4,18 +4,6 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import toast from "react-hot-toast";
 
 function CreateProduct() {
-  const [productName, setProductName] = useState("");
-  const [previewName, setPreviewName] = useState("");
-  const [images, setImages] = useState([]);
-  const [discount, setDiscount] = useState("");
-  const [stock, setStock] = useState("");
-  const [sellingPrice, setSellingPrice] = useState("");
-  const [purchasePrice, setPurchasePrice] = useState("");
-  const [gst, setGST] = useState("");
-  const [gender, setGender] = useState("");
-  const [allcolor, setAllcolor] = useState([]);
-  const [size, setSize] = useState("");
-  const [description, setDescription] = useState("");
 
   function handleColorBox(e) {
     if (e.target.checked) {
@@ -46,6 +34,19 @@ function CreateProduct() {
   }
 
 
+  const [productName, setProductName] = useState("");
+  const [previewName, setPreviewName] = useState("");
+  const [images, setImages] = useState([]);
+  const [discount, setDiscount] = useState("");
+  const [stock, setStock] = useState("");
+  const [sellingPrice, setSellingPrice] = useState("");
+  const [gst, setGST] = useState("");
+  const [gender, setGender] = useState([]);
+  const [allcolor, setAllcolor] = useState([]);
+  const [size, setSize] = useState([]);
+  const [description, setDescription] = useState("");
+
+
   const CREATE_PRODUCT_MUTATION = gql`
     mutation CreateProduct($productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $discount: Float, $gst: Float, $description: String, $productImages: [Upload], $stock: Int) {
       createProduct(productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, discount: $discount, gst: $gst, description: $description, productImages: $productImages, stock: $stock) {
@@ -65,11 +66,20 @@ function CreateProduct() {
     }
   `;
 
-
   const [createProduct] = useMutation(CREATE_PRODUCT_MUTATION, {
     onCompleted: () => {
       toast.success("Product Created Successfully");
       setProductName("");
+      setDescription("");
+      setSize([]);
+      setAllcolor([]);
+      setGender([]);
+      setImages([]);
+      setGST("");
+      setSellingPrice("");
+      setStock("");
+      setDiscount("");
+      setPreviewName("");
     },
     onError: (error) => {
       toast.error("Error Occured");
@@ -79,9 +89,6 @@ function CreateProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    toast.success("hey")
-
     try {
       const { data } = await createProduct({
         variables: {

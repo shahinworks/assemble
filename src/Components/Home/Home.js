@@ -48,8 +48,15 @@ function Home() {
 
   const { data: product, refetch } = useQuery(GET_ALL_PRODUCT);
 
+  const handleNext = () => {
 
+  }
+  const handlePrev = () => {
+    
+  }
 
+  // handlePrev
+  // handleNext
   return (<>
   <Header />
     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
@@ -80,32 +87,32 @@ function Home() {
       <div className="container">
         <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
           <div className="carousel-inner">
-            {product && product?.getAllProducts?.map((data) => 
-             <div key={data.id} className="carousel-item active">
+            
+             <div className="carousel-item active">
              <div className="row row1">
-               <div className="col-lg-4 col-md-4 col-sm-6">
-                 <img src="assets/img/TheVeshtiCompanyHaremPants50_540x.webp" alt="" />
-                 <h4 className="text-center">Lorem, ipsum dolor.</h4>
-                 <p className="text-center"> <del>121212</del>999 </p>
-               </div>
-               <div className="col-lg-4 col-md-4 col-sm-6">
+             {product && product?.getAllProducts?.map((data, index) => <div key={data.id}  className="col-lg-4 col-md-4 col-sm-6">
+                 <img src={data.images} alt="" />
+                 <h4 className="text-center">{data.productName}</h4>
+                 <p className="text-center"> <del>121212</del>{data.sellingPrice }</p>
+               </div> )}
+               {/* <div className="col-lg-4 col-md-4 col-sm-6">
                <img src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp" alt="" />
               <h4 className="text-center">Lorem, ipsum dolor.</h4>
            <p className="text-center">
              <del>4534534</del>999
            </p>
-               </div>
-               <div className="col-lg-4 col-md-4 col-sm-6">
+               </div> */}
+               {/* <div className="col-lg-4 col-md-4 col-sm-6">
            <img
              src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp"
              alt=""
            />
            <h4 className="text-center">Lorem, ipsum dolor.</h4>
            <p className="text-center">0932 </p>
-               </div>
+               </div> */}
              </div>
            </div>
-           )}
+           
               {/* <div className="carousel-item">
           <div className="row row1">
            <MediaQuery minWidth={769} >
@@ -176,10 +183,10 @@ function Home() {
               </div> */}
           </div>
           <MediaQuery minWidth={576} >
-          <a className="carousel-control-prev" href="#carouselExampleControlsDamn" role="button"  data-slide="prev" >
+          <a className="carousel-control-prev" href="#carouselExampleControlsDamn" role="button"  data-slide="prev" onClick={() => handlePrev()} >
               <ChevronLeft color='black' size={33} />
           </a>
-          <a className="carousel-control-next" href="#carouselExampleControlsDamn" role="button" data-slide="next" >
+          <a className="carousel-control-next" href="#carouselExampleControlsDamn" role="button" data-slide="next"  onClick={() => handleNext()}>
               <ChevronRight color='black' size={33} />
           </a>
           </MediaQuery>
