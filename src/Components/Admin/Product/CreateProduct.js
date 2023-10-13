@@ -17,9 +17,6 @@ function CreateProduct() {
   const [size, setSize] = useState("");
   const [description, setDescription] = useState("");
 
-
-
-
   function handleColorBox(e) {
     if (e.target.checked) {
       setAllcolor([...allcolor, e.target.value]);
@@ -74,7 +71,6 @@ function CreateProduct() {
       console.log("Data sent Successfully");
       toast.success("Product Created Successfully");
       setProductName("");
-
     }
   });
 
@@ -107,15 +103,26 @@ function CreateProduct() {
 
 
   const GET_ALL_COLOUR = gql`
-  query GetAllColor {
-    getAllColor {
-      id
-      colorName
+    query GetAllColor {
+      getAllColor {
+        id
+        colorName
+      }
     }
-  }
-`;
+  `;
 
-const { data: color } = useQuery(GET_ALL_COLOUR);
+  const { data: color } = useQuery(GET_ALL_COLOUR);
+
+  const GET_ALL_SIZE = gql`
+    query GetAllSize {
+      getAllSize {
+        id
+        sizeName
+      }
+    }
+  `;
+
+  const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
   return (
     <Row className="mx-auto my-5">
@@ -149,40 +156,25 @@ const { data: color } = useQuery(GET_ALL_COLOUR);
                 <Form.Label>Stock</Form.Label>
                 <Form.Control type="text" value={stock} onChange={(e) => setStock(e.target.value)} />
               </Form.Group>
-              
               <Form.Group>
                 <Form.Label>Selling Price</Form.Label>
                 <Form.Control type="text" value={sellingPrice} onChange={(e) => setSellingPrice(e.target.value)} />
               </Form.Group>
-
-              <Form.Group>
-                <Form.Label>Purchase Price</Form.Label>
-                <Form.Control type="text" value={purchasePrice} onChange={(e) => setPurchasePrice(e.target.value)} />
-              </Form.Group>
-
               <Form.Group>
                 <Form.Label>GST</Form.Label>
                 <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
               </Form.Group>
-
               <div className="mt-3">
                 <Form.Group>
                   <Form.Label>gender : </Form.Label>
                   <input className="mx-1" value="Men" type="checkbox" onChange={handleGenderChange} />
                   <span>Men</span>
-
                   <input className="mx-1" value="Women" type="checkbox" onChange={handleGenderChange} />
                   <span>Women</span>
-
                 </Form.Group>
-
               </div>
-
-
-
-
               <Form.Group>
-                <Form.Label>color : </Form.Label> 
+                <Form.Label>Color: </Form.Label> 
                 {color?.getAllColor && color?.getAllColor?.map((colors) => 
               <div key={colors.id}>
                 <input className="mx-1" value={colors?.colorName} type="checkbox" 
@@ -191,9 +183,18 @@ const { data: color } = useQuery(GET_ALL_COLOUR);
                 )}
               </Form.Group>
 
-
-
               <Form.Group>
+                <Form.Label>Size: </Form.Label> 
+                {sizedata?.getAllSize && sizedata?.getAllSize?.map((size) => 
+              <div key={size.id} className="d-flex">
+                <input className="mx-1" value={size?.sizeName} type="checkbox" 
+               onChange={handleSizeChange} />
+                <span>{size?.sizeName}</span> </div>
+                )}
+              </Form.Group>
+
+
+              {/* <Form.Group>
                 <Form.Label>size : </Form.Label>
 
 
@@ -209,18 +210,16 @@ const { data: color } = useQuery(GET_ALL_COLOUR);
                 <input className="mx-1" value="X-Large" type="checkbox" onChange={handleSizeChange} />
                 <span>X-Large</span>
 
-              </Form.Group>
+              </Form.Group> */}
 
 
               <Form.Group>
-                <Form.Label>description</Form.Label>
+                <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
               </Form.Group>
-
               <Button variant="success" type="submit" className="mt-2">
                 ADD
               </Button>
-
             </Form>
           </Card.Body>
         </Card>

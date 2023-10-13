@@ -16,6 +16,17 @@ function ListProduct() {
   
   const { data: color } = useQuery(GET_ALL_COLOUR);
 
+  const GET_ALL_SIZE = gql`
+    query GetAllSize {
+      getAllSize {
+        id
+        sizeName
+      }
+    }
+  `;
+
+const { data: sizedata } = useQuery(GET_ALL_SIZE);
+
   const [modal, showModal] = useState(false);
 
   const GET_ALL_PRODUCT = gql`
@@ -79,7 +90,7 @@ function ListProduct() {
   const [purchasePrice, setPurchasePrice] = useState("");
   const [gender, setGender] = useState("");
   const [allcolor, setAllcolor] = useState([]);
-  const [size, setSize] = useState("");
+  const [allsize, setAllSize] = useState("");
   const [description, setDescription] = useState("");
   const [gst, setGST] = useState("");
 
@@ -124,10 +135,10 @@ function ListProduct() {
 
   function handleSizeChange(e) {
     if (e.target.checked) {
-      setSize([...size, e.target.value]);
+      setAllSize([...allsize, e.target.value]);
     }
     else {
-      setSize(size.filter((item) => item !== e.target.value));
+      setAllSize(allsize.filter((item) => item !== e.target.value));
     }
   }
 
@@ -150,7 +161,7 @@ function ListProduct() {
       setSellingPrice(sellingPrice);
       setPurchasePrice(purchasePrice);
       setGender(gender);
-      setSize(size);
+      setAllSize(size);
       setDescription(description);
 
     }
@@ -161,7 +172,7 @@ function ListProduct() {
           updateProductId: updateProductId,
           productName: productName,
           priveiwName: previewName,
-          size,
+          size: allsize,
           color: allcolor,
           gender,
           sellingPrice: parseFloat(sellingPrice),
@@ -210,9 +221,9 @@ function ListProduct() {
                     <td>
                     <img src={item.images} width="30" height="30" /> 
                     </td>
-                    <td> {item.size} </td>
+                    <td> {item.size.join(", ")} </td>
                     <td> {item.color.join(", ")} </td>
-                    <td> {item.gender} </td> 
+                    <td> {item.gender.join(", ")} </td> 
                     <td> {item.discount} </td>
                     <td> {item.description} </td>
                     <td> {item.stock} </td>
@@ -304,7 +315,17 @@ function ListProduct() {
                 <span>{colors?.colorName}</span> </div>
                 )}
 
-              <Form.Group>
+               <Form.Label>Size: </Form.Label> 
+                {sizedata?.getAllSize && sizedata?.getAllSize?.map((size) => 
+              <div key={size.id} className="d-flex">
+                <input className="mx-1" value={size?.sizeName} type="checkbox" 
+                 checked={allsize.includes(size?.sizeName)}
+               onChange={handleSizeChange} />
+                <span>{size?.sizeName}</span> </div>
+                )}
+               
+
+              {/* <Form.Group>
                 <Form.Label>size : </Form.Label>
                 <input className="mx-1" value="Small" type="checkbox" onChange={handleSizeChange} />
                 <span>Small</span>
@@ -314,7 +335,7 @@ function ListProduct() {
                 <span>Large</span>
                 <input className="mx-1" value="X-Large" type="checkbox" onChange={handleSizeChange} />
                 <span>X-Large</span>
-              </Form.Group>
+              </Form.Group> */}
 
 
               <Form.Group>
