@@ -2,7 +2,7 @@ import React, { useState , useEffect} from 'react';
 import {Speedometer, List, Person, Search, Cart, Bag, CaretLeft, CaretRight, ChevronLeft, ChevronRight} from 'react-bootstrap-icons';
 import { Button, Modal, Card, Row, Col } from 'react-bootstrap';
 import { gql, useQuery } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import './Home.css';
 import MediaQuery from 'react-responsive';
@@ -59,10 +59,14 @@ function Home() {
   }
 
 
-  function goToProductPage(id){
-    console.log(id);
-    navigate(`/product/${id}`);
-  }
+  // onClick={() => goToProductPage(data.id)}
+
+  // function goToProductPage(id){
+  //   console.log(id);
+  //   navigate(`/product/${id}`);
+  // }
+
+  
   // handlePrev
   // handleNext
   return (<>
@@ -99,8 +103,8 @@ function Home() {
              <div className="carousel-item active">
              <div className="row row1">
              {product && product?.getAllProducts?.map((data, index) => <div key={data.id}  className="col-lg-4 col-md-4 col-sm-6">
-                 <img src={data.images} alt="" onClick={() => goToProductPage(data.id)}/>
-                 <h4 className="text-center">{data.productName}</h4>
+                 <img src={data.images} alt=""/>
+                <Link to={`/product/${data.id}`}> <h4 className="text-center">{data.productName}</h4> </Link>
                  <p className="text-center"> <del>121212</del>{data.sellingPrice }</p>
                </div> )}
                {/* <div className="col-lg-4 col-md-4 col-sm-6">

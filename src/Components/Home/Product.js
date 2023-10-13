@@ -2,8 +2,45 @@ import React from 'react';
 import './Product.css';
 import { Tab, TabContainer, TabContent, Tabs } from 'react-bootstrap';
 import Header from '../Sections/Header/Header';
+import { useParams } from 'react-router-dom';
+import { useQuery, gql } from '@apollo/client';
 
 function Product() {
+  const { id } = useParams();
+
+  const GET_PRODUCT = gql`
+    query GetProduct($getProductId: ID) {
+      getProduct(id: $getProductId) {
+        id
+        productName
+        priveiwName
+        sellingPrice
+        images
+        size
+        color
+        gender
+        discount
+        gst
+        description
+        stock
+      }
+    }
+  `;
+
+  const {data: product} = useQuery(GET_PRODUCT, {
+    variables: {
+      getProductId: id
+    }
+  });
+  if(product) 
+  {
+    console.log(product);
+  }
+
+  const addToCart = () => {
+    console.log("Add to Cart");
+  }
+
   return (<>
   <Header />
   <>
@@ -16,7 +53,8 @@ function Product() {
               <div className="image-display">
                 <img
                   id="selected-image"
-                  src="assets/img/31.jpg"
+                  src={product?.getProduct?.images}
+                  // src="assets/img/31.jpg"
                   alt="Selected Image"
                 />
                 <div />
@@ -68,7 +106,7 @@ function Product() {
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="container">
-              <h1>Lorem ipsum dolor sit.</h1>
+              <h1>{product?.getProduct?.priveiwName}</h1>
               <br />
               <h3>
                 <del> ₹3,000.00</del> ₹1,999.00
@@ -125,50 +163,34 @@ function Product() {
                 </div>
               </div>
               <br />
-              {/* <h6>
-                <b>Colour</b>
-              </h6> */}
-              <h6 className='fw-bold mx-2 text-left'>
-                Colour
-              </h6>
+
+              <h6 className='fw-bold mx-2 text-left'> Colour </h6>
               <div className='ms-0 d-flex'>
-              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-                ORANGE
-              </div>
-              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-                ORANGE
-              </div>
-              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-                ORANGE
-              </div>
-              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-                ORANGE
-              </div>
-              </div>
+             {product?.getProduct && product?.getProduct?.color.map((color) =>
+              <div key={color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+              {color}
+            </div>)} 
+            </div>
+
+
               <h6 className='fw-bold mx-2 text-left'>
                 Gender
               </h6>
               <div className='ms-0 d-flex'>
-              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-                MEN
+               {product?.getProduct && product?.getProduct?.gender.map((gender) =>
+              <div key={gender} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}> {gender} </div>)}
               </div>
-              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-                WOMEN
-              </div>
-              </div>
+             
               <h6 className='fw-bold mx-2 text-left'>
                 Size
               </h6>
               <div className='ms-0 d-flex'>
-              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-                 FREE SIZE
-              </div>
-              <div className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-                MEDIUM
-              </div>
-              </div>
-
-
+             {product?.getProduct && product?.getProduct?.size.map((size) =>
+              <div key={size} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+              {size}
+            </div>)}
+            </div>
+             
 
 
               {/* <div className="row row2 text-uppercase">
@@ -228,14 +250,7 @@ function Product() {
               </div> */}
             </div>
             <br />
-            {/* <h6>
-              <b>Size</b>
-            </h6>
-            <div className="row row2 text-uppercase">
-              <div className="col-lg-2 col-md-2 col-sm-6">Freesize</div>
-              <div className="col-lg-2 col-md-2 col-sm-6">medium</div>
-            </div> */}
-            <br />
+
             <div className="mx-2 d-flex align-items-center">
               <svg
                 style={{ marginRight: 9 }}
@@ -271,7 +286,7 @@ function Product() {
             </div>
             <br />
             <div className="d-flex justify-content-center">
-              <button className="button  d-flex justify-content-evenly">
+              <button className="button  d-flex justify-content-evenly" onClick={() => addToCart()}>
                 <a href="#" className="text-center">
                   Add to cart
                 </a>
