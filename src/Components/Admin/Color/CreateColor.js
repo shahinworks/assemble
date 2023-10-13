@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Card, Col, Row, Button } from "react-bootstrap";
 import { gql, useMutation } from "@apollo/client"; 
+import toast from "react-hot-toast";
 
 
 
@@ -17,7 +18,15 @@ function CreateColor() {
   const [color, setColor] = useState("");
 
 
-  const [createColor] = useMutation(CREATE_COLOR_MUTATION);
+  const [createColor] = useMutation(CREATE_COLOR_MUTATION, {
+    onCompleted : () => {
+      toast.success("Color Added Successfully")
+    },
+    onError : (error) => {
+      toast.error("Error Occured");
+      console.error("ERROR: ", error.message)
+    }
+  });
 
 
   const handleSubmit = async (e) => {
