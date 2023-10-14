@@ -27,14 +27,13 @@ function CartPage() {
 
   const [getCartData, {data: cartData}] = useLazyQuery(CART, {
     onCompleted: () => {
-      setQuantity(cartData?.cart?.cartProducts?.quantity);
+      setQuantity(cartData?.cart?.cartProducts[0]?.quantity);
     }
   });
 
   useEffect(() => {
     getCartData();
   }, []);
-
 
   const HANDLE_CART_QUANTITY = gql`
     mutation AddToCart($productId: ID!, $quantity: Int!) {
@@ -55,9 +54,6 @@ function CartPage() {
   `;
 
   const [handleCart, {data: cartValue}] = useMutation(HANDLE_CART_QUANTITY);
-  if(cartValue){
-    console.log("cartValue", cartValue);
-  }
 
   const CartDecrement = (id) => {
     console.log("CartDecrement", id);
@@ -80,13 +76,21 @@ function CartPage() {
   }
 
 
-  useEffect(() => {
-    getCartData()
-  }, [cartValue]);
- 
-  const numbers = cartData?.cart?.cartProducts
-  const sum = numbers.reduce((acc, currentValue) => acc + currentValue, 0);
+  const [sum, setSum] = useState();
 
+  useEffect(() => {
+    getCartData();
+  }, [cartValue]);
+
+  useEffect(() => {
+    setSum(cartData?.cart?.cartProducts?.reduce((acc, curr) => acc + curr?.quantity * curr?.productId?.sellingPrice, 0));
+    // const sum = cartData?.cart?.cartProducts?.reduce((acc, curr) => acc + curr?.quantity * curr?.productId?.sellingPrice, 0);
+
+    // console.log("sum", sum);
+  }, [cartData, cartValue]);
+
+//  const sum = cartData?.cart?.cartProducts?.reduce((acc, curr) => acc + curr?.quantity * curr?.productId?.sellingPrice);
+//  console.log("sum", sum);
 
   return (<>
     {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item) => 
@@ -106,8 +110,9 @@ function CartPage() {
       </Row>
     </div>)}
     <hr/>
-    <div className='my-2'>
-      <h4 className='fw-bold'>SUBTOTAL ₹ {}</h4>
+    <div   className='my-2 d-inline'>
+      <h5 className='fw-bold d-inline' style={{marginRight: "40px", paddingRight: "50px"}}>SUBTOTAL </h5>
+      <h4 className='fw-bold d-inline' style={{marginRight: "0px", paddingRight: "0px", alignItems: "end", alignContent: "end"}}> ₹ {sum}</h4>
     </div>
   </>)
 }
