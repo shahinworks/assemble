@@ -8,6 +8,7 @@ import { useMediaQuery } from 'react-responsive';
 import MediaQuery from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
+import CartPage from '../../Home/CartSection/CartPage';
 
 function Header() {
   const navigate = useNavigate();
@@ -76,12 +77,6 @@ function Header() {
   useEffect(() => {
     getCartData();
   }, []);
-
-  if(cartData)
-  {
-    console.log(cartData);
-  }
-
 
   const goToHomePage = () => {
     navigate('/');
@@ -295,10 +290,10 @@ function Header() {
     <Modal.Header closeButton>
   <Modal.Title className='fw-bold' as="h5">Cart</Modal.Title>
     </Modal.Header>
-    <Modal.Body>
+    <Modal.Body className='mx-0 px-0'>
       {cartData?.cart?.cartProducts?.length > 0 ? 
-      
-      <p>{cartData?.cart?.cartProducts?.length} ITEMS in Cart</p> :  <div>
+      <CartPage /> 
+     :  <div>
       <p className='fs-6'> Your Cart is Currently Empty </p> <Button className='btn-dark' onClick={() => goToHomePage()}>Shop Now</Button></div>}
     </Modal.Body>
     <Modal.Footer className="border-0"></Modal.Footer>
