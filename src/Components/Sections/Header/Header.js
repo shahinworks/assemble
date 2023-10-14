@@ -6,8 +6,10 @@ import logo1 from './logo-TRP.jpg';
 import logo2 from './logo-TRP.png';
 import { useMediaQuery } from 'react-responsive';
 import MediaQuery from 'react-responsive';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate();
 
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
@@ -43,6 +45,11 @@ function Header() {
   const [ editModal, setEditModal] = useState(false);
 
   const [nav, setNav] = useState(false);
+
+  const goToLoginPage = () => {
+    navigate('/login');
+
+  }
    
   // const handleNavbar = () => {
   //   console.log("handleNavbar");
@@ -70,16 +77,14 @@ function Header() {
     </ul>
   <div className="nav-item d-flex mx-2">
     <ul>
-      <li> <Person className=' mx-1' color='black' size={28} /></li>
+      <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={28} /></li>
       <li> <Search  className='  mx-1' color='black' size={28} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} /></li>
     </ul>   
   </div> 
   </nav> 
   </MediaQuery>
-
-
-    <MediaQuery minWidth={1021} maxWidth={1199}>
+    <MediaQuery minWidth={1035} maxWidth={1199}>
     <div id="logo" className='logo'>
     <a href="index.html">
       <img className='mt-2 logo-img' style={{ height: "100px", width: "100px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
@@ -89,24 +94,23 @@ function Header() {
   {/* <div className="logo">Logo</div> */}
   <nav id="navbar" className="navbar mx-2" >
     <ul className="links" >
-      <li> <a style={{fontSize: "12px"}} className="link-item nav-link scrollto" href="/"  > Home </a> </li>
-      <li> <a style={{fontSize: "12px"}} className="link-item nav-link scrollto" href="/shop" >  Shop </a> </li>
-      <li> <a style={{fontSize: "12px"}} className="link-item nav-link scrollto" href="services.html" > Returns/Exchange </a> </li>
-      <li> <a style={{fontSize: "12px"}} className="link-item nav-link scrollto" href="book.html" > Track </a> </li>
-      <li> <a style={{fontSize: "12px"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
-      <li> <a style={{fontSize: "12px"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
+      <li> <a style={{fontSize: "16px"}} className="link-item nav-link scrollto" href="/"  > Home </a> </li>
+      <li> <a style={{fontSize: "16px"}} className="link-item nav-link scrollto" href="/shop" >  Shop </a> </li>
+      <li> <a style={{fontSize: "16px"}} className="link-item nav-link scrollto" href="services.html" > Returns/Exchange </a> </li>
+      <li> <a style={{fontSize: "16px"}} className="link-item nav-link scrollto" href="book.html" > Track </a> </li>
+      <li> <a style={{fontSize: "16px"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
+      <li> <a style={{fontSize: "16px"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
     </ul>
   <div className="nav-item d-flex mx-2">
     <ul>
-      <li> <Person className=' mx-1' color='black' size={20} /></li>
+      <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
     </ul>   
   </div> 
   </nav>
   </MediaQuery>
-
-  <MediaQuery minWidth={769} maxWidth={1020}>
+  <MediaQuery minWidth={769} maxWidth={800}>
   <div id="logo" className='logo'>
     <a href="index.html">
       <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
@@ -116,16 +120,68 @@ function Header() {
    {/* <div className="logo">Logo</div> */}
    <nav id="navbar" className="navbar mx-2" >
      <ul className="links" >
-       <li> <a style={{fontSize: "8px"}} className="link-item nav-link scrollto" href="/"  > Home </a> </li>
-       <li> <a style={{fontSize: "8px"}} className="link-item nav-link scrollto" href="/shop" >  Shop </a> </li>
-       <li> <a style={{fontSize: "8px"}} className="link-item nav-link scrollto" href="services.html" > Returns/Exchange </a> </li>
-       <li> <a style={{fontSize: "8px"}} className="link-item nav-link scrollto" href="book.html" > Track </a> </li>
-       <li> <a style={{fontSize: "8px"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
-       <li> <a style={{fontSize: "8px"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
+       <li> <a style={{fontSize: "0.75rem"}} className="link-item nav-link scrollto" href="/"  > Home </a> </li>
+       <li> <a style={{fontSize: "0.75rem"}} className="link-item nav-link scrollto" href="/shop" >  Shop </a> </li>
+       <li> <a style={{fontSize: "0.75rem"}} className="link-item nav-link scrollto" href="services.html" > Returns/Exchange </a> </li>
+       <li> <a style={{fontSize: "0.75rem"}} className="link-item nav-link scrollto" href="book.html" > Track </a> </li>
+       <li> <a style={{fontSize: "0.75rem"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
+       <li> <a style={{fontSize: "0.75rem"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
      </ul>
    <div className="nav-item d-flex ">
      <ul>
-       <li> <Person className=' mx-1' color='black' size={20} /></li>
+       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
+       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
+       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
+     </ul>   
+   </div> 
+   </nav>
+   </MediaQuery>
+   <MediaQuery minWidth={801} maxWidth={875}>
+  <div id="logo" className='logo'>
+    <a href="index.html">
+      <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+    </a>
+  </div>
+   
+   {/* <div className="logo">Logo</div> */}
+   <nav id="navbar" className="navbar"  style={{margin: "2px", paddingLeft: "2px"}}>
+     <ul className="links" >
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem", paddingLeft: "0px", marginLeft: "0px"}} className="link-item nav-link scrollto" href="/"  > Home </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" href="/shop" >  Shop </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" href="services.html" > Returns/Exchange </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" href="book.html" > Track </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
+     </ul>
+   <div className="nav-item d-flex ">
+     <ul>
+       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
+       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
+       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
+     </ul>   
+   </div> 
+   </nav>
+   </MediaQuery>
+   <MediaQuery minWidth={876} maxWidth={950}>
+  <div id="logo" className='logo'>
+    <a href="index.html">
+      <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+    </a>
+  </div>
+   
+   {/* <div className="logo">Logo</div> */}
+   <nav id="navbar" className="navbar"  style={{margin: "2px", paddingLeft: "2px"}}>
+     <ul className="links" >
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1rem", paddingLeft: "0px", marginLeft: "0px"}} className="link-item nav-link scrollto" href="/"  > Home </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1rem"}} className="link-item nav-link scrollto" href="/shop" >  Shop </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1rem"}} className="link-item nav-link scrollto" href="services.html" > Returns/Exchange </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1rem"}} className="link-item nav-link scrollto" href="book.html" > Track </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1rem"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1rem"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
+     </ul>
+   <div className="nav-item d-flex ">
+     <ul>
+       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
@@ -133,6 +189,32 @@ function Header() {
    </nav>
    </MediaQuery>
 
+   <MediaQuery minWidth={951} maxWidth={1034}>
+  <div id="logo" className='logo'>
+    <a href="index.html">
+      <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+    </a>
+  </div>
+   
+   {/* <div className="logo">Logo</div> */}
+   <nav id="navbar" className="navbar"  style={{margin: "2px", paddingLeft: "2px"}}>
+     <ul className="links" >
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem", paddingLeft: "0px", marginLeft: "0px"}} className="link-item nav-link scrollto" href="/"  > Home </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" href="/shop" >  Shop </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" href="services.html" > Returns/Exchange </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" href="book.html" > Track </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" href="photo.html"> FAQ's </a> </li>
+       <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" href="/about">  About US </a> </li>
+     </ul>
+   <div className="nav-item d-flex ">
+     <ul>
+       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
+       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
+       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
+     </ul>   
+   </div> 
+   </nav>
+   </MediaQuery>
 </div>
 
    
