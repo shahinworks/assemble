@@ -1,10 +1,12 @@
 import { gql, useMutation } from '@apollo/client'
-import React, { useEffect } from 'react'
-import { Button } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react'
+import { Button, Form, Card, Row, Col } from 'react-bootstrap';
 import toast from 'react-hot-toast';
-import { Form, useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 function Login() {
+  const [username, setUsername] = useState("shahin@gmail.com");
+  const [password, setPassword] = useState("123456");
 
   const navigate = useNavigate();
   const LOGIN_USER = gql`
@@ -30,17 +32,26 @@ function Login() {
   }, [data]);
 
   const handleLogin = async () => {
-    console.log("Button Clicked");
     await loginUser({
       variables: {
-        email: "shahin@gmail.com",
-        password: "123456"
+        email: username,
+        password: password, 
       }
     })
   }
   return (<>
-    <div>Login</div>
-    <Button onClick={() => handleLogin()}> Login</Button>
+    <Card>
+      <Card.Body>
+        <Form>
+        <Form.Label>Enter Email</Form.Label>
+        <Form.Control type='email' value={username} onChange={(e) => setUsername(e.target.value)}/>
+        <Form.Label>Enter Password</Form.Label>
+        <Form.Control type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
+      <Button onClick={() => handleLogin()}> Login</Button>
+      </Form>
+      </Card.Body>
+    </Card>
+    
   </>)
 }
 
