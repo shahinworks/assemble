@@ -78,10 +78,11 @@
           margin-top: 0;
           margin-bottom: 0;
           height: 100%;
-          max-width: 330px;
+          max-width: 400px;
         }
         .modal-right .modal-body {
           height: 100% !important;
+          overflow-x: hidden !important;
         }
 
         .modal-right .modal-header {
