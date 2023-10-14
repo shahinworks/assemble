@@ -60,8 +60,10 @@ function Header() {
         cartProducts {
           productId {
             id
-            productName
             priveiwName
+            productName
+            images
+            sellingPrice
           }
           quantity
         }
@@ -294,8 +296,9 @@ function Header() {
   <Modal.Title className='fw-bold' as="h5">Cart</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-      {cartData?.cart?.length > 0 ? 
-      <p>yes</p> :  <div>
+      {cartData?.cart?.cartProducts?.length > 0 ? 
+      
+      <p>{cartData?.cart?.cartProducts?.length} ITEMS in Cart</p> :  <div>
       <p className='fs-6'> Your Cart is Currently Empty </p> <Button className='btn-dark' onClick={() => goToHomePage()}>Shop Now</Button></div>}
     </Modal.Body>
     <Modal.Footer className="border-0"></Modal.Footer>
