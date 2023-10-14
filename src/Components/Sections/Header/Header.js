@@ -7,6 +7,7 @@ import logo2 from './logo-TRP.png';
 import { useMediaQuery } from 'react-responsive';
 import MediaQuery from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
+import { gql, useQuery, useLazyQuery } from '@apollo/client';
 
 function Header() {
   const navigate = useNavigate();
@@ -50,7 +51,41 @@ function Header() {
     navigate('/login');
 
   }
-   
+  
+  // GETTING CART ITEMS
+  const CART = gql`
+    query Cart {
+      cart {
+        _id
+        cartProducts {
+          productId {
+            id
+            productName
+            priveiwName
+          }
+          quantity
+        }
+      }
+    }
+  `;
+
+  const [getCartData, {data: cartData}] = useLazyQuery(CART);
+
+  useEffect(() => {
+    getCartData();
+  }, []);
+
+  if(cartData)
+  {
+    console.log(cartData);
+  }
+
+
+  const goToHomePage = () => {
+    navigate('/');
+  }
+
+  
   // const handleNavbar = () => {
   //   console.log("handleNavbar");
   // }
@@ -254,16 +289,17 @@ function Header() {
 </Modal>
 </MediaQuery>
 
-<Modal className="modal-right scroll-out-negative" show={editModal} onHide={() => setEditModal(false)} scrollable dialogClassName="full">
-<Modal.Header closeButton>
+  <Modal className="modal-right scroll-out-negative" show={editModal} onHide={() => setEditModal(false)} scrollable dialogClassName="full">
+    <Modal.Header closeButton>
   <Modal.Title className='fw-bold' as="h5">Cart</Modal.Title>
-</Modal.Header>
-<Modal.Body>
- <p > Your Cart is Currently Empty </p> 
-</Modal.Body>
-<Modal.Footer className="border-0">
-</Modal.Footer>
-</Modal>
+    </Modal.Header>
+    <Modal.Body>
+      {cartData?.cart?.length > 0 ? 
+      <p>yes</p> :  <div>
+      <p className='fs-6'> Your Cart is Currently Empty </p> <Button className='btn-dark' onClick={() => goToHomePage()}>Shop Now</Button></div>}
+    </Modal.Body>
+    <Modal.Footer className="border-0"></Modal.Footer>
+  </Modal>
 </>
   )
 }
