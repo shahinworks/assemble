@@ -58,6 +58,21 @@ function Home() {
     
   }
 
+  const GET_HOME_PAGE_SLIDER = gql`
+    query GetAllHomePageSlider {
+      getAllHomePageSlider {
+        id
+        images
+        url
+        content
+      }
+    }
+  `;
+
+  const {data: homePageSlider} = useQuery(GET_HOME_PAGE_SLIDER);
+  if(homePageSlider){
+    console.log("homePageSlider", homePageSlider);
+  }
 
   // onClick={() => goToProductPage(data.id)}
 
@@ -76,9 +91,10 @@ function Home() {
         <div className="carousel-item active">
           <img className="d-block w-100" src="assets/img/hero-bg.jpg" alt="First slide" />
         </div>
+      {homePageSlider?.getAllHomePageSlider &&  homePageSlider?.getAllHomePageSlider?.map((item) =>
         <div className="carousel-item">
-          <img className="d-block w-100" src='assets/img/trendy-stylish-woman-rejoicing-with-sales-shopping-time-isolated-pink-wearing-casual-outfit_273443-4585.avif' alt="Second slide" />
-        </div>
+          <img className="d-block w-100" src={item.images} alt="Second slide" />
+        </div>)}
     {/* <div className="carousel-item">
       <img className="d-block w-100" src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp" alt="Third slide" />
     </div> */}
