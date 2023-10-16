@@ -73,7 +73,7 @@ function Product() {
   }
 
   return (<>
-  <Header />
+  {/* <Header /> */}
   <>
   <div className="container">
     <section className="slider" style={{ paddingTop: "10%" }}>

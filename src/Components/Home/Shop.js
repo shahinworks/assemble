@@ -28,7 +28,7 @@ function Shop() {
   const { data: product, refetch } = useQuery(GET_ALL_PRODUCT);
 
   return (<>
-  <Header />
+  {/* <Header /> */}
     <section className="slider" style={{ paddingTop: "10%" }}>
       <h1 className="text-center ">All Products</h1>
       <div className="container mx-3">
