@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import {Speedometer, List, Person, Search, Cart, Bag} from 'react-bootstrap-icons';
 import { Button, Modal, Card } from 'react-bootstrap';
-import './Header.css';
+// import './Header.css';
 import logo1 from './logo-TRP.jpg';
 import logo2 from './logo-TRP.png';
 import { useMediaQuery } from 'react-responsive';
