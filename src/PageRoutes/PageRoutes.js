@@ -30,16 +30,18 @@ import UserDashboard from '../Components/Dashboard/UserDashboard';
 import AdminDashboard from '../Components/Dashboard/AdminDashboard';
 import Error from '../Components/SuperComponent/Error';
 import Wishlist from '../Components/Home/Wishlist/Wishlist';
+import Checkout from '../Components/Home/Checkout/Checkout';
  
 function PageRoutes() {
   return (
     <Routes>
       <Route path='/' element={<UserDashboard />} >
-      <Route index  element={<Home />}/>
-      <Route exact path='/shop' element={<Shop />}/>
-      <Route exact path='/about' element={<About />}/>
-      <Route exact path='/product/:id' element={<Product />}/>
-      <Route exact path='/wishlist' element={<Wishlist />}/>
+        <Route index  element={<Home />}/>
+        <Route exact path='/shop' element={<Shop />}/>
+        <Route exact path='/about' element={<About />}/>
+        <Route exact path='/product/:id' element={<Product />}/>
+        <Route exact path='/wishlist' element={<Wishlist />}/>
+        <Route exact path='/checkout' element={<Checkout />}/>
       </Route>
      
       <Route exact path="admin" element={<AdminDashboard />} >

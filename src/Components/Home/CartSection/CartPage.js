@@ -110,9 +110,9 @@ function CartPage() {
       </Row>
     </div>)}
     <hr/>
-    <div   className='my-2 d-inline'>
-      <h5 className='fw-bold d-inline' style={{marginRight: "40px", paddingRight: "50px"}}>SUBTOTAL </h5>
-      <h4 className='fw-bold d-inline' style={{marginRight: "0px", paddingRight: "0px", alignItems: "end", alignContent: "end"}}> ₹ {sum}</h4>
+    <div className='my-2'>
+      <p className='fw-bold d-inline fs-5' style={{marginRight: "40px", paddingRight: "50px"}}>SUBTOTAL </p>
+      <p className='fw-bold d-inline fs-5' style={{ marginLeft: "70px", alignItems: "end", alignContent: "end"}}> ₹ {sum}</p>
     </div>
   </>)
 }
