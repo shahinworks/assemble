@@ -15,12 +15,14 @@ function ListSlider() {
   `;
 
   const {data} = useQuery(GET_SLIDER);
-  if(data) {
-    console.log("data",  data);
-  }
   
   return (<>
-   <div>ListSlider</div>
+    <h2 className='text-center my-2'>List of Slider Images</h2>
+   <ul>
+    {data?.getAllHomePageSlider && data?.getAllHomePageSlider?.map((item) => 
+     <li><img style={{height: "40px", width: "70px"}} src={item.images} aly="pic"/></li>
+    )}
+   </ul>
    
   </>)
 }

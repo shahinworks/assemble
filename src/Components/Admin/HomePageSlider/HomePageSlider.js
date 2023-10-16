@@ -51,10 +51,8 @@ function HomePageSlider() {
       <h5>Slider Images</h5>
       <Form.Control type='file' onChange={(e) => setImages(e.target.files[0])}/>
       <Button  className='my-2 btn btn-light' onClick={() => handleSlider()}>Submit</Button>
-
       </Card.Body>
     </Card>
-    
   </>)
 }
 
