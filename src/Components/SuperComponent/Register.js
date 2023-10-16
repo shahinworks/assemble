@@ -90,7 +90,7 @@ function RegistrationForm() {
   }, [data]);
 
   return (
-    <div>
+    <div className="mt-5 mb-5 pt-5 pb-5">
       <Container>
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
@@ -212,8 +212,8 @@ function RegistrationForm() {
                       </div>
                     </Form>
                     <div className="mt-3">
-                      <p className="mb-0  text-center">
-                        Already have an account??{" "}
+                      <p className="mb-0 text-center fs-6">
+                        Already have an account?{" "}
                         <Link to="/login" className="text-primary fw-bold">
                           Sign In
                         </Link>

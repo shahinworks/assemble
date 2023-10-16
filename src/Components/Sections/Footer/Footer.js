@@ -35,7 +35,7 @@ function Footer() {
       <div className="container">
         <div className="row">
           <div className="col-lg-4 col-md-4 col-sm-6 text-start">
-            <h4>Footer menu</h4>
+            <h4>Footer Menu</h4>
             <ul>
               <li>
                 <a href="#">Search</a>

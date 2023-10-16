@@ -27,7 +27,7 @@ function Header() {
   }
 
   const [header, setHeader] = useState("header");
-   const [logo, setLogo] = useState(logo2);
+  const [logo, setLogo] = useState(logo2);
 
   const listenScrollEvent = event => {
     if (window.scrollY < 73) {
