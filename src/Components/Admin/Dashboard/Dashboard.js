@@ -39,7 +39,7 @@ function Dashboard() {
         }}
       >  
         <MenuItem component={<Link to="/" />} active icon={<Speedometer color='black' size={20} />}>
-          Dashboard
+          Home 
         </MenuItem>
         <SubMenu active label="User" icon={<Balloon color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/User" />} >User</MenuItem>
