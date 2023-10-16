@@ -35,7 +35,7 @@ function Shop() {
         <div className="row">
         {product && product?.getAllProducts?.map((data, index) => 
           <div key={data.id} className="flexslider col-lg-3 col-md-6 col-sm-12" >
-           <Link to={`/product/${data.id}`}> 
+           <Link to={`/product/${data.id}`}  className='stretched-link'> 
              <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
@@ -44,9 +44,11 @@ function Shop() {
                   </a>
                 </li>
                 <div className='text-center'>
-                  <h2 className='mt-2' style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}}> {data.productName}</h2>
+                  <h2 className='mt-2 text-black' style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}}> {data.productName}</h2>
                   <p>
-                    <del> ₹3,000</del> ₹1999
+                  <h4 className="text-black fs-5 text-center">
+                  {/* <del> ₹3,000</del> */}
+                   ₹ {data.sellingPrice }</h4>
                   </p>
                 </div>
               </ul>

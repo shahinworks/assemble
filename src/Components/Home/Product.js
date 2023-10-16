@@ -140,7 +140,8 @@ function Product() {
               <h1>{product?.getProduct?.productName}</h1>
               <br />
               <h3>
-                <del> ₹3,000.00</del> ₹1,999.00
+                {/* <del> ₹3,000.00</del>  */}
+                 {product?.getProduct?.sellingPrice}
               </h3>
               <p className="text-disable">Tax included.</p>
               <hr />
