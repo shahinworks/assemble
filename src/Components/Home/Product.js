@@ -137,7 +137,7 @@ function Product() {
           </div>
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="container">
-              <h1>{product?.getProduct?.priveiwName}</h1>
+              <h1>{product?.getProduct?.productName}</h1>
               <br />
               <h3>
                 <del> ₹3,000.00</del> ₹1,999.00
