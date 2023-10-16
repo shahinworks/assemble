@@ -141,15 +141,16 @@ function Product() {
               <br />
               <h3>
                 {/* <del> ₹3,000.00</del>  */}
-                 {product?.getProduct?.sellingPrice}
+                ₹ {product?.getProduct?.sellingPrice}
               </h3>
               <p className="text-disable">Tax included.</p>
               <hr />
               <div className="container">
                 <p>
                   <b>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Inventore, vel ratione.
+                  {product?.getProduct?.description}
+                    {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Inventore, vel ratione. */}
                   </b>
                 </p>
                 <div className="row" id="row">
