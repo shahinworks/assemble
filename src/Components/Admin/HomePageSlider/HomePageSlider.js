@@ -54,7 +54,7 @@ function HomePageSlider() {
       <Form.Control type='text' value={content} onChange={(e) => setContent(e.target.value)}/>
       <h5>Slider URL</h5>
       <Form.Control type='text' value={url} onChange={(e) => setUrl(e.target.value)}/>
-      <Button  className='my-2 btn btn-light' onClick={() => handleSlider()}>Submit</Button>
+      <Button className='my-2 btn btn-light' onClick={() => handleSlider()}>Submit</Button>
       </Card.Body>
     </Card>
   </>)

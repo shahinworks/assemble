@@ -240,10 +240,10 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
                     <td> {item.description} </td>
                     <td> {item.stock} </td>
                     <td>
-                      <Button className="btn btn-sm" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.purchasePrice , item.size, item.color, item.discount, item.gender, item.description, item.stock )}>
+                      <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.purchasePrice , item.size, item.color, item.discount, item.gender, item.description, item.stock )}>
                         <Pencil size={20} color="black"/>
                       </Button>{" "}
-                      <Button className="btn btn-sm" onClick={() => handleDelete(item.id)}>
+                      <Button className="btn btn-sm btn-light" onClick={() => handleDelete(item.id)}>
                         <Trash size={20} color="black" />
                       </Button>
                     </td>

@@ -92,7 +92,7 @@ function Home() {
           <img className="d-block w-100" src="assets/img/hero-bg.jpg" alt="First slide" />
         </div>
       {homePageSlider?.getAllHomePageSlider &&  homePageSlider?.getAllHomePageSlider?.map((item) =>
-        <div key={item} className="carousel-item">
+        <div key={item.id} className="carousel-item">
           <img className="d-block w-100" src={item.images} alt="Second slide" />
         </div>)}
     {/* <div className="carousel-item">
