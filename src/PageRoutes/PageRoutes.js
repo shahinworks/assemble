@@ -29,6 +29,7 @@ import ListSlider from '../Components/Admin/HomePageSlider/ListSlider';
 import UserDashboard from '../Components/Dashboard/UserDashboard';
 import AdminDashboard from '../Components/Dashboard/AdminDashboard';
 import Error from '../Components/SuperComponent/Error';
+import Wishlist from '../Components/Home/Wishlist/Wishlist';
  
 function PageRoutes() {
   return (
@@ -38,6 +39,7 @@ function PageRoutes() {
       <Route exact path='/shop' element={<Shop />}/>
       <Route exact path='/about' element={<About />}/>
       <Route exact path='/product/:id' element={<Product />}/>
+      <Route exact path='/wishlist' element={<Wishlist />}/>
       </Route>
      
       <Route exact path="admin" element={<AdminDashboard />} >

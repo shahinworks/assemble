@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from 'react';
-import {Speedometer, List, Person, Search, Cart, Bag} from 'react-bootstrap-icons';
+import {Speedometer, List, Person, Search, Cart, Bag, Heart } from 'react-bootstrap-icons';
 import { Button, Modal, Card } from 'react-bootstrap';
 // import './Header.css';
 import logo1 from './Images/logo-TRP.jpg';
@@ -9,6 +9,7 @@ import MediaQuery from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import { gql, useQuery, useLazyQuery } from '@apollo/client';
 import CartPage from '../../Home/CartSection/CartPage';
+import CartPop from '../../Home/CartSection/CartPop';
 
 function Header() {
   const navigate = useNavigate();
@@ -78,14 +79,19 @@ function Header() {
     getCartData();
   }, []);
 
-  const goToHomePage = () => {
-    navigate('/');
-  }
+  // const goToHomePage = () => {
+  //   navigate('/');
+  // }
 
   
   // const handleNavbar = () => {
   //   console.log("handleNavbar");
   // }
+
+  const goToWishList = () => {
+    navigate('/wishlist');
+  }
+
 
   return (   
     <>
@@ -112,6 +118,7 @@ function Header() {
       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={28} /></li>
       <li> <Search  className='  mx-1' color='black' size={28} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} /></li>
+      <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
     </ul>   
   </div> 
   </nav> 
@@ -138,6 +145,7 @@ function Header() {
       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
+      <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
     </ul>   
   </div> 
   </nav>
@@ -164,6 +172,7 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
      </ul>   
    </div> 
    </nav>
@@ -190,6 +199,7 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
      </ul>   
    </div> 
    </nav>
@@ -216,6 +226,7 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
      </ul>   
    </div> 
    </nav>
@@ -243,6 +254,7 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
      </ul>   
    </div> 
    </nav>
@@ -286,7 +298,9 @@ function Header() {
 </Modal>
 </MediaQuery>
 
-  <Modal className="modal-right scroll-out-negative" show={editModal} onHide={() => setEditModal(false)} scrollable dialogClassName="full">
+ <CartPop show={editModal} onHide={() => setEditModal(false)}  />
+
+  {/* <Modal className="modal-right scroll-out-negative" show={editModal} onHide={() => setEditModal(false)} scrollable dialogClassName="full">
     <Modal.Header closeButton>
   <Modal.Title className='fw-bold' as="h5">Cart</Modal.Title>
     </Modal.Header>
@@ -297,7 +311,7 @@ function Header() {
       <p className='fs-6'> Your Cart is Currently Empty </p> <Button className='btn-dark' onClick={() => goToHomePage()}>Shop Now</Button></div>}
     </Modal.Body>
     <Modal.Footer className="border-0"></Modal.Footer>
-  </Modal>
+  </Modal> */}
 </>
   )
 }

@@ -6,10 +6,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, gql, useMutation } from '@apollo/client';
 import toast from "react-hot-toast";
 import { Heart, Cart } from 'react-bootstrap-icons';
+import CartPop from './CartSection/CartPop';
 
 function Product() {
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const [ editModal, setEditModal] = useState(false);
 
   const GET_PRODUCT = gql`
     query GetProduct($getProductId: ID) {
@@ -67,6 +70,8 @@ function Product() {
   const [addToCart, {data}] = useMutation(ADD_TO_CART, {
     onCompleted : () => {
       toast.success("Product Added Successfully in cart");
+        setEditModal(true);
+     
     },
     onError : (error) => {
       toast.error("Error Occured");
@@ -82,7 +87,7 @@ function Product() {
     await addToCart({
       variables: {  
         productId: id,
-        quantity: 2
+        quantity: 1
       }
     })
 
@@ -125,7 +130,9 @@ function Product() {
   }
 
   return (<>
+   <CartPop show={editModal} onHide={() => setEditModal(false)}  />
  
+
   <div className="container">
     <section className="slider" style={{ paddingTop: "10%" }}>
       <div className="container" id="container">
