@@ -88,10 +88,10 @@ function Home() {
   {/* <Header /> */}
     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          <img className="d-block w-100" src="assets/img/hero-bg.jpg" alt="First slide" />
-        </div>
-      {homePageSlider?.getAllHomePageSlider &&  homePageSlider?.getAllHomePageSlider?.map((item) =>
+      {homePageSlider?.getAllHomePageSlider && homePageSlider?.getAllHomePageSlider[0]?.images && <div className="carousel-item active">
+          <img className="d-block w-100" src={homePageSlider?.getAllHomePageSlider[0]?.images} alt="First slide" />
+        </div>}
+      {homePageSlider?.getAllHomePageSlider &&  homePageSlider?.getAllHomePageSlider?.map((item, index) => index > 0 &&
         <div key={item.id} className="carousel-item">
           <img className="d-block w-100" src={item.images} alt="Second slide" />
         </div>)}
