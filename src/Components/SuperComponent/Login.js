@@ -1,14 +1,15 @@
-import { gql, useMutation } from '@apollo/client'
-import React, { useEffect, useState } from 'react'
-import { Button, Form, Card, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { gql, useMutation } from '@apollo/client';
+import { useNavigate, Link } from 'react-router-dom';
+import { Button, Form, Card, Row, Col, Container} from 'react-bootstrap';
 import toast from 'react-hot-toast';
-import {useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("shahin@gmail.com");
   const [password, setPassword] = useState("123456");
 
-  const navigate = useNavigate();
   const LOGIN_USER = gql`
     mutation LoginUser($email: String!, $password: String!) {
       loginUser(email: $email, password: $password) {
@@ -39,20 +40,50 @@ function Login() {
       }
     })
   }
+
   return (<>
-    <Card>
-      <Card.Body>
-        <Form>
-        <Form.Label>Enter Email</Form.Label>
-        <Form.Control type='email' value={username} onChange={(e) => setUsername(e.target.value)}/>
-        <Form.Label>Enter Password</Form.Label>
-        <Form.Control type='password' value={password} onChange={(e) => setPassword(e.target.value)}/>
-      <Button onClick={() => handleLogin()}> Login</Button>
-      </Form>
-      </Card.Body>
-    </Card>
-    
-  </>)
+    <div>
+      <Container>
+        <Row className="vh-100 d-flex justify-content-center align-items-center">
+          <Col md={8} lg={6} xs={12}>
+            <div className="border border-3 border-primary"></div>
+            <Card className="shadow" style={{border: "none"}}>
+              <Card.Body className='mx-3'>
+              <div className="mb-3 mt-md-4">
+                  <h2 className="fw-bold mb-2 text-uppercase ">Welcome</h2>
+                  <p className=" mb-5">Please enter your login and password!</p>
+                  <div className="mb-3">
+                <Form>
+                  <h6>Enter Email</h6>
+        <Form.Control type='email' value={username} onChange={(e) => setUsername(e.target.value)} className='mb-3'/>
+        <h6>Enter Password</h6>
+        <Form.Control type='password' value={password} onChange={(e) => setPassword(e.target.value)} className='mb-3'/>
+
+        <p className="fs-6">
+                          <a className="text-primary" href="#/!">
+                            Forgot password?
+                          </a>
+                        </p>
+                        <Row>
+      <Button onClick={() => handleLogin()} className='px-2'> Login</Button> </Row>
+                </Form>
+                </div>
+                <div className="mt-3">
+                      <p className="mb-0 text-center fs-6">
+                        Don't have an account?   
+                        <Link to="/register" className="mx-1 text-primary fw-bold">
+                             Sign Up
+                        </Link>
+                      </p>
+                    </div>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  </>);
 }
 
-export default Login
+export default Login;
