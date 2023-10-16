@@ -25,6 +25,7 @@ import ListColor from '../Components/Admin/Color/ListColor';
 import HomePageSlider from '../Components/Admin/HomePageSlider/HomePageSlider';
 import User from '../Components/Admin/User/User';
 import DashHome from '../Components/Admin/Dashboard/DashHome';
+import ListSlider from '../Components/Admin/HomePageSlider/ListSlider';
  
 function PageRoutes() {
   return (
@@ -48,7 +49,8 @@ function PageRoutes() {
       <Route exact path='ListSize' element={<ListSize />}/>
       <Route exact path='CreateColor' element={<CreateColor />}/>
       <Route exact path='ListColor' element={<ListColor />}/>
-      <Route exact path='slider' element={<HomePageSlider />}/>
+      <Route exact path='CreateSlider' element={<HomePageSlider />}/>
+      <Route exact path='ListSlider' element={<ListSlider />}/>
       </Route>
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>
