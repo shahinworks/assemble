@@ -115,7 +115,7 @@ function Header() {
     </ul>
   <div className="nav-item d-flex mx-2">
     <ul>
-      <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={28} /></li>
+      <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={34} /></li>
       <li> <Search  className='  mx-1' color='black' size={28} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} /></li>
       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
@@ -145,7 +145,7 @@ function Header() {
       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-      <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
+      <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
     </ul>   
   </div> 
   </nav>
@@ -172,7 +172,7 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
+       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -199,7 +199,7 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
+       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -226,7 +226,7 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
+       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -254,7 +254,7 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
+       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
