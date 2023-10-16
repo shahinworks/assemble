@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Product.css';
 import { Tab, TabContainer, TabContent, Tabs } from 'react-bootstrap';
 import Header from '../Sections/Header/Header';
@@ -33,10 +33,25 @@ function Product() {
       getProductId: id
     }
   });
-  if(product) 
-  {
-    console.log(product);
-  }
+
+  const [ discount, setDiscount ] = useState(product?.getProduct?.discount);
+  const [sellingPrice, setSellingPrice] = useState(product?.getProduct?.sellingPrice);
+
+  useEffect(() => {
+    setDiscount(product?.getProduct?.discount);
+    if(product?.getProduct?.discount  > 0)
+    {
+      const tempDiscountedPrice = ((100 - product?.getProduct?.discount) *  (product?.getProduct?.sellingPrice)) / 100; 
+      setSellingPrice(tempDiscountedPrice);
+    }
+    else {
+      setSellingPrice(product?.getProduct?.sellingPrice);
+    
+    }
+
+  }, [product]);
+ 
+  
 
 
   const ADD_TO_CART = gql`
@@ -139,10 +154,12 @@ function Product() {
             <div className="container">
               <h1>{product?.getProduct?.productName}</h1>
               <br />
-              <h3>
-                {/* <del> ₹3,000.00</del>  */}
-                ₹ {product?.getProduct?.sellingPrice}
-              </h3>
+              {product?.getProduct?.discount > 0 ? <h3>
+                <del>₹ {sellingPrice}</del>
+                {" "} ₹ {product?.getProduct?.sellingPrice} 
+              </h3>:  <h3> ₹ {product?.getProduct?.sellingPrice}
+              </h3>}
+             
               <p className="text-disable">Tax included.</p>
               <hr />
               <div className="container">
@@ -314,7 +331,8 @@ function Product() {
               </svg>
               <p style={{ paddingLeft: 13, marginTop: "-3px" }}>
                 {" "}
-                In stock, ready to ship
+               Stock:  {product?.getProduct?.stock}
+               {/* In stock, ready to ship */}
               </p>
             </div>
             <br />

@@ -7,6 +7,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './Home.css';
 import MediaQuery from 'react-responsive';
 import Header from '../Sections/Header/Header';
+import Swiper from './Swiper';
 
 function Home() {
 
@@ -118,13 +119,14 @@ function Home() {
             
              <div className="carousel-item active">
              <div className="row row1">
+              {/* <Swiper product={product} /> */}
              {product && product?.getAllProducts?.map((data, index) => <div key={data.id}  className="col-lg-4 col-md-4 col-sm-6">
                  <img src={data.images} alt=""/>
                 <Link to={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </Link>
                  <h4 className="fs-5 text-center">
-                   {/* <del>121212</del> */}
                    ₹ {data.sellingPrice }</h4>
                </div> )}
+
                {/* <div className="col-lg-4 col-md-4 col-sm-6">
                <img src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp" alt="" />
               <h4 className="text-center">Lorem, ipsum dolor.</h4>
