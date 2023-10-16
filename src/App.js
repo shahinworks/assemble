@@ -30,9 +30,9 @@ function App() {
 
       
       {/* <Body />  */}
-      <Header />
+      {/* <Header /> */}
       <PageRoutes />
-      <Footer />
+      {/* <Footer /> */}
 
       {/* <PhotosetComponent /> */}
       {/* // </div> */}

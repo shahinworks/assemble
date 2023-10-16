@@ -24,11 +24,18 @@ import CreateColor from '../Components/Admin/Color/CreateColor';
 import ListColor from '../Components/Admin/Color/ListColor';
 import HomePageSlider from '../Components/Admin/HomePageSlider/HomePageSlider';
 import User from '../Components/Admin/User/User';
+import DashHome from '../Components/Admin/Dashboard/DashHome';
  
 function PageRoutes() {
   return (
     <Routes>
-      <Route path='/' element={<Home />}/>
+      <Route path='/' element={<DashHome />} >
+      <Route index  element={<Home />}/>
+      <Route exact path='/shop' element={<Shop />}/>
+      <Route exact path='/about' element={<About />}/>
+      <Route exact path='/product/:id' element={<Product />}/>
+      </Route>
+     
       <Route exact path="admin" element={<Dash />} >
       <Route exact path='User' element={<User />}/>
       <Route exact path='CreateProduct' element={<CreateProduct />}/>
@@ -46,10 +53,7 @@ function PageRoutes() {
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>
-      <Route path='/shop' element={<Shop />}/>
-      <Route path='/about' element={<About />}/>
-      <Route path='/product/:id' element={<Product />}/>
-
+    
 
       
       <Route path='/login' element={<Login />}/>
