@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './Product.css';
 import { Tab, TabContainer, TabContent, Tabs } from 'react-bootstrap';
 import Header from '../Sections/Header/Header';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, gql, useMutation } from '@apollo/client';
 import toast from "react-hot-toast";
+import { Heart, Cart } from 'react-bootstrap-icons';
 
 function Product() {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const GET_PRODUCT = gql`
@@ -86,10 +88,44 @@ function Product() {
 
     
   }
+ 
+  // Wishlist 
+  const ADD_TO_WISHLIST = gql`
+    mutation Mutation($productId: ID!) {
+      createWishlist(productId: $productId) {
+        wishlistProducts {
+          productId {
+            productName
+            priveiwName
+            id
+          }
+        }
+      }
+    }
+  `;
+
+  const [createWishlist, {data: wishlistData}] = useMutation(ADD_TO_WISHLIST, {
+    onCompleted : () => {
+      toast.success("Added to Wishlist");
+    }, 
+    onError : (error) => {
+      if(error.message ===  "Authorization header is missing");{
+        navigate('/login');
+        toast.error("Login and TRY AGAIN!");
+      }
+    }
+  });
+
+  const handleAddToWishlist = async (id) => {
+    createWishlist({
+      variables: {
+        productId: id
+      }
+    })
+  }
 
   return (<>
-  {/* <Header /> */}
-  <>
+ 
   <div className="container">
     <section className="slider" style={{ paddingTop: "10%" }}>
       <div className="container" id="container">
@@ -340,6 +376,29 @@ function Product() {
               <button className="button  d-flex justify-content-evenly" onClick={() => handleAddToCart(product?.getProduct?.id)}>
                 <a href="#" className="text-center">
                   Add to cart
+                </a>
+                <a href="#">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    fill="currentColor"
+                    className="bi bi-arrow-right"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+                    />
+                  </svg>
+                </a>
+              </button>
+            </div>
+            <br />
+            <div className="d-flex justify-content-center">
+              <button className="button  d-flex justify-content-evenly" onClick={() => handleAddToWishlist(product?.getProduct?.id)}>
+                <a href="#" className="text-center">
+                  Add to Wishlist 
                 </a>
                 <a href="#">
                   <svg
@@ -638,7 +697,7 @@ function Product() {
     </section>
   </div>
   <b></b>
-</>
+
 
 
 
