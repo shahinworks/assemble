@@ -26,18 +26,21 @@ import HomePageSlider from '../Components/Admin/HomePageSlider/HomePageSlider';
 import User from '../Components/Admin/User/User';
 import DashHome from '../Components/Admin/Dashboard/DashHome';
 import ListSlider from '../Components/Admin/HomePageSlider/ListSlider';
+import UserDashboard from '../Components/Dashboard/UserDashboard';
+import AdminDashboard from '../Components/Dashboard/AdminDashboard';
+import Error from '../Components/SuperComponent/Error';
  
 function PageRoutes() {
   return (
     <Routes>
-      <Route path='/' element={<DashHome />} >
+      <Route path='/' element={<UserDashboard />} >
       <Route index  element={<Home />}/>
       <Route exact path='/shop' element={<Shop />}/>
       <Route exact path='/about' element={<About />}/>
       <Route exact path='/product/:id' element={<Product />}/>
       </Route>
      
-      <Route exact path="admin" element={<Dash />} >
+      <Route exact path="admin" element={<AdminDashboard />} >
       <Route exact path='User' element={<User />}/>
       <Route exact path='CreateProduct' element={<CreateProduct />}/>
       <Route exact path='ListProduct' element={<ListProduct />}/>
@@ -60,7 +63,7 @@ function PageRoutes() {
       
       <Route path='/login' element={<Login />}/>
       <Route path='/register' element={<Register />}/>
-      <Route path='/rough' element={<Demo />}/>
+      <Route path='*' element={<Error />}/>
       <Route path='/rough' element={<Demo />}/>
     </Routes>
   )
