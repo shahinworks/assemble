@@ -145,7 +145,18 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
   const [editProduct, {data: dateEdit}] = useMutation(EDIT_PRODUCT, {
     onCompleted: () => {
-      refetch()
+      refetch();
+      setUpdateProductId("");
+      setAllcolor([]);
+      setProductName("");
+      setPreviewName("");
+      setDiscount("");
+      setStock("");
+      setSellingPrice("");
+      setPurchasePrice("");
+      setGender([]);
+      setAllSize([]);
+      setDescription("");
     }
   });
 
@@ -183,7 +194,8 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
           productImages: images,
           stock: parseInt(stock),
         },
-      })
+      });
+      showModal(false);
     }
 
   return (<>

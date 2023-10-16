@@ -20,7 +20,10 @@ function ListSlider() {
     <h2 className='text-center my-2'>List of Slider Images</h2>
    <ul>
     {data?.getAllHomePageSlider && data?.getAllHomePageSlider?.map((item) => 
-     <li><img style={{height: "40px", width: "70px"}} src={item.images} aly="pic"/></li>
+     <li><img style={{height: "40px", width: "70px"}} src={item.images} aly="pic"/>
+     <p>{item.content}</p>
+     <p>{item.url}</p>
+     </li>
     )}
    </ul>
    
