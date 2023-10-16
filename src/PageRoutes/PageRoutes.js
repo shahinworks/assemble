@@ -13,7 +13,7 @@ import ListCart from '../Components/Admin/Cart/ListCart';
 import Login from '../Components/SuperComponent/Login';
 import Register from '../Components/SuperComponent/Register';
 import Dash from '../Components/Admin/Dashboard/Dash';
-import Body from '../Components/Sections/Header/Body';
+
 import Home from '../Components/Home/Home';
 import Shop from '../Components/Home/Shop';
 import About from '../Components/Home/About';
