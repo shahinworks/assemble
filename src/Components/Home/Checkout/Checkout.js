@@ -103,7 +103,7 @@ function Checkout(props) {
         paymentMethod: "ONLINE",
         totalAmount: 200.00,
         orderProducts: state,
-        shippingAddress: "652e290bd58f3805c49d4349",
+        shippingAddress: shippingData?.createAddress?.id,
         billingAddress: billingAddress?.getAllAddressesByUser[0]?.id,
         status: "pending"
       }
@@ -131,20 +131,23 @@ function Checkout(props) {
       console.error(error.message);
     }
   });
+  if(shippingData){
+    console.log(shippingData?.createAddress?.id)
+  }
   
   const handleSubmitAddress = async() => {
     console.log("handleSubmitAddress");
     await createShippingAddress({
       variables: {
-        addressLine1: "shippingAddress",
-        city: "shippingAddress",
-        state: "shippingAddress",
-        postalCode: "shippingAddress",
-        country: "shippingAddress",
-        addressLine2: "shippingAddress",
-        mobileNo: "shippingAddress",
-        lastName: "shippingAddress",
-        firstName: "shippingAddress"
+        addressLine1: shippingAddress,
+        city: shippingAddress,
+        state: shippingAddress,
+        postalCode: shippingAddress,
+        country: shippingAddress,
+        addressLine2: shippingAddress,
+        mobileNo: shippingAddress,
+        lastName: shippingAddress,
+        firstName: shippingAddress
       }
     });
   }
