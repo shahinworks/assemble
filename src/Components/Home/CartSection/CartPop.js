@@ -6,6 +6,7 @@ import { Modal, Button , Row} from 'react-bootstrap';
 import { useState } from 'react';
 
 function CartPop({show, onHide}) {  
+  
   const navigate = useNavigate();
 
 // GETTING CART ITEMS
@@ -33,6 +34,8 @@ function CartPop({show, onHide}) {
     getCartData();
    }, []);
 
+  // const [orderArray, setOrderArray] = useState([]);
+
   const goToHomePage = () => {
     navigate('/');
   }
@@ -41,9 +44,19 @@ function CartPop({show, onHide}) {
     refetch();
   }, [show, onHide]);
 
-  const goToCheckOut = () => {
-    console.log("goToCheckOut");
-    navigate('/checkout');
+  const goToCheckOut = async () => {
+
+    const newArray =  cartData?.cart?.cartProducts?.map((item) => {
+      return {
+          price : item?.productId?.sellingPrice,
+          productId :  item?.productId?.id,
+          quantity : item?.quantity,
+        }
+    });
+
+    // setOrderArray(newArray); 
+
+    navigate('/checkout', {state:   newArray });
     onHide();
   }
 
