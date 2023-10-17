@@ -113,24 +113,29 @@ function Checkout(props) {
   }
 
   return (<>
-  <div className='my-5 mx-5 d-flex'>
-  
-    <h5>THE ASSEMBLE CLOTHING</h5> 
-    <Button variant='link' className='d-inline mr-0 pr-0 me-0' style={{marginLeft: "74%"}} onClick={() => goToCart()}>
-    <Cart color='black' size={26}/>
-  </Button>
-   
-  </div>
-  <hr className='my-0 py-0'/>
- 
+    <div className='my-5 mx-5 d-flex'>
+      <h5>THE ASSEMBLE CLOTHING</h5> 
+      <Button variant='link' className='d-inline mr-0 pr-0 me-0' style={{marginLeft: "74%"}} onClick={() => goToCart()}>
+        <Cart color='black' size={26}/>
+      </Button>
+    </div>
+    <hr className='my-0 py-0'/>
 
-  <Row >
-    <Col className="col-lg-7">
-    <div className='mt-5 mb-5'>
+    <Row >
+      <Col className="col-lg-7">
+        <div>
+          <h5>Shippin Address</h5>
+
+        </div>
+      <div className='mt-5 mb-5'>
     <h3 className='mt-5 mb-5'>Checkout</h3>
     <Button onClick={() => handleOrder()}>Checkout Button</Button>
     </div>
-    </Col>
+      </Col>
+
+
+
+
     <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>Cart Summary </Col>
   </Row>
 
