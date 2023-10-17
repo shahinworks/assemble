@@ -10,92 +10,69 @@ function Profile() {
   const phoneRegExp = /^(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})$/;
   const pincodeRegExp = /^[0-9]*$/;
   
-    const validationSchema = Yup.object().shape({
-      firstName: Yup.string().required('Enter firstName'),
-      lastName: Yup.string().required('Enter lastName'),
-      mobileNo: Yup.string().matches(phoneRegExp, 'mobile No is not valid').required('Enter mobile No'),
-      address: Yup.string().required('Enter Address'),
-      address2: Yup.string().required('Enter Landmark'),
-      city: Yup.string().required('Enter your City name'),
-      pincode: Yup.string().matches(pincodeRegExp, 'Pincode is not valid').required('Enter Pincode'),
-      state: Yup.string().required('Enter your state'),
-      country: Yup.string().required('Country Name is required'),
-    });
-    const initialValues = {
-        address: '',
-        address2: '',
-        city: '',
-        pincode: '',
-        state: '',
-        country: 'India',
-        firstName: '',
-        lastName: '',
-        mobileNo: '',
-      };
-      const CREATE_ADDRESS = gql`
-      mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $firstName: String, $lastName: String, $mobileNo: String, $addressLine2: String) {
-        createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo, addressLine2: $addressLine2) {
-          id
-        }
+  const validationSchema = Yup.object().shape({
+    firstName: Yup.string().required('Enter firstName'),
+    lastName: Yup.string().required('Enter lastName'),
+    mobileNo: Yup.string().matches(phoneRegExp, 'Mobile No is invalid').required('Enter Mobile No'),
+    address: Yup.string().required('Enter Address'),
+    address2: Yup.string().required('Enter Landmark'),
+    city: Yup.string().required('Enter your City name'),
+    pincode: Yup.string().matches(pincodeRegExp, 'Pincode is not valid').required('Enter Pincode'),
+    state: Yup.string().required('Enter your State'),
+    country: Yup.string().required('Country Name is required'),
+  });
+
+  const initialValues = {
+    address: '',
+    address2: '',
+    city: '',
+    pincode: '',
+    state: '',
+    country: 'India',
+    firstName: '',
+    lastName: '',
+    mobileNo: '',
+  };
+
+  const CREATE_ADDRESS = gql`
+    mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $firstName: String, $lastName: String, $mobileNo: String, $addressLine2: String) {
+      createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo, addressLine2: $addressLine2) {
+        id
       }
-    `;
-    const [createAddress,  {data}] = useMutation(CREATE_ADDRESS, {
-      onCompleted : () => {
-        toast.success("Address Saved Successfully");
-      },
-      onError : (error) => {
-        toast.error("Error ");
-        console.error(error.message);
-      }
-    });
+    }
+  `;
+
+  const [createAddress,  {data}] = useMutation(CREATE_ADDRESS, {
+    onCompleted : () => {
+      toast.success("Address Saved Successfully");
+    },
+    onError : (error) => {
+      toast.error("Error ");
+      console.error(error.message);
+    }
+  });
     
-    const onSubmit = async (values, { resetForm }) => {
-        await createAddress({
-          variables: {
-            addressLine1: values.address,
-            addressLine2: values.address2,
-            postalCode: values.pincode,
-            ...values,
-          },
-        });
+  const onSubmit = async (values, { resetForm }) => {
+    await createAddress({
+      variables: {
+        addressLine1: values.address,
+        addressLine2: values.address2,
+        postalCode: values.pincode,
+        ...values,
+      },
+    });
     
         // setTimeout(() => {
         //   resetForm({ values: '' });
         // }, 10);
     
        
-    };
-
-
-    if(data){
-        console.log("data", data);
-    }
-      // const onSubmit = (values) => console.log('submit form', values);
+  };
     
-    const formik = useFormik({ initialValues, validationSchema, onSubmit });
-    const { handleSubmit, handleChange, values, touched, errors } = formik;
+  const formik = useFormik({ initialValues, validationSchema, onSubmit });
+  const { handleSubmit, handleChange, values, touched, errors } = formik;
 
- 
-
- 
-//   const handleSubmitAddress = async () => {
-//     await createAddress({
-//       variables:  {
-//         addressLine1: shippingAddress,
-//         city: shippingAddress,
-//         state: shippingAddress,
-//         postalCode: shippingAddress,
-//         country: shippingAddress,
-//         addressLine2: shippingAddress,
-//         mobileNo: shippingAddress,
-//         lastName: shippingAddress,
-//         firstName: shippingAddress
-//       }
-//     });
-
-//   }
-
-  return (
+  return (<>
     <div style={{marginTop: "10%"}}>
         <h2>Profile</h2>
 
@@ -228,7 +205,7 @@ function Profile() {
                 </Card.Body>
               </Card>
     </div>
-  )
+  </>)
 }
 
 export default Profile;
