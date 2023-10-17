@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation, useLazyQuery, useQuery } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Button, Row, Col, Form } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Cart } from 'react-bootstrap-icons';
 
 function Checkout(props) {
   const navigate = useNavigate();
   const { state } = useLocation();
+
+  const [ shippingAddress , setShippingAddress] = useState("");
 
   // GET_BILLING_ADDRESS 
   const GET_BILLING_ADDRESS  = gql`
@@ -112,6 +114,41 @@ function Checkout(props) {
     navigate('/cart', {state});
   }
 
+  const CREATE_SHIPPING_ADDRESS = gql`
+    mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $firstName: String, $lastName: String, $mobileNo: String, $addressLine2: String) {
+      createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo, addressLine2: $addressLine2) {
+        id
+      }
+    }
+  `;
+
+  const [createShippingAddress, {data: shippingData}] = useMutation(CREATE_SHIPPING_ADDRESS, {
+    onCompleted : () => {
+      toast.success("Address Saved Successfully");
+    },
+    onError : (error) => {
+      toast.error("Error ");
+      console.error(error.message);
+    }
+  });
+  
+  const handleSubmitAddress = async() => {
+    console.log("handleSubmitAddress");
+    await createShippingAddress({
+      variables: {
+        addressLine1: "shippingAddress",
+        city: "shippingAddress",
+        state: "shippingAddress",
+        postalCode: "shippingAddress",
+        country: "shippingAddress",
+        addressLine2: "shippingAddress",
+        mobileNo: "shippingAddress",
+        lastName: "shippingAddress",
+        firstName: "shippingAddress"
+      }
+    });
+  }
+
   return (<>
     <div className='my-5 mx-5 d-flex'>
       <h5>THE ASSEMBLE CLOTHING</h5> 
@@ -125,7 +162,8 @@ function Checkout(props) {
       <Col className="col-lg-7">
         <div>
           <h5>Shippin Address</h5>
-
+          <Form.Control  type='text' value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)}/>
+          <Button onClick={() => handleSubmitAddress()}>Submit Address</Button>
         </div>
       <div className='mt-5 mb-5'>
     <h3 className='mt-5 mb-5'>Checkout</h3>
