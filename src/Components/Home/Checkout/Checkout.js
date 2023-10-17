@@ -19,7 +19,7 @@ function Checkout(props) {
   
 
   // console.log("state:" , state);
-  // console.log( "FINAL shippingAddress" , shippingAddress);
+  console.log( "FINAL shippingAddress" , shippingAddress);
 
   
   
@@ -193,23 +193,30 @@ function Checkout(props) {
 
  
   const handleOrder = async () => {
+    if( totalAmount && state &&  shippingAddress &&  billingAddress?.getAllAddressesByUser[0]?.id )
+    {
+      await createOrder({
+        variables: {
+          paymentMethod: "ONLINE",
+          totalAmount: totalAmount,
+          orderProducts: state,
+          shippingAddress : shippingAddress,
+          // shippingAddress: shippingData?.createAddress?.id,
+          billingAddress: billingAddress?.getAllAddressesByUser[0]?.id,
+          status: "pending"
+        }
+      });
+    }
+    else {
+      toast.error("SOME ERROR OCCURRED ");
+    }
     
-    await createOrder({
-      variables: {
-        paymentMethod: "ONLINE",
-        totalAmount: totalAmount,
-        orderProducts: state,
-        shippingAddress : shippingAddress,
-        // shippingAddress: shippingData?.createAddress?.id,
-        billingAddress: billingAddress?.getAllAddressesByUser[0]?.id,
-        status: "pending"
-      }
-    });
+   
     
   }
 
   useEffect(() => {
-    if(orderData?.createOrder?.user){
+    if(orderData?.createOrder?.user  && totalAmount){
       createPayment({
         variables : {
           amount:  String(totalAmount),
@@ -229,15 +236,16 @@ function Checkout(props) {
   // Setting Shipping Address ID
   useEffect(() => {
     if(shippingAsBilling){
-      // console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id);
+       console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id);
       setShippingAddress(billingAddress?.getAllAddressesByUser[0]?.id);
     } else {
-      // console.log("ship", shippingData?.createAddress?.id);
+      console.log("ship", shippingData?.createAddress?.id);
       setShippingAddress(shippingData?.createAddress?.id);
     }
   }, [shippingAsBilling, shippingData?.createAddress?.id, billingAddress?.getAllAddressesByUser[0]?.id,]);
 
 
+  console.log("shippingAsBilling", shippingAsBilling);
   // /////////////////// CREATE ADDRESS FORM ///////////////////////
 
   const phoneRegExp = /^(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})$/;
