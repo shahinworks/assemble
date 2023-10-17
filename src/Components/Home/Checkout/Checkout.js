@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Cart } from 'react-bootstrap-icons';
 
@@ -99,13 +99,25 @@ function Checkout(props) {
   }
 
   return (<>
+  <div className='my-5 mx-5'>
+    <h5>THE ASSEMBLE CLOTHING</h5>
+  </div>
+  <hr />
   <Button variant='link' onClick={() => goToCart()}>
     <Cart/>
   </Button>
+
+  <Row>
+    <Col className="col-lg-7">
     <div className='mt-5 mb-5'>
     <h3 className='mt-5 mb-5'>Checkout</h3>
     <Button onClick={() => handleOrder()}>Checkout Button</Button>
     </div>
+    </Col>
+    <Col className="col-lg-5">Cart Summary </Col>
+  </Row>
+
+   
   </>);
 }
 
