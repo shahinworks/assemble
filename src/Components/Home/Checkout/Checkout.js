@@ -18,8 +18,8 @@ function Checkout(props) {
   const [ shippingAddress , setShippingAddress] = useState("");
   
 
-  console.log("state:" , state);
-  console.log( "FINAL shippingAddress" , shippingAddress);
+  // console.log("state:" , state);
+  // console.log( "FINAL shippingAddress" , shippingAddress);
 
   
   
@@ -137,9 +137,9 @@ function Checkout(props) {
 
 
   // Mutations and Query
-  const  {data: cartData} = useQuery(CART);
+  const {data: cartData} = useQuery(CART);
   const {data: billingAddress} = useQuery(GET_BILLING_ADDRESS);
-  const [createOrder, {data}] = useMutation(CREATE_ORDER, {
+  const [createOrder, {data: orderData}] = useMutation(CREATE_ORDER, {
     onCompleted: () => {
       toast.success("Order Created Successfully");
     },
@@ -151,7 +151,7 @@ function Checkout(props) {
 
   const [createPayment, {data: paymentData}] = useMutation( MAKE_PAYMENT, {
     onCompleted: () => {
-      toast.info("Redirecting to payment Gateway");
+      toast("Redirecting to payment Gateway");
     },
     onError: (err) => {
       console.error(err.message);
@@ -169,20 +169,21 @@ function Checkout(props) {
   });
 
 
+  // if(orderData){ 
+  //   console.log("orderData", orderData);
+  // }
 
+  // if(billingAddress){
+  //   console.log("billingAddress", billingAddress?.getAllAddressesByUser[0]?.id);
+  // }
 
+  // if(paymentData){
+  //   console.log("paymentData", paymentData);
+  // }
 
-  if(billingAddress){
-    console.log("billingAddress", billingAddress?.getAllAddressesByUser[0]?.id);
-  }
-
-  if(paymentData){
-    console.log("paymentData", paymentData);
-  }
-
-  if(shippingData){
-    console.log(shippingData?.createAddress?.id)
-  }
+  // if(shippingData){
+  //   console.log(shippingData?.createAddress?.id)
+  // }
 
   useEffect(() => {
     if(paymentData?.makePayment?.success){
@@ -208,17 +209,17 @@ function Checkout(props) {
   }
 
   useEffect(() => {
-    if(data?.createOrder?.user){
+    if(orderData?.createOrder?.user){
       createPayment({
         variables : {
-          amount:  totalAmount,
-          firstname: data?.createOrder?.user?.firstName,
-          email: data?.createOrder?.user?.email,
-          phone: data?.createOrder?.user?.mobileNo,
+          amount:  String(totalAmount),
+          firstname: orderData?.createOrder?.user?.firstName,
+          email: orderData?.createOrder?.user?.email,
+          phone: orderData?.createOrder?.user?.mobileNo,
         }
       });
       }
-  }, [data?.createOrder?.user]);
+  }, [orderData?.createOrder?.user]);
 
   const goToCart = () => {
     navigate('/cart', {state});
@@ -228,10 +229,10 @@ function Checkout(props) {
   // Setting Shipping Address ID
   useEffect(() => {
     if(shippingAsBilling){
-      console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id);
+      // console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id);
       setShippingAddress(billingAddress?.getAllAddressesByUser[0]?.id);
     } else {
-      console.log("ship", shippingData?.createAddress?.id);
+      // console.log("ship", shippingData?.createAddress?.id);
       setShippingAddress(shippingData?.createAddress?.id);
     }
   }, [shippingAsBilling, shippingData?.createAddress?.id, billingAddress?.getAllAddressesByUser[0]?.id,]);
