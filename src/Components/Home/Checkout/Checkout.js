@@ -10,6 +10,7 @@ import { useFormik } from 'formik';
 function Checkout(props) {
   const navigate = useNavigate();
   const { state } = useLocation();
+  console.log("state:" , state)
 
   const [ shippingAddress , setShippingAddress] = useState("");
   console.log( "FINAL shippingAddress" , shippingAddress);
@@ -161,10 +162,10 @@ function Checkout(props) {
 
   useEffect(() => {
     if(shippingAsBilling){
-      // console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id)
+      console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id)
       setShippingAddress(billingAddress?.getAllAddressesByUser[0]?.id);
     } else {
-      // console.log("ship", shippingData?.createAddress?.id)
+      console.log("ship", shippingData?.createAddress?.id)
       setShippingAddress(shippingData?.createAddress?.id);
     }
   }, [shippingAsBilling, shippingData?.createAddress?.id, billingAddress?.getAllAddressesByUser[0]?.id,]);
@@ -175,6 +176,10 @@ function Checkout(props) {
   // }
 
   // /////////////////////////////////////////////////////////////////////////////////////////
+
+  const phoneRegExp = /^(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})$/;
+  const pincodeRegExp = /^[0-9]*$/;
+
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required('Enter firstName'),
     lastName: Yup.string().required('Enter lastName'),
@@ -202,7 +207,7 @@ function Checkout(props) {
 
 
   const onSubmit = async (values, { resetForm }) => {
-    await createAddress({
+    await createShippingAddress({
       variables: {
         addressLine1: values.address,
         addressLine2: values.address2,
@@ -234,19 +239,20 @@ function Checkout(props) {
 
     <Row className='mx-3'>
       <Col className="col-lg-7">
-        <div className='mx-3'>
+        <div className='mx-3 mt-5'>
         <h5>Shippin Address</h5>
-        <Form.Check type='checkbox' onChange={() => setShippingAsBilling(!shippingAsBilling)}/> <p className='mx-3'> Same as Billing Address</p>
+        <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setShippingAsBilling(!shippingAsBilling)}/> <p className='px-2 mx-4'> Same as Billing Address</p>
   
         {!shippingAsBilling  && <>
         <h5>
           Add New Shipping Address
         </h5>
         <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
-                    <div className="mb-3 filled form-group tooltip-end-top">
+                    <div className="mb-3 d-flex filled form-group tooltip-end-top">
                       {/* <CsLineIcons icon="home" /> */}
                       <Form.Control
                         type="text"
+                        className='col-6 ms-0 me-1'
                         autoComplete="firstName"
                         name="firstName"
                         onChange={handleChange}
@@ -254,12 +260,12 @@ function Checkout(props) {
                         value={values.firstName}
                       />
                       {errors.firstName && touched.firstName && <div className="d-block invalid-tooltip">{errors.firstName}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
+                   
                       {/* <CsLineIcons icon="home" /> */}
                       <Form.Control
                         type="text"
                         autoComplete="lastName"
+                        className='col-6 me-0 ms-0'
                         name="lastName"
                         onChange={handleChange}
                         placeholder="Enter last Name..."
@@ -297,19 +303,18 @@ function Checkout(props) {
                       <Form.Control type="text" name="address2" onChange={handleChange} placeholder="Enter Street No, Area, Landmark" value={values.address2} />
                       {errors.address2 && touched.address2 && <div className="d-block invalid-tooltip">{errors.address2}</div>}
                     </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
+                    <div className="mb-3 d-flex filled form-group tooltip-end-top">
                       {/* <CsLineIcons icon="building-large" /> */}
-                      <Form.Control type="text" name="city" onChange={handleChange} placeholder="Enter City" value={values.city} />
+                      <Form.Control  type="text" className='col-6 ms-0 me-1' name="city" onChange={handleChange} placeholder="Enter City" value={values.city} />
                       {errors.city && touched.city && <div className="d-block invalid-tooltip">{errors.city}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
+                   
                       {/* <CsLineIcons icon="bookmark" /> */}
-                      <Form.Control type="text" name="pincode" onChange={handleChange} placeholder="Enter Pincode" value={values.pincode} maxLength={6} />
+                      <Form.Control className='col-6 me-0 ms-0' type="text" name="pincode" onChange={handleChange} placeholder="Enter Pincode" value={values.pincode} maxLength={6} />
                       {errors.pincode && touched.pincode && <div className="d-block invalid-tooltip">{errors.pincode}</div>}
                     </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
+                    <div className="mb-3 d-flex filled form-group tooltip-end-top">
                       {/* <CsLineIcons icon="plane" /> */}
-                      <Form.Select name="state" onChange={handleChange} aria-label="Default select example">
+                      <Form.Select className='col-6 ms-0 me-1' name="state" onChange={handleChange} aria-label="Default select example">
                         <option>Select State</option>
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
@@ -350,10 +355,9 @@ function Checkout(props) {
                       </Form.Select>
                       {/* <Form.Control type="text" name="state" onChange={handleChange} placeholder="Enter State" value={values.state} />
                       {errors.state && touched.state && <div className="d-block invalid-tooltip">{errors.state}</div>} */}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
+                    
                       {/* <CsLineIcons icon="web" /> */}
-                      <Form.Control type="text" name="country" onChange={handleChange} placeholder="Enter Country" value={values.country} />
+                      <Form.Control className='col-6 me-0 ms-0' type="text" name="country" onChange={handleChange} placeholder="Enter Country" value={values.country} />
                       {errors.country && touched.country && <div className="d-block invalid-tooltip">{errors.country}</div>}
                     </div>
                     <div className="text-center">
@@ -365,7 +369,8 @@ function Checkout(props) {
                       </Button>
                     </div>
                   </form>
-          <Button onClick={() => handleSubmitAddress()}>Submit Address</Button> </>}
+          {/* <Button onClick={() => handleSubmitAddress()}>Submit Address</Button> */}
+           </>}
           
           
         </div>
