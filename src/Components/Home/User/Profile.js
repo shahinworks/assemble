@@ -205,7 +205,7 @@ function Profile() {
                 </Card.Body>
               </Card>
     </div>
-  </>)
+  </>);
 }
 
 export default Profile;
