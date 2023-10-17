@@ -59,7 +59,7 @@ function CartPop({show, onHide}) {
         <p className='fs-6'> Your Cart is Currently Empty </p> <Button className='btn-dark' onClick={() => goToHomePage()}>Shop Now</Button></div>}
       </Modal.Body>
       <Modal.Footer className="border-0">
-         <Button style={{backgroundColor: "black", color: "white"}} className='fs-5 fw-bold w-100' onClick={() => goToCheckOut()}>Check Out</Button> 
+         <Button style={{backgroundColor: "black", color: "white"}} className='fs-5 fw-bold w-100' onClick={() => goToCheckOut()}>CHECKOUT</Button> 
       </Modal.Footer>
     </Modal>
   </>)
