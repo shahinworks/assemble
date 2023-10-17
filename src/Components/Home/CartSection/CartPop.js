@@ -34,8 +34,6 @@ function CartPop({show, onHide}) {
     getCartData();
    }, []);
 
-  // const [orderArray, setOrderArray] = useState([]);
-
   const goToHomePage = () => {
     navigate('/');
   }
@@ -54,9 +52,7 @@ function CartPop({show, onHide}) {
         }
     });
 
-    // setOrderArray(newArray); 
-
-    navigate('/checkout', {state:   newArray });
+    navigate('/checkout', {state: newArray });
     onHide();
   }
 
