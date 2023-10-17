@@ -12,7 +12,11 @@ function CartFull() {
       }
 
   return (<>
-    <h1>Cart FULL SCREEN PAGE</h1>
+  <div style={{paddingTop: "10%"}}> 
+  <h1>Cart FULL SCREEN PAGE</h1>
+
+  </div>
+   
 {/* <a href='/cart' > <Cart/>
 </a> */}
   <Button variant='link' onClick={() => goToCart()}>
