@@ -31,6 +31,7 @@ import AdminDashboard from '../Components/Dashboard/AdminDashboard';
 import Error from '../Components/SuperComponent/Error';
 import Wishlist from '../Components/Home/Wishlist/Wishlist';
 import Checkout from '../Components/Home/Checkout/Checkout';
+import CartFull from '../Components/Home/CartSection/CartFull';
  
 function PageRoutes() {
   return (
@@ -62,6 +63,7 @@ function PageRoutes() {
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>
       <Route path='/checkout' element={<Checkout />}/>
+      <Route path='/cart' element={<CartFull />}/>
       
     
 
