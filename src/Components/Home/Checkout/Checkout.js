@@ -10,6 +10,9 @@ function Checkout(props) {
   const { state } = useLocation();
 
   const [ shippingAddress , setShippingAddress] = useState("");
+  console.log( "FINAL shippingAddress" , shippingAddress);
+
+  
   
  const [shippingAsBilling, setShippingAsBilling] = useState(false);
 
@@ -23,6 +26,7 @@ function Checkout(props) {
   `;
 
   const {data: billingAddress} = useQuery(GET_BILLING_ADDRESS);
+
   if(billingAddress){
     console.log("billingAddress", billingAddress?.getAllAddressesByUser[0]?.id);
   }
@@ -138,30 +142,32 @@ function Checkout(props) {
   }
   
   const handleSubmitAddress = async() => {
-    await createShippingAddress({
-      variables: {
-        addressLine1: shippingAddress,
-        city: shippingAddress,
-        state: shippingAddress,
-        postalCode: shippingAddress,
-        country: shippingAddress,
-        addressLine2: shippingAddress,
-        mobileNo: shippingAddress,
-        lastName: shippingAddress,
-        firstName: shippingAddress
-      }
-    });
+    // await createShippingAddress({
+    //   variables: {
+    //     addressLine1: shippingAddress,
+    //     city: shippingAddress,
+    //     state: shippingAddress,
+    //     postalCode: shippingAddress,
+    //     country: shippingAddress,
+    //     addressLine2: shippingAddress,
+    //     mobileNo: shippingAddress,
+    //     lastName: shippingAddress,
+    //     firstName: shippingAddress
+    //   }
+    // });
   }
 
   useEffect(() => {
-    if(setShippingAsBilling){
+    if(shippingAsBilling){
+      // console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id)
       setShippingAddress(billingAddress?.getAllAddressesByUser[0]?.id);
     } else {
+      // console.log("ship", shippingData?.createAddress?.id)
       setShippingAddress(shippingData?.createAddress?.id);
     }
   }, [shippingAsBilling, shippingData?.createAddress?.id, billingAddress?.getAllAddressesByUser[0]?.id,]);
 
-
+ 
   // const setShippingAsBilling = () => {
   //   console.log("setShippingAsBilling", setShippingAsBilling);
   // }
@@ -185,7 +191,7 @@ function Checkout(props) {
         <h5>
           Add New Shipping Address
         </h5>
-        <Form.Control  type='text' value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)}/>
+        {/* <Form.Control  type='text' value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)}/> */}
           <Button onClick={() => handleSubmitAddress()}>Submit Address</Button> </>}
           
           
