@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { gql, useMutation, useLazyQuery } from '@apollo/client';
+import { gql, useMutation, useLazyQuery, useQuery } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Button, Row, Col } from 'react-bootstrap';
 import toast from 'react-hot-toast';
@@ -8,6 +8,20 @@ import { Cart } from 'react-bootstrap-icons';
 function Checkout(props) {
   const navigate = useNavigate();
   const { state } = useLocation();
+
+  // GET_BILLING_ADDRESS 
+  const GET_BILLING_ADDRESS  = gql`
+    query GetAllAddressesByUser {
+      getAllAddressesByUser {
+        id
+      }
+    }
+  `;
+
+  const {data: billingAddress} = useQuery(GET_BILLING_ADDRESS);
+  if(billingAddress){
+    console.log("billingAddress", billingAddress?.getAllAddressesByUser[0]?.id);
+  }
 
   // CREATE ORDER 
   const CREATE_ORDER = gql`
@@ -88,7 +102,7 @@ function Checkout(props) {
         totalAmount: 200.00,
         orderProducts: state,
         shippingAddress: "652e290bd58f3805c49d4349",
-        billingAddress: "652e290bd58f3805c49d4349",
+        billingAddress: billingAddress?.getAllAddressesByUser[0]?.id,
         status: "pending"
       }
     });
