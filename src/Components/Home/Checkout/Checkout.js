@@ -10,9 +10,15 @@ import { useFormik } from 'formik';
 function Checkout(props) {
   const navigate = useNavigate();
   const { state } = useLocation();
-  console.log("state:" , state)
+
+
+  const [ totalAmount, setTotalAmount] = useState(state?.reduce((acc, curr) => acc + curr?.quantity * curr?.price, 0));
+  // setTotalAmount(state?.reduce((acc, curr) => acc + curr?.quantity * curr?.price, 0));
 
   const [ shippingAddress , setShippingAddress] = useState("");
+  
+
+  console.log("state:" , state);
   console.log( "FINAL shippingAddress" , shippingAddress);
 
   
@@ -27,12 +33,6 @@ function Checkout(props) {
       }
     }
   `;
-
-  const {data: billingAddress} = useQuery(GET_BILLING_ADDRESS);
-
-  if(billingAddress){
-    console.log("billingAddress", billingAddress?.getAllAddressesByUser[0]?.id);
-  }
 
   // CREATE ORDER 
   const CREATE_ORDER = gql`
@@ -95,6 +95,50 @@ function Checkout(props) {
     }
   `;
 
+  // MAKE PAYMENT
+  const MAKE_PAYMENT = gql`
+    mutation Mutation($amount: String, $firstname: String, $email: String, $phone: String) {
+      makePayment(amount: $amount, firstname: $firstname, email: $email, phone: $phone) {
+        success
+        message
+        redirectUrl
+      }
+    }
+  `;
+  
+  // CREATE SHIPPING ADDRESS
+  const CREATE_SHIPPING_ADDRESS = gql`
+    mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $firstName: String, $lastName: String, $mobileNo: String, $addressLine2: String) {
+      createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo, addressLine2: $addressLine2) {
+        id
+      }
+    }
+ `;
+
+
+  // GET CART 
+  const CART = gql`
+    query Query {
+      cart {
+        cartProducts {
+          productId {
+            productName
+            id
+            size
+            color
+            images
+            sellingPrice
+          }
+          quantity
+        }
+      }
+    }
+  `;
+
+
+  // Mutations and Query
+  const  {data: cartData} = useQuery(CART);
+  const {data: billingAddress} = useQuery(GET_BILLING_ADDRESS);
   const [createOrder, {data}] = useMutation(CREATE_ORDER, {
     onCompleted: () => {
       toast.success("Order Created Successfully");
@@ -105,31 +149,14 @@ function Checkout(props) {
     }
   });
 
-  const handleOrder = async () => {
-    
-    await createOrder({
-      variables: {
-        paymentMethod: "ONLINE",
-        totalAmount: 200.00,
-        orderProducts: state,
-        shippingAddress: shippingData?.createAddress?.id,
-        billingAddress: billingAddress?.getAllAddressesByUser[0]?.id,
-        status: "pending"
-      }
-    });
-  }
-
-  const goToCart = () => {
-    navigate('/cart', {state});
-  }
-
-  const CREATE_SHIPPING_ADDRESS = gql`
-    mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $firstName: String, $lastName: String, $mobileNo: String, $addressLine2: String) {
-      createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo, addressLine2: $addressLine2) {
-        id
-      }
+  const [createPayment, {data: paymentData}] = useMutation( MAKE_PAYMENT, {
+    onCompleted: () => {
+      toast.info("Redirecting to payment Gateway");
+    },
+    onError: (err) => {
+      console.error(err.message);
     }
-  `;
+  });
 
   const [createShippingAddress, {data: shippingData}] = useMutation(CREATE_SHIPPING_ADDRESS, {
     onCompleted : () => {
@@ -140,42 +167,77 @@ function Checkout(props) {
       console.error(error.message);
     }
   });
+
+
+
+
+
+  if(billingAddress){
+    console.log("billingAddress", billingAddress?.getAllAddressesByUser[0]?.id);
+  }
+
+  if(paymentData){
+    console.log("paymentData", paymentData);
+  }
+
   if(shippingData){
     console.log(shippingData?.createAddress?.id)
   }
-  
-  const handleSubmitAddress = async() => {
-    // await createShippingAddress({
-    //   variables: {
-    //     addressLine1: shippingAddress,
-    //     city: shippingAddress,
-    //     state: shippingAddress,
-    //     postalCode: shippingAddress,
-    //     country: shippingAddress,
-    //     addressLine2: shippingAddress,
-    //     mobileNo: shippingAddress,
-    //     lastName: shippingAddress,
-    //     firstName: shippingAddress
-    //   }
-    // });
+
+  useEffect(() => {
+    if(paymentData?.makePayment?.success){
+      navigate(paymentData?.makePayment?.redirectUrl);
+    }
+  }, [paymentData?.makePayment]);
+
+ 
+  const handleOrder = async () => {
+    
+    await createOrder({
+      variables: {
+        paymentMethod: "ONLINE",
+        totalAmount: totalAmount,
+        orderProducts: state,
+        shippingAddress : shippingAddress,
+        // shippingAddress: shippingData?.createAddress?.id,
+        billingAddress: billingAddress?.getAllAddressesByUser[0]?.id,
+        status: "pending"
+      }
+    });
+    
   }
 
   useEffect(() => {
+    if(data?.createOrder?.user){
+      createPayment({
+        variables : {
+          amount:  totalAmount,
+          firstname: data?.createOrder?.user?.firstName,
+          email: data?.createOrder?.user?.email,
+          phone: data?.createOrder?.user?.mobileNo,
+        }
+      });
+      }
+  }, [data?.createOrder?.user]);
+
+  const goToCart = () => {
+    navigate('/cart', {state});
+  }
+
+
+  // Setting Shipping Address ID
+  useEffect(() => {
     if(shippingAsBilling){
-      console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id)
+      console.log("bill", billingAddress?.getAllAddressesByUser[0]?.id);
       setShippingAddress(billingAddress?.getAllAddressesByUser[0]?.id);
     } else {
-      console.log("ship", shippingData?.createAddress?.id)
+      console.log("ship", shippingData?.createAddress?.id);
       setShippingAddress(shippingData?.createAddress?.id);
     }
   }, [shippingAsBilling, shippingData?.createAddress?.id, billingAddress?.getAllAddressesByUser[0]?.id,]);
 
- 
-  // const setShippingAsBilling = () => {
-  //   console.log("setShippingAsBilling", setShippingAsBilling);
-  // }
 
-  // /////////////////////////////////////////////////////////////////////////////////////////
+  // /////////////////// CREATE ADDRESS FORM ///////////////////////
 
   const phoneRegExp = /^(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})$/;
   const pincodeRegExp = /^[0-9]*$/;
@@ -204,8 +266,6 @@ function Checkout(props) {
     mobileNo: '',
   };
 
-
-
   const onSubmit = async (values, { resetForm }) => {
     await createShippingAddress({
       variables: {
@@ -220,13 +280,10 @@ function Checkout(props) {
         //   resetForm({ values: '' });
         // }, 10);
     
-       
   };
     
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
   const { handleSubmit, handleChange, values, touched, errors } = formik;
-
-
 
   return (<>
     <div className='my-5 mx-5 d-flex'>
@@ -374,16 +431,43 @@ function Checkout(props) {
           
           
         </div>
-      <div className='mt-5 mb-5'>
-    <h3 className='mt-5 mb-5'>Checkout</h3>
-    <Button onClick={() => handleOrder()}>Checkout Button</Button>
+      <div className='mt-5 mb-5 mx-3'>
+    {/* <h3 className='mt-5 mb-5'>Checkout</h3> */}
+    <Button style={{backgroundColor: "black", color: "white"}} onClick={() => handleOrder()}>Pay Now</Button>
     </div>
       </Col>
 
 
 
 
-    <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>Cart Summary </Col>
+    <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
+      {/* Cart Summary  */}
+      <div className='mt-5'></div>
+    {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item) => 
+    <div key={item?.productId?.id} className='mb-1 mx-1 px-0 mt-1'> 
+      <Row className='my-2'>
+        <Col className='col-3 mx-1'><img style={{height: "100px", width:"70px", border: "2px solid black"}} className='ms-3' src={item?.productId?.images } alt="s"/></Col>
+        <Col className='col-5 mx-2'>
+          <p className='fs-6'>{item?.productId?.productName}</p>
+          <p className='fs-6'>{item?.productId?.size}</p>
+          <p className='fs-6'>{item?.productId?.color}</p> </Col>
+        <Col className='col-2'> 
+          {/* <Row> */}
+         
+          <p className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice} </p>
+          
+          {/* </Row> */}
+        </Col>
+      </Row>
+    </div>)}
+    <hr/>
+    <div className='my-2'>
+      <p className='fw-bold d-inline fs-5 ms-3' style={{marginRight: "40px", paddingRight: "50px"}}>SUBTOTAL </p>
+      <p className='fw-bold d-inline fs-5' style={{ marginLeft: "140px", alignItems: "end", alignContent: "end"}}>
+         ₹ {totalAmount}
+      </p>
+    </div>
+    </Col>
   </Row>
 
    
