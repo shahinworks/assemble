@@ -10,6 +10,8 @@ function Checkout(props) {
   const { state } = useLocation();
 
   const [ shippingAddress , setShippingAddress] = useState("");
+  
+ const [shippingAsBilling, setShippingAsBilling] = useState(false);
 
   // GET_BILLING_ADDRESS 
   const GET_BILLING_ADDRESS  = gql`
@@ -136,7 +138,6 @@ function Checkout(props) {
   }
   
   const handleSubmitAddress = async() => {
-    console.log("handleSubmitAddress");
     await createShippingAddress({
       variables: {
         addressLine1: shippingAddress,
@@ -152,6 +153,19 @@ function Checkout(props) {
     });
   }
 
+  useEffect(() => {
+    if(setShippingAsBilling){
+      setShippingAddress(billingAddress?.getAllAddressesByUser[0]?.id);
+    } else {
+      setShippingAddress(shippingData?.createAddress?.id);
+    }
+  }, [shippingAsBilling, shippingData?.createAddress?.id, billingAddress?.getAllAddressesByUser[0]?.id,]);
+
+
+  // const setShippingAsBilling = () => {
+  //   console.log("setShippingAsBilling", setShippingAsBilling);
+  // }
+
   return (<>
     <div className='my-5 mx-5 d-flex'>
       <h5>THE ASSEMBLE CLOTHING</h5> 
@@ -161,12 +175,20 @@ function Checkout(props) {
     </div>
     <hr className='my-0 py-0'/>
 
-    <Row >
+    <Row className='mx-3'>
       <Col className="col-lg-7">
-        <div>
-          <h5>Shippin Address</h5>
-          <Form.Control  type='text' value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)}/>
-          <Button onClick={() => handleSubmitAddress()}>Submit Address</Button>
+        <div className='mx-3'>
+        <h5>Shippin Address</h5>
+        <Form.Check type='checkbox' onChange={() => setShippingAsBilling(!shippingAsBilling)}/> <p className='mx-3'> Same as Billing Address</p>
+  
+        {!shippingAsBilling  && <>
+        <h5>
+          Add New Shipping Address
+        </h5>
+        <Form.Control  type='text' value={shippingAddress} onChange={(e) => setShippingAddress(e.target.value)}/>
+          <Button onClick={() => handleSubmitAddress()}>Submit Address</Button> </>}
+          
+          
         </div>
       <div className='mt-5 mb-5'>
     <h3 className='mt-5 mb-5'>Checkout</h3>
