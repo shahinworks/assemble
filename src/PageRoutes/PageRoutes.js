@@ -32,6 +32,7 @@ import Error from '../Components/SuperComponent/Error';
 import Wishlist from '../Components/Home/Wishlist/Wishlist';
 import Checkout from '../Components/Home/Checkout/Checkout';
 import CartFull from '../Components/Home/CartSection/CartFull';
+import Profile from '../Components/Home/User/Profile';
  
 function PageRoutes() {
   return (
@@ -43,6 +44,7 @@ function PageRoutes() {
         <Route exact path='/product/:id' element={<Product />}/>
         <Route exact path='/wishlist' element={<Wishlist />}/>
         <Route exact path='/cart' element={<CartFull />}/>
+        <Route exact path='/profile' element={<Profile />}/>
       </Route>
      
       <Route exact path="admin" element={<AdminDashboard />} >
