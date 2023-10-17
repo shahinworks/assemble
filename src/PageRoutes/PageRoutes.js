@@ -42,6 +42,7 @@ function PageRoutes() {
         <Route exact path='/about' element={<About />}/>
         <Route exact path='/product/:id' element={<Product />}/>
         <Route exact path='/wishlist' element={<Wishlist />}/>
+        <Route exact path='/cart' element={<CartFull />}/>
       </Route>
      
       <Route exact path="admin" element={<AdminDashboard />} >
@@ -63,7 +64,7 @@ function PageRoutes() {
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>
       <Route path='/checkout' element={<Checkout />}/>
-      <Route path='/cart' element={<CartFull />}/>
+     
       
     
 
