@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import toast from 'react-hot-toast';
+import { Cart } from 'react-bootstrap-icons';
 
 function Checkout(props) {
+  const navigate = useNavigate();
   const { state } = useLocation();
 
   // CREATE ORDER 
@@ -92,8 +94,15 @@ function Checkout(props) {
     });
   }
 
+  const goToCart = () => {
+    navigate('/cart', {state});
+  }
+
   return (<>
-  <div className='mt-5 mb-5'>
+  <Button variant='link' onClick={() => goToCart()}>
+    <Cart/>
+  </Button>
+    <div className='mt-5 mb-5'>
     <h3 className='mt-5 mb-5'>Checkout</h3>
     <Button onClick={() => handleOrder()}>Checkout Button</Button>
     </div>
