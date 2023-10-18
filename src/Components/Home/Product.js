@@ -114,9 +114,13 @@ function Product() {
       toast.success("Added to Wishlist");
     }, 
     onError : (error) => {
-      if(error.message ===  "Authorization header is missing");{
+      console.log(error.message);
+      if(error.message ===  "Authorization header is missing"){
         navigate('/login');
         toast.error("Login and TRY AGAIN!");
+      }  else if(error.message ===  "Failed to add product to wishlist") 
+      { 
+        toast("Product Already in Wishlist");
       }
     }
   });
