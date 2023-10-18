@@ -93,7 +93,23 @@ function ListSlider() {
      </li>
     )} */}
    </ul>
-   
+    
+   <Modal style={{width: "100%"}} className="modal-right scroll-out-negative" show={modal} onHide={() => showModal(false)}
+       scrollable dialogClassName="full" >
+      <Modal.Header closeButton>
+        <Modal.Title as="h5">Edit Product Details</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+      <h5>Slider Images</h5>
+      <Form.Control type='file' onChange={(e) => setImages(e.target.files[0])}/>
+      <h5>Slider Content</h5>
+      <Form.Control type='text' value={content} onChange={(e) => setContent(e.target.value)}/>
+      <h5>Slider URL</h5>
+      <Form.Control type='text' value={url} onChange={(e) => setUrl(e.target.value)}/>
+      <Button className='my-2 btn btn-light' onClick={() => handleSlider()}>Submit</Button>
+      </Modal.Body>
+    </Modal>
+
     
 
   </>)
