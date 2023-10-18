@@ -1,5 +1,6 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { Col, Button , Modal, Form } from 'react-bootstrap';
 import { Pencil, Trash } from 'react-bootstrap-icons';
@@ -17,7 +18,11 @@ function ListSlider() {
     }
   `;
 
-  const {data} = useQuery(GET_SLIDER);
+  const {data, refetch} = useQuery(GET_SLIDER);
+
+  useEffect(() => {
+    refetch();
+  }, []);
 
   // UPDATE
   
