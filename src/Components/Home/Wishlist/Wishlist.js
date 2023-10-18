@@ -114,11 +114,11 @@ function Wishlist() {
             </Row>
           </Col>
           <Col className='col-3'>
-          <Button className="btn btn-sm btn-light" 
+          <Button className="btn btn-sm btn-light mx-1" 
             onClick = {() => handleAddToCart(wish?.productId?.id)} >
             <Cart size={20} color="black"/>
           </Button>
-          <Button className="btn btn-sm btn-light"
+          <Button className="btn btn-sm btn-light mx-1"
             onClick={() => handleRemoveFromWishlist(wish?.productId?.id)} >
             <Trash size={20} color="black" />
           </Button>
