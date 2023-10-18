@@ -60,10 +60,33 @@ function ListSlider() {
 
   }
 
-  const handleDelete = ()  => {
-    console.log("handleDelete")
-  }
+  // DELETE 
+  const DELETE = gql`
+    mutation DeleteHomePageSlider($deleteHomePageSliderId: ID) {
+      deleteHomePageSlider(id: $deleteHomePageSliderId) {
+        id
+        images
+        content
+        url
+      }
+    }
+  `;
   
+  const [deleteSlider, {data : dataDel} ]= useMutation(DELETE);
+
+  const handleDelete = async (id)  => {
+   await deleteSlider({
+      variables : {
+        deleteHomePageSliderId: id
+      }
+    });
+  }
+
+
+
+
+
+
   return (<>
     <h2 className='text-center my-2'>List of Slider Images</h2>
    
