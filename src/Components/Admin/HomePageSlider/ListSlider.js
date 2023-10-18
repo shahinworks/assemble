@@ -27,7 +27,6 @@ function ListSlider() {
   const [images, setImages] = useState(null);
   const [modal, showModal] = useState(false);
 
-
   const EDIT_SLIDER = gql`
     mutation UpdateHomePageSlider($sliderimages: Upload, $content: String, $url: String, $updateHomePageSliderId: ID) {
       updateHomePageSlider(sliderimages: $sliderimages, content: $content, url: $url, id: $updateHomePageSliderId) {
@@ -56,8 +55,7 @@ function ListSlider() {
         url: url,
         updateHomePageSliderId: editId
       }
-    })
-
+    });
   }
 
   // DELETE 
@@ -81,11 +79,6 @@ function ListSlider() {
       }
     });
   }
-
-
-
-
-
 
   return (<>
     <h2 className='text-center my-2'>List of Slider Images</h2>
