@@ -25,6 +25,9 @@ function Login() {
       setTimeout(() => {
         navigate("/");
       }, 1000);
+    }, 
+    onError : (error) => {
+      console.log("ERROR: ", error.message);
     }
   });
 
