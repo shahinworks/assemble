@@ -30,9 +30,14 @@ function Wishlist() {
   if(data){
     console.log("data", data);
   }
-  return (
-    <div>Wishlist</div>
-  )
+  return (<>
+    <div style={{marginTop: "10%"}}>Wishlist Item</div>
+    <ul>
+     {data && data?.wishlist?.wishlistProducts?.map((wish) => 
+       <li key={wish?.productId?.id}>{wish?.productId?.productName}</li>
+     )}
+    </ul>
+  </>)
 }
 
 export default Wishlist;
