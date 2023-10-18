@@ -27,7 +27,14 @@ function Login() {
       }, 1000);
     }, 
     onError : (error) => {
-      console.log("ERROR: ", error.message);
+      if( error.message === "Error: Incorrect password") {
+        toast.error("Incorrect password");
+      } else if(error.message === "Error: User not found"){
+        toast.error("Incorrect Email, User not found");
+      } else {
+        console.log("ERROR: ", error.message);
+        toast.error("Some Error Occured");
+      }
     }
   });
 
