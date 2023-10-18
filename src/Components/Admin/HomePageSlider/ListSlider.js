@@ -102,12 +102,6 @@ function ListSlider() {
           </Col>
     </div> )}
    <ul>
-    {/* {data?.getAllHomePageSlider && data?.getAllHomePageSlider?.map((item) => 
-     <li><img style={{height: "40px", width: "70px"}} src={item.images} aly="pic"/>
-     <p>{item.content}</p>
-     <p>{item.url}</p>
-     </li>
-    )} */}
    </ul>
     
    <Modal style={{width: "100%"}} className="modal-right scroll-out-negative" show={modal} onHide={() => showModal(false)}
@@ -125,10 +119,7 @@ function ListSlider() {
       <Button className='my-2 btn btn-light' onClick={() => handleSlider()}>Submit</Button>
       </Modal.Body>
     </Modal>
-
-    
-
-  </>)
+  </>);
 }
 
 export default ListSlider;
