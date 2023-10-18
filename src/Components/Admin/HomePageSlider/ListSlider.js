@@ -88,7 +88,7 @@ function ListSlider() {
   return (<>
     <h2 className='text-center my-2'>List of Slider Images</h2>
    
-    {data?.getAllHomePageSlider && data?.getAllHomePageSlider?.map((item, index) => index > 0 &&
+    {data?.getAllHomePageSlider && data?.getAllHomePageSlider?.map((item, index) => 
        <div key={item.id} className='d-flex'>
         <Col className='col-2'>
         <img style={{height: "40px", width: "70px"}} src={item.images} aly="pic"/> 
