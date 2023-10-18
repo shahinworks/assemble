@@ -51,10 +51,6 @@ function Login() {
     })
   }
 
-
-  // Forgot Password
-
-
   return (<>
     <div>
       <Container>
