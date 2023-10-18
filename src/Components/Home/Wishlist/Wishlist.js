@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { Row, Col, Button } from 'react-bootstrap';
-import { Cart, Heart } from 'react-bootstrap-icons';
+import { Cart, Heart, Trash } from 'react-bootstrap-icons';
 import toast from 'react-hot-toast';
 
 function Wishlist() {  
@@ -120,7 +120,7 @@ function Wishlist() {
           </Button>
           <Button className="btn btn-sm btn-light"
             onClick={() => handleRemoveFromWishlist(wish?.productId?.id)} >
-            <Heart size={20} color="black" />
+            <Trash size={20} color="black" />
           </Button>
           </Col>
         </Row>
