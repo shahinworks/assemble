@@ -72,81 +72,68 @@ function Profile() {
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
   const { handleSubmit, handleChange, values, touched, errors } = formik;
 
+  const EDIT_USER_PROFILE = gql`
+    mutation Profileedit($firstName: String, $lastName: String, $email: String, $file: Upload, $mobileNo: String) {
+      profileedit(firstName: $firstName, lastName: $lastName, email: $email, file: $file, mobileNo: $mobileNo) {
+        id
+        firstName
+        lastName
+        email
+        mobileNo
+        password
+        profilepic
+        role
+      }
+    }
+  `;
+
+  const {data : profileData} = useMutation(EDIT_USER_PROFILE, {
+    onCompleted : () => {
+      toast.success("Profile Updated");
+    }, 
+    onError : (error) => {
+      console.log("ERROR ", error.message);
+    }
+  });
+
   return (<>
     <div style={{marginTop: "10%"}}>
-        <h2>Profile</h2>
+      <h2>Profile</h2>
 
-        <h5> Address Section </h5>
-        <Card className="mb-5">
-                <Card.Body>
-                  <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="home" /> */}
-                      <Form.Control
-                        type="text"
-                        autoComplete="firstName"
-                        name="firstName"
-                        onChange={handleChange}
-                        placeholder="Enter first Name..."
-                        value={values.firstName}
-                      />
-                      {errors.firstName && touched.firstName && <div className="d-block invalid-tooltip">{errors.firstName}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="home" /> */}
-                      <Form.Control
-                        type="text"
-                        autoComplete="lastName"
-                        name="lastName"
-                        onChange={handleChange}
-                        placeholder="Enter last Name..."
-                        value={values.lastName}
-                      />
-                      {errors.lastName && touched.lastName && <div className="d-block invalid-tooltip">{errors.lastName}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="home" /> */}
-                      <Form.Control
-                        type="text"
-                        autoComplete="mobileNo"
-                        name="mobileNo"
-                        maxLength={10}
-                        onChange={handleChange}
-                        placeholder="Enter mobile No..."
-                        value={values.mobileNo}
-                      />
-                      {errors.mobileNo && touched.mobileNo && <div className="d-block invalid-tooltip">{errors.mobileNo}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="home" /> */}
-                      <Form.Control
-                        type="text"
-                        autoComplete="street-address"
-                        name="address"
-                        onChange={handleChange}
-                        placeholder="Enter House No, Colony name..."
-                        value={values.address}
-                      />
-                      {errors.address && touched.address && <div className="d-block invalid-tooltip">{errors.address}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="home" /> */}
-                      <Form.Control type="text" name="address2" onChange={handleChange} placeholder="Enter Street No, Area, Landmark" value={values.address2} />
-                      {errors.address2 && touched.address2 && <div className="d-block invalid-tooltip">{errors.address2}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="building-large" /> */}
-                      <Form.Control type="text" name="city" onChange={handleChange} placeholder="Enter City" value={values.city} />
-                      {errors.city && touched.city && <div className="d-block invalid-tooltip">{errors.city}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="bookmark" /> */}
-                      <Form.Control type="text" name="pincode" onChange={handleChange} placeholder="Enter Pincode" value={values.pincode} maxLength={6} />
-                      {errors.pincode && touched.pincode && <div className="d-block invalid-tooltip">{errors.pincode}</div>}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="plane" /> */}
-                      <Form.Select name="state" onChange={handleChange} aria-label="Default select example">
+      <h5> Address Section </h5>
+      <Card className="mb-5">
+        <Card.Body>
+          <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Control type="text" autoComplete="firstName" name="firstName" onChange={handleChange} placeholder="Enter First Name" value={values.firstName} />
+              {errors.firstName && touched.firstName && <div className="d-block invalid-tooltip">{errors.firstName}</div>}
+            </div>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Control type="text" autoComplete="lastName" name="lastName" onChange={handleChange} placeholder="Enter Last Name" value={values.lastName} />
+              {errors.lastName && touched.lastName && <div className="d-block invalid-tooltip">{errors.lastName}</div>}
+            </div>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Control type="text" autoComplete="mobileNo" name="mobileNo" maxLength={10} onChange={handleChange} placeholder="Enter Mobile No" value={values.mobileNo} />
+              {errors.mobileNo && touched.mobileNo && <div className="d-block invalid-tooltip">{errors.mobileNo}</div>}
+            </div>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Control type="text" autoComplete="street-address" name="address" onChange={handleChange} placeholder="Enter House No, Colony name" value={values.address} />
+              {errors.address && touched.address && <div className="d-block invalid-tooltip">{errors.address}</div>}
+            </div>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Control type="text" name="address2" onChange={handleChange} placeholder="Enter Street No, Area, Landmark" value={values.address2} />
+              {errors.address2 && touched.address2 && <div className="d-block invalid-tooltip">{errors.address2}</div>}
+            </div>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Control type="text" name="city" onChange={handleChange} placeholder="Enter City" value={values.city} />
+              {errors.city && touched.city && <div className="d-block invalid-tooltip">{errors.city}</div>}
+            </div>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Control type="text" name="pincode" onChange={handleChange} placeholder="Enter Pincode" value={values.pincode} maxLength={6} />
+              {errors.pincode && touched.pincode && <div className="d-block invalid-tooltip">{errors.pincode}</div>}
+            </div>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Select name="state" onChange={handleChange} aria-label="Default select example">
                         <option>Select State</option>
                         <option value="Andhra Pradesh">Andhra Pradesh</option>
                         <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
@@ -184,26 +171,18 @@ function Profile() {
                         <option value="Uttar Pradesh">Uttar Pradesh</option>
                         <option value="Uttarakhand">Uttarakhand</option>
                         <option value="West Bengal">West Bengal</option>
-                      </Form.Select>
-                      {/* <Form.Control type="text" name="state" onChange={handleChange} placeholder="Enter State" value={values.state} />
-                      {errors.state && touched.state && <div className="d-block invalid-tooltip">{errors.state}</div>} */}
-                    </div>
-                    <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="web" /> */}
-                      <Form.Control type="text" name="country" onChange={handleChange} placeholder="Enter Country" value={values.country} />
-                      {errors.country && touched.country && <div className="d-block invalid-tooltip">{errors.country}</div>}
-                    </div>
-                    <div className="text-center">
-                      {/* <Button onClick={() => setAddressModal(false)} variant="primary" className="btn-icon me-2">
-                        Cancel
-                      </Button> */}
-                      <Button variant="primary" className="btn-icon btn-icon-start" type="submit">
-                        Submit Address
-                      </Button>
-                    </div>
-                  </form>
-                </Card.Body>
-              </Card>
+              </Form.Select>
+            </div>
+            <div className="mb-3 filled form-group tooltip-end-top">
+              <Form.Control type="text" name="country" onChange={handleChange} placeholder="Enter Country" value={values.country} />
+              {errors.country && touched.country && <div className="d-block invalid-tooltip">{errors.country}</div>}
+            </div>
+            <div className="text-center">
+              <Button variant="primary" className="btn-icon btn-icon-start" type="submit"> Submit Address </Button>
+            </div>
+          </form>
+        </Card.Body>
+      </Card>
     </div>
   </>);
 }
