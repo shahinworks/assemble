@@ -114,7 +114,6 @@ function Product() {
       toast.success("Added to Wishlist");
     }, 
     onError : (error) => {
-      console.log(error.message);
       if(error.message ===  "Authorization header is missing"){
         navigate('/login');
         toast.error("Login and TRY AGAIN!");
