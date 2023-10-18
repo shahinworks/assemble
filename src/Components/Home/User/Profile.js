@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import React from 'react'
 import { Button, Form, Card } from 'react-bootstrap';
 import * as Yup from 'yup';
@@ -6,6 +6,26 @@ import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 
 function Profile() {
+
+  const GET_PROFILE = gql`
+    query GetProfile {
+      getProfile {
+        id
+        firstName
+        lastName
+        email
+        profilepic
+        mobileNo
+        role
+      }
+    }
+  `;
+
+  const {data : profile} = useQuery(GET_PROFILE);
+
+  if(profile){
+    console.log("Profile", profile);
+  }
   
   const phoneRegExp = /^(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})$/;
   const pincodeRegExp = /^[0-9]*$/;
@@ -99,6 +119,22 @@ function Profile() {
   return (<>
     <div style={{marginTop: "10%"}}>
       <h2>Profile</h2>
+      {profile && profile?.getProfile && <Card>
+        <Card.Body>
+          <h5>Name :  {profile?.getProfile?.firstName} { profile?.getProfile?.lastName}</h5>
+          <h5>Email :  {profile?.getProfile?.email}</h5>
+          <h5>Phone :  {profile?.getProfile?.mobileNo}</h5>
+          <h5>Role :  {profile?.getProfile?.role.join(", ")}</h5>
+        </Card.Body>
+      </Card>}
+      {/* <Card className="mb-5">
+        <Card.Body>
+          <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
+            <Form.Label>First name</Form.Label>
+            <Form.Control type="text" autoComplete="firstName" name="firstName" onChange={handleChange} placeholder="Enter First Name" value={values.firstName} />
+          </form>
+        </Card.Body>
+      </Card> */}
 
       <h5> Address Section </h5>
       <Card className="mb-5">
