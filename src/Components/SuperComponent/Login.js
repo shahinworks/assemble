@@ -51,6 +51,10 @@ function Login() {
     })
   }
 
+
+  // Forgot Password
+
+
   return (<>
     <div>
       <Container>
@@ -70,7 +74,7 @@ function Login() {
         <Form.Control type='password' value={password} onChange={(e) => setPassword(e.target.value)} className='mb-3'/>
 
         <p className="fs-6">
-                          <a className="text-primary" href="#/!">
+                          <a className="text-primary" href="/forgot">
                             Forgot password?
                           </a>
                         </p>
