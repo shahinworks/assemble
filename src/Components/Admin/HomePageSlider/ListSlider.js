@@ -1,6 +1,7 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import React from 'react';
-import { Col, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { Col, Button , Modal, Form } from 'react-bootstrap';
 import { Pencil, Trash } from 'react-bootstrap-icons';
 
 function ListSlider() {
@@ -18,8 +19,45 @@ function ListSlider() {
 
   const {data} = useQuery(GET_SLIDER);
 
-  const handleEdit = () => {
-    console.log("handleEdit")
+  // UPDATE
+  
+  const [editId, setEditId] = useState(""); 
+  const [content, setContent] = useState("");
+  const [url, setUrl] = useState("");
+  const [images, setImages] = useState(null);
+  const [modal, showModal] = useState(false);
+
+
+  const EDIT_SLIDER = gql`
+    mutation UpdateHomePageSlider($sliderimages: Upload, $content: String, $url: String, $updateHomePageSliderId: ID) {
+      updateHomePageSlider(sliderimages: $sliderimages, content: $content, url: $url, id: $updateHomePageSliderId) {
+        id
+        images
+        content
+        url
+      }
+    }
+  `;
+
+  const [editSlider, {data: dataEdit} ]= useMutation(EDIT_SLIDER);
+
+  const handleEdit = (id, content, url) => {
+    showModal(true);
+    setEditId(id);
+    setContent(content);
+    setUrl(url);
+  }
+
+  const handleSlider = async () => {
+    await editSlider({
+      variables : {
+        sliderimages: images,
+        content: content,
+        url: url,
+        updateHomePageSliderId: editId
+      }
+    })
+
   }
 
   const handleDelete = ()  => {
@@ -39,7 +77,7 @@ function ListSlider() {
           <p>URL: {item.url}</p> 
           </Col>
           <Col className='col-2'>
-          <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.purchasePrice , item.size, item.color, item.discount, item.gender, item.description, item.stock )}>
+          <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.content, item.url )}>
             <Pencil size={20} color="black"/>
           </Button>{" "}
           <Button className="btn btn-sm btn-light" onClick={() => handleDelete(item.id)}>
@@ -56,6 +94,8 @@ function ListSlider() {
     )} */}
    </ul>
    
+    
+
   </>)
 }
 
