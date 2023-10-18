@@ -114,13 +114,13 @@ function Wishlist() {
             </Row>
           </Col>
           <Col className='col-3'>
-          <Button className="btn btn-sm btn-light mx-1" 
+          <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
             onClick = {() => handleAddToCart(wish?.productId?.id)} >
-            <Cart size={20} color="black"/>
+            <Cart size={20} color="white"/>
           </Button>
-          <Button className="btn btn-sm btn-light mx-1"
+          <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
             onClick={() => handleRemoveFromWishlist(wish?.productId?.id)} >
-            <Trash size={20} color="black" />
+            <Trash size={20} color="white" />
           </Button>
           </Col>
         </Row>
