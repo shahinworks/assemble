@@ -4,6 +4,7 @@ import { Button, Form, Card, Modal } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
+import { PencilSquare } from 'react-bootstrap-icons';
 
 function Profile() {
 
@@ -161,7 +162,8 @@ function Profile() {
                           data.getProfile.lastName,
                           data.getProfile.mobileNo,
                           data.getProfile.email,
-                          data.getProfile.profilepic) }>Edit Profile</Button>
+                          data.getProfile.profilepic) }> <PencilSquare /></Button>
+
 
       {data && data?.getProfile && <Card>
         <Card.Body>
