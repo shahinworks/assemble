@@ -1,11 +1,20 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
-import React from 'react'
-import { Button, Form, Card } from 'react-bootstrap';
+import React, { useState } from 'react'
+import { Button, Form, Card, Modal } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
 
 function Profile() {
+
+    // Edit User Profile
+    const [editModal, setEditModal] = useState(false);
+    // const [id, setId] = useState('');
+    const [fName, setfName] = useState('');
+    const [lName, setlName] = useState('');
+    const [mail, setMail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [image, setImage] = useState(null);
 
   const GET_PROFILE = gql`
     query GetProfile {
@@ -21,10 +30,10 @@ function Profile() {
     }
   `;
 
-  const {data : profile} = useQuery(GET_PROFILE);
+  const {data } = useQuery(GET_PROFILE);
 
-  if(profile){
-    console.log("Profile", profile);
+  if(data){
+    console.log("Profile", data);
   }
   
   const phoneRegExp = /^(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})$/;
@@ -62,7 +71,7 @@ function Profile() {
     }
   `;
 
-  const [createAddress,  {data}] = useMutation(CREATE_ADDRESS, {
+  const [createAddress,  {data : addressData}] = useMutation(CREATE_ADDRESS, {
     onCompleted : () => {
       toast.success("Address Saved Successfully");
     },
@@ -107,7 +116,7 @@ function Profile() {
     }
   `;
 
-  const {data : profileData} = useMutation(EDIT_USER_PROFILE, {
+  const [editUser, {data : profileData}] = useMutation(EDIT_USER_PROFILE, {
     onCompleted : () => {
       toast.success("Profile Updated");
     }, 
@@ -116,15 +125,50 @@ function Profile() {
     }
   });
 
+  if(profileData){
+    console.log("profileData", profileData);
+  }
+
+  function handleEditValues(firstname, lastname, mobileno, mails, dp) {
+    setEditModal(true);
+    // setId(ID);
+    setfName(firstname);
+    setlName(lastname);
+    setPhone(mobileno);
+    setMail(mails);
+    setImage(dp);
+  }
+
+  const handleSave = () => {
+    editUser({
+      variables: {
+        firstName: fName,
+        lastName: lName,
+        mobileNo: phone,
+        email: mail,
+        file: image,
+      },
+    });
+    setEditModal(false);
+  }
+
   return (<>
     <div style={{marginTop: "10%"}}>
       <h2>Profile</h2>
-      {profile && profile?.getProfile && <Card>
+
+<Button onClick={() => handleEditValues( 
+                          data.getProfile.firstName,
+                          data.getProfile.lastName,
+                          data.getProfile.mobileNo,
+                          data.getProfile.email,
+                          data.getProfile.profilepic) }>Edit Profile</Button>
+
+      {data && data?.getProfile && <Card>
         <Card.Body>
-          <h5>Name :  {profile?.getProfile?.firstName} { profile?.getProfile?.lastName}</h5>
-          <h5>Email :  {profile?.getProfile?.email}</h5>
-          <h5>Phone :  {profile?.getProfile?.mobileNo}</h5>
-          <h5>Role :  {profile?.getProfile?.role.join(", ")}</h5>
+          <h5>Name :  {data?.getProfile?.firstName} { data?.getProfile?.lastName}</h5>
+          <h5>Email :  {data?.getProfile?.email}</h5>
+          <h5>Phone :  {data?.getProfile?.mobileNo}</h5>
+          <h5>Role :  {data?.getProfile?.role.join(", ")}</h5>
         </Card.Body>
       </Card>}
       {/* <Card className="mb-5">
@@ -220,6 +264,51 @@ function Profile() {
         </Card.Body>
       </Card>
     </div>
+
+
+   {/* Edit User Detail Modal Start */}
+   {data && data.getProfile && (
+        <Modal className="modal-right scroll-out-negative" show={editModal} onHide={() => setEditModal(false)} scrollable dialogClassName="full">
+          <Modal.Header closeButton>
+            <Modal.Title as="h5">User Detail</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <Form>
+                <div className="mb-3">
+                  <Form.Label htmlFor="userEditPicture">Profile Picture</Form.Label>
+                  <Form.Control id="userEditPicture" type="file" onChange={(e) => setImage(e.target.files[0])} />
+                  <img style={{ height: '70px', width: '70px', borderRadius: '35px' }} className="mx-2 my-2 " src={image} alt="dp" />
+                </div>
+                <div className="mb-3">
+                  <Form.Label htmlFor="userEditFirstName">First Name</Form.Label>
+                  <Form.Control id="userEditFirstName" type="text" value={fName} onChange={(e) => setfName(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                  <Form.Label htmlFor="userEditLastName">Last Name</Form.Label>
+                  <Form.Control id="userEditLastName" type="text" value={lName} onChange={(e) => setlName(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                  <Form.Label htmlFor="userEditMail">Email</Form.Label>
+                  <Form.Control id="userEditMail" type="text" value={mail} onChange={(e) => setMail(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                  <Form.Label htmlFor="userEditPhone">Mobile no.</Form.Label>
+                  <Form.Control id="userEditPhone" type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                </div>
+              </Form>
+          </Modal.Body>
+          <Modal.Footer className="border-0">
+            <Button variant="primary" className="btn-icon" onClick={() => setEditModal(false)}>
+              <span>Cancel</span>  
+            </Button>
+            <Button variant="primary" className="btn-icon btn-icon-start" type="button" onClick={() => handleSave()}>
+              <span>Save</span>  
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      )}
+      {/* Edit User Detail Modal End */}
+
   </>);
 }
 
