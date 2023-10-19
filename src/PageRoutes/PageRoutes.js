@@ -34,6 +34,7 @@ import Checkout from '../Components/Home/Checkout/Checkout';
 import CartFull from '../Components/Home/CartSection/CartFull';
 import Profile from '../Components/Home/User/Profile';
 import Forgot from '../Components/SuperComponent/Forgot';
+import ResetPassword from '../Components/SuperComponent/ResetPassword';
  
 function PageRoutes() {
   return (
