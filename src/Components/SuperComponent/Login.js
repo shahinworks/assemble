@@ -39,7 +39,9 @@ function Login() {
   });
 
   useEffect(() => {
-    localStorage.setItem('token', data?.loginUser?.token);
+    if(data){
+      localStorage.setItem('token', data?.loginUser?.token);
+    }
   }, [data]);
 
   const handleLogin = async () => {
