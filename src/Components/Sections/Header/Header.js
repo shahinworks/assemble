@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from 'react';
-import {Speedometer, List, Person, Search, Cart, Bag, Heart } from 'react-bootstrap-icons';
+import {Speedometer, List, Person, Search, Cart, Bag, Heart , PersonCircle} from 'react-bootstrap-icons';
 import { Button, Modal, Card } from 'react-bootstrap';
 // import './Header.css';
 import logo1 from './Images/logo-TRP.jpg';
@@ -13,14 +13,6 @@ import CartPop from '../../Home/CartSection/CartPop';
 
 function Header() {
   const navigate = useNavigate();
-
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)'
-  })
-  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' })
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
-  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
-  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
 
   const ice = {
     maxWidth: "1000px",
@@ -93,6 +85,10 @@ function Header() {
   }
 
 
+  const goToProfile = () => {
+
+  }
+
   return (   
     <>
     <header className={header}>
@@ -119,6 +115,7 @@ function Header() {
       <li> <Search  className='  mx-1' color='black' size={28} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} /></li>
       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
+      <li> <PersonCircle  onClick={() => goToProfile(true)}  className='mx-1' color='black' size={28} /></li>
     </ul>   
   </div> 
   </nav> 
@@ -146,6 +143,7 @@ function Header() {
       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+      <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
     </ul>   
   </div> 
   </nav>
@@ -173,6 +171,7 @@ function Header() {
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
        <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -200,6 +199,7 @@ function Header() {
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
        <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -227,6 +227,7 @@ function Header() {
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
        <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -255,6 +256,7 @@ function Header() {
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
        <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
