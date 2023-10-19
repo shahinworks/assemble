@@ -17,6 +17,9 @@ function Profile() {
     const [phone, setPhone] = useState('');
     const [image, setImage] = useState(null);
 
+
+    const [addressModal, setAddressModal] = useState(false);
+
   const GET_PROFILE = gql`
     query GetProfile {
       getProfile {
@@ -153,6 +156,32 @@ function Profile() {
     setEditModal(false);
   }
 
+
+  const CHANGE_PASSWORD = gql`
+    mutation ChangePassword($changePasswordId: ID!, $oldPassword: String!, $newPassword: String!) {
+      changePassword(id: $changePasswordId, oldPassword: $oldPassword, newPassword: $newPassword) {
+        id
+      }
+    }
+  `;
+
+  const [changePassword,  {data : passwordData } ]= useMutation(CHANGE_PASSWORD);
+
+  if(passwordData){
+    console.log("passwordData", passwordData);
+  }
+
+  const handleChangePassword = async () => {
+    await changePassword({
+      variables : {  
+        changePasswordId: "null",
+        oldPassword: "null",
+        newPassword: "nulll"
+      }
+    })
+    
+  }
+
   return (<>
     <div style={{marginTop: "10%"}}>
       <Row>
@@ -166,8 +195,13 @@ function Profile() {
           <h5>Role :  {data?.getProfile?.role.join(", ")}</h5>
           <Button className='btn btn-sm btn-light' style={{backgroundColor: "white", border: "1px solid white"}} onClick={() => handleEditValues( 
            data.getProfile.firstName, data.getProfile.lastName, data.getProfile.mobileNo, data.getProfile.email, data.getProfile.profilepic) }> <PencilSquare color='black' size={20} /></Button>
-            <Button className='btn btn-sm' style={{backgroundColor: "white", border: "1px solid white"}} onClick={() => handleEditValues( ) }> 
+            <Button className='btn btn-sm' style={{backgroundColor: "white", border: "1px solid white"}} 
+            onClick={() => setAddressModal(!addressModal)}> 
             <HouseAdd color='black' size={20} />
+            </Button>
+            <Button className='btn btn-sm'  variant='outline-dark'  
+              onClick={() => handleChangePassword()}> 
+              Reset Password
             </Button>
           </Card.Body>
         </Card>}
@@ -193,9 +227,9 @@ function Profile() {
         </Card.Body>
       </Card> */}
 
-      <h5> Address Section </h5>
-      <Card className="mb-5">
-        <Card.Body>
+   
+      {addressModal && <Card className="mb-5">
+        <Card.Body className='text-center'>
           <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
             <div className="mb-3 filled form-group tooltip-end-top">
               <Form.Control type="text" autoComplete="firstName" name="firstName" onChange={handleChange} placeholder="Enter First Name" value={values.firstName} />
@@ -271,11 +305,12 @@ function Profile() {
               {errors.country && touched.country && <div className="d-block invalid-tooltip">{errors.country}</div>}
             </div>
             <div className="text-center">
-              <Button variant="primary" className="btn-icon btn-icon-start" type="submit"> Submit Address </Button>
+              <Button variant='outline-dark' className='mx-2' onClick={() => setAddressModal(false)}>Cancel</Button>
+              <Button variant="dark" className="btn-icon btn-icon-start" type="submit"> Submit Address </Button>
             </div>
           </form>
         </Card.Body>
-      </Card>
+      </Card>}
     </div>
 
 
