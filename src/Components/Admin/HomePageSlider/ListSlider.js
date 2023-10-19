@@ -99,7 +99,7 @@ function ListSlider() {
     onCompleted: () => {
       toast.success("Deleted Successfully");
     },
-    onError: (error) => { 
+    onError: (error) => {
       if(error.message ===  "Authorization header is missing" || "ERROR: jwt malformed"){
         navigate('/login');
         toast.error("Login and TRY AGAIN!");
