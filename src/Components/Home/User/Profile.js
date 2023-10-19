@@ -4,7 +4,7 @@ import { Button, Form, Card, Modal, Row, Col } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
-import { PencilSquare } from 'react-bootstrap-icons';
+import { PencilSquare, HouseAdd } from 'react-bootstrap-icons';
 
 function Profile() {
 
@@ -157,18 +157,22 @@ function Profile() {
     <div style={{marginTop: "10%"}}>
       <Row>
         <Col className="col-6 mx-2"> Column First 
-        <h2>Hi {data.getProfile.firstName}, This is your Profile.</h2>
+        <h2>Hi {data?.getProfile?.firstName}, This is your Profile.</h2>
         {data && data?.getProfile && <Card style={{border: "none"}}>
           <Card.Body>
           <h5>Name :  {data?.getProfile?.firstName} { data?.getProfile?.lastName}</h5>
           <h5>Email :  {data?.getProfile?.email}</h5>
           <h5>Phone :  {data?.getProfile?.mobileNo}</h5>
           <h5>Role :  {data?.getProfile?.role.join(", ")}</h5>
+          <Button className='btn btn-sm btn-light' style={{backgroundColor: "white", border: "1px solid white"}} onClick={() => handleEditValues( 
+           data.getProfile.firstName, data.getProfile.lastName, data.getProfile.mobileNo, data.getProfile.email, data.getProfile.profilepic) }> <PencilSquare color='black' size={20} /></Button>
+            <Button className='btn btn-sm' style={{backgroundColor: "white", border: "1px solid white"}} onClick={() => handleEditValues( ) }> 
+            <HouseAdd color='black' size={20} />
+            </Button>
           </Card.Body>
         </Card>}
 
-        <Button onClick={() => handleEditValues( 
-           data.getProfile.firstName, data.getProfile.lastName, data.getProfile.mobileNo, data.getProfile.email, data.getProfile.profilepic) }> <PencilSquare color='black' size={20} /></Button>
+       
        
 
         </Col>
