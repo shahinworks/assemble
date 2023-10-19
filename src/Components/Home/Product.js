@@ -51,7 +51,6 @@ function Product() {
     }
     else {
       setSellingPrice(product?.getProduct?.sellingPrice);
-    
     }
 
   }, [product]);
@@ -220,7 +219,7 @@ function Product() {
                     Inventore, vel ratione. */}
                   </b>
                 </p>
-                <div className="row" id="row">
+                {/* <div className="row" id="row">
                   <div className="col ">
                     <a href="#">
                       <div>
@@ -260,7 +259,7 @@ function Product() {
                       </div>
                     </a>
                   </div>
-                </div>
+                </div> */}
               </div>
               <br />
 
