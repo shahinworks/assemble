@@ -156,7 +156,7 @@ function Profile() {
   return (<>
     <div style={{marginTop: "10%"}}>
       <Row>
-        <Col className="col-6 mx-2"> Column First 
+        <Col className="col-6 mx-2">
         <h2>Hi {data?.getProfile?.firstName}, This is your Profile.</h2>
         {data && data?.getProfile && <Card style={{border: "none"}}>
           <Card.Body>
@@ -176,7 +176,7 @@ function Profile() {
        
 
         </Col>
-        <Col className="col-5 mx-2"> Column Second 
+        <Col className="col-5 mx-2">
         Orders</Col>
 
       </Row>
