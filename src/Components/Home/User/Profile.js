@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import React, { useState } from 'react'
-import { Button, Form, Card, Modal } from 'react-bootstrap';
+import { Button, Form, Card, Modal, Row, Col } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
@@ -155,6 +155,11 @@ function Profile() {
 
   return (<>
     <div style={{marginTop: "10%"}}>
+      <Row>
+        <Col className="col-7"> Column First </Col>
+        <Col className="col-5"> Column Second </Col>
+
+      </Row>
       <h2>Profile</h2>
 
 <Button onClick={() => handleEditValues( 
