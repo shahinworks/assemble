@@ -156,6 +156,10 @@ function Profile() {
     setEditModal(false);
   }
 
+  // Change Password
+  const [passwordModal, setPasswordModal] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   const CHANGE_PASSWORD = gql`
     mutation ChangePassword($changePasswordId: ID!, $oldPassword: String!, $newPassword: String!) {
@@ -171,15 +175,14 @@ function Profile() {
     console.log("passwordData", passwordData);
   }
 
-  const handleChangePassword = async () => {
+  const handleUpdatePassword = async () => {
     await changePassword({
-      variables : {  
-        changePasswordId: "null",
-        oldPassword: "null",
-        newPassword: "nulll"
-      }
-    })
-    
+      variables: {
+        changePasswordId: '643e477fc4c40564b39705a0',
+        oldPassword,
+        newPassword,
+      },
+    });
   }
 
   return (<>
@@ -200,7 +203,7 @@ function Profile() {
             <HouseAdd color='black' size={20} />
             </Button>
             <Button className='btn btn-sm'  variant='outline-dark'  
-              onClick={() => handleChangePassword()}> 
+             onClick={() => setPasswordModal(true)}> 
               Reset Password
             </Button>
           </Card.Body>
@@ -356,6 +359,34 @@ function Profile() {
         </Modal>
       )}
       {/* Edit User Detail Modal End */}
+
+      {data && data.getProfile && (
+        <Modal className="modal-right scroll-out-negative" show={passwordModal} onHide={() => setPasswordModal(false)} scrollable dialogClassName="full">
+          <Modal.Header closeButton>
+            <Modal.Title as="h5">Change Password</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+              <Form>
+                <div className="mb-3">
+                  <Form.Label htmlFor="oldPassword">Old Password</Form.Label>
+                  <Form.Control id="oldPassword" type="password" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} />
+                </div>
+                <div className="mb-3">
+                  <Form.Label htmlFor="newPassword">New Password</Form.Label>
+                  <Form.Control id="newPassword" type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+                </div>
+              </Form>
+          </Modal.Body>
+          <Modal.Footer className="border-0">
+            <Button variant="primary" className="btn-icon" onClick={() => setPasswordModal(false)}>
+              <span>Go Back</span>
+            </Button>
+            <Button variant="primary" className="btn-icon btn-icon-start" type="button" onClick={() => handleUpdatePassword()}>
+              <span>Update Password</span>
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      )}
 
   </>);
 }
