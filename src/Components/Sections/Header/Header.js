@@ -86,7 +86,7 @@ function Header() {
 
 
   const goToProfile = () => {
-
+    navigate('profile');
   }
 
   return (   
@@ -112,10 +112,10 @@ function Header() {
   <div className="nav-item d-flex mx-2">
     <ul>
       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={34} /></li>
-      <li> <Search  className='  mx-1' color='black' size={28} /> </li>
-      <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} /></li>
-      <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={28} /></li>
-      <li> <PersonCircle  onClick={() => goToProfile(true)}  className='mx-1' color='black' size={28} /></li>
+      <li> <Search className='  mx-1' color='black' size={28} /> </li>
+      <li> <Bag onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} /></li>
+      <li> <Heart onClick={() => goToWishList()}  className='mx-1' color='black' size={28} /></li>
+      <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={28} /></li>
     </ul>   
   </div> 
   </nav> 
@@ -142,8 +142,8 @@ function Header() {
       <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-      <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
-      <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+      <li> <Heart  onClick={() => goToWishList()}  className='mx-1' color='black' size={20} /></li>
+      <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
     </ul>   
   </div> 
   </nav>
@@ -170,8 +170,8 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <Heart  onClick={() => goToWishList()}  className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -198,8 +198,8 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <Heart  onClick={() => goToWishList()}  className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -226,8 +226,8 @@ function Header() {
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <Heart  onClick={() => goToWishList()}  className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -253,10 +253,10 @@ function Header() {
    <div className="nav-item d-flex ">
      <ul>
        <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li>
-       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
-       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
-       <li> <PersonCircle  onClick={() => goToWishList(true)}  className='mx-1' color='black' size={20} /></li>
+       <li> <Search className='  mx-1' color='black' size={20} /> </li>
+       <li> <Bag onClick={() => setEditModal(true)} className='mx-1' color='black' size={20} /></li>
+       <li> <Heart onClick={() => goToWishList(true)} className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -265,7 +265,7 @@ function Header() {
 
    
   <MediaQuery maxWidth={768}>
-  <div className="justify align-items-left" style={{alignContent: "left", justifyItems: "left", marginRight: "570px"}}>
+  <div className="justify align-items-left" style={{alignContent: "left", justifyItems: "left", marginRight: "60px"}}>
   <div id="logo" className='logo'>
     <a href="index.html">
       <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
@@ -293,6 +293,10 @@ function Header() {
       <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="book.html" > Track </a> </li><hr/>
       <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="photo.html"> FAQ's </a> </li><hr/>
       <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="/about">  About US </a> </li><hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="/profile">Profile</a> </li><hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="/wishlist">Wishlist</a> </li><hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="/cart">Cart</a> </li><hr/>
+      <li> <a style={{fontSize: "20px", fontWeight: "bold"}} className="link-item nav-link" href="/login">Login</a> </li><hr/>
   </ul>
 </Modal.Body>
 <Modal.Footer className="border-0">
