@@ -75,7 +75,7 @@ function Product() {
     },
     onError : (error) => {
       toast.error("Error Occured");
-      console.error("ERROR: ", error.message)
+      console.error("ERROR: ", error.message);
     }
   });
   if(data) {
