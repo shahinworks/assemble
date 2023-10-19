@@ -75,6 +75,7 @@ function PageRoutes() {
       <Route path='/login' element={<Login />}/>
       <Route path='/register' element={<Register />}/>
       <Route path='/forgot' element={<Forgot />}/>
+      <Route path='/reset' element={<ResetPassword />}/>
       <Route path='*' element={<Error />}/>
       <Route path='/rough' element={<Demo />}/>
     </Routes>
