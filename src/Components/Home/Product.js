@@ -74,7 +74,11 @@ function Product() {
      
     },
     onError : (error) => {
-      toast.error("Error Occured");
+      if(error.message === "JsonWebTokenError: jwt malformed")
+      {
+        navigate("/login");
+        toast.error("Error Occured, Login and try Again");
+      }
       console.error("ERROR: ", error.message);
     }
   });
