@@ -33,6 +33,7 @@ import Wishlist from '../Components/Home/Wishlist/Wishlist';
 import Checkout from '../Components/Home/Checkout/Checkout';
 import CartFull from '../Components/Home/CartSection/CartFull';
 import Profile from '../Components/Home/User/Profile';
+import Forgot from '../Components/SuperComponent/Forgot';
  
 function PageRoutes() {
   return (
@@ -73,6 +74,7 @@ function PageRoutes() {
       
       <Route path='/login' element={<Login />}/>
       <Route path='/register' element={<Register />}/>
+      <Route path='/forgot' element={<Forgot />}/>
       <Route path='*' element={<Error />}/>
       <Route path='/rough' element={<Demo />}/>
     </Routes>
