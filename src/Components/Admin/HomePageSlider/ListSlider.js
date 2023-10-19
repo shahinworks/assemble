@@ -4,8 +4,11 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { Col, Button , Modal, Form } from 'react-bootstrap';
 import { Pencil, Trash } from 'react-bootstrap-icons';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function ListSlider() {
+  const navigate = useNavigate();
 
   const GET_SLIDER = gql`
     query GetAllHomePageSlider {
@@ -43,7 +46,24 @@ function ListSlider() {
     }
   `;
 
-  const [editSlider, {data: dataEdit} ]= useMutation(EDIT_SLIDER);
+  const [editSlider, {data: dataEdit} ]= useMutation(EDIT_SLIDER, {
+    onCompleted: () => {
+      toast.success("Edited Successfully");
+      setContent("");
+      setUrl("");
+      setImages(null);
+    },
+    onError : (error) => {
+      if(error.message ===  "Authorization header is missing" || "ERROR: jwt malformed"){
+        navigate('/login');
+        toast.error("Login and TRY AGAIN!");
+      }
+      else {
+        toast.error("Something went wrong");
+        console.error("ERROR: ", error.message);
+      }
+    }
+  });
 
   const handleEdit = (id, content, url) => {
     showModal(true);
@@ -75,7 +95,22 @@ function ListSlider() {
     }
   `;
   
-  const [deleteSlider, {data : dataDel} ]= useMutation(DELETE);
+  const [deleteSlider, {data : dataDel} ]= useMutation(DELETE, {
+    onCompleted: () => {
+      toast.success("Deleted Successfully");
+    },
+    onError: (error) => { 
+      if(error.message ===  "Authorization header is missing" || "ERROR: jwt malformed"){
+        navigate('/login');
+        toast.error("Login and TRY AGAIN!");
+      }
+      else {
+        toast.error("Something went wrong");
+        console.error("ERROR: ", error.message);
+      }
+    }
+    
+  });
 
   const handleDelete = async (id)  => {
    await deleteSlider({

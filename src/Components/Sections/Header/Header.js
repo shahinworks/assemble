@@ -263,7 +263,7 @@ function Header() {
 
    
   <MediaQuery maxWidth={768}>
-  <div className="justify align-items-left" style={{alignContent: "left", justifyItems: "left", marginLeft: "0px", paddingLeft: "0px"}}>
+  <div className="justify align-items-left" style={{alignContent: "left", justifyItems: "left", marginRight: "570px"}}>
   <div id="logo" className='logo'>
     <a href="index.html">
       <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
