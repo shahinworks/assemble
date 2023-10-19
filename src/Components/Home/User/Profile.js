@@ -156,28 +156,30 @@ function Profile() {
   return (<>
     <div style={{marginTop: "10%"}}>
       <Row>
-        <Col className="col-7"> Column First </Col>
-        <Col className="col-5"> Column Second </Col>
-
-      </Row>
-      <h2>Profile</h2>
-
-<Button onClick={() => handleEditValues( 
-                          data.getProfile.firstName,
-                          data.getProfile.lastName,
-                          data.getProfile.mobileNo,
-                          data.getProfile.email,
-                          data.getProfile.profilepic) }> <PencilSquare /></Button>
-
-
-      {data && data?.getProfile && <Card>
-        <Card.Body>
+        <Col className="col-6 mx-2"> Column First 
+        <h2>Hi {data.getProfile.firstName}, This is your Profile.</h2>
+        {data && data?.getProfile && <Card style={{border: "none"}}>
+          <Card.Body>
           <h5>Name :  {data?.getProfile?.firstName} { data?.getProfile?.lastName}</h5>
           <h5>Email :  {data?.getProfile?.email}</h5>
           <h5>Phone :  {data?.getProfile?.mobileNo}</h5>
           <h5>Role :  {data?.getProfile?.role.join(", ")}</h5>
-        </Card.Body>
-      </Card>}
+          </Card.Body>
+        </Card>}
+
+        <Button onClick={() => handleEditValues( 
+           data.getProfile.firstName, data.getProfile.lastName, data.getProfile.mobileNo, data.getProfile.email, data.getProfile.profilepic) }> <PencilSquare color='black' size={20} /></Button>
+       
+
+        </Col>
+        <Col className="col-5 mx-2"> Column Second 
+        Orders</Col>
+
+      </Row>
+      
+
+
+
       {/* <Card className="mb-5">
         <Card.Body>
           <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
