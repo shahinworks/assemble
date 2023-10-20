@@ -48,20 +48,18 @@ function CreateProduct() {
 
 
   const CREATE_PRODUCT_MUTATION = gql`
-    mutation CreateProduct($productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $discount: Float, $gst: Float, $description: String, $productImages: [Upload], $stock: Int) {
-      createProduct(productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, discount: $discount, gst: $gst, description: $description, productImages: $productImages, stock: $stock) {
+    mutation CreateProduct($productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $discount: Float, $gst: Float, $description: String) {
+      createProduct(productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, discount: $discount, gst: $gst, description: $description) {
         id
         productName
         priveiwName
         sellingPrice
-        images
         size
         color
         gender
         discount
         gst
         description
-        stock
       }
     }
   `;
@@ -92,17 +90,15 @@ function CreateProduct() {
     try {
       const { data } = await createProduct({
         variables: {
-            productName,
-            priveiwName: previewName,
-            size,
-            color: allcolor,
-            gender,
-            sellingPrice: parseFloat(sellingPrice),
-            discount: parseFloat(discount),
-            gst: parseFloat(gst),
-            description: description,
-            productImages: images,
-            stock: parseInt(stock),
+          productName,
+          priveiwName: previewName,
+          size,
+          color: allcolor,
+          gender,
+          sellingPrice: parseFloat(sellingPrice),
+          discount: parseFloat(discount),
+          gst: parseFloat(gst),
+          description: description,
         },
       });
 
