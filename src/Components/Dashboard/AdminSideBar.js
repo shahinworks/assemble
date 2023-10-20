@@ -35,6 +35,7 @@ function AdminSideBar() {
           <SubMenu active label="Product" icon={<Balloon color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateProduct" />} > Create Product </MenuItem>
           <MenuItem component={<Link to="/admin/ListProduct" />} > List Product </MenuItem>
+          <MenuItem component={<Link to="/admin/UpdateProduct" />} >Update Product </MenuItem>
           </SubMenu>
           {/* <SubMenu active label="SubCategory" icon={<Balloon color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSubCategory" />} >Create SubCategory </MenuItem>

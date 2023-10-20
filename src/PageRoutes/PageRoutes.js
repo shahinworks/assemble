@@ -36,6 +36,7 @@ import Profile from '../Components/Home/User/Profile';
 import Forgot from '../Components/SuperComponent/Forgot';
 import ResetPassword from '../Components/SuperComponent/ResetPassword';
 import ListOrder from '../Components/Admin/Order/ListOrder';
+import UpdateProduct from '../Components/Admin/Product/UpdateProduct';
  
 function PageRoutes() {
   return (
@@ -54,6 +55,7 @@ function PageRoutes() {
       <Route exact path='User' element={<User />}/>
       <Route exact path='CreateProduct' element={<CreateProduct />}/>
       <Route exact path='ListProduct' element={<ListProduct />}/>
+      <Route exact path='UpdateProduct' element={<UpdateProduct />}/>
       <Route exact path='CreateSubCategory' element={<CreateSubCategory />}/>
       <Route exact path='ListSubCategory' element={<ListSubCategory />}/>
       <Route exact path='CreateCategory' element={<CreateCategory />}/>
