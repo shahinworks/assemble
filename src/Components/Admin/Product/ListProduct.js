@@ -220,14 +220,11 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
                   <th>Product Full Name</th>
                   <th>Product Preview Name</th>
                   <th>Selling Price</th>
-                  <th>Purchase Price</th>
-                  <th>Image</th>
                   <th>Size</th>
                   <th>Color</th>
                   <th>Gender</th>
                   <th>Discount</th>
                   <th>Description</th>
-                  <th>Stock</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -238,16 +235,14 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
                     <td> {item.productName} </td>
                     <td> {item.priveiwName} </td>
                     <td> {item.sellingPrice} </td>
-                    <td> {item.purchasePrice} </td>
-                    <td>
+                    {/* <td>
                     <img src={item.images} width="30" height="30" /> 
-                    </td>
+                    </td> */}
                     <td> {item.size.join(", ")} </td>
                     <td> {item.color.join(", ")} </td>
                     <td> {item.gender.join(", ")} </td> 
                     <td> {item.discount} </td>
                     <td> {item.description} </td>
-                    {/* <td> {item.stock} </td> */}
                     <td>
                       <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.purchasePrice , item.size, item.color, item.discount, item.gender, item.description, item.stock )}>
                         <Pencil size={20} color="black"/>

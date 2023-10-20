@@ -145,16 +145,10 @@ function CreateProduct() {
               
                 <Form.Label className="my-1">Product Preview Name</Form.Label>
                 <Form.Control type="text" value={previewName} onChange={(e) => setPreviewName(e.target.value)} />
-             
-                <Form.Label className="my-1">Product Images</Form.Label>
-                <Form.Control type="file" multiple onChange={(e) => setImages(e.target.files[0])} />
-              
+                           
                 <Form.Label className="my-1">Discount</Form.Label>
                 <Form.Control type="text" value={discount} onChange={(e) => setDiscount(e.target.value)} />
               
-                <Form.Label className="my-1">Stock</Form.Label>
-                <Form.Control type="text" value={stock} onChange={(e) => setStock(e.target.value)} />
-            
                 <Form.Label className="my-1">Selling Price</Form.Label>
                 <Form.Control type="text" value={sellingPrice} onChange={(e) => setSellingPrice(e.target.value)} />
              
@@ -187,25 +181,6 @@ function CreateProduct() {
                 <span>{size?.sizeName}</span> </div>
                 )}
                   </Form.Group>
-
-
-              {/* <Form.Group>
-                <Form.Label>size : </Form.Label>
-
-
-                <input className="mx-1" value="Small" type="checkbox" onChange={handleSizeChange} />
-                <span>Small</span>
-
-                <input className="mx-1" value="Medium" type="checkbox" onChange={handleSizeChange} />
-                <span>Medium </span>
-
-                <input className="mx-1" value="Large" type="checkbox" onChange={handleSizeChange} />
-                <span>Large</span>
-
-                <input className="mx-1" value="X-Large" type="checkbox" onChange={handleSizeChange} />
-                <span>X-Large</span>
-
-              </Form.Group> */}
 
 
               <Form.Group className="my-1">
