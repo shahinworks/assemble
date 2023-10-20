@@ -1,7 +1,8 @@
-import { gql, useQuery } from '@apollo/client'
-import React from 'react'
+import React from 'react';
+import { gql, useQuery } from '@apollo/client';
 
 function ListOrder() {
+
   const LIST_ORDER = gql`
     query GetAllOrder {
         getAllOrder {
@@ -41,11 +42,13 @@ function ListOrder() {
 
   const {data} = useQuery(LIST_ORDER);
   if(data) {
-    console.log("data", data);
+    console.log("Data", data);
   }
-  return (
+
+  return (<>
     <div>ListOrder</div>
-  )
+   {data &&  <h5>Data is being Received.</h5>}
+  </>)
 }
 
 export default ListOrder;
