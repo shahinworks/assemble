@@ -144,6 +144,15 @@ function Product() {
     })
   }
 
+  const [img, setImg] = useState("");
+
+  const changeImage = (path) => {
+    setImg(path)
+
+  }
+
+  console.log("img", img);
+
   return (<>
    <CartPop show={editModal} onHide={() => setEditModal(false)}  />
  
@@ -157,13 +166,14 @@ function Product() {
               <div className="image-display">
                 <img
                   id="selected-image"
-                  src={product?.getProduct?.images[0]?.imagePath}
+                  src={img || product?.getProduct?.images[0]?.imagePath}
                   // src="assets/img/31.jpg"
                   alt="Selected Image"
                 />
                 <div />
               </div>
               <div className="variant-options ">
+              
                 <div
                   style={{
                     display: "flex",
@@ -171,38 +181,34 @@ function Product() {
                     justifyContent: "space-evenly"
                   }}
                 >
-                  <div
+                   <div
                     className="variant active"
                     id="act"
                     data-image="assets/img/31.jpg"
+                    onClick={() => changeImage(product?.getProduct?.images[0]?.imagePath)}
                   >
                     <img
                       style={{ objectFit: "contain" }}
-                      src="assets/img/31.jpg"
+                      // src="assets/img/31.jpg"
+                      src={product?.getProduct?.images[0]?.imagePath}
                       alt=""
                     />
                   </div>
-                  <div className="variant" data-image="assets/img/32.jpg">
+                  {product?.getProduct?.images.map((image, index) => index > 0 && 
+                  <div key={index}
+                    className="variant"
+                    id="act"
+                    data-image="assets/img/31.jpg"
+                    onClick={() => changeImage(image?.imagePath)}
+                  >
                     <img
                       style={{ objectFit: "contain" }}
-                      src="assets/img/32.jpg"
+                      // src="assets/img/31.jpg"
+                      src={image?.imagePath}
                       alt=""
                     />
-                  </div>
-                  <div className="variant" data-image="assets/img/33.jpg">
-                    <img
-                      style={{ objectFit: "contain" }}
-                      src="assets/img/33.jpg"
-                      alt=""
-                    />
-                  </div>
-                  <div className="variant" data-image="assets/img/34.jpg">
-                    <img
-                      style={{ objectFit: "contain" }}
-                      src="assets/img/34.jpg"
-                      alt=""
-                    />
-                  </div>
+                  </div> )}
+                 
                   {/* Add more color divs as needed */}
                 </div>
               </div>
@@ -273,11 +279,18 @@ function Product() {
               <br />
 
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
-              <div className='ms-0 d-flex'>
-             {product?.getProduct && product?.getProduct?.color.map((color) =>
+              <div className='ms-0 d-flex'> 
+
+              {product?.getProduct && product?.getProduct?.images.map((color, index) =>
+              <div onClick={() => changeImage(color?.imagePath)} key={color.color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+              {color.color}
+            </div>)} 
+
+
+             {/* {product?.getProduct && product?.getProduct?.color.map((color) =>
               <div key={color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
               {color}
-            </div>)} 
+            </div>)}  */}
             </div>
 
 
@@ -389,7 +402,8 @@ function Product() {
               </svg>
               <p style={{ paddingLeft: 13, marginTop: "-3px" }}>
                 {" "}
-               Stock:  {product?.getProduct?.stock}
+               Stock:  
+               {/* {product?.getProduct?.stock} */}
                {/* In stock, ready to ship */}
               </p>
             </div>
