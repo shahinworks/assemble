@@ -38,7 +38,8 @@ function Header() {
   }, []);
 
   const [ editModal, setEditModal] = useState(false);
-
+  const [profileModal, setProfileModal] = useState(false)
+;
   const [nav, setNav] = useState(false);
 
   const goToLoginPage = () => {
@@ -115,7 +116,7 @@ function Header() {
       <li> <Search className='  mx-1' color='black' size={28} /> </li>
       <li> <Bag onClick={() => setEditModal(true)}  className='mx-1' color='black' size={28} /></li>
       <li> <Heart onClick={() => goToWishList()}  className='mx-1' color='black' size={28} /></li>
-      <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={28} /></li>
+      <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' color='black' size={28} /></li>
     </ul>   
   </div> 
   </nav> 
@@ -143,7 +144,7 @@ function Header() {
       <li> <Search  className='  mx-1' color='black' size={20} /> </li>
       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
       <li> <Heart  onClick={() => goToWishList()}  className='mx-1' color='black' size={20} /></li>
-      <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
+      <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' color='black' size={20} /></li>
     </ul>   
   </div> 
   </nav>
@@ -171,7 +172,7 @@ function Header() {
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
        <li> <Heart  onClick={() => goToWishList()}  className='mx-1' color='black' size={20} /></li>
-       <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -199,7 +200,7 @@ function Header() {
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
        <li> <Heart  onClick={() => goToWishList()}  className='mx-1' color='black' size={20} /></li>
-       <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -227,7 +228,7 @@ function Header() {
        <li> <Search  className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' color='black' size={20} /></li>
        <li> <Heart  onClick={() => goToWishList()}  className='mx-1' color='black' size={20} /></li>
-       <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -256,7 +257,7 @@ function Header() {
        <li> <Search className='  mx-1' color='black' size={20} /> </li>
        <li> <Bag onClick={() => setEditModal(true)} className='mx-1' color='black' size={20} /></li>
        <li> <Heart onClick={() => goToWishList(true)} className='mx-1' color='black' size={20} /></li>
-       <li> <PersonCircle onClick={() => goToProfile()} className='mx-1' color='black' size={20} /></li>
+       <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' color='black' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -318,6 +319,18 @@ function Header() {
     </Modal.Body>
     <Modal.Footer className="border-0"></Modal.Footer>
   </Modal> */}
+
+   <Modal className="modal-right scroll-out-negative" show={profileModal} onHide={() => setProfileModal(false)} scrollable dialogClassName="full">
+    <Modal.Header closeButton>
+  <Modal.Title className='fw-bold' as="h5">Cart</Modal.Title>
+    </Modal.Header>
+    <Modal.Body className='mx-0 px-0'>
+      THIS is your Profile Modal
+      <Button onClick={() => goToLoginPage()}>Login</Button>
+      <Button onClick={() => goToProfile()}>Profile Section</Button>
+    </Modal.Body>
+    <Modal.Footer className="border-0"></Modal.Footer>
+  </Modal>
 </>
   )
 }
