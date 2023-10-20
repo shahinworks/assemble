@@ -35,17 +35,26 @@ function Home() {
     query GetAllProducts {
       getAllProducts {
         id
-        productName
-        priveiwName
-        sellingPrice
-        images
-        size
         color
-        gender
-        discount
-        gst
         description
-        stock
+        discount
+        gender
+        gst
+        priveiwName
+        productName
+        sellingPrice
+        size
+        stock {
+          quantity
+          gender
+          color
+          size
+        }
+        images {
+          imagePath
+          color
+          gender
+        }
       }
     }
   `;

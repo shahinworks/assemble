@@ -33,17 +33,26 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
     query GetAllProducts {
       getAllProducts {
         id
-        productName
-        priveiwName
-        sellingPrice
-        images
-        size
         color
-        gender
-        discount
-        gst
         description
-        stock
+        discount
+        gender
+        gst
+        priveiwName
+        productName
+        sellingPrice
+        size
+        stock {
+          quantity
+          gender
+          color
+          size
+        }
+        images {
+          imagePath
+          color
+          gender
+        }
       }
     }
   `;
@@ -151,7 +160,7 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
       setProductName("");
       setPreviewName("");
       setDiscount("");
-      setStock("");
+      // setStock("");
       setSellingPrice("");
       setPurchasePrice("");
       setGender([]);
@@ -168,7 +177,7 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
       setProductName(productName);
       setPreviewName(priveiwName);
       setDiscount(discount);
-      setStock(stock);
+      // setStock(stock);
       setSellingPrice(sellingPrice);
       setPurchasePrice(purchasePrice);
       setGender(gender);
@@ -238,7 +247,7 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
                     <td> {item.gender.join(", ")} </td> 
                     <td> {item.discount} </td>
                     <td> {item.description} </td>
-                    <td> {item.stock} </td>
+                    {/* <td> {item.stock} </td> */}
                     <td>
                       <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.purchasePrice , item.size, item.color, item.discount, item.gender, item.description, item.stock )}>
                         <Pencil size={20} color="black"/>
@@ -283,10 +292,10 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
                 <Form.Control type="text" value={discount} onChange={(e) => setDiscount(e.target.value)} />
               </Form.Group>
 
-              <Form.Group  className="my-1">
+              {/* <Form.Group  className="my-1">
                 <Form.Label>Stock</Form.Label>
                 <Form.Control type="text" value={stock} onChange={(e) => setStock(e.target.value)} />
-              </Form.Group>
+              </Form.Group> */}
               
               <Form.Group  className="my-1">
                 <Form.Label>Selling Price</Form.Label>
