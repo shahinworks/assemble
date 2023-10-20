@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import {Speedometer, List, Person, Search, Cart, Bag, Heart , PersonCircle} from 'react-bootstrap-icons';
 import { Button, Modal, Card } from 'react-bootstrap';
+import User from '../../../globalValue/User';
 // import './Header.css';
 import logo1 from './Images/logo-TRP.jpg';
 import logo2 from './Images/logo-TRP.png';
@@ -13,6 +14,8 @@ import CartPop from '../../Home/CartSection/CartPop';
 
 function Header() {
   const navigate = useNavigate();
+
+const user  = User();
 
   const ice = {
     maxWidth: "1000px",
