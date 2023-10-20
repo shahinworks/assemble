@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation, useQuery } from "@apollo/client";
 import {Pencil, Trash, Image, PlusLg, ImageFill} from 'react-bootstrap-icons';
-import { Button, Col } from 'react-bootstrap';
+import { Button, Col, Modal } from 'react-bootstrap';
 
 function UpdateProduct() {
   const [productId, setProductId] = useState("");
@@ -55,14 +55,16 @@ function UpdateProduct() {
   const handleImages = async (id) => {
     setProductId(id);
     setImageModal(true);
+ }
 
+  const ConfirmUpdateImage = async () => {
     await addImagetoProduct({
-        variables: {
-            productId: "6532475210fad881da96cfc2",
-            productImages: null,
-            color: "blue",
-            gender: "Women"
-          }
+      variables: {
+        productId: "6532475210fad881da96cfc2",
+        productImages: null,
+        color: "blue",
+        gender: "Women"
+      }
     });
   }
 
@@ -104,6 +106,36 @@ function UpdateProduct() {
     </Col>
     <hr/>
     </div>)}
+
+    <Modal style={{width: "100%"}}  show={imageModal} onHide={() => setImageModal(false)}
+       scrollable dialogClassName="full" >
+      <Modal.Header closeButton>
+        <Modal.Title as="h5">Update Product Image</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+
+              <Button variant="success" type="submit" className="mt-2" onClick={() => ConfirmUpdateImage()}>
+                Save Changes
+              </Button>
+
+            </Modal.Body>
+          </Modal>
+
+
+
+          {/* <Modal style={{width: "100%"}}  show={modal} onHide={() => showModal(false)}
+       scrollable dialogClassName="full" >
+      <Modal.Header closeButton>
+        <Modal.Title as="h5">Update Product Image</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+
+              <Button variant="success" type="submit" className="mt-2" onClick={() => ConfirmUpdate()}>
+                Save Changes
+              </Button>
+
+            </Modal.Body>
+          </Modal> */}
 
   </>)
 }
