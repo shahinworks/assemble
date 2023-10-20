@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import {Speedometer, List, Person, Search, Cart, Bag, Heart , PersonCircle} from 'react-bootstrap-icons';
 import { Button, Modal, Card } from 'react-bootstrap';
-import User from '../../../globalValue/User';
+// import User from '../../../globalValue/User';
 // import './Header.css';
 import logo1 from './Images/logo-TRP.jpg';
 import logo2 from './Images/logo-TRP.png';
@@ -14,13 +14,31 @@ import CartPop from '../../Home/CartSection/CartPop';
 
 function Header() {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    if(token) {
+      setLoggedIn(true);
+    }
+    else {
+      setLoggedIn(false);
+    }
+  }, [token]);
 
-const user  = User();
+  const logout = () => {
+    localStorage.removeItem('token');
+    setLoggedIn(false);
+  }
+
+
 
   const ice = {
     maxWidth: "1000px",
     margin: "0 auto"
   }
+
+
+  
 
   const [header, setHeader] = useState("header");
   const [logo, setLogo] = useState(logo2);
@@ -340,8 +358,8 @@ const user  = User();
         <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold' >Order</li>
       </ul>
 
-      <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mb-1 fs-5 fw-bold w-100' onClick={() => goToLoginPage()} >LOGIN</Button> 
-      <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mt-1 fs-5 fw-bold w-100' onClick={() => goToLoginPage()} >LOGOUT</Button> 
+     {!loggedIn && <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mb-1 fs-5 fw-bold w-100' onClick={() => goToLoginPage()} >LOGIN</Button> }
+     {loggedIn && <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mt-1 fs-5 fw-bold w-100' onClick={() => logout()} >LOGOUT</Button>} 
 
 
     {/* <Button onClick={() => goToLoginPage()}  style={{borderRadius: "50px", backgroundColor: "black", border: "1px solid black"}} > 
