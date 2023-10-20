@@ -55,12 +55,43 @@ function ListOrder() {
   return (<>
   <h2 className='text-center'>Table of Category List</h2>
    
+  <Row className="g-0 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
+        <Col  md="2" className="d-flex flex-column mb-lg-0 pe-1 justify-content-center">
+          <div className=" text-md cursor-pointer sort" >
+           Order ID
+          </div>
+        </Col>
+        <Col  md="3" className="d-flex flex-column pe-1 justify-content-center ">
+          <div className=" text-md cursor-pointer sort" >
+            NAME
+          </div>
+        </Col>
+        <Col  md="2" className="d-flex flex-column pe-1 justify-content-center">
+          <div className=" text-md cursor-pointer sort"  >
+           Amount
+          </div>
+        </Col>
+        <Col md="2" className="d-flex flex-column pe-1 justify-content-center">
+          <div className=" text-md cursor-pointer sort"  >
+            Date
+          </div>
+        </Col>
+
+        <Col md="2" className="d-flex flex-column pe-1 justify-content-center">
+          <div className=" text-md cursor-pointer sort"  >
+           Status
+          </div>
+        </Col>
+        {/* <Col lg="1" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
+          <div className=" text-md cursor-pointer ">Check</div>
+        </Col> */}
+      </Row>
 
    {orderData && orderData?.getAllOrder?.length > 0 ?
         orderData?.getAllOrder?.map((order, index) => (
-          <Card key={index} className="mb-2 hover-border-primary mx-2">
-            <Card.Body className="pt-0 pb-0 sh-21 sh-md-8 my-3">
-              <Row className="g-0 h-100 align-content-center cursor-default">
+          <Card key={index} className="mb-2 hover-border-primary mx-2" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
+            <Card.Body className="pt-0 pb-0 sh-21 sh-md-8 my-3" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
+              <Row className="g-0 align-content-center cursor-default">
                 <Col xs="11" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
                   <div className="text-muted text-small d-md-none">Id</div>
                   <Link to={`/admin/order/detail/${order?.id}`} className="text-truncate h-100 d-flex align-items-center">
