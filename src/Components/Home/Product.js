@@ -21,14 +21,23 @@ function Product() {
         productName
         priveiwName
         sellingPrice
-        images
+        images {
+          imagePath
+          color
+          gender
+        }
         size
         color
         gender
         discount
         gst
         description
-        stock
+        stock {
+          quantity
+          gender
+          color
+          size
+        }
       }
     }
   `;
@@ -148,7 +157,7 @@ function Product() {
               <div className="image-display">
                 <img
                   id="selected-image"
-                  src={product?.getProduct?.images}
+                  src={product?.getProduct?.images[0]?.imagePath}
                   // src="assets/img/31.jpg"
                   alt="Selected Image"
                 />
