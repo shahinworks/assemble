@@ -35,6 +35,7 @@ import CartFull from '../Components/Home/CartSection/CartFull';
 import Profile from '../Components/Home/User/Profile';
 import Forgot from '../Components/SuperComponent/Forgot';
 import ResetPassword from '../Components/SuperComponent/ResetPassword';
+import ListOrder from '../Components/Admin/Order/ListOrder';
  
 function PageRoutes() {
   return (
@@ -63,6 +64,7 @@ function PageRoutes() {
       <Route exact path='ListColor' element={<ListColor />}/>
       <Route exact path='CreateSlider' element={<HomePageSlider />}/>
       <Route exact path='ListSlider' element={<ListSlider />}/>
+      <Route exact path='ListOrder' element={<ListOrder />}/>
       </Route>
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>

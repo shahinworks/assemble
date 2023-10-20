@@ -52,6 +52,10 @@ function AdminSideBar() {
           <MenuItem component={<Link to="/admin/CreateSlider" />} >Add Slider</MenuItem>
           <MenuItem component={<Link to="/admin/ListSlider" />} >List Slider</MenuItem>
           </SubMenu>
+          <SubMenu active label="Order" icon={<Balloon color='black' size={20} />}>
+          <MenuItem component={<Link to="/admin/ListOrder" />} >List Order</MenuItem>
+          {/* <MenuItem component={<Link to="/admin/ListSlider" />} >List Slider</MenuItem> */}
+          </SubMenu>
           {/* <SubMenu active label="Cart" icon={<Cart color='black' size={20} />}>
           <MenuItem component={<Link to="/CreateCart" />} >Create Cart</MenuItem>
           <MenuItem component={<Link to="/ListCart" />} >List Cart</MenuItem>
