@@ -1,5 +1,5 @@
-import { gql, useMutation, useQuery } from '@apollo/client';
-import React, { useState } from 'react'
+import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import React, { useEffect, useState } from 'react'
 import { Button, Form, Card, Modal, Row, Col } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -7,6 +7,8 @@ import toast from 'react-hot-toast';
 import { PencilSquare, HouseAdd } from 'react-bootstrap-icons';
 
 function Profile() {
+
+  const USER_ID = "6528f5218feba9442ff0f2d2";
 
     // Edit User Profile
     const [editModal, setEditModal] = useState(false);
@@ -185,6 +187,105 @@ function Profile() {
     });
   }
 
+  // ORDERS
+
+    const USER_ORDERS = gql`
+      query GetUserAllOrder($userId: ID) {
+        getUserAllOrder(userId: $userId) {
+          id
+          user {
+            id
+            firstName
+            lastName
+            email
+            profilepic
+            mobileNo
+            password
+            addresses {
+              id
+              firstName
+              lastName
+              mobileNo
+              addressLine1
+              addressLine2
+              city
+              state
+              postalCode
+              country
+            }
+            role
+          }
+          paymentMethod
+          totalAmount
+          orderProducts {
+            productId {
+              id
+              productName
+              priveiwName
+              sellingPrice
+              images
+              size
+              color
+              gender
+              discount
+              gst
+              description
+              stock
+            }
+            price
+            quantity
+            packedImage
+            shippedImage
+            shippedBy
+            trackingNo
+            trackingUrl
+          }
+          shippingAddress {
+            id
+            firstName
+            lastName
+            mobileNo
+            addressLine1
+            addressLine2
+            city
+            state
+            postalCode
+            country
+          }
+          billingAddress {
+            id
+            firstName
+            lastName
+            mobileNo
+            addressLine1
+            addressLine2
+            city
+            state
+            postalCode
+            country
+          }
+          status
+          paymentStatus
+          paymentProof
+          paymentId
+        }
+      }
+    `;
+
+    const [getUserAllOrder, {data: UserOrders}] = useLazyQuery(USER_ORDERS);
+
+    useEffect(() => {
+      getUserAllOrder({
+        variables: {
+          userId: USER_ID
+        }
+      })
+    }, []);
+
+    if(UserOrders){
+      console.log("UserOrders", UserOrders);
+    }
+
   return (<>
     <div style={{marginTop: "10%"}}>
       <Row>
@@ -214,7 +315,9 @@ function Profile() {
 
         </Col>
         <Col className="col-5 mx-2">
-        Orders</Col>
+        Orders of User
+        
+        </Col>
 
       </Row>
       
