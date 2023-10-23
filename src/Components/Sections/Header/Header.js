@@ -109,6 +109,7 @@ function Header() {
 
   const goToProfile = () => {
     navigate('profile');
+    setProfileModal(false);
   }
 
   return (   
@@ -359,7 +360,7 @@ function Header() {
       </ul>
 
      {!loggedIn && <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mb-1 fs-5 fw-bold w-100' onClick={() => goToLoginPage()} >LOGIN</Button> }
-     {loggedIn && <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mt-1 fs-5 fw-bold w-100' onClick={() => logout()} >LOGOUT</Button>} 
+     {loggedIn && <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mt-1 fs-5 fw-bold w-100' onClick={() =>{ logout(); setProfileModal(false)}} >LOGOUT</Button>} 
 
 
     {/* <Button onClick={() => goToLoginPage()}  style={{borderRadius: "50px", backgroundColor: "black", border: "1px solid black"}} > 
