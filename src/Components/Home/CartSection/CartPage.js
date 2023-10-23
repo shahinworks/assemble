@@ -48,42 +48,57 @@ function CartPage() {
     getCartData();
   }, []);
 
+  // const HANDLE_CART_QUANTITY = gql`
+  //   mutation AddToCart($productId: ID!, $quantity: Int!) {
+  //     addToCart(productId: $productId, quantity: $quantity) {
+  //       _id
+  //       cartProducts {
+  //         productId {
+  //           id
+  //           priveiwName
+  //           productName
+  //           images
+  //           sellingPrice
+  //         }
+  //         quantity
+  //       }
+  //     }
+  //   }
+  // `;
+
   const HANDLE_CART_QUANTITY = gql`
-    mutation AddToCart($productId: ID!, $quantity: Int!) {
-      addToCart(productId: $productId, quantity: $quantity) {
+    mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
+      addToCart(productId: $productId, quantity: $quantity, color: $color, gender: $gender, size: $size) {
         _id
-        cartProducts {
-          productId {
-            id
-            priveiwName
-            productName
-            images
-            sellingPrice
-          }
-          quantity
-        }
       }
     }
   `;
 
   const [handleCart, {data: cartValue}] = useMutation(HANDLE_CART_QUANTITY);
 
-  const CartDecrement = (id) => {
+  const CartDecrement = (id, size, gender, color) => {
     console.log("CartDecrement", id);
     handleCart({
       variables: {
         productId: id,
-        quantity: -1
+        quantity: -1,
+        size: size,
+        gender: gender, 
+        color: color,
       }
     })
   }
 
-  const CartIncrement = (id) => {
+  const CartIncrement = (id, size, gender, color) => {
     console.log("CartIncrement", id);
+    console.log(id, size, gender, color );
     handleCart({
       variables: {
         productId: id,
-        quantity: 1
+        quantity: 1,
+        size: size,
+        gender: gender, 
+        color: color,
       }
     })
   }
@@ -113,9 +128,9 @@ function CartPage() {
         <Col className='col-9'> <p className='fs-6'>{item?.productId?.priveiwName}</p>
           <Row>
             <Col>
-              <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id)}>-</Button>
+              <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
                 <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
-              <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id)}>+</Button>
+              <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
             </Col>
             <Col className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
           </Row>

@@ -81,7 +81,7 @@ function Product() {
   const [gender, setGender] = useState("");
 
   const ADD_TO_CART = gql`
-  mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
+    mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
       addToCart(productId: $productId, quantity: $quantity, color: $color, gender: $gender, size: $size) {
         _id
       }
