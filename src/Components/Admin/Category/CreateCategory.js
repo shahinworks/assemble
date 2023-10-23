@@ -44,6 +44,8 @@ function CreateCategory() {
   return (<>
     <h2 className='text-center my-2'>Create Category</h2>
     {/* <Card className='mt-4 mb-2 mx-2 border-0 bg-dark text-light'> */}
+    <Row >
+      <Col className="col-8 mx-auto my-5">
     <Card style={{ backgroundColor: "black", color: "white"}}>
       <Card.Body>
         <h5>Category Name</h5>
@@ -51,6 +53,8 @@ function CreateCategory() {
         <Button type='submit' className='my-2 btn btn-light' onClick={() => handleSubmit()}>Submit</Button>
       </Card.Body>
     </Card>
+    </Col>
+    </Row>
   </>)
 }
 
