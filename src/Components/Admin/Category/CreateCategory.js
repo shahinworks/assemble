@@ -42,15 +42,15 @@ function CreateCategory() {
   // };
 
   return (<>
-    <h2 className='text-center my-2'>Create Category</h2>
     {/* <Card className='mt-4 mb-2 mx-2 border-0 bg-dark text-light'> */}
     <Row >
       <Col className="col-8 mx-auto my-5">
     <Card style={{ backgroundColor: "black", color: "white"}}>
       <Card.Body>
-        <h5>Category Name</h5>
+      <h1>Create Category</h1>
+        <Form.Label htmlFor="colorName">Category Name:</Form.Label>
         <Form.Control type="text" name="categoryName" value={categoryName} onChange={(e) => setCategoryName(e.target.value)}/>
-        <Button type='submit' variant="outline-light" className='my-2' onClick={() => handleSubmit()}>Submit</Button>
+        <Button type='submit' variant="outline-light" className="my-3"onClick={() => handleSubmit()}>Submit</Button>
       </Card.Body>
     </Card>
     </Col>

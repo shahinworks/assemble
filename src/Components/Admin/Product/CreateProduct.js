@@ -187,7 +187,7 @@ function CreateProduct() {
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
               </Form.Group>
-              <Button variant="success" type="submit" className="mt-2">
+              <Button variant="outline-light"  type="submit" className="mt-2">
                 Save Product
               </Button>
             </Form>
