@@ -143,10 +143,14 @@ function UpdateProduct() {
   return (<>
     <h5 className='text-center'>Update Product</h5>
     {data && data.getAllProducts.map((item, index) => 
-      <div className='my-4' key={item.id}>
-        <Row className='mx-4'> {index+1}. {item?.productName}</Row>
-        <Button className="btn btn-sm mx-1 btn-dark" onClick={() => handleImages(item.id, item.color, item.gender)}> Add Image </Button>
-        <Button className="btn btn-sm mx-1 btn-dark" onClick={() => handleStock(item.id, item.color, item.gender, item.size )}> Add Stock </Button>
+      <div className='my-4 d-flex' key={item.id}>
+        <Col>
+        <p className='mx-4'> {index+1}. {item?.productName}</p>
+        </Col>
+        <Col>
+          <Button className="btn btn-sm mx-1 btn-dark" onClick={() => handleImages(item.id, item.color, item.gender)}> Add Image </Button>
+          <Button className="btn btn-sm mx-1 btn-dark" onClick={() => handleStock(item.id, item.color, item.gender, item.size )}> Add Stock </Button>
+        </Col>
       </div>
     )}
 
@@ -166,9 +170,9 @@ function UpdateProduct() {
       {allGender && allGender?.map((c) => <option value={c}>{c}</option>)} </Form.Select>
       <Form.Label>Images</Form.Label>
       <Form.Control type="file" onChange={(e) => setProductImages(e.target.files[0])} />
-      <Button variant="success" type="submit" className="mt-2" onClick={() => ConfirmUpdateImage()}> Save Changes </Button>
-      <Button variant="success" type="submit" className="mt-2" onClick={() => setImageModal(false)}> Go Back</Button>
-    </Modal.Body>
+      <Button variant="dark" type="submit" className="mt-2" onClick={() => setImageModal(false)}> Go Back</Button>
+      <Button variant="dark" type="submit" className="mt-2 mx-1" onClick={() => ConfirmUpdateImage()}> Save Changes </Button>
+      </Modal.Body>
     </Modal>
 
     <Modal style={{width: "100%"}}  show={stockModal} onHide={() => setStockModal(false)}
@@ -191,8 +195,9 @@ function UpdateProduct() {
       {allSize && allSize?.map((c) => <option value={c}>{c}</option>)} </Form.Select>
       <Form.Label>Quantity</Form.Label>
       <Form.Control type="number" onChange={(e) => setQuantity(e.target.value)} />
-      <Button variant="success" type="submit" className="mt-2" onClick={() => ConfirmUpdateStock()}> Save Changes </Button>
-      <Button variant="success" type="submit" className="mt-2" onClick={() => setStockModal(false)}> Go Back</Button>
+      <Button variant="dark" type="submit" className="mt-2" onClick={() => setStockModal(false)}> Go Back</Button>
+      <Button variant="dark" type="submit" className="mt-2 mx-1" onClick={() => ConfirmUpdateStock()}> Save Changes </Button>
+      
     </Modal.Body>
     </Modal>
 
