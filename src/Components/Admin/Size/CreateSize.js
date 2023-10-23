@@ -48,9 +48,9 @@ function CreateSize() {
     <>
       <Row>
         <Col className="col-8 mx-auto my-5">
-          <Card className="mb-5">
+          <Card  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} className="mb-5">
             <Card.Body>
-              <h1>create size</h1>
+              <h1>Create size</h1>
               <Form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <Form.Label >
@@ -66,7 +66,7 @@ function CreateSize() {
                   />
                 </div>
 
-                <Button variant="success" className="my-3" type="submit">
+                <Button variant="outline-light" className="my-3" type="submit">
                   Submit
                 </Button>
               </Form>

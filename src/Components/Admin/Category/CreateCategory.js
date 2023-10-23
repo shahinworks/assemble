@@ -50,7 +50,7 @@ function CreateCategory() {
       <Card.Body>
         <h5>Category Name</h5>
         <Form.Control type="text" name="categoryName" value={categoryName} onChange={(e) => setCategoryName(e.target.value)}/>
-        <Button type='submit' className='my-2 btn btn-light' onClick={() => handleSubmit()}>Submit</Button>
+        <Button type='submit' variant="outline-light" className='my-2' onClick={() => handleSubmit()}>Submit</Button>
       </Card.Body>
     </Card>
     </Col>
