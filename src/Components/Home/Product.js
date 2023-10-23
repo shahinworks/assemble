@@ -444,7 +444,7 @@ function Product() {
               </svg>
               <p style={{ paddingLeft: 13, marginTop: "-3px" }}>
                 {" "}
-               Stock:  
+               Stock:  { product?.getProduct?.stock[0]?.quantity}
                {/* {product?.getProduct?.stock} */}
                {/* In stock, ready to ship */}
               </p>
