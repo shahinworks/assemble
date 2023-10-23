@@ -13,7 +13,7 @@ function UpdateProduct() {
 
   const [color, setColor] = useState("");
   const [gender, setGender] = useState("");
-  const [productImages, setProductImages] = useState(null);
+  const [productImages, setProductImages] = useState([]);
 
   const [ allColor, setAllColor] = useState([]);
   const [ allGender, setAllGender] = useState([]);
@@ -64,11 +64,11 @@ function UpdateProduct() {
 
   // ADD_IMAGE
   const ADD_IMAGE = gql`
-  mutation AddImagetoProduct($productId: ID, $productImages: [Upload], $color: String, $gender: String) {
-    addImagetoProduct(productId: $productId, productImages: $productImages, color: $color, gender: $gender) {
-      massage
+    mutation AddImagetoProduct($productId: ID, $productImages: [Upload], $color: String, $gender: String) {
+      addImagetoProduct(productId: $productId, productImages: $productImages, color: $color, gender: $gender) {
+        massage
+      }
     }
-  }
   `;
   const [addImagetoProduct, {data: dataImage}] = useMutation(ADD_IMAGE, {
     onCompleted: () => {
@@ -169,7 +169,7 @@ function UpdateProduct() {
       <option hidden>Select Gender</option>
       {allGender && allGender?.map((c) => <option value={c}>{c}</option>)} </Form.Select>
       <Form.Label>Images</Form.Label>
-      <Form.Control type="file" multiple onChange={(e) => setProductImages(e.target.files[0])} />
+      <Form.Control type="file" multiple onChange={(e) => setProductImages(e.target.files)} />
       <Button variant="dark" type="submit" className="mt-2" onClick={() => setImageModal(false)}> Go Back</Button>
       <Button variant="dark" type="submit" className="mt-2 mx-1" onClick={() => ConfirmUpdateImage()}> Save Changes </Button>
       </Modal.Body>
@@ -197,10 +197,8 @@ function UpdateProduct() {
       <Form.Control type="number" onChange={(e) => setQuantity(e.target.value)} />
       <Button variant="dark" type="submit" className="mt-2" onClick={() => setStockModal(false)}> Go Back</Button>
       <Button variant="dark" type="submit" className="mt-2 mx-1" onClick={() => ConfirmUpdateStock()}> Save Changes </Button>
-      
     </Modal.Body>
     </Modal>
-
   </>);
 }
 

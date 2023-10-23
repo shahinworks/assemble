@@ -49,7 +49,7 @@ function Product() {
   });
 
   const [ discount, setDiscount ] = useState(product?.getProduct?.discount);
-  const [sellingPrice, setSellingPrice] = useState(product?.getProduct?.sellingPrice);
+  const [ sellingPrice, setSellingPrice ] = useState(product?.getProduct?.sellingPrice);
 
   useEffect(() => {
     setDiscount(product?.getProduct?.discount);
@@ -64,12 +64,25 @@ function Product() {
 
   }, [product]);
  
-  
+  // const ADD_TO_CART = gql`
+  //   mutation AddToCart($productId: ID!, $quantity: Int!) {
+  //     addToCart(productId: $productId, quantity: $quantity) {
+  //       _id
+  //     }
+  //   }
+  // `;
 
+
+  // ADD TO CART 
+
+  const [img, setImg] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [gender, setGender] = useState("");
 
   const ADD_TO_CART = gql`
-    mutation AddToCart($productId: ID!, $quantity: Int!) {
-      addToCart(productId: $productId, quantity: $quantity) {
+    mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
+      addToCart(productId: $productId, quantity: $quantity, color: $color, gender: $gender, size: $size) {
         _id
       }
     }
@@ -79,7 +92,6 @@ function Product() {
     onCompleted : () => {
       toast.success("Product Added Successfully in cart");
         setEditModal(true);
-     
     },
     onError : (error) => {
       if(error.message === "JsonWebTokenError: jwt malformed")
@@ -90,21 +102,19 @@ function Product() {
       console.error("ERROR: ", error.message);
     }
   });
-  if(data) {
-    console.log("data", data );
-  }
   
   const handleAddToCart = async (id) => {
-    console.log("Add to Cart");
     await addToCart({
       variables: {  
         productId: id,
-        quantity: 1
+        quantity: 1, 
+        size : size,
+        gender : gender,
+        color :  color
       }
-    })
-
-    
+    });
   }
+
  
   // Wishlist 
   const ADD_TO_WISHLIST = gql`
@@ -141,20 +151,26 @@ function Product() {
       variables: {
         productId: id
       }
-    })
+    });
   }
-
-  const [img, setImg] = useState("");
 
   const changeImage = (path) => {
     setImg(path)
-
   }
 
-  console.log("img", img);
+  const handleCartColor = (colour) => {
+    setColor(colour);
+  }
+  const handleCartSize = (val) => {
+    setSize(val);
+  }
+
+  const handleCartGender = (gen) => {
+    setGender(gen);
+  }
 
   return (<>
-   <CartPop show={editModal} onHide={() => setEditModal(false)}  />
+    <CartPop show={editModal} onHide={() => setEditModal(false)}  />
  
 
   <div className="container">
@@ -199,7 +215,8 @@ function Product() {
                     className="variant"
                     id="act"
                     data-image="assets/img/31.jpg"
-                    onClick={() => changeImage(image?.imagePath)}
+                    onClick={() =>{ changeImage(image?.imagePath); 
+                      handleCartColor(image?.color)}}
                   >
                     <img
                       style={{ objectFit: "contain" }}
@@ -282,7 +299,7 @@ function Product() {
               <div className='ms-0 d-flex'> 
 
               {product?.getProduct && product?.getProduct?.images.map((color, index) =>
-              <div onClick={() => changeImage(color?.imagePath)} key={color.color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+               <div onClick={() => { changeImage(color?.imagePath); handleCartColor(color?.color) }} key={color.color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
               {color.color}
             </div>)} 
 
@@ -299,7 +316,7 @@ function Product() {
               </h6>
               <div className='ms-0 d-flex'>
                {product?.getProduct && product?.getProduct?.gender.map((gender) =>
-              <div key={gender} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}> {gender} </div>)}
+              <div key={gender}  onClick={() => handleCartGender(gender)}  className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}> {gender} </div>)}
               </div>
              
               <h6 className='fw-bold mx-2 text-left'>
@@ -307,7 +324,7 @@ function Product() {
               </h6>
               <div className='ms-0 d-flex'>
              {product?.getProduct && product?.getProduct?.size.map((size) =>
-              <div key={size} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+              <div  onClick={() => handleCartSize(size)}  key={size} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
               {size}
             </div>)}
             </div>
@@ -402,7 +419,7 @@ function Product() {
               </svg>
               <p style={{ paddingLeft: 13, marginTop: "-3px" }}>
                 {" "}
-               Stock:  
+               Stock:  { product?.getProduct?.stock[0]?.quantity}
                {/* {product?.getProduct?.stock} */}
                {/* In stock, ready to ship */}
               </p>
@@ -1382,7 +1399,7 @@ function Product() {
   </div>
 </section>
 
-  </>)
+  </>);
 }
 
 export default Product;
