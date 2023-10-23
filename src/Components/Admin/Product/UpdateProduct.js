@@ -169,7 +169,7 @@ function UpdateProduct() {
       <option hidden>Select Gender</option>
       {allGender && allGender?.map((c) => <option value={c}>{c}</option>)} </Form.Select>
       <Form.Label>Images</Form.Label>
-      <Form.Control type="file" onChange={(e) => setProductImages(e.target.files[0])} />
+      <Form.Control type="file" multiple onChange={(e) => setProductImages(e.target.files[0])} />
       <Button variant="dark" type="submit" className="mt-2" onClick={() => setImageModal(false)}> Go Back</Button>
       <Button variant="dark" type="submit" className="mt-2 mx-1" onClick={() => ConfirmUpdateImage()}> Save Changes </Button>
       </Modal.Body>
@@ -178,7 +178,7 @@ function UpdateProduct() {
     <Modal style={{width: "100%"}}  show={stockModal} onHide={() => setStockModal(false)}
        scrollable dialogClassName="full" >
     <Modal.Header closeButton>
-      <Modal.Title as="h5">Update Product Image</Modal.Title>
+      <Modal.Title as="h5">Update Product Stock</Modal.Title>
     </Modal.Header>
     <Modal.Body>
       <Form.Label>Color</Form.Label>
