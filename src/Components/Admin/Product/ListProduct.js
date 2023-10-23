@@ -27,6 +27,8 @@ function ListProduct() {
 
 const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
+const genderData = ["Men", "Women"];
+
   const [modal, showModal] = useState(false);
 
   const GET_ALL_PRODUCT = gql`
@@ -103,24 +105,53 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
   const [description, setDescription] = useState("");
   const [gst, setGST] = useState("");
 
+
   const EDIT_PRODUCT = gql`
-    mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $purchasePrice: Float, $discount: Float, $gst: Float, $description: String, $productImages: [Upload], $stock: Int) {
-      updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, purchasePrice: $purchasePrice, discount: $discount, gst: $gst, description: $description, productImages: $productImages, stock: $stock) {
-        id
-        productName
-        priveiwName
-        sellingPrice
-        images
-        size
+  mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $purchasePrice: Float, $sellingPrice: Float, $gst: Float, $discount: Float, $description: String) {
+    updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, purchasePrice: $purchasePrice, sellingPrice: $sellingPrice, gst: $gst, discount: $discount, description: $description) {
+      id
+      productName
+      priveiwName
+      sellingPrice
+      images {
+        imagePath
         color
         gender
-        discount
-        gst
-        description
-        stock
+      }
+      size
+      color
+      gender
+      discount
+      gst
+      description
+      stock {
+        quantity
+        gender
+        color
+        size
       }
     }
-  `;
+  }
+`;
+
+  // const EDIT_PRODUCT = gql`
+  //   mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $purchasePrice: Float, $discount: Float, $gst: Float, $description: String, $productImages: [Upload], $stock: Int) {
+  //     updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, purchasePrice: $purchasePrice, discount: $discount, gst: $gst, description: $description, productImages: $productImages, stock: $stock) {
+  //       id
+  //       productName
+  //       priveiwName
+  //       sellingPrice
+  //       images
+  //       size
+  //       color
+  //       gender
+  //       discount
+  //       gst
+  //       description
+  //       stock
+  //     }
+  //   }
+  // `;
   
 
   function handleColorBox(e) {
@@ -200,12 +231,16 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
           discount: parseFloat(discount),
           gst: parseFloat(gst),
           description: description,
-          productImages: images,
-          stock: parseInt(stock),
+        
         },
       });
       showModal(false);
     }
+
+
+
+    // productImages: images,
+    // stock: parseInt(stock),
 
   return (<>
     <Row className="mx-auto my-5">
@@ -253,8 +288,6 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
                     </td>
                   </tr>
                 ))}
-
-
               </tbody>
             </Table>
           </Card.Body>
@@ -306,7 +339,7 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
                 <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
               </Form.Group>
 
-              <div className="mt-3">
+              {/* <div className="mt-3">
                 <Form.Group  className="my-1">
                   <Form.Label>Gender : </Form.Label>
                   <input className="mx-1" value="Men" type="checkbox" onChange={handleGenderChange} />
@@ -317,7 +350,20 @@ const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
                 </Form.Group>
 
-              </div>
+              </div> */}
+
+
+              <Form.Group  className="my-1">
+               <Form.Label>Gender: </Form.Label> 
+                {genderData && genderData?.map((g) => 
+              <div key={g} className="d-inline">
+                <input className="mx-1" value={g} type="checkbox" 
+                 checked={gender.includes(g)}
+               onChange={handleGenderChange} />
+                <span>{g}</span> </div>
+                )}
+               </Form.Group>
+
 
               <Form.Group  className="my-1">
                 <Form.Label>Color : </Form.Label> 
