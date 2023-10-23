@@ -48,7 +48,7 @@ function Shop() {
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
                   <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
-                    <img style={{ height: 350, objectFit: "contain" }} src={data?.images[0]?.imagePath} />
+                    <img style={{ height: 350, objectFit: "contain" }} src={data?.images[0]?.imagePath[0]} />
                   </a>
                 </li>
                 <div className='text-center'>
