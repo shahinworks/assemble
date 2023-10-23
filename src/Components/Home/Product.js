@@ -64,9 +64,6 @@ function Product() {
 
   }, [product]);
  
-  
-
-
   // const ADD_TO_CART = gql`
   //   mutation AddToCart($productId: ID!, $quantity: Int!) {
   //     addToCart(productId: $productId, quantity: $quantity) {
@@ -75,6 +72,13 @@ function Product() {
   //   }
   // `;
 
+
+  // ADD TO CART 
+
+  const [img, setImg] = useState("");
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const [gender, setGender] = useState("");
 
   const ADD_TO_CART = gql`
   mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
@@ -98,6 +102,7 @@ function Product() {
       console.error("ERROR: ", error.message);
     }
   });
+
   if(data) {
     console.log("data", data );
   }
@@ -114,7 +119,6 @@ function Product() {
       }
     });
   }
-
 
   // const handleAddToCart = async (id) => {
 //     console.log("Add to Cart");
@@ -164,14 +168,10 @@ function Product() {
       variables: {
         productId: id
       }
-    })
+    });
   }
 
 
-  const [img, setImg] = useState("");
-  const [size, setSize] = useState("");
-  const [color, setColor] = useState("");
-  const [gender, setGender] = useState("");
 
   const changeImage = (path) => {
     setImg(path)
@@ -195,7 +195,7 @@ function Product() {
   console.log("gender", gender);
 
   return (<>
-   <CartPop show={editModal} onHide={() => setEditModal(false)}  />
+    <CartPop show={editModal} onHide={() => setEditModal(false)}  />
  
 
   <div className="container">
