@@ -135,8 +135,8 @@ function CreateProduct() {
   return (
     <Row className="mx-auto my-5">
       <Col>
-        <Card>
-          <Card.Body>
+        <Card style={{ backgroundColor: "black", color: "white"}}>
+          <Card.Body style={{ backgroundColor: "black", color: "white"}}>
             <h2>Add Product</h2>
             <Form onSubmit={handleSubmit}>
 

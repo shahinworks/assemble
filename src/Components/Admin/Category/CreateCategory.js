@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import React, { useState } from 'react';
-import { Button, Card, Form } from 'react-bootstrap';
+import { Button, Card, Form , Row, Col} from 'react-bootstrap';
 import toast from "react-hot-toast";
 
 function CreateCategory() {
