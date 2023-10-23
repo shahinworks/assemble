@@ -102,13 +102,8 @@ function Product() {
       console.error("ERROR: ", error.message);
     }
   });
-
-  if(data) {
-    console.log("data", data );
-  }
   
   const handleAddToCart = async (id) => {
-    console.log("Add to Cart");
     await addToCart({
       variables: {  
         productId: id,
@@ -120,18 +115,6 @@ function Product() {
     });
   }
 
-  // const handleAddToCart = async (id) => {
-//     console.log("Add to Cart");
-//     await addToCart({
-//       variables: {  
-//         productId: id,
-//         quantity: 1
-//         size : ,
-//         gender : , 
-//         color: "null" 
-//       }
-//     });
-//   }
  
   // Wishlist 
   const ADD_TO_WISHLIST = gql`
@@ -187,12 +170,6 @@ function Product() {
   const handleCartGender = (gen) => {
     setGender(gen);
   }
-
- 
-  console.log("img", img);
-  console.log("size", size);
-  console.log("color", color);
-  console.log("gender", gender);
 
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)}  />

@@ -17,11 +17,18 @@ function CartPop({show, onHide}) {
         cartProducts {
           productId {
             id
-            priveiwName
-            productName
-            images
             sellingPrice
-           }
+            productName
+            priveiwName
+            images {
+              imagePath
+              color
+              gender
+            }
+          }
+          color
+          gender
+          size
           quantity
         }
       }
