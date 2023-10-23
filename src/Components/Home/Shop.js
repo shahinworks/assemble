@@ -65,7 +65,7 @@ function Shop() {
         </div>
       </div>
     </section>
-  </>)
+  </>);
 }
 
 export default Shop;
