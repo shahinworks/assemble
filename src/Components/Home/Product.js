@@ -79,6 +79,17 @@ function Product() {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const [gender, setGender] = useState("");
+  const [ imageArray, setImageArray ] = useState(product?.getProduct?.images[0]?.imagePath);
+
+  useEffect(() => {
+    if(product?.getProduct?.images[0]?.imagePath)
+    {
+      setImageArray(product?.getProduct?.images[0]?.imagePath);
+    }
+   
+  }, [product?.getProduct?.images[0]?.imagePath]);
+
+  // console.log("Pictures" ,  product);
 
   const ADD_TO_CART = gql`
     mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
@@ -156,6 +167,12 @@ function Product() {
 
   const changeImage = (path) => {
     setImg(path)
+
+    // if(img){
+    //   setImg(path);
+    // } else if(imageArray){
+    //   setImg(imageArray[0]);
+    // }
   }
 
   const handleCartColor = (colour) => {
@@ -169,10 +186,21 @@ function Product() {
     setGender(gen);
   }
 
-  return (<>
-    <CartPop show={editModal} onHide={() => setEditModal(false)}  />
- 
+  const handleSizeArray = (arr) => {
+    setImageArray(arr);
+  }
 
+  console.log("size", size);
+  console.log("gender", gender);
+  console.log("color", color);
+  console.log("img", img);
+
+  console.log("imageArray", imageArray);
+  
+
+
+  return (<>
+    <CartPop show={editModal} onHide={() => setEditModal(false)} />
   <div className="container">
     <section className="slider" style={{ paddingTop: "10%" }}>
       <div className="container" id="container">
@@ -182,7 +210,7 @@ function Product() {
               <div className="image-display">
                 <img
                   id="selected-image"
-                  src={img || product?.getProduct?.images[0]?.imagePath}
+                  src={img || product?.getProduct?.images[0]?.imagePath[0]}
                   // src="assets/img/31.jpg"
                   alt="Selected Image"
                 />
@@ -196,29 +224,30 @@ function Product() {
                   flexDirection: "column",
                   justifyContent: "space-evenly"
                   }} >
-                   <div
+                   {/* <div
                     className="variant active"
                     id="act"
                     data-image="assets/img/31.jpg"
-                    onClick={() => changeImage(product?.getProduct?.images[0]?.imagePath)}
-                  >
+                    onClick={() => changeImage(product?.getProduct?.images[0]?.imagePath[0])}
+                  > 
                     <img
                       style={{ objectFit: "contain" }}
-                      src={product?.getProduct?.images[0]?.imagePath}
+                      src={product?.getProduct?.images[0]?.imagePath[0]}
                       alt=""
                     />
-                  </div>
-                  {product?.getProduct?.images.map((image, index) => index > 0 && 
+                  </div>  */}
+                  {/* {product?.getProduct?.images?.imagePath?.map((image, index) => index > 0 &&  */}
+                  {imageArray &&  imageArray?.map((image, index) => 
                   <div key={index}
                     className="variant"
                     id="act"
                     data-image="assets/img/31.jpg"
-                    onClick={() =>{ changeImage(image?.imagePath); 
+                    onClick={() =>{ changeImage(image); 
                       handleCartColor(image?.color)}}
                   >
                     <img
                       style={{ objectFit: "contain" }}
-                      src={image?.imagePath}
+                      src={image}
                       alt=""
                     />
                   </div> )}
@@ -252,10 +281,9 @@ function Product() {
               <br />
 
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
-              <div className='ms-0 d-flex'> 
-
+              <div className='ms-0 d-flex'>
               {product?.getProduct && product?.getProduct?.images.map((color, index) =>
-               <div onClick={() => { changeImage(color?.imagePath); handleCartColor(color?.color) }} key={color.color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+               <div onClick={() => { changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} key={color.color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
               {color.color}
             </div>)} 
 
