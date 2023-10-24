@@ -116,24 +116,6 @@ function Checkout(props) {
 
 
   // GET CART 
-  // const CART = gql`
-  //   query Query {
-  //     cart {
-  //       cartProducts {
-  //         productId {
-  //           productName
-  //           id
-  //           size
-  //           color
-  //           images
-  //           sellingPrice
-  //         }
-  //         quantity
-  //       }
-  //     }
-  //   }
-  // `;
-
   const CART = gql`
   query Cart {
     cart {
