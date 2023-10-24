@@ -52,7 +52,6 @@ function Checkout(props) {
             id
             productName
             priveiwName
-            images
             sellingPrice
           }
           price
@@ -117,23 +116,48 @@ function Checkout(props) {
 
 
   // GET CART 
+  // const CART = gql`
+  //   query Query {
+  //     cart {
+  //       cartProducts {
+  //         productId {
+  //           productName
+  //           id
+  //           size
+  //           color
+  //           images
+  //           sellingPrice
+  //         }
+  //         quantity
+  //       }
+  //     }
+  //   }
+  // `;
+
   const CART = gql`
-    query Query {
-      cart {
-        cartProducts {
-          productId {
-            productName
-            id
-            size
+  query Cart {
+    cart {
+      _id
+      cartProducts {
+        color
+        gender
+        size
+        quantity
+        productId {
+          id
+          priveiwName
+          productName
+          sellingPrice
+          images {
+            imagePath
             color
-            images
-            sellingPrice
+            gender
           }
-          quantity
         }
       }
     }
-  `;
+  }
+`;
 
 
   // Mutations and Query
@@ -455,11 +479,17 @@ function Checkout(props) {
     {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item) => 
     <div key={item?.productId?.id} className='mb-1 mx-1 px-0 mt-1'> 
       <Row className='my-2'>
-        <Col className='col-3 mx-1'><img style={{height: "100px", width:"70px", border: "2px solid black"}} className='ms-3' src={item?.productId?.images } alt="s"/></Col>
+        <Col className='col-3 mx-1'>
+          <img 
+          style={{height: "100px", width:"70px", border: "2px solid black"}} 
+          className='ms-3' 
+          src={item?.productId?.images[0]?.imagePath[0] } 
+          alt="s"/>
+        </Col>
         <Col className='col-5 mx-2'>
           <p className='fs-6'>{item?.productId?.productName}</p>
-          <p className='fs-6'>{item?.productId?.size}</p>
-          <p className='fs-6'>{item?.productId?.color}</p> </Col>
+          <p className='fs-6'>{item?.size}</p>
+          <p className='fs-6'>{item?.color}</p> </Col>
         <Col className='col-2'> 
           {/* <Row> */}
          
