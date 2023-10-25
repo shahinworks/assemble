@@ -276,9 +276,6 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
                     <td> {item.productName} </td>
                     <td> {item.priveiwName} </td>
                     <td> {item.sellingPrice} </td>
-                    {/* <td>
-                    <img src={item.images} width="30" height="30" /> 
-                    </td> */}
                     <td> {item.size.join(", ")} </td>
                     <td> {item.color.join(", ")} </td>
                     <td> {item.gender.join(", ")} </td> 
