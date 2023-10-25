@@ -38,7 +38,6 @@ function CreateGender() {
         },
       });
     }
-
     catch (err) {
       console.error(err);
     }
