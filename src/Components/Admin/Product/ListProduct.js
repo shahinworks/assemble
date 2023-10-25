@@ -209,7 +209,7 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
   });
 
 
-    const handleEdit = async (id, productName, priveiwName, sellingPrice, purchasePrice, size, color, discount, gender, description, stock) => {
+    const handleEdit = async (id, productName, priveiwName, sellingPrice, size, color, discount, gender, description, gst) => {
       showModal(true);
       setUpdateProductId(id);
       setAllcolor(color);
@@ -220,6 +220,7 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
       setGender(gender);
       setAllSize(size);
       setDescription(description);
+      setGST(gst);
 
     }
 
@@ -284,7 +285,7 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
                     <td> {item.discount} </td>
                     <td> {item.description} </td>
                     <td>
-                      <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.purchasePrice , item.size, item.color, item.discount, item.gender, item.description, item.stock )}>
+                      <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.size, item.color, item.discount, item.gender, item.description, item.gst )}>
                         <Pencil size={20} color="black"/>
                       </Button>{" "}
                       <Button className="btn btn-sm btn-light" onClick={() => handleDelete(item.id)}>
