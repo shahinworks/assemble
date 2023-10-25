@@ -38,11 +38,11 @@ function CartPage() {
     }
   });
   
-  if(cartData){
-    console.log("cartData", cartData);
-  }
+  // if(cartData){
+  //   console.log("cartData", cartData);
+  // }
 
-  console.log("cartData", cartData);
+  // console.log("cartData", cartData);
 
   useEffect(() => {
     getCartData();
@@ -124,7 +124,7 @@ function CartPage() {
     {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
     <div key={index} className='mb-1 mx-1 px-0 mt-1'>
       <Row className='my-2'>
-        <Col className='col-3'><img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images } alt="s"/></Col>
+        <Col className='col-3'><img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/></Col>
         <Col className='col-9'> <p className='fs-6'>{item?.productId?.priveiwName}</p>
           <Row>
             <Col>
