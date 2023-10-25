@@ -37,9 +37,6 @@ function CreateGender() {
           genderName: gender,
         },
       });
-      console.log(data.createGender);
-
-      // setColor("");
     }
 
     catch (err) {
