@@ -18,7 +18,8 @@ function CreateGender() {
 
   const [createGender] = useMutation(CREATE_GENDER_MUTATION, {
     onCompleted : () => {
-      toast.success("Gender Added Successfully")
+      toast.success("Gender Added Successfully");
+      setGender("");
     },
     onError : (error) => {
       toast.error("Error Occured");
