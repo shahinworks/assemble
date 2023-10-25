@@ -17,7 +17,8 @@ function CreateCategory() {
 
   const [createCategory, {data, loading, error}] = useMutation(CREATE_CATEGROY, {
     onCompleted : () => {
-      toast.success("Category Added Successfully")
+      toast.success("Category Added Successfully");
+      setCategoryName("");
     },
     onError : (error) => {
       toast.error("Error Occured");
