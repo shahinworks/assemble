@@ -168,13 +168,16 @@ function CreateProduct() {
                 <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
             
               <Form.Group>
-                  <Form.Label className="my-1">Gender : </Form.Label>
-                  <input className="mx-1" value="Men" type="checkbox" onChange={handleGenderChange} />
-                  <span>Men</span>
-                  <input className="mx-1" value="Women" type="checkbox" onChange={handleGenderChange} />
-                  <span>Women</span>
-                  </Form.Group>
-                  <Form.Group>
+                <Form.Label className="my-1">Gender : </Form.Label>
+                {color?.getAllColor && color?.getAllColor?.map((colors) => 
+                <div key={colors.id} className="d-inline">
+                <input className="mx-1" value={colors?.colorName} type="checkbox" 
+                  onChange={handleColorBox} />
+                <span>{colors?.colorName}</span></div>
+                )}
+              </Form.Group>
+
+              <Form.Group>
                 <Form.Label className="my-1">Color : </Form.Label> 
                 {color?.getAllColor && color?.getAllColor?.map((colors) => 
                 <div key={colors.id} className="d-inline">
@@ -182,9 +185,9 @@ function CreateProduct() {
                   onChange={handleColorBox} />
                 <span>{colors?.colorName}</span></div>
                 )}
-                  </Form.Group>
-                  <Form.Group>
-
+              </Form.Group>
+              
+              <Form.Group>
                 <Form.Label className="my-1">Size : </Form.Label> 
                 {sizedata?.getAllSize && sizedata?.getAllSize?.map((size) => 
               <div key={size.id} className="d-inline">
@@ -192,7 +195,7 @@ function CreateProduct() {
                   onChange={handleSizeChange} />
                 <span>{size?.sizeName}</span> </div>
                 )}
-                  </Form.Group>
+              </Form.Group>
 
 
               <Form.Group className="my-1">
