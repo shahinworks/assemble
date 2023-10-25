@@ -5,7 +5,7 @@ function About() {
 
   return (<>
    <section className="slider" style={{ paddingTop: "10%" }}>
-    <h1>About Us</h1> </section>
+    <h1 className='text-center'>About Us</h1> </section>
     <Card style={{border: "none"}}>
       <Card.Body className='mx-lg-5'>
         <div className='text-left mx-lg-5' >
