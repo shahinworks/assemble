@@ -18,7 +18,8 @@ function CreateColor() {
 
   const [createColor] = useMutation(CREATE_COLOR_MUTATION, {
     onCompleted : () => {
-      toast.success("Color Added Successfully")
+      toast.success("Color Added Successfully");
+      setColor("");
     },
     onError : (error) => {
       toast.error("Error Occured");
@@ -36,11 +37,7 @@ function CreateColor() {
           colorName: color,
         },
       });
-      console.log(data.createColor);
-
-      // setColor("");
     }
-
     catch (err) {
       console.error(err);
     }
