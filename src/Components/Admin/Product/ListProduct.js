@@ -107,7 +107,7 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
   const [discount, setDiscount] = useState("");
   const [stock, setStock] = useState("");
   const [sellingPrice, setSellingPrice] = useState("");
-  const [purchasePrice, setPurchasePrice] = useState("");
+  // const [purchasePrice, setPurchasePrice] = useState("");
   const [gender, setGender] = useState("");
   const [allcolor, setAllcolor] = useState([]);
   const [allsize, setAllSize] = useState("");
@@ -116,32 +116,32 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
 
 
   const EDIT_PRODUCT = gql`
-  mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $purchasePrice: Float, $sellingPrice: Float, $gst: Float, $discount: Float, $description: String) {
-    updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, purchasePrice: $purchasePrice, sellingPrice: $sellingPrice, gst: $gst, discount: $discount, description: $description) {
-      id
-      productName
-      priveiwName
-      sellingPrice
-      images {
-        imagePath
-        color
-        gender
-      }
-      size
-      color
-      gender
-      discount
-      gst
-      description
-      stock {
-        quantity
-        gender
-        color
+    mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $description: String, $discount: Float, $gst: Float) {
+      updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, description: $description, discount: $discount, gst: $gst) {
+        id
+        productName
+        priveiwName
+        sellingPrice
+        images {
+          imagePath
+          color
+          gender
+        }
         size
+        color
+        gender
+        discount
+        gst
+        description
+        stock {
+          quantity
+          gender
+          color
+          size
+        }
       }
     }
-  }
-`;
+  `;
 
   // const EDIT_PRODUCT = gql`
   //   mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $purchasePrice: Float, $discount: Float, $gst: Float, $description: String, $productImages: [Upload], $stock: Int) {
@@ -200,9 +200,7 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
       setProductName("");
       setPreviewName("");
       setDiscount("");
-      // setStock("");
       setSellingPrice("");
-      setPurchasePrice("");
       setGender([]);
       setAllSize([]);
       setDescription("");
@@ -217,9 +215,7 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
       setProductName(productName);
       setPreviewName(priveiwName);
       setDiscount(discount);
-      // setStock(stock);
       setSellingPrice(sellingPrice);
-      setPurchasePrice(purchasePrice);
       setGender(gender);
       setAllSize(size);
       setDescription(description);
@@ -236,7 +232,6 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
           color: allcolor,
           gender,
           sellingPrice: parseFloat(sellingPrice),
-          purchasePrice: parseFloat(purchasePrice),
           discount: parseFloat(discount),
           gst: parseFloat(gst),
           description: description,
@@ -339,10 +334,6 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
                 <Form.Control type="text" value={sellingPrice} onChange={(e) => setSellingPrice(e.target.value)} />
               </Form.Group>
 
-              <Form.Group  className="my-1">
-                <Form.Label>Purchase Price</Form.Label>
-                <Form.Control type="text" value={purchasePrice} onChange={(e) => setPurchasePrice(e.target.value)} />
-              </Form.Group>
               <Form.Group  className="my-1">
                 <Form.Label>GST</Form.Label>
                 <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
