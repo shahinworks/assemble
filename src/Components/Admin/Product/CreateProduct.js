@@ -132,6 +132,18 @@ function CreateProduct() {
 
   const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
+  const GET_ALL_GENDER = gql`
+    query Query {
+      getAllGender {
+        id
+        genderName
+      }
+    }
+  `;
+
+  const { data: genderData } = useQuery(GET_ALL_GENDER);
+
+
   return (
     <Row className="mx-auto my-5">
       <Col>
