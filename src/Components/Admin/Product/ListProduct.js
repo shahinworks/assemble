@@ -27,7 +27,16 @@ function ListProduct() {
 
 const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
-const genderData = ["Men", "Women"];
+const GET_ALL_GENDER = gql`
+  query Query {
+    getAllGender {
+      id
+      genderName
+    }
+  }
+`;
+
+const { data: genderData } = useQuery(GET_ALL_GENDER);
 
   const [modal, showModal] = useState(false);
 
@@ -355,12 +364,12 @@ const genderData = ["Men", "Women"];
 
               <Form.Group  className="my-1">
                <Form.Label>Gender: </Form.Label> 
-                {genderData && genderData?.map((g) => 
+                {genderData && genderData?.getAllGender?.map((g) => 
               <div key={g} className="d-inline">
-                <input className="mx-1" value={g} type="checkbox" 
-                 checked={gender.includes(g)}
+                <input className="mx-1" value={g?.genderName} type="checkbox" 
+                 checked={gender.includes(g?.genderName)}
                onChange={handleGenderChange} />
-                <span>{g}</span> </div>
+                <span>{g?.genderName}</span> </div>
                 )}
                </Form.Group>
 
