@@ -153,6 +153,8 @@ function CartFull() {
               <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
             </Col>
             <Col className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
+            <Col><Button onClick={() => handleRemove(item?.productId?.id)} style={{marginRight: "0px", border: "none"}} className='my-0 py-0 d-inline me-0 ms-5' variant='outline-danger' > Remove </Button></Col>
+            
           </Row>
         </Col>
       </Row>
