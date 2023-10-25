@@ -204,6 +204,7 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
       setGender([]);
       setAllSize([]);
       setDescription("");
+      setGST("");
     }
   });
 
