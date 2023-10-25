@@ -52,6 +52,33 @@ function CartFull() {
       getCartData();
     }, []);
 
+  const REMOVE_FROM_CART = gql`
+    mutation RemoveFromCart($productId: ID) {
+      removeFromCart(productId: $productId) {
+        _id
+        cartProducts {
+          productId {
+            id
+          }
+          color
+          gender
+          size
+          quantity
+        }
+      }
+    }
+  `;
+
+  const [removeFromCart,  {data: removeData}] = useMutation(REMOVE_FROM_CART);
+
+  const handleRemove = async (id) => {
+    await removeFromCart({
+      variables: {
+        productId: id
+      }
+    })
+  }
+
   const HANDLE_CART_QUANTITY = gql`
     mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
       addToCart(productId: $productId, quantity: $quantity, color: $color, gender: $gender, size: $size) {
