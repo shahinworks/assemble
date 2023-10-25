@@ -169,11 +169,11 @@ function CreateProduct() {
             
               <Form.Group>
                 <Form.Label className="my-1">Gender : </Form.Label>
-                {color?.getAllColor && color?.getAllColor?.map((colors) => 
-                <div key={colors.id} className="d-inline">
-                <input className="mx-1" value={colors?.colorName} type="checkbox" 
-                  onChange={handleColorBox} />
-                <span>{colors?.colorName}</span></div>
+                {genderData?.getAllGender && genderData?.getAllGender?.map((g) => 
+                <div key={g?.id} className="d-inline">
+                <input className="mx-1" value={g?.genderName} type="checkbox" 
+                  onChange={handleGenderChange} />
+                <span>{g?.genderName}</span></div>
                 )}
               </Form.Group>
 
@@ -196,8 +196,6 @@ function CreateProduct() {
                 <span>{size?.sizeName}</span> </div>
                 )}
               </Form.Group>
-
-
               <Form.Group className="my-1">
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" value={description} onChange={(e) => setDescription(e.target.value)} />
