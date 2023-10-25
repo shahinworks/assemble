@@ -37,6 +37,8 @@ import Forgot from '../Components/SuperComponent/Forgot';
 import ResetPassword from '../Components/SuperComponent/ResetPassword';
 import ListOrder from '../Components/Admin/Order/ListOrder';
 import UpdateProduct from '../Components/Admin/Product/UpdateProduct';
+import ListGender from '../Components/Admin/Gender/ListGender';
+import CreateGender from '../Components/Admin/Gender/CreateGender';
  
 function PageRoutes() {
   return (
