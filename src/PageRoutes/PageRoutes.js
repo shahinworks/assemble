@@ -64,6 +64,8 @@ function PageRoutes() {
       <Route exact path='ListSize' element={<ListSize />}/>
       <Route exact path='CreateColor' element={<CreateColor />}/>
       <Route exact path='ListColor' element={<ListColor />}/>
+      <Route exact path='CreateGender' element={<CreateGender />}/>
+      <Route exact path='ListGender' element={<ListGender />}/>
       <Route exact path='CreateSlider' element={<HomePageSlider />}/>
       <Route exact path='ListSlider' element={<ListSlider />}/>
       <Route exact path='ListOrder' element={<ListOrder />}/>
