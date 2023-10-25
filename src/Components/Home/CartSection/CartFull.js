@@ -76,7 +76,7 @@ function CartFull() {
       variables: {
         productId: id
       }
-    })
+    });
   }
 
   const HANDLE_CART_QUANTITY = gql`

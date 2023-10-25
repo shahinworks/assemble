@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import { Button, Col, Row } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 
 function CartPage() {
   const [ productId, setProductId] = useState("");
@@ -47,6 +48,42 @@ function CartPage() {
   useEffect(() => {
     getCartData();
   }, []);
+
+  
+  const REMOVE_FROM_CART = gql`
+    mutation RemoveFromCart($productId: ID) {
+      removeFromCart(productId: $productId) {
+        _id
+        cartProducts {
+          productId {
+            id
+          }
+          color
+          gender
+          size
+          quantity
+        }
+      }
+    }
+  `;
+
+  const [removeFromCart,  {data: removeData}] = useMutation(REMOVE_FROM_CART, {
+    onCompleted: () => {
+      toast.success("Removed from Cart");
+    }
+  });
+
+  const handleRemove = async (id) => {
+    await removeFromCart({
+      variables: {
+        productId: id
+      }
+    });
+  }
+
+  if(removeData){
+    console.log("removeData", removeData);
+  }
 
   // const HANDLE_CART_QUANTITY = gql`
   //   mutation AddToCart($productId: ID!, $quantity: Int!) {
@@ -129,11 +166,14 @@ function CartPage() {
     <div key={index} className='mb-1 mx-1 px-0 mt-1'>
       <Row className='my-2'>
         <Col className='col-3'><img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/></Col>
-        <Col className='col-9'> <p className='fs-6'>{item?.productId?.priveiwName}</p>
+        <Col className='col-9'>
+          <div className='fs-6'>{item?.productId?.priveiwName} 
+          <Button onClick={() => handleRemove(item?.productId?.id)} style={{marginRight: "0px", border: "none"}} className='my-0 py-0 d-inline me-0 ms-5' variant='outline-danger' > X </Button>
+         </div> 
           <Row>
             <Col>
               <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
-                <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
+                <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-1" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
               <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
             </Col>
             <Col className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
