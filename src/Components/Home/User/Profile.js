@@ -51,7 +51,7 @@ function Profile() {
     }
   `;
 
-  const {data } = useQuery(GET_PROFILE);
+  const {data, refetch } = useQuery(GET_PROFILE);
 
   if(data){
     console.log("Profile", data);
