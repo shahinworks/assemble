@@ -700,6 +700,8 @@ function Profile() {
     </div> }
 
 
+    <Col xl="8" lg="8" md="6" sm="6" xs="12" />
+    <Col xl="5" lg="5" md="6" sm="6" xs="12">
     {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
     <Card key={address.id} className="mb-5">
                   <Card.Body className="mb-3">
@@ -723,7 +725,7 @@ function Profile() {
                         </div>
                       </Col>
                       <Col lg="2">
-                        <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-top">Edit</Tooltip>}>
+                        {/* <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-top">Edit</Tooltip>}>
                           <Button
                             onClick={() =>
                               handleEditAddress(
@@ -741,10 +743,26 @@ function Profile() {
                             }
                             variant="outline-primary"
                             className="col-1 mb-2 me-2 btn-icon btn-icon-only"
-                          >
-                            {/* <CsLineIcons icon="edit-square" /> */} Edit-Sqaure
+                          >  <CsLineIcons icon="edit-square" />  
                           </Button>
-                        </OverlayTrigger>
+                        </OverlayTrigger> */}
+                        <Button className='btn btn-sm mx-1'  variant='outline-dark' 
+             onClick={() =>
+              handleEditAddress(
+                address.id,
+                address.addressLine1,
+                address.addressLine2,
+                address.city,
+                address.postalCode,
+                address.state,
+                address.country,
+                address.firstName,
+                address.lastName,
+                address.mobileNo
+              )
+            }> 
+           <PencilSquare size={20}/>
+            </Button>
                         <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-top">Delete</Tooltip>}>
                           <Button onClick={() => handleDeleteAddress(address.id)} variant="outline-primary" className="col-1 mb-2 me-2 btn-icon btn-icon-only">
                             {/* <CsLineIcons icon="bin" /> */} Bin
@@ -753,7 +771,8 @@ function Profile() {
                       </Col>
                     </Row>
                   </Card.Body>
-    </Card> )}
+    </Card> )} 
+    </Col>
 
   
     
