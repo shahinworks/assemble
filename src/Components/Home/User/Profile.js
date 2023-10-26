@@ -9,6 +9,20 @@ import { Link } from 'react-router-dom';
 
 function Profile() {
 
+  const [editAddressModal, setEditAddressModal] = useState(false);
+  const [firstNameEdit, setfirstNameEdit] = useState('');
+  const [lastNameEdit, setlastNameEdit] = useState('');
+  const [mobileNoEdit, setmobileNoEdit] = useState('');
+
+  const [addressID, setAddressID] = useState('');
+  const [address1Edit, setAddress1Edit] = useState('');
+  const [address2Edit, setAddress2Edit] = useState('');
+  const [cityEdit, setCityEdit] = useState('');
+  const [stateEdit, setStateEdit] = useState('');
+  const [countryEdit, setCountryEdit] = useState('India');
+  const [postalEdit, setPostalEdit] = useState('');
+
+
   const USER_ID = "6528f5218feba9442ff0f2d2";
 
     // Edit User Profile
@@ -370,26 +384,36 @@ function Profile() {
   const [editPhone, setEditPhone] = useState("");
 
 
-  const handleEditAddress = async (id) => {
-    setEditAddId(id);
-   
+  function handleEditAddress(ID, add1, add2, CT, postal, stateAdd, countryAdd, fname, lname, mNo) {
+    setEditAddressModal(true);
+    setAddressID(ID);
+    setAddress1Edit(add1);
+    setAddress2Edit(add2);
+    setCityEdit(CT);
+    setPostalEdit(postal);
+    setStateEdit(stateAdd);
+    setCountryEdit(countryAdd);
+    setfirstNameEdit(fname);
+    setlastNameEdit(lname);
+    setmobileNoEdit(mNo);
   }
 
-  const confirmUpdateAddress = async () => {
+  const handleSaveAddressEdit = async () => {
     await editAddress({
-      variables: {  
-        updateAddressId: editAddId,
-        addressLine1: editAdd1,
-        city: editCity,
-        state: editState,
-        postalCode: editPostal,
-        country: editCountry,
-        addressLine2: editAdd2,
-        mobileNo: editPhone,
-        lastName: editLName,
-        firstName: editFName 
-      }
+      variables: {
+        updateAddressId: addressID,
+        addressLine1: address1Edit,
+        addressLine2: address2Edit,
+        city: cityEdit,
+        state: stateEdit,
+        postalCode: postalEdit,
+        country: countryEdit,
+        firstName: firstNameEdit,
+        lastName: lastNameEdit,
+        mobileNo: mobileNoEdit,
+      },
     });
+    setEditAddressModal(false);
   }
 
   return (<>
@@ -677,27 +701,7 @@ function Profile() {
       )}
 
 
-  {/* // Show Address  Section */}
-  { showAddressModal && <div>
-      <h5>Address Section is being showed here</h5>
 
-     {addressByUser && addressByUser?.getAllAddressesByUser?.map((add) => 
-     <div key={add}> 
-      <p>{add?.id}</p>
-      <Button className='btn btn-sm mx-1'  variant='outline-dark'  
-             onClick={() => handleEditAddress(add?.id)}> 
-           <PencilSquare size={20}/>
-            </Button>
-
-      <Button className='btn btn-sm mx-1'  variant='outline-dark'  
-             onClick={() => handleDeleteAddress(add?.id)}> 
-           <Trash3Fill size={20}/>
-            </Button>
-     </div>
-
-      )}
-
-    </div> }
 
 
     <Col xl="8" lg="8" md="6" sm="6" xs="12" />
@@ -775,6 +779,130 @@ function Profile() {
     </Col>
 
   
+    {/* Edit Address Modal Start */}
+    <Modal className="modal-right scroll-out-negative" show={editAddressModal} onHide={() => setEditAddressModal(false)} scrollable dialogClassName="full">
+        <Modal.Header closeButton>
+          <Modal.Title as="h5">Edit your Address</Modal.Title>
+        </Modal.Header>
+        <Modal.Body> 
+            <Form>
+              <div className="mb-3">
+                <Form.Label htmlFor="firstName">firstName</Form.Label>
+                <Form.Control id="firstName" type="text" value={firstNameEdit || ''} onChange={(e) => setfirstNameEdit(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <Form.Label htmlFor="lastName">lastName</Form.Label>
+                <Form.Control id="lastName" type="text" value={lastNameEdit || ''} onChange={(e) => setlastNameEdit(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <Form.Label htmlFor="mobileNo">mobileNo</Form.Label>
+                <Form.Control
+                  id="mobileNo"
+                  type="tel"
+                  maxLength="10"
+                  onKeyDown={(e) => {
+                    if (e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'Tab' && (e.key < '0' || e.key > '9')) {
+                      e.preventDefault();
+                    }
+                  }}
+                  value={mobileNoEdit || ''}
+                  onChange={(e) => setmobileNoEdit(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <Form.Label htmlFor="useradd1">Address Lane 1</Form.Label>
+                <Form.Control id="useradd1" type="text" value={address1Edit || ''} onChange={(e) => setAddress1Edit(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <Form.Label htmlFor="useradd2">Address Lane 2</Form.Label>
+                <Form.Control id="useradd2" type="text" value={address2Edit || ''} onChange={(e) => setAddress2Edit(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <Form.Label htmlFor="userEditMail">City</Form.Label>
+                <Form.Control id="userEditMail" type="text" value={cityEdit || ''} onChange={(e) => setCityEdit(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <Form.Label htmlFor="userEditPhone">Pincode</Form.Label>
+                <Form.Control
+                  id="userEditPhone"
+                  type="text"
+                  maxLength="6"
+                  onKeyDown={(e) => {
+                    if (e.key !== 'Backspace' && e.key !== 'Delete' && e.key !== 'Tab' && (e.key < '0' || e.key > '9')) {
+                      e.preventDefault();
+                    }
+                  }}
+                  value={postalEdit || ''}
+                  onChange={(e) => setPostalEdit(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <Form.Label htmlFor="userEditPhone">State</Form.Label>
+                {/* <Form.Control id="userEditPhone" type="text" value={stateEdit || ''} onChange={(e) => setStateEdit(e.target.value)} /> */}
+                <Form.Select
+                  name="state"
+                  id="userEditPhone"
+                  value={stateEdit || ''}
+                  onChange={(e) => setStateEdit(e.target.value)}
+                  aria-label="Default select example"
+                >
+                  <option>Select State</option>
+                  <option value="Andhra Pradesh">Andhra Pradesh</option>
+                  <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                  <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                  <option value="Assam">Assam</option>
+                  <option value="Bihar">Bihar</option>
+                  <option value="Chandigarh">Chandigarh</option>
+                  <option value="Chhattisgarh">Chhattisgarh</option>
+                  <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                  <option value="Daman and Diu">Daman and Diu</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Lakshadweep">Lakshadweep</option>
+                  <option value="Puducherry">Puducherry</option>
+                  <option value="Goa">Goa</option>
+                  <option value="Gujarat">Gujarat</option>
+                  <option value="Haryana">Haryana</option>
+                  <option value="Himachal Pradesh">Himachal Pradesh</option>
+                  <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                  <option value="Jharkhand">Jharkhand</option>
+                  <option value="Karnataka">Karnataka</option>
+                  <option value="Kerala">Kerala</option>
+                  <option value="Madhya Pradesh">Madhya Pradesh</option>
+                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Manipur">Manipur</option>
+                  <option value="Meghalaya">Meghalaya</option>
+                  <option value="Mizoram">Mizoram</option>
+                  <option value="Nagaland">Nagaland</option>
+                  <option value="Odisha">Odisha</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Sikkim">Sikkim</option>
+                  <option value="Tamil Nadu">Tamil Nadu</option>
+                  <option value="Telangana">Telangana</option>
+                  <option value="Tripura">Tripura</option>
+                  <option value="Uttar Pradesh">Uttar Pradesh</option>
+                  <option value="Uttarakhand">Uttarakhand</option>
+                  <option value="West Bengal">West Bengal</option>
+                </Form.Select>
+              </div>
+              <div className="mb-3">
+                <Form.Label htmlFor="userEditPhone">Country</Form.Label>
+                <Form.Control id="userEditPhone" type="text" value={countryEdit || ''} onChange={(e) => setCountryEdit(e.target.value)} disabled />
+              </div>
+            </Form>
+        </Modal.Body>
+        <Modal.Footer className="border-0">
+          <Button variant="primary" className="btn-icon " onClick={() => setEditAddressModal(false)}>
+            <span>Cancel</span>
+            {/* <CsLineIcons icon="close" /> */}
+          </Button>
+          <Button variant="primary" className="btn-icon btn-icon-start" type="button" onClick={() => handleSaveAddressEdit()}>
+            <span>Save</span> 
+            {/* <CsLineIcons icon="save" /> */}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      {/* Edit Address Modal End */}
     
 
   </>);
