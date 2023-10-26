@@ -4,7 +4,7 @@ import { Button, Form, Card, Modal, Row, Col, Badge, OverlayTrigger, Tooltip } f
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
-import { PencilSquare, HouseAdd, Trash3Fill } from 'react-bootstrap-icons';
+import { PencilSquare, HouseAdd, Trash3Fill, CheckLg, XLg} from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 function Profile() {
@@ -889,12 +889,11 @@ function Profile() {
         </Modal.Body>
         <Modal.Footer className="border-0">
           <Button variant="primary" className="btn-icon " onClick={() => setEditAddressModal(false)}>
-            <span>Cancel</span>
-            {/* <CsLineIcons icon="close" /> */}
+            <span>Cancel</span> <XLg />
           </Button>
           <Button variant="primary" className="btn-icon btn-icon-start" type="button" onClick={() => handleSaveAddressEdit()}>
             <span>Save</span> 
-            {/* <CsLineIcons icon="save" /> */}
+            <CheckLg />
           </Button>
         </Modal.Footer>
       </Modal>
