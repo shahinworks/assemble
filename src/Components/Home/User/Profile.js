@@ -1,6 +1,6 @@
 import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react'
-import { Button, Form, Card, Modal, Row, Col, Badge } from 'react-bootstrap';
+import { Button, Form, Card, Modal, Row, Col, Badge, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
@@ -698,6 +698,62 @@ function Profile() {
       )}
 
     </div> }
+
+
+    {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
+    <Card key={address.id} className="mb-5">
+                  <Card.Body className="mb-3">
+                    <Row>
+                      <Col lg="10">
+                        <div className="mb-3">
+                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
+                          <div>
+                            {address.firstName} {address.lastName}
+                          </div>
+                          <div>
+                            {address.addressLine1}, {address.addressLine2}
+                          </div>
+                          <div>
+                            {address.city}, {address.postalCode}
+                          </div>
+                          <div>
+                            {address.state}, {address.country}
+                          </div>
+                          <div>{address.mobileNo}</div>
+                        </div>
+                      </Col>
+                      <Col lg="2">
+                        <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-top">Edit</Tooltip>}>
+                          <Button
+                            onClick={() =>
+                              handleEditAddress(
+                                address.id,
+                                address.addressLine1,
+                                address.addressLine2,
+                                address.city,
+                                address.postalCode,
+                                address.state,
+                                address.country,
+                                address.firstName,
+                                address.lastName,
+                                address.mobileNo
+                              )
+                            }
+                            variant="outline-primary"
+                            className="col-1 mb-2 me-2 btn-icon btn-icon-only"
+                          >
+                            {/* <CsLineIcons icon="edit-square" /> */} Edit-Sqaure
+                          </Button>
+                        </OverlayTrigger>
+                        <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-top">Delete</Tooltip>}>
+                          <Button onClick={() => handleDeleteAddress(address.id)} variant="outline-primary" className="col-1 mb-2 me-2 btn-icon btn-icon-only">
+                            {/* <CsLineIcons icon="bin" /> */} Bin
+                          </Button>
+                        </OverlayTrigger>
+                      </Col>
+                    </Row>
+                  </Card.Body>
+    </Card> )}
 
   
     
