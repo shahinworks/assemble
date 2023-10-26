@@ -701,6 +701,7 @@ function Profile() {
 
     <Col xl="8" lg="8" md="6" sm="6" xs="12" />
     <Col xl="5" lg="5" md="6" sm="6" xs="12">
+      <h5>Address of User</h5>
     {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
     <Card key={address.id} className="mb-5">
                   <Card.Body className="mb-3">
