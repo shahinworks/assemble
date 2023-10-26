@@ -438,10 +438,6 @@ function Profile() {
              onClick={() => setPasswordModal(true)}> 
               Reset Password
             </Button>
-            {/* <Button className='btn btn-sm mx-1'  variant='outline-dark'  
-             onClick={() => setShowAddressModal(true)}> 
-              Show Address
-            </Button> */}
           </Card.Body>
         </Card>}
 
