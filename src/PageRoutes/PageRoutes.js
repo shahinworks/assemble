@@ -36,6 +36,7 @@ import Profile from '../Components/Home/User/Profile';
 import Forgot from '../Components/SuperComponent/Forgot';
 import ResetPassword from '../Components/SuperComponent/ResetPassword';
 import ListOrder from '../Components/Admin/Order/ListOrder';
+import OrderDetail from '../Components/Admin/Order/OrderDetail';
 import UpdateProduct from '../Components/Admin/Product/UpdateProduct';
 import ListGender from '../Components/Admin/Gender/ListGender';
 import CreateGender from '../Components/Admin/Gender/CreateGender';
@@ -71,6 +72,7 @@ function PageRoutes() {
       <Route exact path='CreateSlider' element={<HomePageSlider />}/>
       <Route exact path='ListSlider' element={<ListSlider />}/>
       <Route exact path='ListOrder' element={<ListOrder />}/>
+      <Route exact path='orderdetail/:orderID' element={<OrderDetail />}/>
       </Route>
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>
