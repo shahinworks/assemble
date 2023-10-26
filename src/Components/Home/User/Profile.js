@@ -677,6 +677,27 @@ function Profile() {
       )}
 
 
+  {/* // Show Address  Section */}
+  { showAddressModal && <div>
+      <h5>Address Section is being showed here</h5>
+
+     {addressByUser && addressByUser?.getAllAddressesByUser?.map((add) => 
+     <div key={add}> 
+      <p>{add?.id}</p>
+      <Button className='btn btn-sm mx-1'  variant='outline-dark'  
+             onClick={() => handleEditAddress(add?.id)}> 
+           <PencilSquare size={20}/>
+            </Button>
+
+      <Button className='btn btn-sm mx-1'  variant='outline-dark'  
+             onClick={() => handleDeleteAddress(add?.id)}> 
+           <Trash3Fill size={20}/>
+            </Button>
+     </div>
+
+      )}
+
+    </div> }
 
   
     
