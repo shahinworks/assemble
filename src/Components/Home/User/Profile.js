@@ -657,10 +657,10 @@ function Profile() {
           </Modal.Body>
           <Modal.Footer className="border-0">
             <Button variant="primary" className="btn-icon" onClick={() => setEditModal(false)}>
-              <span>Cancel</span>  
+              <span>Cancel</span>   <XLg/>
             </Button>
             <Button variant="primary" className="btn-icon btn-icon-start" type="button" onClick={() => handleSave()}>
-              <span>Save</span>  
+              <span>Save</span>  <CheckLg />
             </Button>
           </Modal.Footer>
         </Modal>
