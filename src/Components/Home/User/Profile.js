@@ -385,18 +385,6 @@ function Profile() {
     }
   });
 
-  const [editAddId, setEditAddId] = useState("");
-  const [editAdd1, setEditAdd1] = useState("");
-  const [editAdd2, setEditAdd2] = useState("");
-  const [editCity, setEditCity] = useState("");
-  const [editState, setEditState] = useState("");
-  const [editPostal, setEditPostal] = useState("");
-  const [editCountry, setEditCountry] = useState("");
-  const [editFName, setEditFName] = useState("");
-  const [editLName, setEditLName] = useState("");
-  const [editPhone, setEditPhone] = useState("");
-
-
   function handleEditAddress(ID, add1, add2, CT, postal, stateAdd, countryAdd, fname, lname, mNo) {
     setEditAddressModal(true);
     setAddressID(ID);
