@@ -4,7 +4,7 @@ import { Button, Form, Card, Modal, Row, Col, Badge } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import toast from 'react-hot-toast';
-import { PencilSquare, HouseAdd } from 'react-bootstrap-icons';
+import { PencilSquare, HouseAdd, Trash3Fill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 function Profile() {
@@ -287,6 +287,111 @@ function Profile() {
       console.log("UserOrders", orderData);
     }
 
+
+  const [ showAddressModal, setShowAddressModal ] = useState(false);
+   
+    
+  const SHOW_ALL_ADDRESS_BY_USER = gql`
+    query GetAllAddressesByUser {
+      getAllAddressesByUser {
+        id
+        firstName
+        lastName
+        mobileNo
+        addressLine1
+        addressLine2
+        city
+        state
+        postalCode
+        country
+      }
+    }
+  `;
+
+  const {data: addressByUser} = useQuery(SHOW_ALL_ADDRESS_BY_USER );
+  if(addressByUser){
+    console.log("addressByUser", addressByUser);
+  }
+
+  const DELETE_ADDRESS = gql`
+    mutation DeleteAddress($deleteAddressId: ID!) {
+      deleteAddress(id: $deleteAddressId) {
+        id
+        firstName
+        addressLine1
+      }
+    }
+  `;
+
+  const [deleteAdd, {data: deleteAddress }] = useMutation(DELETE_ADDRESS, {
+    onCompleted : () => {
+      toast.success("Deleted");
+    }
+  });
+
+
+  const handleDeleteAddress = async (id) => {
+    await deleteAdd({
+      variables: {
+        deleteAddressId: id
+      }
+    })
+  }
+
+
+  const EDIT_ADDRESS = gql`
+    mutation UpdateAddress($updateAddressId: ID!, $addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $firstName: String, $lastName: String, $mobileNo: String, $addressLine2: String) {
+      updateAddress(id: $updateAddressId, addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo, addressLine2: $addressLine2) {
+        id
+        firstName
+        lastName
+        mobileNo
+        addressLine1
+        addressLine2
+        city
+        state
+        postalCode
+        country
+      }
+    }
+  `;
+ 
+  const [editAddress,  {data: editAddressData}] = useMutation(EDIT_ADDRESS);
+
+  const [editAddId, setEditAddId] = useState("");
+  const [editAdd1, setEditAdd1] = useState("");
+  const [editAdd2, setEditAdd2] = useState("");
+  const [editCity, setEditCity] = useState("");
+  const [editState, setEditState] = useState("");
+  const [editPostal, setEditPostal] = useState("");
+  const [editCountry, setEditCountry] = useState("");
+  const [editFName, setEditFName] = useState("");
+  const [editLName, setEditLName] = useState("");
+  const [editPhone, setEditPhone] = useState("");
+
+
+  const handleEditAddress = async (id) => {
+    setEditAddId(id);
+   
+  }
+
+  const confirmUpdateAddress = async () => {
+    await editAddress({
+      variables: {  
+        updateAddressId: editAddId,
+        addressLine1: editAdd1,
+        city: editCity,
+        state: editState,
+        postalCode: editPostal,
+        country: editCountry,
+        addressLine2: editAdd2,
+        mobileNo: editPhone,
+        lastName: editLName,
+        firstName: editFName 
+      }
+    });
+  }
+
   return (<>
     <div style={{marginTop: "10%"}}>
       <Row>
@@ -309,6 +414,10 @@ function Profile() {
             <Button className='btn btn-sm'  variant='outline-dark'  
              onClick={() => setPasswordModal(true)}> 
               Reset Password
+            </Button>
+            <Button className='btn btn-sm mx-1'  variant='outline-dark'  
+             onClick={() => setShowAddressModal(true)}> 
+              Show Address
             </Button>
           </Card.Body>
         </Card>}
@@ -566,6 +675,11 @@ function Profile() {
           </Modal.Footer>
         </Modal>
       )}
+
+
+
+  
+    
 
   </>);
 }
