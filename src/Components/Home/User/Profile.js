@@ -783,15 +783,15 @@ function Profile() {
         <Modal.Body> 
             <Form>
               <div className="mb-3">
-                <Form.Label htmlFor="firstName">firstName</Form.Label>
+                <Form.Label htmlFor="firstName">First Name</Form.Label>
                 <Form.Control id="firstName" type="text" value={firstNameEdit || ''} onChange={(e) => setfirstNameEdit(e.target.value)} />
               </div>
               <div className="mb-3">
-                <Form.Label htmlFor="lastName">lastName</Form.Label>
+                <Form.Label htmlFor="lastName">Last Name</Form.Label>
                 <Form.Control id="lastName" type="text" value={lastNameEdit || ''} onChange={(e) => setlastNameEdit(e.target.value)} />
               </div>
               <div className="mb-3">
-                <Form.Label htmlFor="mobileNo">mobileNo</Form.Label>
+                <Form.Label htmlFor="mobileNo">Mobile No</Form.Label>
                 <Form.Control
                   id="mobileNo"
                   type="tel"
@@ -898,8 +898,6 @@ function Profile() {
         </Modal.Footer>
       </Modal>
       {/* Edit Address Modal End */}
-    
-
   </>);
 }
 
