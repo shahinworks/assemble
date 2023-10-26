@@ -329,7 +329,7 @@ function Profile() {
     }
   `;
 
-  const {data: addressByUser} = useQuery(SHOW_ALL_ADDRESS_BY_USER );
+  const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_USER );
   if(addressByUser){
     console.log("addressByUser", addressByUser);
   }
@@ -347,7 +347,7 @@ function Profile() {
   const [deleteAdd, {data: deleteAddress }] = useMutation(DELETE_ADDRESS, {
     onCompleted : () => {
       toast.success("Deleted");
-      refetch();
+      refetchAdd();
     }
   });
 
@@ -357,7 +357,8 @@ function Profile() {
       variables: {
         deleteAddressId: id
       }
-    })
+    });
+    refetchAdd();
   }
 
 
@@ -381,9 +382,10 @@ function Profile() {
   const [editAddress,  {data: editAddressData}] = useMutation(EDIT_ADDRESS, {
     onCompleted : () => {
       toast.success("Address Updated Successfully");
-      refetch();
+      refetchAdd();
     }
   });
+
 
   function handleEditAddress(ID, add1, add2, CT, postal, stateAdd, countryAdd, fname, lname, mNo) {
     setEditAddressModal(true);
