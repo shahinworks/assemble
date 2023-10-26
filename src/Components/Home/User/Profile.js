@@ -763,11 +763,11 @@ function Profile() {
             }> 
            <PencilSquare size={20}/>
             </Button>
-                        <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-top">Delete</Tooltip>}>
-                          <Button onClick={() => handleDeleteAddress(address.id)} variant="outline-primary" className="col-1 mb-2 me-2 btn-icon btn-icon-only">
-                            {/* <CsLineIcons icon="bin" /> */} Bin
-                          </Button>
-                        </OverlayTrigger>
+
+            <Button className='btn btn-sm mx-1 my-1'  variant='outline-dark' onClick={() => handleDeleteAddress(address.id)}> 
+           <Trash3Fill size={20}/>
+            </Button>
+                       
                       </Col>
                     </Row>
                   </Card.Body>
