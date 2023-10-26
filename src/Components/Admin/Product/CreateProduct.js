@@ -132,6 +132,18 @@ function CreateProduct() {
 
   const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
+  const GET_ALL_GENDER = gql`
+    query Query {
+      getAllGender {
+        id
+        genderName
+      }
+    }
+  `;
+
+  const { data: genderData } = useQuery(GET_ALL_GENDER);
+
+
   return (
     <Row className="mx-auto my-5">
       <Col>
@@ -156,13 +168,16 @@ function CreateProduct() {
                 <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
             
               <Form.Group>
-                  <Form.Label className="my-1">Gender : </Form.Label>
-                  <input className="mx-1" value="Men" type="checkbox" onChange={handleGenderChange} />
-                  <span>Men</span>
-                  <input className="mx-1" value="Women" type="checkbox" onChange={handleGenderChange} />
-                  <span>Women</span>
-                  </Form.Group>
-                  <Form.Group>
+                <Form.Label className="my-1">Gender : </Form.Label>
+                {genderData?.getAllGender && genderData?.getAllGender?.map((g) => 
+                <div key={g?.id} className="d-inline">
+                <input className="mx-1" value={g?.genderName} type="checkbox" 
+                  onChange={handleGenderChange} />
+                <span>{g?.genderName}</span></div>
+                )}
+              </Form.Group>
+
+              <Form.Group>
                 <Form.Label className="my-1">Color : </Form.Label> 
                 {color?.getAllColor && color?.getAllColor?.map((colors) => 
                 <div key={colors.id} className="d-inline">
@@ -170,9 +185,9 @@ function CreateProduct() {
                   onChange={handleColorBox} />
                 <span>{colors?.colorName}</span></div>
                 )}
-                  </Form.Group>
-                  <Form.Group>
-
+              </Form.Group>
+              
+              <Form.Group>
                 <Form.Label className="my-1">Size : </Form.Label> 
                 {sizedata?.getAllSize && sizedata?.getAllSize?.map((size) => 
               <div key={size.id} className="d-inline">
@@ -180,9 +195,7 @@ function CreateProduct() {
                   onChange={handleSizeChange} />
                 <span>{size?.sizeName}</span> </div>
                 )}
-                  </Form.Group>
-
-
+              </Form.Group>
               <Form.Group className="my-1">
                 <Form.Label>Description</Form.Label>
                 <Form.Control as="textarea" value={description} onChange={(e) => setDescription(e.target.value)} />

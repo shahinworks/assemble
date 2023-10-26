@@ -27,7 +27,16 @@ function ListProduct() {
 
 const { data: sizedata } = useQuery(GET_ALL_SIZE);
 
-const genderData = ["Men", "Women"];
+const GET_ALL_GENDER = gql`
+  query Query {
+    getAllGender {
+      id
+      genderName
+    }
+  }
+`;
+
+const { data: genderData } = useQuery(GET_ALL_GENDER);
 
   const [modal, showModal] = useState(false);
 
@@ -98,7 +107,7 @@ const genderData = ["Men", "Women"];
   const [discount, setDiscount] = useState("");
   const [stock, setStock] = useState("");
   const [sellingPrice, setSellingPrice] = useState("");
-  const [purchasePrice, setPurchasePrice] = useState("");
+  // const [purchasePrice, setPurchasePrice] = useState("");
   const [gender, setGender] = useState("");
   const [allcolor, setAllcolor] = useState([]);
   const [allsize, setAllSize] = useState("");
@@ -107,32 +116,32 @@ const genderData = ["Men", "Women"];
 
 
   const EDIT_PRODUCT = gql`
-  mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $purchasePrice: Float, $sellingPrice: Float, $gst: Float, $discount: Float, $description: String) {
-    updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, purchasePrice: $purchasePrice, sellingPrice: $sellingPrice, gst: $gst, discount: $discount, description: $description) {
-      id
-      productName
-      priveiwName
-      sellingPrice
-      images {
-        imagePath
-        color
-        gender
-      }
-      size
-      color
-      gender
-      discount
-      gst
-      description
-      stock {
-        quantity
-        gender
-        color
+    mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $description: String, $discount: Float, $gst: Float) {
+      updateProduct(id: $updateProductId, productName: $productName, priveiwName: $priveiwName, size: $size, color: $color, gender: $gender, sellingPrice: $sellingPrice, description: $description, discount: $discount, gst: $gst) {
+        id
+        productName
+        priveiwName
+        sellingPrice
+        images {
+          imagePath
+          color
+          gender
+        }
         size
+        color
+        gender
+        discount
+        gst
+        description
+        stock {
+          quantity
+          gender
+          color
+          size
+        }
       }
     }
-  }
-`;
+  `;
 
   // const EDIT_PRODUCT = gql`
   //   mutation UpdateProduct($updateProductId: ID!, $productName: String, $priveiwName: String, $size: [String], $color: [String], $gender: [String], $sellingPrice: Float, $purchasePrice: Float, $discount: Float, $gst: Float, $description: String, $productImages: [Upload], $stock: Int) {
@@ -191,29 +200,27 @@ const genderData = ["Men", "Women"];
       setProductName("");
       setPreviewName("");
       setDiscount("");
-      // setStock("");
       setSellingPrice("");
-      setPurchasePrice("");
       setGender([]);
       setAllSize([]);
       setDescription("");
+      setGST("");
     }
   });
 
 
-    const handleEdit = async (id, productName, priveiwName, sellingPrice, purchasePrice, size, color, discount, gender, description, stock) => {
+    const handleEdit = async (id, productName, priveiwName, sellingPrice, size, color, discount, gender, description, gst) => {
       showModal(true);
       setUpdateProductId(id);
       setAllcolor(color);
       setProductName(productName);
       setPreviewName(priveiwName);
       setDiscount(discount);
-      // setStock(stock);
       setSellingPrice(sellingPrice);
-      setPurchasePrice(purchasePrice);
       setGender(gender);
       setAllSize(size);
       setDescription(description);
+      setGST(gst);
 
     }
 
@@ -227,7 +234,6 @@ const genderData = ["Men", "Women"];
           color: allcolor,
           gender,
           sellingPrice: parseFloat(sellingPrice),
-          purchasePrice: parseFloat(purchasePrice),
           discount: parseFloat(discount),
           gst: parseFloat(gst),
           description: description,
@@ -270,16 +276,13 @@ const genderData = ["Men", "Women"];
                     <td> {item.productName} </td>
                     <td> {item.priveiwName} </td>
                     <td> {item.sellingPrice} </td>
-                    {/* <td>
-                    <img src={item.images} width="30" height="30" /> 
-                    </td> */}
                     <td> {item.size.join(", ")} </td>
                     <td> {item.color.join(", ")} </td>
                     <td> {item.gender.join(", ")} </td> 
                     <td> {item.discount} </td>
                     <td> {item.description} </td>
                     <td>
-                      <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.purchasePrice , item.size, item.color, item.discount, item.gender, item.description, item.stock )}>
+                      <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.productName, item.priveiwName,  item.sellingPrice, item.size, item.color, item.discount, item.gender, item.description, item.gst )}>
                         <Pencil size={20} color="black"/>
                       </Button>{" "}
                       <Button className="btn btn-sm btn-light" onClick={() => handleDelete(item.id)}>
@@ -331,10 +334,6 @@ const genderData = ["Men", "Women"];
               </Form.Group>
 
               <Form.Group  className="my-1">
-                <Form.Label>Purchase Price</Form.Label>
-                <Form.Control type="text" value={purchasePrice} onChange={(e) => setPurchasePrice(e.target.value)} />
-              </Form.Group>
-              <Form.Group  className="my-1">
                 <Form.Label>GST</Form.Label>
                 <Form.Control type="text" value={gst} onChange={(e) => setGST(e.target.value)} />
               </Form.Group>
@@ -355,12 +354,12 @@ const genderData = ["Men", "Women"];
 
               <Form.Group  className="my-1">
                <Form.Label>Gender: </Form.Label> 
-                {genderData && genderData?.map((g) => 
+                {genderData && genderData?.getAllGender?.map((g) => 
               <div key={g} className="d-inline">
-                <input className="mx-1" value={g} type="checkbox" 
-                 checked={gender.includes(g)}
+                <input className="mx-1" value={g?.genderName} type="checkbox" 
+                 checked={gender.includes(g?.genderName)}
                onChange={handleGenderChange} />
-                <span>{g}</span> </div>
+                <span>{g?.genderName}</span> </div>
                 )}
                </Form.Group>
 

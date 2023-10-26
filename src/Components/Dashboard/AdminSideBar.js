@@ -45,6 +45,10 @@ function AdminSideBar() {
           <MenuItem component={<Link to="/admin/CreateColor" />} >Create Color </MenuItem>
           <MenuItem component={<Link to="/admin/ListColor" />} >List Color </MenuItem>
           </SubMenu>
+          <SubMenu active label="Gender" icon={<Balloon color='black' size={20} />}>
+          <MenuItem component={<Link to="/admin/CreateGender" />} >Create Gender </MenuItem>
+          <MenuItem component={<Link to="/admin/ListGender" />} >List Gender </MenuItem>
+          </SubMenu>
           <SubMenu active label="Size" icon={<Balloon color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSize" />} >Create Size </MenuItem>
           <MenuItem component={<Link to="/admin/ListSize" />} >List Size </MenuItem>

@@ -3,31 +3,41 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 import { Row, Col, Button } from 'react-bootstrap';
 import { Cart, Heart, Trash } from 'react-bootstrap-icons';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 function Wishlist() {  
 
   const GET_WISHLIST_ITEMS = gql`
     query Wishlist {
-        wishlist {
-          userId
-          wishlistProducts {
-            productId {
-              id
-              productName
-              priveiwName
-              sellingPrice
-              images
-              size
+      wishlist {
+        id
+        wishlistProducts {
+          productId {
+            id
+            productName
+            priveiwName
+            sellingPrice
+            images {
+              imagePath
               color
               gender
-              discount
-              gst
-              description
-              stock
+            }
+            size
+            color
+            gender
+            discount
+            gst
+            description
+            stock {
+              quantity
+              gender
+              color
+              size
             }
           }
         }
       }
+    }
   `;
 
   const {data} = useQuery(GET_WISHLIST_ITEMS);
@@ -107,10 +117,10 @@ function Wishlist() {
       <div key={wish?.productId?.id} className='mb-1 mx-1 px-0 mt-1'>
         <Row className='my-2'>
           <Col className='col-2' />
-          <Col className='col-3'><img style={{height: "100px", width:"70px", border: "2px solid black"}} src={wish?.productId?.images } alt="s"/></Col>
-          <Col className='col-4'> <p className='fs-6'>{wish?.productId?.productName}</p>
+          <Col className='col-3'> <Link to={`/product/${wish?.productId?.id}`} className='stretched-link'>  <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={wish?.productId?.images[0]?.imagePath[0] } alt="s"/> </Link></Col>
+          <Col className='col-4'>  <Link to={`/product/${wish?.productId?.id}`} className='stretched-link'>  <p className='fs-6 text-black'>{wish?.productId?.productName}</p> </Link>
             <Row>
-              <Col className='fw-bold'>₹ {wish?.productId?.sellingPrice}</Col>
+              <Col className='fw-bold'> ₹ {wish?.productId?.sellingPrice}</Col>
             </Row>
           </Col>
           <Col className='col-3'>

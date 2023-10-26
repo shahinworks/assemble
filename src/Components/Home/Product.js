@@ -262,8 +262,8 @@ function Product() {
               <h1>{product?.getProduct?.productName}</h1>
               <br />
               {product?.getProduct?.discount > 0 ? <h3>
-                <del>₹ {sellingPrice}</del>
-                {" "} ₹ {product?.getProduct?.sellingPrice} 
+                <del> ₹  {product?.getProduct?.sellingPrice}</del>
+                {" "} ₹ {sellingPrice}
               </h3>:  <h3> ₹ {product?.getProduct?.sellingPrice}
               </h3>}
              
