@@ -95,6 +95,7 @@ function Profile() {
   const [createAddress,  {data : addressData}] = useMutation(CREATE_ADDRESS, {
     onCompleted : () => {
       toast.success("Address Saved Successfully");
+      refetch();
     },
     onError : (error) => {
       toast.error("Error ");
@@ -140,6 +141,7 @@ function Profile() {
   const [editUser, {data : profileData}] = useMutation(EDIT_USER_PROFILE, {
     onCompleted : () => {
       toast.success("Profile Updated");
+      refetch();
     }, 
     onError : (error) => {
       console.log("ERROR ", error.message);
@@ -186,7 +188,12 @@ function Profile() {
     }
   `;
 
-  const [changePassword,  {data : passwordData } ]= useMutation(CHANGE_PASSWORD);
+  const [changePassword,  {data : passwordData } ]= useMutation(CHANGE_PASSWORD, {
+    onCompleted : () => {
+      toast.success("Password Updated");
+      refetch();
+    }
+  });
 
   if(passwordData){
     console.log("passwordData", passwordData);
@@ -340,6 +347,7 @@ function Profile() {
   const [deleteAdd, {data: deleteAddress }] = useMutation(DELETE_ADDRESS, {
     onCompleted : () => {
       toast.success("Deleted");
+      refetch();
     }
   });
 
@@ -370,7 +378,12 @@ function Profile() {
     }
   `;
  
-  const [editAddress,  {data: editAddressData}] = useMutation(EDIT_ADDRESS);
+  const [editAddress,  {data: editAddressData}] = useMutation(EDIT_ADDRESS, {
+    onCompleted : () => {
+      toast.success("Address Updated Successfully");
+      refetch();
+    }
+  });
 
   const [editAddId, setEditAddId] = useState("");
   const [editAdd1, setEditAdd1] = useState("");
