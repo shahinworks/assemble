@@ -298,11 +298,13 @@ function Profile() {
           <h5>Email :  {data?.getProfile?.email}</h5>
           <h5>Phone :  {data?.getProfile?.mobileNo}</h5>
           <h5>Role :  {data?.getProfile?.role.join(", ")}</h5>
-          <Button className='btn btn-sm btn-light' style={{backgroundColor: "white", border: "1px solid white"}} onClick={() => handleEditValues( 
-           data.getProfile.firstName, data.getProfile.lastName, data.getProfile.mobileNo, data.getProfile.email, data.getProfile.profilepic) }> <PencilSquare color='black' size={20} /></Button>
-            <Button className='btn btn-sm' style={{backgroundColor: "white", border: "1px solid white"}} 
+
+          {/* style={{backgroundColor: "white", border: "1px solid white"}} */}
+          <Button className='btn btn-sm' variant='outline-dark'   onClick={() => handleEditValues( 
+           data.getProfile.firstName, data.getProfile.lastName, data.getProfile.mobileNo, data.getProfile.email, data.getProfile.profilepic) }> Edit Profile <PencilSquare  size={20} /></Button>
+            <Button className='btn btn-sm mx-1'  variant='outline-dark' 
             onClick={() => setAddressModal(!addressModal)}> 
-            <HouseAdd color='black' size={20} />
+            Add Address <HouseAdd  size={20} />
             </Button>
             <Button className='btn btn-sm'  variant='outline-dark'  
              onClick={() => setPasswordModal(true)}> 
