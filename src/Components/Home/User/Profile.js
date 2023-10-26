@@ -307,11 +307,7 @@ function Profile() {
     if(orderData){
       console.log("UserOrders", orderData);
     }
-
-
-  const [ showAddressModal, setShowAddressModal ] = useState(false);
-   
-    
+       
   const SHOW_ALL_ADDRESS_BY_USER = gql`
     query GetAllAddressesByUser {
       getAllAddressesByUser {
@@ -442,10 +438,10 @@ function Profile() {
              onClick={() => setPasswordModal(true)}> 
               Reset Password
             </Button>
-            <Button className='btn btn-sm mx-1'  variant='outline-dark'  
+            {/* <Button className='btn btn-sm mx-1'  variant='outline-dark'  
              onClick={() => setShowAddressModal(true)}> 
               Show Address
-            </Button>
+            </Button> */}
           </Card.Body>
         </Card>}
 
