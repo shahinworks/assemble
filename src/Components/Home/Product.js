@@ -189,8 +189,8 @@ function Product() {
   const handleSizeArray = (arr) => {
     setImageArray(arr);
   }
-
-const [index, setIndex] = useState(null);
+  
+  // Style when Color is selected
   const [select, setSelect] = useState(0);
   
   const colorSelectedStyle = {
@@ -199,19 +199,17 @@ const [index, setIndex] = useState(null);
     color: "white"
   };
 
-
   const colorNotSelectedStyle = {
     border: "1px solid black",
   }
  
-
   const handleSelection = (id) => {
     setSelect(id);
   }
   
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
-  <div className="container">
+    <div className="container">
     <section className="slider" style={{ paddingTop: "10%" }}>
       <div className="container" id="container">
         <div className="row">
@@ -523,9 +521,9 @@ const [index, setIndex] = useState(null);
       </div>
       <b></b>
     </section>
-  </div>
-  <b></b>
-<section className="slider">
+    </div>
+    <b></b>
+    <section className="slider">
   <h1 className="text-center" style={{ fontFamily: "poppins", fontWeight: "bolder", fontSize: "30px" }}>
     You may also like 
   </h1>
@@ -550,9 +548,9 @@ const [index, setIndex] = useState(null);
           </div>
     </div>
   </div>
-</section>
+    </section>
 
-<section>
+    <section>
   <div className="container" id="container-last">
     <h4>
       <b className="text-start">Recently Viewed</b>
@@ -638,7 +636,7 @@ const [index, setIndex] = useState(null);
       </div>
     </div>
   </div>
-</section>
+    </section>
   </>);
 }
 
