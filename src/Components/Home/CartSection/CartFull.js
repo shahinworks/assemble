@@ -164,7 +164,7 @@ function CartFull() {
           quantity : item?.quantity,
         }
     });
-    navigate('/checkout', {state: newArray });
+    navigate('/checkout', { state: newArray });
   }
   return (<>
     <div style={{paddingTop: "10%"}}> 
