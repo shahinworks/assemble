@@ -13,6 +13,8 @@ function Checkout(props) {
 
   const [modal, showModal] = useState(false);
 
+  const [payNowCheck, setPayNowCheck] = useState(true);
+
 
   const [ totalAmount, setTotalAmount] = useState(state?.reduce((acc, curr) => acc + curr?.quantity * curr?.price, 0));
   // setTotalAmount(state?.reduce((acc, curr) => acc + curr?.quantity * curr?.price, 0));
@@ -234,6 +236,14 @@ if(addressByUser){
     }
   }, [paymentData?.makePayment]);
 
+  const [addressForShipping,  setAddressForShipping] = useState("");
+
+  useEffect(() => {
+    if( totalAmount && state &&  addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id ){
+      setPayNowCheck(false);
+    }
+   
+  }, [totalAmount, state, addressForShipping, billingAddress?.getAllAddressesByUser[0]?.id  ]);
  
   const handleOrder = async () => {
     if( totalAmount && state &&  addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id )
@@ -277,7 +287,7 @@ if(addressByUser){
   }
   
 
-  const [addressForShipping,  setAddressForShipping] = useState("");
+ 
 
   // Setting Shipping Address ID
   useEffect(() => {
@@ -347,8 +357,134 @@ if(addressByUser){
     </div>
     <hr className='my-0 py-0'/>
 
+
+  
+
     <Row className='mx-3'>
       <Col className="col-lg-7">
+
+      {/* <Card>
+      <Card.Body> */}
+      <div className="accordion" id="accordionExample">
+  <div className="accordion-item">
+    <h2 className="accordion-header" id="headingOne">
+      <button
+        className="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+         <h4> 1. Delivery Address  </h4>
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      className="accordion-collapse collapse show"
+      aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample"
+    >
+      <div className="accordion-body">
+        
+      {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
+    <Card key={address.id} className="mb-5 mt-2" >
+                  <Card.Body className="mb-3">
+                    <Row>
+                        <div className="mb-3">
+                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
+                          <div>
+                            {address.firstName} {address.lastName}
+                          </div>
+                          <div>
+                            {address.addressLine1}, {address.addressLine2}
+                          </div>
+                          <div>
+                            {address.city}, {address.postalCode}
+                          </div>
+                          <div>
+                            {address.state}, {address.country}
+                          </div>
+                          <div>{address.mobileNo}</div>
+                        </div>
+                   
+      <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setAddressForShipping(address.id)}/>
+        <p className='px-2 mx-4'> Select this Address for Shipping</p>
+  </Row>
+  </Card.Body>
+    </Card> )}
+    <Button onClick={() => showModal(true)} className='my-2' variant='outline-dark' > Add NEW ADDRESS </Button>
+        
+      </div>
+    </div>
+  </div>
+  <div className="accordion-item">
+    <h2 className="accordion-header" id="headingTwo">
+      <button
+        className="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      > 
+        <h4>2. Payment Method</h4>
+      </button>
+    </h2>
+    <div
+      id="collapseTwo"
+      className="accordion-collapse collapse"
+      aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample"
+    >
+      <div className="accordion-body">
+        <strong>This is the second item's accordion body.</strong> It is hidden
+        by default, until the collapse plugin adds the appropriate classes that
+        we use to style each element. These classes control the overall
+        appearance, as well as the showing and hiding via CSS transitions. You
+        can modify any of this with custom CSS or overriding our default
+        variables. It's also worth noting that just about any HTML can go within
+        the <code>.accordion-body</code>, though the transition does limit
+        overflow.
+      </div>
+    </div>
+  </div>
+  {/* <div className="accordion-item">
+    <h2 className="accordion-header" id="headingThree">
+      <button
+        className="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseThree"
+        aria-expanded="false"
+        aria-controls="collapseThree"
+      >
+       <h4>3. Payment Method</h4>
+      </button>
+    </h2>
+    <div
+      id="collapseThree"
+      className="accordion-collapse collapse"
+      aria-labelledby="headingThree"
+      data-bs-parent="#accordionExample"
+    >
+      <div className="accordion-body">
+        <strong>This is the third item's accordion body.</strong> It is hidden
+        by default, until the collapse plugin adds the appropriate classes that
+        we use to style each element. These classes control the overall
+        appearance, as well as the showing and hiding via CSS transitions. You
+        can modify any of this with custom CSS or overriding our default
+        variables. It's also worth noting that just about any HTML can go within
+        the <code>.accordion-body</code>, though the transition does limit
+        overflow.
+      </div>
+    </div>
+  </div> */}
+</div>
+
+      {/* </Card.Body>
+    </Card> */}
+
         <div className='mx-3 mt-5'>
         {/* <h5>Shippin Address</h5>
         <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setShippingAsBilling(!shippingAsBilling)}/> <p className='px-2 mx-4'> Same as Billing Address</p>
@@ -464,40 +600,17 @@ if(addressByUser){
 
 
 
-           {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
-    <Card key={address.id} className="mb-5 mt-2" >
-                  <Card.Body className="mb-3">
-                    <Row>
-                        <div className="mb-3">
-                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
-                          <div>
-                            {address.firstName} {address.lastName}
-                          </div>
-                          <div>
-                            {address.addressLine1}, {address.addressLine2}
-                          </div>
-                          <div>
-                            {address.city}, {address.postalCode}
-                          </div>
-                          <div>
-                            {address.state}, {address.country}
-                          </div>
-                          <div>{address.mobileNo}</div>
-                        </div>
-                   
-      <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setAddressForShipping(address.id)}/>
-        <p className='px-2 mx-4'> Select this Address for Shipping</p>
-  </Row>
-  </Card.Body>
-    </Card> )}
-    <Button onClick={() => showModal(true)} className='my-2' variant='outline-dark' > Add NEW ADDRESS </Button>
+         
 
         </div>
-      <div className='mt-5 mb-5 mx-3'>
+    
     {/* <h3 className='mt-5 mb-5'>Checkout</h3> */}
-    <Button style={{backgroundColor: "black", color: "white"}} onClick={() => handleOrder()}>Pay Now</Button>
-    </div>
-      </Col>
+    
+     
+    <Row className='mt-5 mb-5 mx-4 px-4'> 
+        <Button  disabled={payNowCheck} className='py-3 ' style={{backgroundColor: "black", color: "white", fontSize: "20px"}} onClick={() => handleOrder()}>Pay Now</Button>
+    </Row>
+    </Col>
 
 
 
