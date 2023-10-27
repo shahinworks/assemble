@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation, useLazyQuery, useQuery } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Row, Col, Form } from 'react-bootstrap';
+import { Button, Row, Col, Form, Card } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Cart } from 'react-bootstrap-icons';
 import * as Yup from 'yup';
@@ -33,6 +33,28 @@ function Checkout(props) {
       }
     }
   `;
+
+  const SHOW_ALL_ADDRESS_BY_USER = gql`
+  query GetAllAddressesByUser {
+    getAllAddressesByUser {
+      id
+      firstName
+      lastName
+      mobileNo
+      addressLine1
+      addressLine2
+      city
+      state
+      postalCode
+      country
+    }
+  }
+`;
+
+const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_USER );
+if(addressByUser){
+  console.log("addressByUser", addressByUser);
+}
 
   // CREATE ORDER 
   const CREATE_ORDER = gql`
@@ -248,7 +270,9 @@ function Checkout(props) {
   const goToCart = () => {
     navigate('/cart', {state});
   }
+  
 
+  const [addressForShipping,  setAddressForShipping] = useState("");
 
   // Setting Shipping Address ID
   useEffect(() => {
@@ -429,7 +453,7 @@ function Checkout(props) {
                       {/* <Button onClick={() => setAddressModal(false)} variant="primary" className="btn-icon me-2">
                         Cancel
                       </Button> */}
-                      <Button variant="primary" className="btn-icon btn-icon-start" type="submit">
+                      <Button variant="primary" className="btn-icon btn-icon-start mb-3" type="submit">
                         Submit Address
                       </Button>
                     </div>
@@ -437,6 +461,33 @@ function Checkout(props) {
           {/* <Button onClick={() => handleSubmitAddress()}>Submit Address</Button> */}
            </>}
           
+
+
+           {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
+    <Card key={address.id} className="mb-5" >
+                  <Card.Body className="mb-3">
+                    <Row>
+                        <div className="mb-3">
+                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
+                          <div>
+                            {address.firstName} {address.lastName}
+                          </div>
+                          <div>
+                            {address.addressLine1}, {address.addressLine2}
+                          </div>
+                          <div>
+                            {address.city}, {address.postalCode}
+                          </div>
+                          <div>
+                            {address.state}, {address.country}
+                          </div>
+                          <div>{address.mobileNo}</div>
+                        </div>
+                   
+                        <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setAddressForShipping(address.id)}/> <p className='px-2 mx-4'> Select Address for Shipping</p>
+                    </Row>
+                  </Card.Body>
+    </Card> )}
           
         </div>
       <div className='mt-5 mb-5 mx-3'>
