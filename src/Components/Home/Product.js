@@ -442,13 +442,13 @@ function Product() {
               </button>
             </div>
             <br />
-            <div className="d-flex justify-content-center">
+            {/* <div className="d-flex justify-content-center">
               <button className="button2  d-flex justify-content-evenly">
                 <a href="#" className="text-center">
                   Buy Now
                 </a>
               </button>
-            </div>
+            </div> */}
             <br />
            
          <Tabs>
