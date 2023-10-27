@@ -311,8 +311,6 @@ const [index, setIndex] = useState(null);
               {color.color}
             </div>)}
             </div>
-
-
               <h6 className='fw-bold mx-2 text-left'>
                 Gender
               </h6>
