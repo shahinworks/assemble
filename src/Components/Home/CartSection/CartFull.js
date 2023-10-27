@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Cart } from 'react-bootstrap-icons';
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import { Button, Col, Row } from 'react-bootstrap';
+import toast from 'react-hot-toast';
 
 function CartFull() {
 
@@ -52,29 +53,47 @@ function CartFull() {
       getCartData();
     }, []);
 
+  // const REMOVE_FROM_CART = gql`
+  //   mutation RemoveFromCart($productId: ID) {
+  //     removeFromCart(productId: $productId) {
+  //       _id
+  //       cartProducts {
+  //         productId {
+  //           id
+  //         }
+  //         color
+  //         gender
+  //         size
+  //         quantity
+  //       }
+  //     }
+  //   }
+  // `;
+
+
   const REMOVE_FROM_CART = gql`
-    mutation RemoveFromCart($productId: ID) {
-      removeFromCart(productId: $productId) {
+    mutation RemoveFromCart($productId: ID, $color: String, $size: String, $gender: String) {
+      removeFromCart(productId: $productId, color: $color, size: $size, gender: $gender) {
         _id
-        cartProducts {
-          productId {
-            id
-          }
-          color
-          gender
-          size
-          quantity
-        }
       }
     }
   `;
 
-  const [removeFromCart,  {data: removeData}] = useMutation(REMOVE_FROM_CART);
 
-  const handleRemove = async (id) => {
+  const [removeFromCart,  {data: removeData}] = useMutation(REMOVE_FROM_CART, {
+    onCompleted: () => {
+      toast.success("Item Removed from Cart");
+      refetch();
+    }
+  });
+
+  const handleRemove = async (id, color, gender, size) => {
     await removeFromCart({
       variables: {
-        productId: id
+        productId : id,
+        color : color,
+        gender : gender,
+        size : size 
       }
     });
   }
@@ -153,7 +172,7 @@ function CartFull() {
               <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
             </Col>
             <Col className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
-            <Col><Button onClick={() => handleRemove(item?.productId?.id)} style={{marginRight: "0px", border: "none"}} className='my-0 py-0 d-inline me-0 ms-5' variant='outline-danger' > Remove </Button></Col>
+            <Col><Button onClick={() => handleRemove(item?.productId?.id, item?.color, item?.gender, item?.size )} style={{marginRight: "0px", border: "none"}} className='my-0 py-0 d-inline me-0 ms-5' variant='outline-danger' > Remove </Button></Col>
             
           </Row>
         </Col>
