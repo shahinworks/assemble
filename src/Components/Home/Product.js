@@ -198,9 +198,6 @@ function Product() {
   console.log("imageArray", imageArray);
 
 
-  // select === index ? style={{select === index ? 'primary' : 'outline-primary', border: "1px solid black"}}
-  // style={{border: "1px solid black"}} 
-  // variant={select === index ? 'primary' : 'outline-primary'}
 
 const [index, setIndex] = useState(null);
   const [select, setSelect] = useState(0);
