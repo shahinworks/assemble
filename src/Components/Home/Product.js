@@ -231,6 +231,16 @@ function Product() {
     setGenSel(id);
   }
 
+  const genderSelectedStyle = {
+    border: "1px solid black",
+    backgroundColor: "black",
+    color: "white"
+  };
+
+  const genderNotSelectedStyle = {
+    border: "1px solid black",
+  }
+
  
   
   
@@ -330,7 +340,9 @@ function Product() {
               </h6>
               <div className='ms-0 d-flex'>
                {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
-              <div key={gender}  onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}}  className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}> {gender} </div>)}
+              <div key={gender} 
+              style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
+               onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}}  className='mx-2 my-2 px-3 py-2'> {gender} </div>)}
               </div>
              
               <h6 className='fw-bold mx-2 text-left'>
