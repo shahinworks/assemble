@@ -52,6 +52,7 @@ function ListSlider() {
       setContent("");
       setUrl("");
       setImages(null);
+      refetch();
     },
     onError : (error) => {
       if(error.message ===  "Authorization header is missing" || "ERROR: jwt malformed"){
@@ -98,6 +99,7 @@ function ListSlider() {
   const [deleteSlider, {data : dataDel} ]= useMutation(DELETE, {
     onCompleted: () => {
       toast.success("Deleted Successfully");
+      refetch();
     },
     onError: (error) => {
       if(error.message ===  "Authorization header is missing" || "ERROR: jwt malformed"){
@@ -124,13 +126,13 @@ function ListSlider() {
     <h2 className='text-center my-2'>List of Slider Images</h2>
    
     {data?.getAllHomePageSlider && data?.getAllHomePageSlider?.map((item, index) => 
-       <div key={item.id} className='d-flex'>
+       <div key={item?.id} className='d-flex'>
         <Col className='col-2'>
-        <img style={{height: "40px", width: "70px"}} src={item.images} aly="pic"/> 
+        <img style={{height: "40px", width: "70px"}} src={item?.images} aly="pic"/> 
         </Col> 
         <Col className='col-8'>
-          <p>Content: {item.content}</p>
-          <p>URL: {item.url}</p> 
+          <p>Content: {item?.content}</p>
+          <p>URL: {item?.url}</p> 
           </Col>
           <Col className='col-2'>
           <Button className="btn btn-sm btn-light" onClick={() => handleEdit(item.id, item.content, item.url )}>
