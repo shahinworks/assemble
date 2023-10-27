@@ -107,12 +107,23 @@ function Checkout(props) {
   
   // CREATE SHIPPING ADDRESS
   const CREATE_SHIPPING_ADDRESS = gql`
-    mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $firstName: String, $lastName: String, $mobileNo: String, $addressLine2: String) {
-      createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo, addressLine2: $addressLine2) {
-        id
-      }
+  mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $addressLine2: String, $mobileNo: String, $lastName: String, $firstName: String) {
+    createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, addressLine2: $addressLine2, mobileNo: $mobileNo, lastName: $lastName, firstName: $firstName) {
+      id
     }
- `;
+  }
+  `;
+
+
+
+
+//   const CREATE_SHIPPING_ADDRESS = gql`
+//     mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $firstName: String, $lastName: String, $mobileNo: String, $addressLine2: String) {
+//       createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, firstName: $firstName, lastName: $lastName, mobileNo: $mobileNo, addressLine2: $addressLine2) {
+//         id
+//       }
+//     }
+//  `;
 
 
   // GET CART 
@@ -187,9 +198,9 @@ function Checkout(props) {
   //   console.log("paymentData", paymentData);
   // }
 
-  // if(shippingData){
-  //   console.log(shippingData?.createAddress?.id)
-  // }
+  if(shippingData){
+    console.log(shippingData?.createAddress?.id)
+  }
 
   useEffect(() => {
     if(paymentData?.makePayment?.success){
@@ -290,6 +301,8 @@ function Checkout(props) {
         ...values,
       },
     });
+
+    console.log("createShippingAddress Clicked")
     
         // setTimeout(() => {
         //   resetForm({ values: '' });
@@ -320,29 +333,13 @@ function Checkout(props) {
           Add New Shipping Address
         </h5>
         <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
-                    <div className="mb-3 d-flex filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="home" /> */}
-                      <Form.Control
-                        type="text"
-                        className='col-6 ms-0 me-1'
-                        autoComplete="firstName"
-                        name="firstName"
-                        onChange={handleChange}
-                        placeholder="Enter first Name..."
-                        value={values.firstName}
-                      />
-                      {errors.firstName && touched.firstName && <div className="d-block invalid-tooltip">{errors.firstName}</div>}
-                   
-                      {/* <CsLineIcons icon="home" /> */}
-                      <Form.Control
-                        type="text"
-                        autoComplete="lastName"
-                        className='col-6 me-0 ms-0'
-                        name="lastName"
-                        onChange={handleChange}
-                        placeholder="Enter last Name..."
-                        value={values.lastName}
-                      />
+          <div className="mb-3 d-flex filled form-group tooltip-end-top">
+           {/* <CsLineIcons icon="home" /> */}
+            <Form.Control type="text" className='col-6 ms-0 me-1' autoComplete="firstName"  name="firstName"
+             onChange={handleChange} placeholder="Enter first Name..." value={values.firstName} />
+             {errors.firstName && touched.firstName && <div className="d-block invalid-tooltip">{errors.firstName}</div>}
+              {/* <CsLineIcons icon="home" /> */}
+           <Form.Control  type="text"  autoComplete="lastName" className='col-6 me-0 ms-0' name="lastName" onChange={handleChange} placeholder="Enter last Name..." value={values.lastName} />
                       {errors.lastName && touched.lastName && <div className="d-block invalid-tooltip">{errors.lastName}</div>}
                     </div>
                     <div className="mb-3 filled form-group tooltip-end-top">
