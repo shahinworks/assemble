@@ -225,9 +225,13 @@ function Product() {
   }
 
   // Style when Gender is selected
+  const [genSel, setGenSel] = useState(0);
+
   const handleGenderSeletion = (id) => {
-    setSizeSel(id);
+    setGenSel(id);
   }
+
+ 
   
   
   return (<>
