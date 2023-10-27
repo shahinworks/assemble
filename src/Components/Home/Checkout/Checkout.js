@@ -236,14 +236,15 @@ if(addressByUser){
 
  
   const handleOrder = async () => {
-    if( totalAmount && state &&  shippingAddress &&  billingAddress?.getAllAddressesByUser[0]?.id )
+    if( totalAmount && state &&  addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id )
     {
       await createOrder({
         variables: {
           paymentMethod: "ONLINE",
           totalAmount: totalAmount,
           orderProducts: state,
-          shippingAddress : shippingAddress,
+          shippingAddress : addressForShipping,
+          // shippingAddress,
           // shippingAddress: shippingData?.createAddress?.id,
           billingAddress: billingAddress?.getAllAddressesByUser[0]?.id,
           status: "pending"
@@ -464,7 +465,7 @@ if(addressByUser){
 
 
            {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
-    <Card key={address.id} className="mb-5" >
+    <Card key={address.id} className="mb-5 mt-2" >
                   <Card.Body className="mb-3">
                     <Row>
                         <div className="mb-3">
@@ -484,11 +485,12 @@ if(addressByUser){
                           <div>{address.mobileNo}</div>
                         </div>
                    
-                        <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setAddressForShipping(address.id)}/> <p className='px-2 mx-4'> Select Address for Shipping</p>
-                    </Row>
-                  </Card.Body>
+      <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setAddressForShipping(address.id)}/>
+        <p className='px-2 mx-4'> Select this Address for Shipping</p>
+  </Row>
+  </Card.Body>
     </Card> )}
-    <Button onClick={() => showModal(true)}> Add NEW ADDRESS </Button>
+    <Button onClick={() => showModal(true)} className='my-2' variant='outline-dark' > Add NEW ADDRESS </Button>
 
         </div>
       <div className='mt-5 mb-5 mx-3'>
