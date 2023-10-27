@@ -302,12 +302,8 @@ function Checkout(props) {
       },
     });
 
-    console.log("createShippingAddress Clicked")
-    
-        // setTimeout(() => {
-        //   resetForm({ values: '' });
-        // }, 10);
-    
+    console.log("createShippingAddress Clicked");
+ 
   };
     
   const formik = useFormik({ initialValues, validationSchema, onSubmit });
