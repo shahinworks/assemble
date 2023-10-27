@@ -511,9 +511,10 @@ if(addressByUser){
           alt="s"/>
         </Col>
         <Col className='col-5 mx-2'>
-          <p className='fs-6'>{item?.productId?.productName}</p>
-          <p className='fs-6'>{item?.size}</p>
-          <p className='fs-6'>{item?.color}</p> </Col>
+          <p className='fs-6 my-0 py-0'>{item?.productId?.productName}</p>
+          <p className='fs-6  my-0 py-0'>{item?.size}</p>
+          <p className='fs-6  my-0 py-0'>{item?.color}</p>
+          <p className='fs-6  my-0 py-0'>{item?.gender}</p>  </Col>
         <Col className='col-2'> 
           {/* <Row> */}
          
