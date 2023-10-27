@@ -223,6 +223,12 @@ function Product() {
   const sizeNotSelectedStyle = {
     border: "1px solid black",
   }
+
+  // Style when Gender is selected
+  const handleGenderSeletion = (id) => {
+    setSizeSel(id);
+  }
+  
   
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
@@ -319,8 +325,8 @@ function Product() {
                 Gender
               </h6>
               <div className='ms-0 d-flex'>
-               {product?.getProduct && product?.getProduct?.gender.map((gender) =>
-              <div key={gender}  onClick={() => handleCartGender(gender)}  className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}> {gender} </div>)}
+               {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
+              <div key={gender}  onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}}  className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}> {gender} </div>)}
               </div>
              
               <h6 className='fw-bold mx-2 text-left'>
