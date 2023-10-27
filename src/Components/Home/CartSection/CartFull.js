@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Cart } from 'react-bootstrap-icons';
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button, Col, Row , Modal} from 'react-bootstrap';
 import toast from 'react-hot-toast';
 
 function CartFull() {
@@ -154,17 +154,33 @@ function CartFull() {
     // console.log("sum", sum);
   }, [ cartData, cartValue ]);
   
+  const goToCheckOut = async () => {
+    navigate('/checkout');
 
+    // const newArray =  cartData?.cart?.cartProducts?.map((item) => {
+    //   return {
+    //       price : item?.productId?.sellingPrice,
+    //       productId :  item?.productId?.id,
+    //       quantity : item?.quantity,
+    //     }
+    // });
+
+    // navigate('/checkout', {state: newArray });
+    // onHide();
+  }
   return (<>
     <div style={{paddingTop: "10%"}}> 
-      <h1 className='mx-4'>Cart </h1>
-    <Button variant='link' onClick={() => goToCart()}> <Cart/> </Button>
+      <h1 className='mx-4 text-center mb-5' style={{fontSize: "40px", fontWeight:"bold"}}> Cart </h1>
+      
+    {/* <Button variant='link' onClick={() => goToCart()}> <Cart/> </Button> */}
     {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
     <div key={index} className='mb-1 mx-1 px-0 mt-1'>
       <Row className='my-2'>
         <Col className='col-2' />
-        <Col className='mx-4 col-3'><img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/></Col>
-        <Col className='mx-5 col-4' > <p className='fs-6'>{item?.productId?.priveiwName}</p>
+        <Col className='mx-4 col-2'>
+          <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/>
+        </Col>
+        <Col className='mx-5 col-auto mt-0'> <p className='fw-bold fs-5'>{item?.productId?.priveiwName}</p>
           <Row>
             <Col>
               <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
@@ -172,22 +188,34 @@ function CartFull() {
               <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
             </Col>
             <Col className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
-            <Col><Button 
-            onClick={() => handleRemove(item?.productId?.id, item?.color, item?.gender, item?.size )} style={{marginRight: "0px", border: "none"}} className='my-0 py-0 d-inline me-0 ms-5' variant='outline-danger' > Remove </Button></Col>
+            <Col className='mt-0 pt-0'>
+              <Button 
+                onClick={() => handleRemove(item?.productId?.id, item?.color, item?.gender, item?.size )} 
+                style={{marginRight: "0px", border: "none"}} 
+                className='d-inline me-md-0 ms-md-5 mt-0 pt-0' 
+                variant='outline-danger' > Remove  </Button>
+            </Col>
             
           </Row>
         </Col>
       </Row>
     </div>)}
     <hr/>
-    <div className='my-2'>
+    <Row className='my-2'>
+      <Col className='col-8' />
+      <Col className='col-auto' >
       <p className='fw-bold d-inline fs-5' style={{marginRight: "0", paddingRight: "0"}}>SUBTOTAL </p>
       <p className='fw-bold d-inline fs-5' style={{marginRight: "0", paddingRight: "0", alignItems: "end", alignContent: "end"}}> ₹ {sum}</p>
+      </Col>
+    </Row>
     </div>
-    </div>
-  </>
-    
-  )
+
+    {cartData?.cart?.cartProducts?.length > 0 && <Modal.Footer className="border-0">
+         <Button style={{backgroundColor: "black", color: "white"}} className='fs-5 fw-bold w-100' onClick={() => goToCheckOut()}>CHECKOUT</Button> 
+      </Modal.Footer> }
+
+
+  </>)
 }
 
 export default CartFull
