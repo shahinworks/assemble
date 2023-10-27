@@ -202,6 +202,8 @@ if(addressByUser){
   const [createShippingAddress, {data: shippingData}] = useMutation(CREATE_SHIPPING_ADDRESS, {
     onCompleted : () => {
       toast.success("Address Saved Successfully");
+      showModal(false);
+      refetchAdd();
     },
     onError : (error) => {
       toast.error("Error ");
@@ -347,7 +349,7 @@ if(addressByUser){
     <Row className='mx-3'>
       <Col className="col-lg-7">
         <div className='mx-3 mt-5'>
-        <h5>Shippin Address</h5>
+        {/* <h5>Shippin Address</h5>
         <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setShippingAsBilling(!shippingAsBilling)}/> <p className='px-2 mx-4'> Same as Billing Address</p>
   
         {!shippingAsBilling  && <>
@@ -455,12 +457,12 @@ if(addressByUser){
                       </Button>
                     </div>
                   </form>
-           </>}
+           </>} */}
           
 
 
 
-<Button onClick={() => showModal(true)}> Add NEW ADDRESS </Button>
+
            {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
     <Card key={address.id} className="mb-5" >
                   <Card.Body className="mb-3">
@@ -486,7 +488,8 @@ if(addressByUser){
                     </Row>
                   </Card.Body>
     </Card> )}
-          
+    <Button onClick={() => showModal(true)}> Add NEW ADDRESS </Button>
+
         </div>
       <div className='mt-5 mb-5 mx-3'>
     {/* <h3 className='mt-5 mb-5'>Checkout</h3> */}
