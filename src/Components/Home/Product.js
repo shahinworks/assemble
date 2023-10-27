@@ -208,8 +208,10 @@ function Product() {
   }
 
   // Style when Size is Selected
+  const [sizeSel, setSizeSel] = useState(0);
+
   const handleSizeSeletion = (id) => {
-    setSelect(id);
+    setSizeSel(id);
   }
 
   const sizeSelectedStyle = {
@@ -308,7 +310,8 @@ function Product() {
               {product?.getProduct && product?.getProduct?.images.map((color, index) =>
                <div onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
                key={color.color} 
-               className='mx-2 my-2 px-3 py-2'  style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
+               className='mx-2 my-2 px-3 py-2'  
+               style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
               {color.color}
             </div>)}
             </div>
@@ -323,9 +326,12 @@ function Product() {
               <h6 className='fw-bold mx-2 text-left'>
                 Size
               </h6>
-              <div className='ms-0 d-flex'>
+              <div className='ms-0 d-flex'> 
              {product?.getProduct && product?.getProduct?.size.map((size, index) =>
-              <div  onClick={() => { handleCartSize(size); handleSizeSeletion(index)}}  key={size} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+              <div 
+              style={sizeSel === index? sizeSelectedStyle: sizeNotSelectedStyle}
+               onClick={() => { handleCartSize(size); handleSizeSeletion(index)}} 
+                key={size} className='mx-2 my-2 px-3 py-2' >
               {size}
             </div>)}
             </div>
