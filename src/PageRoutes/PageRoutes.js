@@ -40,6 +40,7 @@ import OrderDetail from '../Components/Admin/Order/OrderDetail';
 import UpdateProduct from '../Components/Admin/Product/UpdateProduct';
 import ListGender from '../Components/Admin/Gender/ListGender';
 import CreateGender from '../Components/Admin/Gender/CreateGender';
+import Swiper from '../Components/Home/Swiper';
  
 function PageRoutes() {
   return (
@@ -89,6 +90,7 @@ function PageRoutes() {
       <Route path='/reset' element={<ResetPassword />}/>
       <Route path='*' element={<Error />}/>
       <Route path='/rough' element={<Demo />}/>
+      <Route path='/swiper' element={<Swiper />}/>
     </Routes>
   )
 }

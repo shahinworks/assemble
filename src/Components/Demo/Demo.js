@@ -1,45 +1,76 @@
-import React from 'react';
-import { useMediaQuery } from 'react-responsive';
-import MediaQuery from 'react-responsive'
+import React from 'react'
 
 function Demo() {
-  // const isDesktopOrLaptop = useMediaQuery({
-  //   query: '(min-width: 1224px)'
-  // });
-  // const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' });
-  // const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
-  // const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
-  // const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
-
-
   return (
-    <div>
-    <h1>Device Test!</h1>
-    <MediaQuery minWidth={1224}>
-      <p>You are a desktop or laptop</p>
-      <MediaQuery minWidth={1824}>
-        <p>You also have a huge screen</p>
-      </MediaQuery>
-    </MediaQuery>
-    <MediaQuery minResolution="2dppx">
-      {/* You can also use a function (render prop) as a child */}
-      {(matches) =>
-        matches
-          ? <p>You are retina</p>
-          : <p>You are not retina</p>
-      }
-    </MediaQuery>
-  </div>
-
-  //   <div>
-  //   <h1>Device Test!</h1>
-  //   {isDesktopOrLaptop && <p>You are a desktop or laptop</p>}
-  //   {isBigScreen && <p>You  have a huge screen</p>}
-  //   {isTabletOrMobile && <p>You are a tablet or mobile phone</p>}
-  //   <p>Your are in {isPortrait ? 'portrait' : 'landscape'} orientation</p>
-  //   {isRetina && <p>You are retina</p>}
-  // </div>
+    <div>Demo</div>
   )
 }
 
 export default Demo
+
+// import React from 'react';
+// import { Splide, SplideSlide } from '@splidejs/react-splide';
+// // Default theme
+// import '@splidejs/react-splide/css';
+
+
+// // or other themes
+// import '@splidejs/react-splide/css/skyblue';
+// import '@splidejs/react-splide/css/sea-green';
+
+
+// // or only core styles
+// import '@splidejs/react-splide/css/core';
+
+// function Demo() {
+
+//     // GETTING DATA
+//     const GET_ALL_PRODUCT = gql`
+//     query GetAllProducts {
+//       getAllProducts {
+//         id
+//         color
+//         description
+//         discount
+//         gender
+//         gst
+//         priveiwName
+//         productName
+//         sellingPrice
+//         size
+//         stock {
+//           quantity
+//           gender
+//           color
+//           size
+//         }
+//         images {
+//           imagePath
+//           color
+//           gender
+//         }
+//       }
+//     }
+//   `;
+
+//   const { data: product, refetch } = useQuery(GET_ALL_PRODUCT);
+
+//   return (<>
+//     <div className="slider ">
+//     <Swiper modules={[Navigation, Pagination, Scrollbar, A11y]} spaceBetween={0} slidesPerView={2  } navigation pagination={{ clickable: true }}
+//     onSwiper={(swiper) => console.log(swiper)} onSlideChange={() => console.log('slide change')} >
+//     {event && event.map((data) =>
+//         <SwiperSlide key={data._id} >
+//             <div className="card mt-3" style={{ width: "9rem", height: '9rem' }}>
+//                 <img src={data.Image} className="card-img-top px-3 pt-3 mt-1"  style={{ borderRadius: '20px' ,height:'7rem' }} alt="..." />
+//                 <div className="">
+//                     <div className=" text-center pt-2" style={{ fontSize: 10, fontWeight: 500 }} >{data.name}</div>
+//                 </div>
+//             </div>
+//         </SwiperSlide>)}
+// </Swiper>
+//     </div>
+//   </>);
+// }
+
+// export default Demo;
