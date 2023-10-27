@@ -342,7 +342,7 @@ function Product() {
                {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
               <div key={gender} 
               style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
-               onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}}  className='mx-2 my-2 px-3 py-2'> {gender} </div>)}
+               onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}}  className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
               </div>
              
               <h6 className='fw-bold mx-2 text-left'>

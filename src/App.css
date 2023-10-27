@@ -706,4 +706,15 @@
               border: none;
               cursor: pointer;
           }
+
+          .hoverable {
+            transition: border-color 0.3s; /* Add a transition for smooth hover effect */
+          }
+          
+          .hoverable:hover { 
+            background-color: black;
+            color: white;
+            border: 1px solid black;
+            /* Change the border color on hover */
+          }
   
