@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gql, useMutation, useLazyQuery, useQuery } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Button, Row, Col, Form, Card } from 'react-bootstrap';
+import { Button, Row, Col, Form, Card , Modal} from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { Cart } from 'react-bootstrap-icons';
 import * as Yup from 'yup';
@@ -10,6 +10,8 @@ import { useFormik } from 'formik';
 function Checkout(props) {
   const navigate = useNavigate();
   const { state } = useLocation();
+
+  const [modal, showModal] = useState(false);
 
 
   const [ totalAmount, setTotalAmount] = useState(state?.reduce((acc, curr) => acc + curr?.quantity * curr?.price, 0));
@@ -354,16 +356,197 @@ if(addressByUser){
         </h5>
         <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
           <div className="mb-3 d-flex filled form-group tooltip-end-top">
-           {/* <CsLineIcons icon="home" /> */}
+          
             <Form.Control type="text" className='col-6 ms-0 me-1' autoComplete="firstName"  name="firstName"
              onChange={handleChange} placeholder="Enter first Name..." value={values.firstName} />
              {errors.firstName && touched.firstName && <div className="d-block invalid-tooltip">{errors.firstName}</div>}
-              {/* <CsLineIcons icon="home" /> */}
+           
            <Form.Control  type="text"  autoComplete="lastName" className='col-6 me-0 ms-0' name="lastName" onChange={handleChange} placeholder="Enter last Name..." value={values.lastName} />
                       {errors.lastName && touched.lastName && <div className="d-block invalid-tooltip">{errors.lastName}</div>}
                     </div>
                     <div className="mb-3 filled form-group tooltip-end-top">
-                      {/* <CsLineIcons icon="home" /> */}
+                     
+                      <Form.Control
+                        type="text"
+                        autoComplete="mobileNo"
+                        name="mobileNo"
+                        maxLength={10}
+                        onChange={handleChange}
+                        placeholder="Enter mobile No..."
+                        value={values.mobileNo}
+                      />
+                      {errors.mobileNo && touched.mobileNo && <div className="d-block invalid-tooltip">{errors.mobileNo}</div>}
+                    </div>
+                    <div className="mb-3 filled form-group tooltip-end-top">
+                      
+                      <Form.Control
+                        type="text"
+                        autoComplete="street-address"
+                        name="address"
+                        onChange={handleChange}
+                        placeholder="Enter House No, Colony name..."
+                        value={values.address}
+                      />
+                      {errors.address && touched.address && <div className="d-block invalid-tooltip">{errors.address}</div>}
+                    </div>
+                    <div className="mb-3 filled form-group tooltip-end-top">
+                       
+                      <Form.Control type="text" name="address2" onChange={handleChange} placeholder="Enter Street No, Area, Landmark" value={values.address2} />
+                      {errors.address2 && touched.address2 && <div className="d-block invalid-tooltip">{errors.address2}</div>}
+                    </div>
+                    <div className="mb-3 d-flex filled form-group tooltip-end-top">
+                      
+                      <Form.Control  type="text" className='col-6 ms-0 me-1' name="city" onChange={handleChange} placeholder="Enter City" value={values.city} />
+                      {errors.city && touched.city && <div className="d-block invalid-tooltip">{errors.city}</div>}
+                   
+                      
+                      <Form.Control className='col-6 me-0 ms-0' type="text" name="pincode" onChange={handleChange} placeholder="Enter Pincode" value={values.pincode} maxLength={6} />
+                      {errors.pincode && touched.pincode && <div className="d-block invalid-tooltip">{errors.pincode}</div>}
+                    </div>
+                    <div className="mb-3 d-flex filled form-group tooltip-end-top">
+                      
+                      <Form.Select className='col-6 ms-0 me-1' name="state" onChange={handleChange} aria-label="Default select example">
+                        <option>Select State</option>
+                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                        <option value="Assam">Assam</option>
+                        <option value="Bihar">Bihar</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                        <option value="Chhattisgarh">Chhattisgarh</option>
+                        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                        <option value="Daman and Diu">Daman and Diu</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Lakshadweep">Lakshadweep</option>
+                        <option value="Puducherry">Puducherry</option>
+                        <option value="Goa">Goa</option>
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Haryana">Haryana</option>
+                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                        <option value="Jharkhand">Jharkhand</option>
+                        <option value="Karnataka">Karnataka</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Manipur">Manipur</option>
+                        <option value="Meghalaya">Meghalaya</option>
+                        <option value="Mizoram">Mizoram</option>
+                        <option value="Nagaland">Nagaland</option>
+                        <option value="Odisha">Odisha</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Rajasthan">Rajasthan</option>
+                        <option value="Sikkim">Sikkim</option>
+                        <option value="Tamil Nadu">Tamil Nadu</option>
+                        <option value="Telangana">Telangana</option>
+                        <option value="Tripura">Tripura</option>
+                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                        <option value="Uttarakhand">Uttarakhand</option>
+                        <option value="West Bengal">West Bengal</option>
+                      </Form.Select>
+                      
+                      <Form.Control className='col-6 me-0 ms-0' type="text" name="country" onChange={handleChange} placeholder="Enter Country" value={values.country} />
+                      {errors.country && touched.country && <div className="d-block invalid-tooltip">{errors.country}</div>}
+                    </div>
+                    <div className="text-center">
+                      
+                      <Button variant="primary" className="btn-icon btn-icon-start mb-3" type="submit">
+                        Submit Address
+                      </Button>
+                    </div>
+                  </form>
+           </>}
+          
+
+
+
+<Button onClick={() => showModal(true)}> Add NEW ADDRESS </Button>
+           {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
+    <Card key={address.id} className="mb-5" >
+                  <Card.Body className="mb-3">
+                    <Row>
+                        <div className="mb-3">
+                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
+                          <div>
+                            {address.firstName} {address.lastName}
+                          </div>
+                          <div>
+                            {address.addressLine1}, {address.addressLine2}
+                          </div>
+                          <div>
+                            {address.city}, {address.postalCode}
+                          </div>
+                          <div>
+                            {address.state}, {address.country}
+                          </div>
+                          <div>{address.mobileNo}</div>
+                        </div>
+                   
+                        <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setAddressForShipping(address.id)}/> <p className='px-2 mx-4'> Select Address for Shipping</p>
+                    </Row>
+                  </Card.Body>
+    </Card> )}
+          
+        </div>
+      <div className='mt-5 mb-5 mx-3'>
+    {/* <h3 className='mt-5 mb-5'>Checkout</h3> */}
+    <Button style={{backgroundColor: "black", color: "white"}} onClick={() => handleOrder()}>Pay Now</Button>
+    </div>
+      </Col>
+
+
+
+
+    <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
+      {/* Cart Summary  */}
+      <div className='mt-5'></div>
+    {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item) => 
+    <div key={item?.productId?.id} className='mb-1 mx-1 px-0 mt-1'> 
+      <Row className='my-2'>
+        <Col className='col-3 mx-1'>
+          <img 
+          style={{height: "100px", width:"70px", border: "2px solid black"}} 
+          className='ms-3' 
+          src={item?.productId?.images[0]?.imagePath[0] } 
+          alt="s"/>
+        </Col>
+        <Col className='col-5 mx-2'>
+          <p className='fs-6'>{item?.productId?.productName}</p>
+          <p className='fs-6'>{item?.size}</p>
+          <p className='fs-6'>{item?.color}</p> </Col>
+        <Col className='col-2'> 
+          {/* <Row> */}
+         
+          <p className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice} </p>
+          
+          {/* </Row> */}
+        </Col>
+      </Row>
+    </div>)}
+    <hr/>
+    <div className='my-2'>
+      <p className='fw-bold d-inline fs-5 ms-3' style={{marginRight: "40px", paddingRight: "50px"}}>SUBTOTAL </p>
+      <p className='fw-bold d-inline fs-5' style={{ marginLeft: "140px", alignItems: "end", alignContent: "end"}}>
+         ₹ {totalAmount}
+      </p>
+    </div>
+    </Col>
+  </Row>
+
+
+  <Modal style={{width: "100%"}}  show={modal} onHide={() => showModal(false)} scrollable dialogClassName="full" >
+    <Modal.Header closeButton>
+      <Modal.Title as="h5"> Add New Address </Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
+        <div className="mb-3 d-flex filled form-group tooltip-end-top">
+          <Form.Control type="text" className='col-6 ms-0 me-1' autoComplete="firstName" name="firstName" onChange={handleChange} placeholder="Enter first Name..." value={values.firstName} />
+          {errors.firstName && touched.firstName && <div className="d-block invalid-tooltip">{errors.firstName}</div>}
+          <Form.Control type="text" autoComplete="lastName" className='col-6 me-0 ms-0' name="lastName" onChange={handleChange} placeholder="Enter last Name..." value={values.lastName} />
+          {errors.lastName && touched.lastName && <div className="d-block invalid-tooltip">{errors.lastName}</div>}
+        </div>
+        <div className="mb-3 filled form-group tooltip-end-top">
                       <Form.Control
                         type="text"
                         autoComplete="mobileNo"
@@ -457,84 +640,9 @@ if(addressByUser){
                         Submit Address
                       </Button>
                     </div>
-                  </form>
-          {/* <Button onClick={() => handleSubmitAddress()}>Submit Address</Button> */}
-           </>}
-          
-
-
-           {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
-    <Card key={address.id} className="mb-5" >
-                  <Card.Body className="mb-3">
-                    <Row>
-                        <div className="mb-3">
-                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
-                          <div>
-                            {address.firstName} {address.lastName}
-                          </div>
-                          <div>
-                            {address.addressLine1}, {address.addressLine2}
-                          </div>
-                          <div>
-                            {address.city}, {address.postalCode}
-                          </div>
-                          <div>
-                            {address.state}, {address.country}
-                          </div>
-                          <div>{address.mobileNo}</div>
-                        </div>
-                   
-                        <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setAddressForShipping(address.id)}/> <p className='px-2 mx-4'> Select Address for Shipping</p>
-                    </Row>
-                  </Card.Body>
-    </Card> )}
-          
-        </div>
-      <div className='mt-5 mb-5 mx-3'>
-    {/* <h3 className='mt-5 mb-5'>Checkout</h3> */}
-    <Button style={{backgroundColor: "black", color: "white"}} onClick={() => handleOrder()}>Pay Now</Button>
-    </div>
-      </Col>
-
-
-
-
-    <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
-      {/* Cart Summary  */}
-      <div className='mt-5'></div>
-    {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item) => 
-    <div key={item?.productId?.id} className='mb-1 mx-1 px-0 mt-1'> 
-      <Row className='my-2'>
-        <Col className='col-3 mx-1'>
-          <img 
-          style={{height: "100px", width:"70px", border: "2px solid black"}} 
-          className='ms-3' 
-          src={item?.productId?.images[0]?.imagePath[0] } 
-          alt="s"/>
-        </Col>
-        <Col className='col-5 mx-2'>
-          <p className='fs-6'>{item?.productId?.productName}</p>
-          <p className='fs-6'>{item?.size}</p>
-          <p className='fs-6'>{item?.color}</p> </Col>
-        <Col className='col-2'> 
-          {/* <Row> */}
-         
-          <p className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice} </p>
-          
-          {/* </Row> */}
-        </Col>
-      </Row>
-    </div>)}
-    <hr/>
-    <div className='my-2'>
-      <p className='fw-bold d-inline fs-5 ms-3' style={{marginRight: "40px", paddingRight: "50px"}}>SUBTOTAL </p>
-      <p className='fw-bold d-inline fs-5' style={{ marginLeft: "140px", alignItems: "end", alignContent: "end"}}>
-         ₹ {totalAmount}
-      </p>
-    </div>
-    </Col>
-  </Row>
-
+      </form>
+    </Modal.Body>
+  </Modal>
    
   </>);
 }
