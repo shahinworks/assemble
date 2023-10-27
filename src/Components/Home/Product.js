@@ -48,6 +48,8 @@ function Product() {
     }
   });
 
+  console.log("product", product);
+
   const [ discount, setDiscount ] = useState(product?.getProduct?.discount);
   const [ sellingPrice, setSellingPrice ] = useState(product?.getProduct?.sellingPrice);
 
@@ -241,12 +243,9 @@ function Product() {
     border: "1px solid black",
   }
 
- 
-  
-  
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
-    <div className="container">
+    <div className="container" >
     <section className="slider" style={{ paddingTop: "10%" }}>
       <div className="container" id="container">
         <div className="row">
