@@ -330,7 +330,7 @@ function Product() {
               {product?.getProduct && product?.getProduct?.images.map((color, index) =>
                <div onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
                key={color.color} 
-               className='mx-2 my-2 px-3 py-2'  
+               className='mx-2 my-2 px-3 py-2 hoverable'  
                style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
               {color.color}
             </div>)}
@@ -353,7 +353,7 @@ function Product() {
               <div 
               style={sizeSel === index? sizeSelectedStyle: sizeNotSelectedStyle}
                onClick={() => { handleCartSize(size); handleSizeSeletion(index)}} 
-                key={size} className='mx-2 my-2 px-3 py-2' >
+                key={size} className='mx-2 my-2 px-3 py-2 hoverable' >
               {size}
             </div>)}
             </div>
