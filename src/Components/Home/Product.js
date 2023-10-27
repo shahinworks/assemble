@@ -206,6 +206,12 @@ function Product() {
   const handleSelection = (id) => {
     setSelect(id);
   }
+
+  // Style when Size is Selected
+  
+  const handleSizeSeletion = (id) => {
+    setSelect(id);
+  }
   
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
@@ -309,8 +315,8 @@ function Product() {
                 Size
               </h6>
               <div className='ms-0 d-flex'>
-             {product?.getProduct && product?.getProduct?.size.map((size) =>
-              <div  onClick={() => handleCartSize(size)}  key={size} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+             {product?.getProduct && product?.getProduct?.size.map((size, index) =>
+              <div  onClick={() => { handleCartSize(size); handleSizeSeletion(index)}}  key={size} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
               {size}
             </div>)}
             </div>
