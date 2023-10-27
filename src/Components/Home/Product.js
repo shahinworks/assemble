@@ -208,9 +208,18 @@ function Product() {
   }
 
   // Style when Size is Selected
-  
   const handleSizeSeletion = (id) => {
     setSelect(id);
+  }
+
+  const sizeSelectedStyle = {
+    border: "1px solid black",
+    backgroundColor: "black",
+    color: "white"
+  };
+
+  const sizeNotSelectedStyle = {
+    border: "1px solid black",
   }
   
   return (<>
