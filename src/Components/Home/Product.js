@@ -190,15 +190,6 @@ function Product() {
     setImageArray(arr);
   }
 
-  console.log("size", size);
-  console.log("gender", gender);
-  console.log("color", color);
-  console.log("img", img);
-
-  console.log("imageArray", imageArray);
-
-
-
 const [index, setIndex] = useState(null);
   const [select, setSelect] = useState(0);
   
