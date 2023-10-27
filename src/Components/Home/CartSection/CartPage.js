@@ -49,37 +49,47 @@ function CartPage() {
     getCartData();
   }, []);
 
-  
   const REMOVE_FROM_CART = gql`
-    mutation RemoveFromCart($productId: ID) {
-      removeFromCart(productId: $productId) {
+    mutation RemoveFromCart($productId: ID, $color: String, $size: String, $gender: String) {
+      removeFromCart(productId: $productId, color: $color, size: $size, gender: $gender) {
         _id
-        cartProducts {
-          productId {
-            id
-          }
-          color
-          gender
-          size
-          quantity
-        }
       }
     }
   `;
 
-  const [removeFromCart,  {data: removeData}] = useMutation(REMOVE_FROM_CART, {
-    onCompleted: () => {
-      toast.success("Removed from Cart");
+
+const [removeFromCart,  {data: removeData}] = useMutation(REMOVE_FROM_CART, {
+  onCompleted: () => {
+    toast.success("Item Removed from Cart");
+    refetch();
+  }
+});
+
+const handleRemove = async (id, color, gender, size) => {
+  await removeFromCart({
+    variables: {
+      productId : id,
+      color : color,
+      gender : gender,
+      size : size 
     }
   });
+}
 
-  const handleRemove = async (id) => {
-    await removeFromCart({
-      variables: {
-        productId: id
-      }
-    });
-  }
+
+  // const [removeFromCart,  {data: removeData}] = useMutation(REMOVE_FROM_CART, {
+  //   onCompleted: () => {
+  //     toast.success("Removed from Cart");
+  //   }
+  // });
+
+  // const handleRemove = async (id) => {
+  //   await removeFromCart({
+  //     variables: {
+  //       productId: id
+  //     }
+  //   });
+  // }
 
   if(removeData){
     console.log("removeData", removeData);
@@ -168,7 +178,7 @@ function CartPage() {
         <Col className='col-3'><img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/></Col>
         <Col className='col-9'>
           <div className='fs-6'>{item?.productId?.priveiwName} 
-          <Button onClick={() => handleRemove(item?.productId?.id)} style={{marginRight: "0px", border: "none"}} className='my-0 py-0 d-inline me-0 ms-5' variant='outline-danger' > X </Button>
+          <Button onClick={() => handleRemove(item?.productId?.id, item?.color, item?.gender, item?.size )} style={{marginRight: "0px", border: "none"}} className='my-0 py-0 d-inline me-0 ms-5' variant='outline-danger' > X </Button>
          </div> 
           <Row>
             <Col>
