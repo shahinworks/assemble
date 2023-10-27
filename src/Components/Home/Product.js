@@ -196,9 +196,31 @@ function Product() {
   console.log("img", img);
 
   console.log("imageArray", imageArray);
+
+
+  // select === index ? style={{select === index ? 'primary' : 'outline-primary', border: "1px solid black"}}
+  // style={{border: "1px solid black"}} 
+  // variant={select === index ? 'primary' : 'outline-primary'}
+
+const [index, setIndex] = useState(null);
+  const [select, setSelect] = useState(0);
   
+  const colorSelectedStyle = {
+    border: "1px solid black",
+    backgroundColor: "black",
+    color: "white"
+  };
 
 
+  const colorNotSelectedStyle = {
+    border: "1px solid black",
+  }
+ 
+
+  const handleSelection = (id) => {
+    setSelect(id);
+  }
+  
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
   <div className="container">
@@ -283,15 +305,11 @@ function Product() {
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
               <div className='ms-0 d-flex'>
               {product?.getProduct && product?.getProduct?.images.map((color, index) =>
-               <div onClick={() => { changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} key={color.color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+               <div onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
+               key={color.color} 
+               className='mx-2 my-2 px-3 py-2'  style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
               {color.color}
-            </div>)} 
-
-
-             {/* {product?.getProduct && product?.getProduct?.color.map((color) =>
-              <div key={color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-              {color}
-            </div>)}  */}
+            </div>)}
             </div>
 
 
