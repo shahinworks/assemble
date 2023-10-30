@@ -23,7 +23,7 @@ function Checkout(props) {
   
 
   // console.log("state:" , state);
-  console.log( "FINAL shippingAddress" , shippingAddress);
+  // console.log( "FINAL shippingAddress" , shippingAddress);
 
   
   
@@ -56,9 +56,9 @@ function Checkout(props) {
 `;
 
 const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_USER );
-if(addressByUser){
-  console.log("addressByUser", addressByUser);
-}
+// if(addressByUser){
+//   console.log("addressByUser", addressByUser);
+// }
 
   // CREATE ORDER 
   const CREATE_ORDER = gql`
@@ -182,7 +182,7 @@ if(addressByUser){
   // Mutations and Query
   const [ paymentMethod, setPaymentMethod] = useState("");
 
-  console.log("paymentMethod", paymentMethod);
+  // console.log("paymentMethod", paymentMethod);
   const {data: cartData} = useQuery(CART);
   const {data: billingAddress} = useQuery(GET_BILLING_ADDRESS);
   const [createOrder, {data: orderData}] = useMutation(CREATE_ORDER, {
@@ -229,9 +229,9 @@ if(addressByUser){
   //   console.log("paymentData", paymentData);
   // }
 
-  if(shippingData){
-    console.log(shippingData?.createAddress?.id)
-  }
+  // if(shippingData){
+  //   console.log(shippingData?.createAddress?.id)
+  // }
 
   useEffect(() => {
     if(paymentData?.makePayment?.success){
@@ -301,7 +301,7 @@ if(addressByUser){
   }, [shippingAsBilling, shippingData?.createAddress?.id, billingAddress?.getAllAddressesByUser[0]?.id,]);
 
 
-  console.log("shippingAsBilling", shippingAsBilling);
+  // console.log("shippingAsBilling", shippingAsBilling);
   // /////////////////// CREATE ADDRESS FORM ///////////////////////
 
   const phoneRegExp = /^(\+91)?(-)?\s*?(91)?\s*?(\d{3})-?\s*?(\d{3})-?\s*?(\d{4})$/;
@@ -341,7 +341,7 @@ if(addressByUser){
       },
     });
 
-    console.log("createShippingAddress Clicked");
+    // console.log("createShippingAddress Clicked");
  
   };
     
