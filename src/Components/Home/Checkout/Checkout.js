@@ -440,17 +440,16 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
       <div className="accordion-body">
         <Card>
           <Card.Body>
-          <label class="container">ONLINE
-            <input type="radio" checked="checked"  name='radio' value="ONLINE" onChange={(e) => setPaymentMethod(e.target.value)} />
-            <span class="checkmark"></span>
+          <label className="container">ONLINE
+            <input checked="checked" type="radio" name='radio' id="online" value="ONLINE" onChange={(e) => setPaymentMethod(e.target.value)} />
+            <span className="checkmark"></span>
           </label>
-          <label class="container">Cash On Delivery
-            <input type="radio" name='radio' value="COD" onChange={(e) => setPaymentMethod(e.target.value)}/>
-            <span class="checkmark"></span>
+          <label className="container">Cash On Delivery
+            <input type="radio" name='radio' id="cod" value="COD" onChange={(e) => setPaymentMethod(e.target.value)}/>
+            <span className="checkmark"></span>
           </label>
           </Card.Body>
         </Card>
-
       </div>
     </div>
   </div>
