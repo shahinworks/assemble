@@ -10,6 +10,11 @@ function Login() {
   const [username, setUsername] = useState("shahin@gmail.com");
   const [password, setPassword] = useState("123456");
 
+  const [ userRole, setUserRole] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [ROLE, setROLE] = useState([]);
+
+
   // const LOGIN_USER = gql`
   //   mutation LoginUser($email: String!, $password: String!) {
   //     loginUser(email: $email, password: $password) {
@@ -35,15 +40,13 @@ function Login() {
     }
   `;
 
-
-
   const [loginUser, {data}] = useMutation(LOGIN_USER, {
     onCompleted: async () => {
       toast.success("Logged IN");
       localStorage.setItem('token', data?.loginUser?.token);
       setTimeout(() => {
         navigate("/");
-      }, 1000);
+      }, 3000);
     }, 
     onError : (error) => {
       if( error.message === "Error: Incorrect password") {
@@ -57,18 +60,11 @@ function Login() {
     }
   });  
 
-  if(data){
-    console.log("Profile of USER", data);
-  }
-  const [ userRole, setUserRole] = useState('');
-  const ROLE = localStorage?.getItem('role');
-  const isAdmin = ROLE?.includes("admin");
-
-
   useEffect(() => {
     if(data){
       localStorage.setItem('token', data?.loginUser?.token);
       localStorage.setItem('role', data?.loginUser?.user.role);
+      setROLE(localStorage?.getItem('role'));
     }
   }, [data]);
 
@@ -76,12 +72,21 @@ function Login() {
   useEffect(() => {
     if(isAdmin){
         setUserRole("admin");
-      }
-  }, [isAdmin , ROLE]);
+    }    
+  }, [ isAdmin, userRole ]);
 
+  useEffect(() => {
+    if(ROLE) {
+      setIsAdmin(ROLE?.includes("admin"));
+    }
+  }, [ROLE]);
 
-  localStorage.setItem('userRole', userRole);
- 
+  useEffect(() => {
+    if(userRole){
+      localStorage.setItem('userRole', userRole);
+    }
+   }, [userRole]);
+
   const handleLogin = async () => {
     await loginUser({
       variables: {
