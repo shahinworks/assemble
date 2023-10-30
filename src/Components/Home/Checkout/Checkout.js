@@ -611,15 +611,12 @@ if(addressByUser){
         <Button  disabled={payNowCheck} className='py-3 ' style={{backgroundColor: "black", color: "white", fontSize: "20px"}} onClick={() => handleOrder()}>Pay Now</Button>
     </Row>
     </Col>
-
-
-
-
+ 
     <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
       {/* Cart Summary  */}
       <div className='mt-5'></div>
-    {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item) => 
-    <div key={item?.productId?.id} className='mb-1 mx-1 px-0 mt-1'> 
+    {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
+    <div key={index} className='mb-1 mx-1 px-0 mt-1'> 
       <Row className='my-2'>
         <Col className='col-3 mx-1'>
           <img 
