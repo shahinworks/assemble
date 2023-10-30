@@ -43,39 +43,12 @@ import UpdateProduct from '../Components/Admin/Product/UpdateProduct';
 import ListGender from '../Components/Admin/Gender/ListGender';
 import CreateGender from '../Components/Admin/Gender/CreateGender';
 import Swiper from '../Components/Home/Swiper';
-import CustomRoute from '../CustomRoute';
-import CheckStuff from '../CheckStuff';
-
-// Function to check the user's role (You need to implement this logic)
-// function checkUserRole() {
-//   // You should implement your own logic to check the user's role here
-//   // For simplicity, I'm using a hardcoded role for demonstration purposes.
-//   // const userRole = 'admin';
-//   const [ userRole, setUserRole] = useState('');
-//   const ROLE = localStorage.getItem('role');
-//   const isAdmin = ROLE.includes("admin");
-//   // useEffect(() => {
-//     if(isAdmin){
-//       setUserRole("admin");
-//     }
-
-//   // }, [ROLE, isAdmin ]);
- 
-//   return userRole;
-// }
 
 // Custom route guard HOC
 function PrivateRoute({ element, requiredRole }) {
-  // const userRole  = CheckStuff();
-
-  // const userRole = "admin";
-console.log("String");
-
-  // console.log("first", userRole);
-  // console.log("requiredRole", requiredRole);
-
+  // const userRole = CheckUserAdmin();
+   
   const userRole = localStorage.getItem('userRole');
-  //   console.log("first", userRole);
 
   if (userRole === requiredRole) {
     return element;
