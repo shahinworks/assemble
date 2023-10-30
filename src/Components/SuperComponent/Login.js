@@ -10,10 +10,27 @@ function Login() {
   const [username, setUsername] = useState("shahin@gmail.com");
   const [password, setPassword] = useState("123456");
 
+  // const LOGIN_USER = gql`
+  //   mutation LoginUser($email: String!, $password: String!) {
+  //     loginUser(email: $email, password: $password) {
+  //       token
+  //     }
+  //   }
+  // `;
+
   const LOGIN_USER = gql`
     mutation LoginUser($email: String!, $password: String!) {
       loginUser(email: $email, password: $password) {
         token
+        user {
+          firstName
+          lastName
+          email
+          mobileNo
+          role
+          profilepic
+          id
+        }
       }
     }
   `;
