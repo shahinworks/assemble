@@ -60,8 +60,9 @@ function Login() {
   if(data){
     console.log("Profile of USER", data);
   }
-
-
+  const [ userRole, setUserRole] = useState('');
+  const ROLE = localStorage?.getItem('role');
+  const isAdmin = ROLE?.includes("admin");
 
 
   useEffect(() => {
@@ -70,6 +71,23 @@ function Login() {
       localStorage.setItem('role', data?.loginUser?.user.role);
     }
   }, [data]);
+
+
+  useEffect(() => {
+    if(isAdmin){
+        setUserRole("admin");
+      }
+      console.log("ss");
+      console.log("userRole", userRole);
+  }, [isAdmin , ROLE]);
+
+
+  localStorage.setItem('userRole', userRole);
+     
+  console.log("ROLE",  ROLE);
+  console.log("isAdmin", isAdmin);
+  console.log("userRole", userRole);
+
 
   const handleLogin = async () => {
     await loginUser({
