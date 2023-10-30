@@ -211,96 +211,98 @@ function Profile() {
 
   // ORDERS
 
-  const USER_ORDERS = gql`
-    query GetUserorder {
-      getUserorder {
-        id
-        paymentMethod
-        status
-        totalAmount
-        billingAddress {
+    const USER_ORDERS = gql`
+      query GetUserAllOrder($userId: ID) {
+        getUserAllOrder(userId: $userId) {
           id
-          firstName
-          lastName
-          mobileNo
-          addressLine1
-          addressLine2
-          city
-          state
-          postalCode
-          country
-        }
-        paymentId
-        paymentStatus
-        shippingAddress {
-          id
-          firstName
-          lastName
-          mobileNo
-          addressLine1
-          addressLine2
-          city
-          state
-          postalCode
-          country
-        }
-        user {
-          id
-          firstName
-          lastName
-          email
-          profilepic
-          mobileNo
-          password
-          role
-        }
-        paymentProof
-        orderProducts {
-          productId {
+          user {
             id
-            productName
-            priveiwName
-            sellingPrice
-            size
-            color
-            gender
-            discount
-            gst
-            description
-            stock {
-              quantity
-              gender
-              color
-              size
+            firstName
+            lastName
+            email
+            profilepic
+            mobileNo
+            password
+            addresses {
+              id
+              firstName
+              lastName
+              mobileNo
+              addressLine1
+              addressLine2
+              city
+              state
+              postalCode
+              country
             }
-            images {
-              imagePath
-              color
-              gender
-            }
+            role
           }
-          price
-          quantity
-          packedImage
-          shippedImage
-          shippedBy
-          trackingNo
-          trackingUrl
+          paymentMethod
+          totalAmount
+          orderProducts {
+            productId {
+              id
+              productName
+              priveiwName
+              sellingPrice
+              images
+              size
+              color
+              gender
+              discount
+              gst
+              description
+              stock
+            }
+            price
+            quantity
+            packedImage
+            shippedImage
+            shippedBy
+            trackingNo
+            trackingUrl
+          }
+          shippingAddress {
+            id
+            firstName
+            lastName
+            mobileNo
+            addressLine1
+            addressLine2
+            city
+            state
+            postalCode
+            country
+          }
+          billingAddress {
+            id
+            firstName
+            lastName
+            mobileNo
+            addressLine1
+            addressLine2
+            city
+            state
+            postalCode
+            country
+          }
+          status
+          paymentStatus
+          paymentProof
+          paymentId
         }
       }
-    }
-  `;
- 
-   // const [getUserAllOrder, {data: orderData}] = useLazyQuery(USER_ORDERS);
-   const {data: orderData} = useQuery(USER_ORDERS);
+    `;
 
-    // useEffect(() => {
-    //   getUserAllOrder({
-    //     variables: {
-    //       userId: USER_ID
-    //     }
-    //   })
-    // }, []);
+    const [getUserAllOrder, {data: orderData}] = useLazyQuery(USER_ORDERS);
+
+    useEffect(() => {
+      getUserAllOrder({
+        variables: {
+          userId: USER_ID
+        }
+      })
+    }, []);
 
     if(orderData){
       console.log("UserOrders", orderData);
@@ -439,9 +441,104 @@ function Profile() {
           </Card.Body>
         </Card>}
 
+       
+       
 
-        {addressModal && <Card className="mb-5 px-5">
-          <h5 className='text-center mt-3 mb-2'>Add Address</h5>
+        </Col>
+        <Col className="col-5 mx-2">
+
+          <h2>Orders</h2>
+        <Row className="g-0 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
+        <Col  md="2" className="d-flex flex-column mb-lg-0 pe-1 justify-content-center">
+          <div className=" text-md cursor-pointer sort" >
+           Order ID
+          </div>
+        </Col>
+        <Col  md="3" className="d-flex flex-column pe-1 justify-content-center ">
+          <div className=" text-md cursor-pointer sort" >
+            NAME
+          </div>
+        </Col>
+        <Col  md="2" className="d-flex flex-column pe-1 justify-content-center">
+          <div className=" text-md cursor-pointer sort"  >
+           Amount
+          </div>
+        </Col>
+        <Col md="2" className="d-flex flex-column pe-1 justify-content-center">
+          <div className=" text-md cursor-pointer sort"  >
+            Date
+          </div>
+        </Col>
+
+        <Col md="2" className="d-flex flex-column pe-1 justify-content-center">
+          <div className=" text-md cursor-pointer sort"  >
+           Status
+          </div>
+        </Col>
+        {/* <Col lg="1" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
+          <div className=" text-md cursor-pointer ">Check</div>
+        </Col> */}
+      </Row>
+
+   {orderData && orderData?.getUserAllOrder?.length > 0 ?
+        orderData?.getUserAllOrder?.map((order, index) => (
+          <Card key={index} className="mb-2 hover-border-primary mx-2" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
+            <Card.Body className="pt-0 pb-0 sh-21 sh-md-8 my-3" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
+              <Row className="g-0 align-content-center cursor-default">
+                <Col xs="11" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
+                  <div className="text-muted text-small d-md-none">Id</div>
+                  <Link to={`/admin/order/detail/${order?.id}`} className="text-truncate h-100 d-flex align-items-center">
+                    <span maxLength={2}>{order?.id?.substring(0, 12)}...</span>
+                  </Link>
+                </Col>
+                <Col xs="6" md="3" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-3 order-md-2">
+                  <div className="text-muted text-small d-md-none">Name</div>
+                  <div className="text-alternate">
+                    {order?.user?.firstName} {order?.user?.lastName}
+                  </div>
+                </Col>
+                <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-4 order-md-3">
+                  <div className="text-muted text-small d-md-none">Purchase</div>
+                  <div className="text-alternate">
+                    <span>
+                      <span className="text-small">₹ </span>
+                      {order?.totalAmount}
+                    </span>
+                  </div>
+                </Col>
+                <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-5 order-md-4">
+                  <div className="text-muted text-small d-md-none">Date</div>
+                  <div className="text-alternate">13.09.2023</div>
+                </Col>
+                <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-last order-md-5">
+                  <div className="text-muted text-small d-md-none">Status</div>
+                  <div>
+                    <Badge className="badge bg-dark">{order?.status}</Badge>
+                  </div>
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+        ) )  : <h2 className='text-center my-4 py-4'>Order Not Found</h2>}
+        
+        </Col>
+
+      </Row>
+      
+
+
+
+      {/* <Card className="mb-5">
+        <Card.Body>
+          <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
+            <Form.Label>First name</Form.Label>
+            <Form.Control type="text" autoComplete="firstName" name="firstName" onChange={handleChange} placeholder="Enter First Name" value={values.firstName} />
+          </form>
+        </Card.Body>
+      </Card> */}
+
+   
+      {addressModal && <Card className="mb-5">
         <Card.Body className='text-center'>
           <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
             <div className="mb-3 filled form-group tooltip-end-top">
@@ -524,187 +621,6 @@ function Profile() {
           </form>
         </Card.Body>
       </Card>}
-       
-
-
-        
-
-       
-
-       
-       
-
-        </Col>
-        <Col className="col-5 mx-2">
-
-        <h5>Address of User</h5>
-    {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
-    <Card key={address.id} className="mb-5 mx-2">
-                  <Card.Body className="mb-3">
-                    <Row>
-                      <Col lg="10">
-                        <div className="mb-3">
-                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
-                          <div>
-                            {address.firstName} {address.lastName}
-                          </div>
-                          <div>
-                            {address.addressLine1}, {address.addressLine2}
-                          </div>
-                          <div>
-                            {address.city}, {address.postalCode}
-                          </div>
-                          <div>
-                            {address.state}, {address.country}
-                          </div>
-                          <div>{address.mobileNo}</div>
-                        </div>
-                      </Col>
-                      <Col lg="2">
-                        {/* <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-top">Edit</Tooltip>}>
-                          <Button
-                            onClick={() =>
-                              handleEditAddress(
-                                address.id,
-                                address.addressLine1,
-                                address.addressLine2,
-                                address.city,
-                                address.postalCode,
-                                address.state,
-                                address.country,
-                                address.firstName,
-                                address.lastName,
-                                address.mobileNo
-                              )
-                            }
-                            variant="outline-primary"
-                            className="col-1 mb-2 me-2 btn-icon btn-icon-only"
-                          >  <CsLineIcons icon="edit-square" />  
-                          </Button>
-                        </OverlayTrigger> */}
-                        <Button className='btn btn-sm mx-1'  variant='outline-dark' 
-             onClick={() =>
-              handleEditAddress(
-                address.id,
-                address.addressLine1,
-                address.addressLine2,
-                address.city,
-                address.postalCode,
-                address.state,
-                address.country,
-                address.firstName,
-                address.lastName,
-                address.mobileNo
-              )
-            }> 
-           <PencilSquare size={20}/>
-            </Button>
-
-            <Button className='btn btn-sm mx-1 my-1'  variant='outline-dark' onClick={() => handleDeleteAddress(address.id)}> 
-           <Trash3Fill size={20}/>
-            </Button>
-                       
-                      </Col>
-                    </Row>
-                  </Card.Body>
-    </Card> )} 
-
-      
-
-          <h2>Orders</h2>
-        <Row className="g-0 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
-        <Col  md="2" className="d-flex flex-column mb-lg-0 pe-1 justify-content-center">
-          <div className=" text-md cursor-pointer sort" >
-           Order ID
-          </div>
-        </Col>
-        <Col  md="3" className="d-flex flex-column pe-1 justify-content-center ">
-          <div className=" text-md cursor-pointer sort" >
-            NAME
-          </div>
-        </Col>
-        <Col  md="2" className="d-flex flex-column pe-1 justify-content-center">
-          <div className=" text-md cursor-pointer sort"  >
-           Amount
-          </div>
-        </Col>
-        <Col md="2" className="d-flex flex-column pe-1 justify-content-center">
-          <div className=" text-md cursor-pointer sort"  >
-            Date
-          </div>
-        </Col>
-
-        <Col md="2" className="d-flex flex-column pe-1 justify-content-center">
-          <div className=" text-md cursor-pointer sort"  >
-           Status
-          </div>
-        </Col>
-        {/* <Col lg="1" className="d-flex flex-column pe-1 justify-content-center align-items-lg-center">
-          <div className=" text-md cursor-pointer ">Check</div>
-        </Col> */}
-      </Row>
-
-
-      {/* style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} */}
-   {orderData && orderData?.getUserorder?.length > 0 ?
-        orderData?.getUserorder?.map((order, index) => (
-          <Card key={index} className="mb-2 hover-border-primary mx-1" >
-            <Card.Body className="pt-0 pb-0 sh-21 sh-md-8 my-3"  >
-              <Row className="g-0 align-content-center cursor-default">
-                <Col xs="11" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
-                  <div className="text-muted text-small d-md-none">Id</div>
-                  <Link to={`/admin/order/detail/${order?.id}`} className="text-truncate h-100 d-flex align-items-center">
-                    <span maxLength={2}>{order?.id?.substring(0, 12)}...</span>
-                  </Link>
-                </Col>
-                <Col xs="6" md="3" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-3 order-md-2">
-                  <div className="text-muted text-small d-md-none">Name</div>
-                  <div className="text-alternate">
-                    {order?.user?.firstName} {order?.user?.lastName}
-                  </div>
-                </Col>
-                <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-4 order-md-3">
-                  <div className="text-muted text-small d-md-none">Purchase</div>
-                  <div className="text-alternate">
-                    <span>
-                      <span className="text-small">₹ </span>
-                      {order?.totalAmount}
-                    </span>
-                  </div>
-                </Col>
-                <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-5 order-md-4">
-                  <div className="text-muted text-small d-md-none">Date</div>
-                  <div className="text-alternate">13.09.2023</div>
-                </Col>
-                <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-last order-md-5">
-                  <div className="text-muted text-small d-md-none">Status</div>
-                  <div>
-                    <Badge className="badge bg-dark">{order?.status}</Badge>
-                  </div>
-                </Col>
-              </Row>
-            </Card.Body>
-          </Card>
-        ) )  : <h2 className='text-center my-4 py-4'>Order Not Found</h2>}
-        
-        </Col>
-
-      </Row>
-      
-
-
-
-      {/* <Card className="mb-5">
-        <Card.Body>
-          <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
-            <Form.Label>First name</Form.Label>
-            <Form.Control type="text" autoComplete="firstName" name="firstName" onChange={handleChange} placeholder="Enter First Name" value={values.firstName} />
-          </form>
-        </Card.Body>
-      </Card> */}
-
-     
-      
     </div>
 
 
@@ -783,10 +699,80 @@ function Profile() {
 
 
 
-    {/* <Col xl="8" lg="8" md="6" sm="6" xs="12" />
+    <Col xl="8" lg="8" md="6" sm="6" xs="12" />
     <Col xl="5" lg="5" md="6" sm="6" xs="12">
-    
-    </Col> */}
+      <h5>Address of User</h5>
+    {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
+    <Card key={address.id} className="mb-5">
+                  <Card.Body className="mb-3">
+                    <Row>
+                      <Col lg="10">
+                        <div className="mb-3">
+                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
+                          <div>
+                            {address.firstName} {address.lastName}
+                          </div>
+                          <div>
+                            {address.addressLine1}, {address.addressLine2}
+                          </div>
+                          <div>
+                            {address.city}, {address.postalCode}
+                          </div>
+                          <div>
+                            {address.state}, {address.country}
+                          </div>
+                          <div>{address.mobileNo}</div>
+                        </div>
+                      </Col>
+                      <Col lg="2">
+                        {/* <OverlayTrigger placement="right" overlay={<Tooltip id="tooltip-top">Edit</Tooltip>}>
+                          <Button
+                            onClick={() =>
+                              handleEditAddress(
+                                address.id,
+                                address.addressLine1,
+                                address.addressLine2,
+                                address.city,
+                                address.postalCode,
+                                address.state,
+                                address.country,
+                                address.firstName,
+                                address.lastName,
+                                address.mobileNo
+                              )
+                            }
+                            variant="outline-primary"
+                            className="col-1 mb-2 me-2 btn-icon btn-icon-only"
+                          >  <CsLineIcons icon="edit-square" />  
+                          </Button>
+                        </OverlayTrigger> */}
+                        <Button className='btn btn-sm mx-1'  variant='outline-dark' 
+             onClick={() =>
+              handleEditAddress(
+                address.id,
+                address.addressLine1,
+                address.addressLine2,
+                address.city,
+                address.postalCode,
+                address.state,
+                address.country,
+                address.firstName,
+                address.lastName,
+                address.mobileNo
+              )
+            }> 
+           <PencilSquare size={20}/>
+            </Button>
+
+            <Button className='btn btn-sm mx-1 my-1'  variant='outline-dark' onClick={() => handleDeleteAddress(address.id)}> 
+           <Trash3Fill size={20}/>
+            </Button>
+                       
+                      </Col>
+                    </Row>
+                  </Card.Body>
+    </Card> )} 
+    </Col>
 
   
     {/* Edit Address Modal Start */}
