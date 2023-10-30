@@ -93,7 +93,7 @@ function Login() {
         email: username,
         password: password, 
       }
-    })
+    });
   }
 
   return (<>
