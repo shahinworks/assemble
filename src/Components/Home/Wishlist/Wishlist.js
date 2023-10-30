@@ -1,6 +1,6 @@
 import React from 'react';
 import { gql, useMutation, useQuery } from '@apollo/client';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button , Overlay, Tooltip, OverlayTrigger} from 'react-bootstrap';
 import { Cart, Heart, Trash } from 'react-bootstrap-icons';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
@@ -109,7 +109,6 @@ function Wishlist() {
     });
   }
 
-
   return (<>
     <h4 style={{marginTop: "10%"}} className='text-center mb-5'>Wishlist Item</h4>
 
@@ -118,20 +117,24 @@ function Wishlist() {
         <Row className='my-2'>
           <Col className='col-2' />
           <Col className='col-3'> <Link to={`/product/${wish?.productId?.id}`} className='stretched-link'>  <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={wish?.productId?.images[0]?.imagePath[0] } alt="s"/> </Link></Col>
-          <Col className='col-4'>  <Link to={`/product/${wish?.productId?.id}`} className='stretched-link'>  <p className='fs-6 text-black'>{wish?.productId?.productName}</p> </Link>
+          <Col className='col-4'> <Link to={`/product/${wish?.productId?.id}`} className='stretched-link'>  <p className='fs-6 text-black'>{wish?.productId?.productName}</p> </Link>
             <Row>
               <Col className='fw-bold'> ₹ {wish?.productId?.sellingPrice}</Col>
             </Row>
           </Col>
           <Col className='col-3'>
-          <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
+          <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip-left">Add To Cart</Tooltip>}>
+            <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
             onClick = {() => handleAddToCart(wish?.productId?.id)} >
             <Cart size={20} color="white"/>
           </Button>
+           </OverlayTrigger>
+           <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip-left">Remove from Wishlist</Tooltip>}>
           <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
             onClick={() => handleRemoveFromWishlist(wish?.productId?.id)} >
             <Trash size={20} color="white" />
           </Button>
+          </OverlayTrigger>
           </Col>
         </Row>
       </div>)}
