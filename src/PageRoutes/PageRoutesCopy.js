@@ -1,7 +1,5 @@
 import React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { USER_ROLE } from "../constants";
-
+import { Route, Routes } from 'react-router-dom';
 import Demo from '../Components/Demo/Demo';
 import CreateProduct from '../Components/Admin/Product/CreateProduct';
 import ListProduct from '../Components/Admin/Product/ListProduct';
@@ -43,27 +41,6 @@ import UpdateProduct from '../Components/Admin/Product/UpdateProduct';
 import ListGender from '../Components/Admin/Gender/ListGender';
 import CreateGender from '../Components/Admin/Gender/CreateGender';
 import Swiper from '../Components/Home/Swiper';
-import CustomRoute from '../CustomRoute';
-
-
-// Function to check the user's role (You need to implement this logic)
-function checkUserRole() {
-  // You should implement your own logic to check the user's role here
-  // For simplicity, I'm using a hardcoded role for demonstration purposes.
-  const userRole = 'admin';
-  return userRole;
-}
-
-// Custom route guard HOC
-function PrivateRoute({ element, requiredRole }) {
-  const userRole = checkUserRole();
-
-  if (userRole === requiredRole) {
-    return element;
-  } else {
-    return <Navigate to="/login" />; // Redirect to the login page if the user doesn't have the required role
-  }
-}
  
 function PageRoutes() {
   return (
@@ -79,30 +56,8 @@ function PageRoutes() {
       </Route>
      
       <Route exact path="admin" element={<AdminDashboard />} >
-      {/* <PrivateRoute exact path='User' element={<User />}   requiredRole="admin"  /> */}
-{/* <CustomRoute element={<User />} allowedRoles={[USER_ROLE.Admin]} /> */}
-
-  <Route exact path='User'  element={<PrivateRoute   element={<User/>}/>}  requiredRole="admin"  /> 
-      <Route exact path='CreateProduct'  element={<PrivateRoute   element={<CreateProduct />} />} />
-      <Route exact path='ListProduct'  element={<PrivateRoute   element={<ListProduct />} />} />
-      <Route exact path='UpdateProduct'  element={<PrivateRoute   element={<UpdateProduct />} />} />
-      <Route exact path='CreateSubCategory'  element={<PrivateRoute   element={<CreateSubCategory />} />} />
-      <Route exact path='ListSubCategory'  element={<PrivateRoute   element={<ListSubCategory />} />} />
-      <Route exact path='CreateCategory'  element={<PrivateRoute   element={<CreateCategory />} />} />
-      <Route exact path='ListCategory'  element={<PrivateRoute   element={<ListCategory />} />} />
-      <Route exact path='CreateSize'  element={<PrivateRoute   element={<CreateSize />} />} />
-      <Route exact path='ListSize'  element={<PrivateRoute   element={<ListSize />} />} />
-      <Route exact path='CreateColor'  element={<PrivateRoute   element={<CreateColor />} />} />
-      <Route exact path='ListColor'  element={<PrivateRoute   element={<ListColor />} />} />
-      <Route exact path='CreateGender'  element={<PrivateRoute   element={<CreateGender />} />} />
-      <Route exact path='ListGender'  element={<PrivateRoute   element={<ListGender />} />} />
-      <Route exact path='CreateSlider'  element={<PrivateRoute   element={<HomePageSlider />} />} />
-      <Route exact path='ListSlider'  element={<PrivateRoute   element={<ListSlider />} />} />
-      <Route exact path='ListOrder'  element={<PrivateRoute   element={<ListOrder />} />} />
-      <Route exact path='orderdetail/:orderID'  element={<PrivateRoute   element={<OrderDetail />} />} />
-
-
-      {/* <Route exact path='CreateProduct' element={<CreateProduct />}/>
+      <Route exact path='User' element={<User />}/>
+      <Route exact path='CreateProduct' element={<CreateProduct />}/>
       <Route exact path='ListProduct' element={<ListProduct />}/>
       <Route exact path='UpdateProduct' element={<UpdateProduct />}/>
       <Route exact path='CreateSubCategory' element={<CreateSubCategory />}/>
@@ -118,11 +73,8 @@ function PageRoutes() {
       <Route exact path='CreateSlider' element={<HomePageSlider />}/>
       <Route exact path='ListSlider' element={<ListSlider />}/>
       <Route exact path='ListOrder' element={<ListOrder />}/>
-      <Route exact path='orderdetail/:orderID' element={<OrderDetail />}/> */}
+      <Route exact path='orderdetail/:orderID' element={<OrderDetail />}/>
       </Route>
-
-
-
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>
@@ -148,3 +100,64 @@ export default PageRoutes;
 
 
 
+
+
+
+
+import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
+
+// Function to check the user's role (You need to implement this logic)
+function checkUserRole() {
+  // You should implement your own logic to check the user's role here
+  // For simplicity, I'm using a hardcoded role for demonstration purposes.
+  const userRole = 'admin';
+  return userRole;
+}
+
+// Custom route guard HOC
+function PrivateRoute({ element, requiredRole }) {
+  const userRole = checkUserRole();
+
+  if (userRole === requiredRole) {
+    return element;
+  } else {
+    return <Navigate to="/login" />; // Redirect to the login page if the user doesn't have the required role
+  }
+}
+
+function PageRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<UserDashboard />}>
+        <Route index element={<Home />} />
+        <Route exact path="/shop" element={<Shop />} />
+        {/* Other public routes */}
+      </Route>
+
+      <Route path="admin" element={<AdminDashboard />}>
+        {/* Admin dashboard route */}
+        <PrivateRoute path="User" element={<User />} requiredRole="admin" />
+        <PrivateRoute path="CreateProduct" element={<CreateProduct />} requiredRole="admin" />
+        <PrivateRoute path="ListProduct" element={<ListProduct />} requiredRole="admin" />
+        <PrivateRoute path="UpdateProduct" element={<UpdateProduct />} requiredRole="admin" />
+        {/* Other admin routes */}
+      </Route>
+
+      <Route path="/CreateCart" element={<CreateCart />} />
+      <Route path="/ListCart" element={<ListCart />} />
+      <Route path="/rough" element={<Demo />} />
+      <Route path="/checkout" element={<Checkout />} />
+
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/forgot" element={<Forgot />} />
+      <Route path="/reset" element={<ResetPassword />} />
+      <Route path="*" element={<Error />} />
+      <Route path="/rough" element={<Demo />} />
+      <Route path="/swiper" element={<Swiper />} />
+    </Routes>
+  );
+}
+
+export default PageRoutes;
