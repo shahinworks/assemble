@@ -180,6 +180,9 @@ if(addressByUser){
 
 
   // Mutations and Query
+  const [ paymentMethod, setPaymentMethod] = useState("");
+
+  console.log("paymentMethod", paymentMethod);
   const {data: cartData} = useQuery(CART);
   const {data: billingAddress} = useQuery(GET_BILLING_ADDRESS);
   const [createOrder, {data: orderData}] = useMutation(CREATE_ORDER, {
@@ -250,7 +253,7 @@ if(addressByUser){
     {
       await createOrder({
         variables: {
-          paymentMethod: "ONLINE",
+          paymentMethod: paymentMethod,
           totalAmount: totalAmount,
           orderProducts: state,
           shippingAddress : addressForShipping,
@@ -263,10 +266,7 @@ if(addressByUser){
     }
     else {
       toast.error("SOME ERROR OCCURRED ");
-    }
-    
-   
-    
+    } 
   }
 
   useEffect(() => {
@@ -438,14 +438,19 @@ if(addressByUser){
       data-bs-parent="#accordionExample"
     >
       <div className="accordion-body">
-        <strong>This is the second item's accordion body.</strong> It is hidden
-        by default, until the collapse plugin adds the appropriate classes that
-        we use to style each element. These classes control the overall
-        appearance, as well as the showing and hiding via CSS transitions. You
-        can modify any of this with custom CSS or overriding our default
-        variables. It's also worth noting that just about any HTML can go within
-        the <code>.accordion-body</code>, though the transition does limit
-        overflow.
+        <Card>
+          <Card.Body>
+          <label class="container">ONLINE
+            <input type="radio" checked="checked"  name='radio' value="ONLINE" onChange={(e) => setPaymentMethod(e.target.value)} />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Cash On Delivery
+            <input type="radio" name='radio' value="COD" onChange={(e) => setPaymentMethod(e.target.value)}/>
+            <span class="checkmark"></span>
+          </label>
+          </Card.Body>
+        </Card>
+
       </div>
     </div>
   </div>
