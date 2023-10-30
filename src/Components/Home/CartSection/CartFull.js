@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Cart } from 'react-bootstrap-icons';
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
-import { Button, Col, Row , Modal} from 'react-bootstrap';
+import { Button, Col, Row , Modal, Card} from 'react-bootstrap';
 import toast from 'react-hot-toast';
 
 function CartFull() {
@@ -172,32 +172,41 @@ function CartFull() {
       
     {/* <Button variant='link' onClick={() => goToCart()}> <Cart/> </Button> */}
     {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
-    <div key={index} className='mb-1 mx-1 px-0 mt-1'>
+    <Card key={index} style={{border: "none"}}>
+      <Card.Body className='mx-4'>
       <Row className='my-2'>
-        <Col className='col-2' />
-        <Col className='mx-4 col-2'>
-          <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/>
+        <Col className='col-md-auto'>
+   <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/>
         </Col>
-        <Col className='mx-5 col-auto mt-0'> <p className='fw-bold fs-5'>{item?.productId?.priveiwName}</p>
-          <Row>
-            <Col>
-              <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
-                <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
-              <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
-            </Col>
-            <Col className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
-            <Col className='mt-0 pt-0'>
-              <Button 
-                onClick={() => handleRemove(item?.productId?.id, item?.color, item?.gender, item?.size )} 
+        <Col className='col-md-auto'>
+        <h5>{item?.productId?.priveiwName}</h5>
+        <Row>
+             <Col>
+               <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
+                 <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
+               <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
+             </Col>
+             <Col className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
+             <Col className='mt-0 pt-0'>
+               <Button 
+                 onClick={() => handleRemove(item?.productId?.id, item?.color, item?.gender, item?.size )} 
                 style={{marginRight: "0px", border: "none"}} 
-                className='d-inline me-md-0 ms-md-5 mt-0 pt-0' 
-                variant='outline-danger' > Remove  </Button>
-            </Col>
+                 className='d-inline me-md-0 ms-md-5 mt-0 pt-0' 
+                 variant='outline-danger' > Remove  </Button>
+    </Col>
             
-          </Row>
+   
+        </Row>
         </Col>
-      </Row>
-    </div>)}
+       </Row>
+       
+      </Card.Body>
+    </Card> )}
+
+
+
+
+   
     <hr/>
     <Row className='my-2'>
       <Col className='col-8' />
@@ -216,4 +225,33 @@ function CartFull() {
   </>)
 }
 
-export default CartFull
+export default CartFull;
+
+
+
+ // <div key={index} className='mb-1 mx-1 px-0 mt-1'>
+    //   <Row className='my-2'>
+    //     <Col className='col-2' />
+    //     <Col className='mx-4 col-2'>
+    //       <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/>
+    //     </Col>
+    //     <Col className='mx-5 col-auto mt-0'> <p className='fw-bold fs-5'>{item?.productId?.priveiwName}</p>
+    //       <Row>
+    //         <Col>
+    //           <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
+    //             <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
+    //           <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
+    //         </Col>
+    //         <Col className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
+    //         <Col className='mt-0 pt-0'>
+    //           <Button 
+    //             onClick={() => handleRemove(item?.productId?.id, item?.color, item?.gender, item?.size )} 
+    //             style={{marginRight: "0px", border: "none"}} 
+    //             className='d-inline me-md-0 ms-md-5 mt-0 pt-0' 
+    //             variant='outline-danger' > Remove  </Button>
+    //         </Col>
+            
+    //       </Row>
+    //     </Col>
+    //   </Row>
+    // </div>
