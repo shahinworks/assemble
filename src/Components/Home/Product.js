@@ -75,10 +75,11 @@ function Product() {
   // `;
 
 
+  
   // ADD TO CART 
 
   const [img, setImg] = useState("");
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState(product?.getProduct?.size[0]);
   const [color, setColor] = useState("");
   const [gender, setGender] = useState("");
   const [ imageArray, setImageArray ] = useState(product?.getProduct?.images[0]?.imagePath);
@@ -87,11 +88,27 @@ function Product() {
     if(product?.getProduct?.images[0]?.imagePath)
     {
       setImageArray(product?.getProduct?.images[0]?.imagePath);
-    }
-   
+    }  
   }, [product?.getProduct?.images[0]?.imagePath]);
 
-  // console.log("Pictures" ,  product);
+  useEffect(() => {
+    if(product?.getProduct?.size[0]){
+      setSize(product?.getProduct?.size[0]);
+    }
+  }, [product?.getProduct?.size[0]]);
+
+
+  useEffect(() => {
+    if(product?.getProduct?.gender[0]) {
+      setGender(product?.getProduct?.gender[0]);
+    }
+  }, [product?.getProduct?.gender[0]]);
+
+  useEffect(() => {
+    if(product?.getProduct?.color[0]) {
+      setColor(product?.getProduct?.color[0]);
+    }
+  }, [product?.getProduct?.color[0]]);
 
   const ADD_TO_CART = gql`
     mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
@@ -251,14 +268,9 @@ function Product() {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="d-flex justify-content-center flex-row-reverse">
-              <div className="image-display">
-                <img
-                  id="selected-image"
-                  src={img || product?.getProduct?.images[0]?.imagePath[0]}
-                  // src="assets/img/31.jpg"
-                  alt="Selected Image"
-                />
-                <div />
+  <div className="image-display">
+  <img id="selected-image" src={img || product?.getProduct?.images[0]?.imagePath[0]} alt="Selected Image"/>
+  <div />
               </div>
               <div className="variant-options ">
               
