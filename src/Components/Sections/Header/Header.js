@@ -27,6 +27,8 @@ function Header() {
 
   const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('role');
     setLoggedIn(false);
   }
 

@@ -77,18 +77,11 @@ function Login() {
     if(isAdmin){
         setUserRole("admin");
       }
-      console.log("ss");
-      console.log("userRole", userRole);
   }, [isAdmin , ROLE]);
 
 
   localStorage.setItem('userRole', userRole);
-     
-  console.log("ROLE",  ROLE);
-  console.log("isAdmin", isAdmin);
-  console.log("userRole", userRole);
-
-
+ 
   const handleLogin = async () => {
     await loginUser({
       variables: {
