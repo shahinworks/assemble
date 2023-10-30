@@ -35,6 +35,8 @@ function Login() {
     }
   `;
 
+
+
   const [loginUser, {data}] = useMutation(LOGIN_USER, {
     onCompleted: async () => {
       toast.success("Logged IN");
@@ -53,11 +55,19 @@ function Login() {
         toast.error("Some Error Occured");
       }
     }
-  });
+  });  
+
+  if(data){
+    console.log("Profile of USER", data);
+  }
+
+
+
 
   useEffect(() => {
     if(data){
       localStorage.setItem('token', data?.loginUser?.token);
+      localStorage.setItem('role', data?.loginUser?.user.role);
     }
   }, [data]);
 
