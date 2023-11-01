@@ -14,7 +14,7 @@ function FAQ() {
         </div>
       </Card.Body>
     </Card>
-    </>)
+  </>);
 }
 
 export default FAQ;
