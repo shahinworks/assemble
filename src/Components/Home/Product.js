@@ -268,12 +268,11 @@ function Product() {
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="d-flex justify-content-center flex-row-reverse">
-  <div className="image-display">
-  <img id="selected-image" src={img || product?.getProduct?.images[0]?.imagePath[0]} alt="Selected Image"/>
-  <div />
+              <div className="image-display">
+                <img id="selected-image" src={img || product?.getProduct?.images[0]?.imagePath[0]} alt="Selected Image"/>
+              <div />
               </div>
               <div className="variant-options ">
-              
                 <div
                   style={{
                   display: "flex",
@@ -306,7 +305,7 @@ function Product() {
                       src={image}
                       alt=""
                     />
-                  </div> )}
+                  </div>)}
                  
                   {/* Add more color divs as needed */}
                 </div>
@@ -578,12 +577,12 @@ function Product() {
     </div>
     <b></b>
     <section className="slider">
-  <h1 className="text-center" style={{ fontFamily: "poppins", fontWeight: "bolder", fontSize: "30px" }}>
-    You may also like 
-  </h1>
-  <div className="container">
-    <div className="row">
-    <div className="flexslider col-lg-3 col-md-6 col-sm-12" >
+      <h1 className="text-center" style={{ fontFamily: "poppins", fontWeight: "bolder", fontSize: "30px" }}>
+        You may also like 
+      </h1>
+      <div className="container">
+        <div className="row">
+          <div className="flexslider col-lg-3 col-md-6 col-sm-12" >
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
@@ -600,8 +599,8 @@ function Product() {
               </ul>
             </div>
           </div>
-    </div>
-  </div>
+        </div>
+      </div>
     </section>
 
     <section>
