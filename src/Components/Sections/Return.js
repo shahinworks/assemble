@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { Card } from 'react-bootstrap';
 
 function Return() {
-  return (
-    <div>Return</div>
-  )
+  return (<>
+    <section className="slider" style={{ paddingTop: "10%" }}>
+    <h1 className='text-center'>Returns & Exchange</h1> 
+    <Card style={{border: "none"}}>
+      <Card.Body className='mx-lg-5'>
+        
+      </Card.Body>
+    </Card>
+    </section>
+        
+  </>);
 }
 
 export default Return
