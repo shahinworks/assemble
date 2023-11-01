@@ -48,6 +48,8 @@ function Product() {
     }
   });
 
+  console.log("product", product);
+
   const [ discount, setDiscount ] = useState(product?.getProduct?.discount);
   const [ sellingPrice, setSellingPrice ] = useState(product?.getProduct?.sellingPrice);
 
@@ -73,12 +75,40 @@ function Product() {
   // `;
 
 
+  
   // ADD TO CART 
 
   const [img, setImg] = useState("");
-  const [size, setSize] = useState("");
+  const [size, setSize] = useState(product?.getProduct?.size[0]);
   const [color, setColor] = useState("");
   const [gender, setGender] = useState("");
+  const [ imageArray, setImageArray ] = useState(product?.getProduct?.images[0]?.imagePath);
+
+  useEffect(() => {
+    if(product?.getProduct?.images[0]?.imagePath)
+    {
+      setImageArray(product?.getProduct?.images[0]?.imagePath);
+    }  
+  }, [product?.getProduct?.images[0]?.imagePath]);
+
+  useEffect(() => {
+    if(product?.getProduct?.size[0]){
+      setSize(product?.getProduct?.size[0]);
+    }
+  }, [product?.getProduct?.size[0]]);
+
+
+  useEffect(() => {
+    if(product?.getProduct?.gender[0]) {
+      setGender(product?.getProduct?.gender[0]);
+    }
+  }, [product?.getProduct?.gender[0]]);
+
+  useEffect(() => {
+    if(product?.getProduct?.color[0]) {
+      setColor(product?.getProduct?.color[0]);
+    }
+  }, [product?.getProduct?.color[0]]);
 
   const ADD_TO_CART = gql`
     mutation AddToCart($productId: ID!, $quantity: Int!, $color: String, $gender: String, $size: String) {
@@ -156,6 +186,12 @@ function Product() {
 
   const changeImage = (path) => {
     setImg(path)
+
+    // if(img){
+    //   setImg(path);
+    // } else if(imageArray){
+    //   setImg(imageArray[0]);
+    // }
   }
 
   const handleCartColor = (colour) => {
@@ -169,62 +205,107 @@ function Product() {
     setGender(gen);
   }
 
-  return (<>
-    <CartPop show={editModal} onHide={() => setEditModal(false)}  />
- 
+  const handleSizeArray = (arr) => {
+    setImageArray(arr);
+  }
+  
+  // Style when Color is selected
+  const [select, setSelect] = useState(0);
+  
+  const colorSelectedStyle = {
+    border: "1px solid black",
+    backgroundColor: "black",
+    color: "white"
+  };
 
-  <div className="container">
+  const colorNotSelectedStyle = {
+    border: "1px solid black",
+  }
+ 
+  const handleSelection = (id) => {
+    setSelect(id);
+  }
+
+  // Style when Size is Selected
+  const [sizeSel, setSizeSel] = useState(0);
+
+  const handleSizeSeletion = (id) => {
+    setSizeSel(id);
+  }
+
+  const sizeSelectedStyle = {
+    border: "1px solid black",
+    backgroundColor: "black",
+    color: "white"
+  };
+
+  const sizeNotSelectedStyle = {
+    border: "1px solid black",
+  }
+
+  // Style when Gender is selected
+  const [genSel, setGenSel] = useState(0);
+
+  const handleGenderSeletion = (id) => {
+    setGenSel(id);
+  }
+
+  const genderSelectedStyle = {
+    border: "1px solid black",
+    backgroundColor: "black",
+    color: "white"
+  };
+
+  const genderNotSelectedStyle = {
+    border: "1px solid black",
+  }
+
+  return (<>
+    <CartPop show={editModal} onHide={() => setEditModal(false)} />
+    <div className="container" >
     <section className="slider" style={{ paddingTop: "10%" }}>
       <div className="container" id="container">
         <div className="row">
           <div className="col-lg-6 col-md-6 col-sm-12">
             <div className="d-flex justify-content-center flex-row-reverse">
               <div className="image-display">
-                <img
-                  id="selected-image"
-                  src={img || product?.getProduct?.images[0]?.imagePath}
-                  // src="assets/img/31.jpg"
-                  alt="Selected Image"
-                />
-                <div />
+                <img id="selected-image" src={img || product?.getProduct?.images[0]?.imagePath[0]} alt="Selected Image"/>
+              <div />
               </div>
               <div className="variant-options ">
-              
                 <div
                   style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-evenly"
-                  }}
-                >
-                   <div
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly"
+                  }} >
+                   {/* <div
                     className="variant active"
                     id="act"
                     data-image="assets/img/31.jpg"
-                    onClick={() => changeImage(product?.getProduct?.images[0]?.imagePath)}
-                  >
+                    onClick={() => changeImage(product?.getProduct?.images[0]?.imagePath[0])}
+                  > 
                     <img
                       style={{ objectFit: "contain" }}
-                      // src="assets/img/31.jpg"
-                      src={product?.getProduct?.images[0]?.imagePath}
+                      src={product?.getProduct?.images[0]?.imagePath[0]}
                       alt=""
                     />
-                  </div>
-                  {product?.getProduct?.images.map((image, index) => index > 0 && 
+                  </div>  */}
+                  {/* {product?.getProduct?.images?.imagePath?.map((image, index) => index > 0 &&  */}
+                  {imageArray &&  imageArray?.map((image, index) => 
                   <div key={index}
                     className="variant"
                     id="act"
                     data-image="assets/img/31.jpg"
-                    onClick={() =>{ changeImage(image?.imagePath); 
+                    onClick={() =>{ changeImage(image); 
                       handleCartColor(image?.color)}}
                   >
                     <img
                       style={{ objectFit: "contain" }}
-                      // src="assets/img/31.jpg"
-                      src={image?.imagePath}
+                      src={image}
                       alt=""
                     />
-                  </div> )}
+                  </div>)}
                  
                   {/* Add more color divs as needed */}
                 </div>
@@ -236,8 +317,8 @@ function Product() {
               <h1>{product?.getProduct?.productName}</h1>
               <br />
               {product?.getProduct?.discount > 0 ? <h3>
-                <del>₹ {sellingPrice}</del>
-                {" "} ₹ {product?.getProduct?.sellingPrice} 
+                <del> ₹  {product?.getProduct?.sellingPrice}</del>
+                {" "} ₹ {sellingPrice}
               </h3>:  <h3> ₹ {product?.getProduct?.sellingPrice}
               </h3>}
              
@@ -251,141 +332,42 @@ function Product() {
                     Inventore, vel ratione. */}
                   </b>
                 </p>
-                {/* <div className="row" id="row">
-                  <div className="col ">
-                    <a href="#">
-                      <div>
-                        <img src="assets/img/31.jpg" alt="" />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="col">
-                    <a href="#">
-                      {" "}
-                      <div>
-                        <img src="assets/img/32.jpg" alt="" />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="col">
-                    <a href="#">
-                      {" "}
-                      <div>
-                        <img src="assets/img/33.jpg" alt="" />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="col">
-                    <a href="#">
-                      {" "}
-                      <div>
-                        <img src="assets/img/34.jpg" alt="" />
-                      </div>
-                    </a>
-                  </div>
-                  <div className="col">
-                    <a href="#">
-                      {" "}
-                      <div>
-                        <img src="assets/img/35.jpg" alt="" />
-                      </div>
-                    </a>
-                  </div>
-                </div> */}
               </div>
               <br />
 
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
-              <div className='ms-0 d-flex'> 
-
+              <div className='ms-0 d-flex'>
               {product?.getProduct && product?.getProduct?.images.map((color, index) =>
-               <div onClick={() => { changeImage(color?.imagePath); handleCartColor(color?.color) }} key={color.color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+               <div onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
+               key={color.color} 
+               className='mx-2 my-2 px-3 py-2 hoverable'  
+               style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
               {color.color}
-            </div>)} 
-
-
-             {/* {product?.getProduct && product?.getProduct?.color.map((color) =>
-              <div key={color} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
-              {color}
-            </div>)}  */}
+            </div>)}
             </div>
-
-
               <h6 className='fw-bold mx-2 text-left'>
                 Gender
               </h6>
               <div className='ms-0 d-flex'>
-               {product?.getProduct && product?.getProduct?.gender.map((gender) =>
-              <div key={gender}  onClick={() => handleCartGender(gender)}  className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}> {gender} </div>)}
+               {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
+              <div key={gender} 
+              style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
+               onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}}  className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
               </div>
              
               <h6 className='fw-bold mx-2 text-left'>
                 Size
               </h6>
-              <div className='ms-0 d-flex'>
-             {product?.getProduct && product?.getProduct?.size.map((size) =>
-              <div  onClick={() => handleCartSize(size)}  key={size} className='mx-2 my-2 px-3 py-2' style={{border: "1px solid black"}}>
+              <div className='ms-0 d-flex'> 
+             {product?.getProduct && product?.getProduct?.size.map((size, index) =>
+              <div 
+              style={sizeSel === index? sizeSelectedStyle: sizeNotSelectedStyle}
+               onClick={() => { handleCartSize(size); handleSizeSeletion(index)}} 
+                key={size} className='mx-2 my-2 px-3 py-2 hoverable' >
               {size}
             </div>)}
             </div>
              
-
-
-              {/* <div className="row row2 text-uppercase">
-                <div
-                  className="col-lg-2 variant text-center"
-                  data-image="assets/img/orange.webp"
-                  id="act"
-                >
-                  {" "}
-                  Orange
-                </div>
-                <div
-                  className="col-lg-2 variant text-center"
-                  data-image="assets/img/brown.webp"
-                >
-                  Brown
-                </div>
-                <div
-                  className="col-lg-2 variant text-center"
-                  data-image="assets/img/31.jpg"
-                >
-                  Green
-                </div>
-                <div
-                  className="col-lg-2 variant text-center"
-                  data-image="assets/img/32.jpg"
-                >
-                  blue
-                </div>
-                <div
-                  className="col-lg-2 variant text-center"
-                  data-image="assets/img/33.jpg"
-                >
-                  black
-                </div>
-                <div
-                  className="col-lg-2 variant text-center"
-                  data-image="assets/img/34.jpg"
-                  style={{ marginRight: 5 }}
-                >
-                  mustard
-                </div>
-                <div
-                  className="col-2 variant text-center"
-                  data-image="assets/img/31.jpg"
-                >
-                  purple
-                </div>
-              </div>
-              <br />
-              <h6>
-                <b>Gender</b>
-              </h6>
-              <div className="row row2 text-uppercase">
-                <div className="col-lg-2 col-md-2 col-sm-6">men</div>
-                <div className="col-lg-2  col-md-2 col-sm-6 ">women</div>
-              </div> */}
             </div>
             <br />
 
@@ -471,13 +453,13 @@ function Product() {
               </button>
             </div>
             <br />
-            <div className="d-flex justify-content-center">
+            {/* <div className="d-flex justify-content-center">
               <button className="button2  d-flex justify-content-evenly">
                 <a href="#" className="text-center">
                   Buy Now
                 </a>
               </button>
-            </div>
+            </div> */}
             <br />
            
          <Tabs>
@@ -528,167 +510,11 @@ function Product() {
                 <li style={{fontWeight: "bold", textAlign: "left"}}>
                Super Sized Pocket</li>
                <li style={{fontWeight: "bold", textAlign: "left"}}>
-               High quality SKin safe colours</li>
-            
-              </ul>
+               High quality Skin safe colours</li>
+            </ul>
           </Tab>
          </Tabs>
-
-
-            {/* <dir>
-              <ul className="nav nav-tabs" id="myTab" role="tablist">
-                <li className="nav-item text-dark" role="presentation">
-                  <button
-                    className="nav-link text-dark active"
-                    id="home-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#home"
-                    type="button"
-                    role="tab"
-                    aria-controls="home"
-                    aria-selected="true"
-                  >
-                    Measurement
-                  </button>
-                </li>
-                <li className="nav-item text-dark" role="presentation">
-                  <button
-                    className="nav-link text-dark"
-                    id="profile-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#profile"
-                    type="button"
-                    role="tab"
-                    aria-controls="profile"
-                    aria-selected="false"
-                  >
-                    {" "}
-                    Description{" "}
-                  </button>
-                </li>
-                <li className="nav-item text-dark" role="presentation">
-                  <button
-                    className="nav-link text-dark"
-                    id="contact-tab"
-                    data-bs-toggle="tab"
-                    data-bs-target="#contact"
-                    type="button"
-                    role="tab"
-                    aria-controls="contact"
-                    aria-selected="false"
-                  >
-                    Size
-                  </button>
-                </li>
-              </ul>
-              <div style={{marginLeft: "0px", paddingLeft: "0px"}} >
-             
-                <div  style={{paddingLeft: "0px", marginLeft: "0px"}}
-                  // className="tab-pane fade show active container"
-                  id="home"
-                  role="tabpanel"
-                  aria-labelledby="home-tab"
-                >
-                  <p style={{ paddingTop: 20 }}>
-                    <b>Free Size:</b>
-                  </p>
-                  <ul className='px-0 mx-0'  style={{paddingLeft: "0px", marginLeft: "0px"}}>
-                    <li>
-                      <b>
-                        Waist : 26" - 48" (Full Elasticated Waist with
-                        tightening lace)
-                      </b>
-                    </li>
-                    <li className='px-0 mx-0' style={{paddingLeft: "0px", marginLeft: "0px"}}>
-                      <b className='px-0 mx-0'  style={{paddingLeft: "0px", marginLeft: "0px"}}>Height : 40" </b>
-                    </li>
-                  </ul>
-                  <p style={{ paddingTop: 20 }}>
-                    <b>Medium : </b>
-                  </p>
-                  <ul>
-                    <li>
-                      <b>
-                        Waist : 24" - 44" (Full Elasticated Waist with
-                        tightening lace)
-                      </b>
-                    </li>
-                    <li>
-                      <b>Height : 38" </b>
-                    </li>
-                  </ul>
-                  <p style={{ paddingTop: 20 }}>
-                    <b>features: </b>
-                  </p>
-                  <ul>
-                    <li>
-                      <b>Finest Long Staple 100% Cotton</b>
-                    </li>
-                    <li>
-                      <b>Super sized pocket </b>
-                    </li>
-                    <li>
-                      <b>High quality Skin Safe Colours</b>
-                    </li>
-                  </ul>
-                </div>
-                <div
-                  className="tab-pane fade"
-                  id="contact"
-                  role="tabpanel"
-                  aria-labelledby="contact-tab"
-                  style={{
-                    backgroundImage: "url(assets/img/size.jpg)",
-                    width: "100%",
-                    height: 300,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "contain"
-                  }}
-                ></div>
-                <div
-                  className="tab-pane fade"
-                  id="profile"
-                  role="tabpanel"
-                  aria-labelledby="profile-tab"
-                >
-                  {" "}
-                  <p style={{ paddingTop: 20 }}>
-                    <b>
-                      Redefine your fashion with comfort. The Mythical Mana is
-                      designed for a world of hope, desires &amp; It is all that
-                      you need to make an outstanding fashion statement.Here’s
-                      why you’ll love it:{" "}
-                    </b>
-                  </p>
-                  <b>
-                    <ul>
-                      <li>
-                        <b>
-                          These harem pants are weaved from super-combed premium
-                          cotton fabric.
-                        </b>
-                      </li>
-                      <li>
-                        <b>
-                          Cut for a relaxed fit and elevated with a signature
-                          style, these harem pants provide superb breathability
-                          and hence are the most popular loungewear.
-                        </b>
-                      </li>
-                      <li>
-                        <b>
-                          Rich bohemian and quirky designs elevate your style
-                          statement with a bold and street chic touch.
-                        </b>
-                      </li>
-                    </ul>
-                  </b>
-                </div>
-                <b></b>
-              </div>
-              <b></b>
-            </dir> */}
-            <hr />
+          <hr />
             <b>
               <div className="d-flex">
                 <div
@@ -748,19 +574,15 @@ function Product() {
       </div>
       <b></b>
     </section>
-  </div>
-  <b></b>
-
-
-
-
-<section className="slider">
-  <h1 className="text-center" style={{ fontFamily: "poppins", fontWeight: "bolder", fontSize: "30px" }}>
-    You may also like 
-  </h1>
-  <div className="container">
-    <div className="row">
-    <div className="flexslider col-lg-3 col-md-6 col-sm-12" >
+    </div>
+    <b></b>
+    <section className="slider">
+      <h1 className="text-center" style={{ fontFamily: "poppins", fontWeight: "bolder", fontSize: "30px" }}>
+        You may also like 
+      </h1>
+      <div className="container">
+        <div className="row">
+          <div className="flexslider col-lg-3 col-md-6 col-sm-12" >
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
@@ -777,171 +599,11 @@ function Product() {
               </ul>
             </div>
           </div>
-      {/* <div className="flexslider col-lg-3 col-md-6 col-sm-12">
-        <div className="flexslider">
-          <ul className="slides">
-            <li data-thumb="assets/img/TheVeshtiCompanyHaremPants50_540x.webp">
-              <a
-                data-fslightbox="mygalley"
-                className="rounded-4"
-                target="_blank"
-                data-type="image"
-                href="admin-panel/uploadproduct/<?php echo $imageArray[$i];?>"
-              >
-                <img
-                  style={{ height: 350, objectFit: "contain" }}
-                  src="assets/img/TheVeshtiCompanyHaremPants50_540x.webp"
-                />
-              </a>
-            </li>
-            <li data-thumb="assets/img/TheVeshtiCompanyHaremPants2_360x.webp">
-              <a
-                data-fslightbox="mygalley"
-                className="rounded-4"
-                target="_blank"
-                data-type="image"
-                href="admin-panel/uploadproduct/<?php echo $imageArray[$i];?>"
-              >
-                <img
-                  style={{ height: 350, objectFit: "contain", width: "100%" }}
-                  src="assets/img/TheVeshtiCompanyHaremPants2_360x.webp"
-                />
-              </a>
-            </li>
-          </ul>
         </div>
-        <h2 style={{ position: "absolute", top: 365 }}>
-          Lorem ipsum dolor sit amet.
-        </h2>
-        <p style={{ position: "absolute", left: 100, top: 400 }}>
-          <del> ₹3,000</del> ₹1999
-        </p>
       </div>
-      <div className="flexslider col-lg-3 col-md-6 col-sm-12">
-        <div className="flexslider">
-          <ul className="slides">
-            <li data-thumb="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_360x.webp">
-              <a
-                data-fslightbox="mygalley"
-                className="rounded-4"
-                target="_blank"
-                data-type="image"
-                href="admin-panel/uploadproduct/<?php echo $imageArray[$i];?>"
-              >
-                <img
-                  style={{ height: 350, objectFit: "contain" }}
-                  src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_360x.webp"
-                />
-              </a>
-            </li>
-            <li data-thumb="assets/img/22.webp">
-              <a
-                data-fslightbox="mygalley"
-                className="rounded-4"
-                target="_blank"
-                data-type="image"
-                href="admin-panel/uploadproduct/<?php echo $imageArray[$i];?>"
-              >
-                <img
-                  style={{ height: 350, objectFit: "contain", width: "100%" }}
-                  src="assets/img/22.webp"
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <h2 style={{ position: "absolute", top: 365 }}>
-          Lorem ipsum dolor sit amet.
-        </h2>
-        <p style={{ position: "absolute", left: 100, top: 400 }}>
-          <del> ₹3,000</del> ₹1999
-        </p>{" "}
-      </div>
-      <div className="flexslider col-lg-3 col-md-6 col-sm-12">
-        <div className="flexslider">
-          <ul className="slides">
-            <li data-thumb="assets/img/23.webp">
-              <a
-                data-fslightbox="mygalley"
-                className="rounded-4"
-                target="_blank"
-                data-type="image"
-                href="admin-panel/uploadproduct/<?php echo $imageArray[$i];?>"
-              >
-                <img
-                  style={{ height: 350, objectFit: "contain" }}
-                  src="assets/img/23.webp"
-                />
-              </a>
-            </li>
-            <li data-thumb="assets/img/24.webp">
-              <a
-                data-fslightbox="mygalley"
-                className="rounded-4"
-                target="_blank"
-                data-type="image"
-                href="admin-panel/uploadproduct/<?php echo $imageArray[$i];?>"
-              >
-                <img
-                  style={{ height: 350, objectFit: "contain", width: "100%" }}
-                  src="assets/img/24.webp"
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <h2 style={{ position: "absolute", top: 365 }}>
-          Lorem ipsum dolor sit amet.
-        </h2>
-        <p style={{ position: "absolute", left: 100, top: 400 }}>
-          <del> ₹3,000</del> ₹1999
-        </p>{" "}
-      </div>
-      <div className="flexslider col-lg-3 col-md-6 col-sm-12">
-        <div className="flexslider">
-          <ul className="slides">
-            <li data-thumb="assets/img/25.webp">
-              <a
-                data-fslightbox="mygalley"
-                className="rounded-4"
-                target="_blank"
-                data-type="image"
-                href="admin-panel/uploadproduct/<?php echo $imageArray[$i];?>"
-              >
-                <img
-                  style={{ height: 350, objectFit: "contain" }}
-                  src="assets/img/25.webp"
-                />
-              </a>
-            </li>
-            <li data-thumb="assets/img/26.webp">
-              <a
-                data-fslightbox="mygalley"
-                className="rounded-4"
-                target="_blank"
-                data-type="image"
-                href="admin-panel/uploadproduct/<?php echo $imageArray[$i];?>"
-              >
-                <img
-                  style={{ height: 350, objectFit: "contain", width: "100%" }}
-                  src="assets/img/26.webp"
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
-        <h2 style={{ position: "absolute", top: 365 }}>
-          Lorem ipsum dolor sit amet.
-        </h2>
-        <p style={{ position: "absolute", left: 100, top: 400 }}>
-          <del> ₹3,000</del> ₹1999
-        </p>{" "}
-      </div> */}
-    </div>
-  </div>
-</section>
+    </section>
 
-<section>
+    <section>
   <div className="container" id="container-last">
     <h4>
       <b className="text-start">Recently Viewed</b>
@@ -1025,380 +687,9 @@ function Product() {
           </a>
         </div>
       </div>
-      {/* <div className="col-lg-2 col-md-3 col-md-6 d-flex flex-column align-items-center">
-        <div className="d-flex ">
-          <img
-            style={{
-              objectFit: "contain",
-              borderRadius: 16,
-              position: "relative"
-            }}
-            src="assets/img/TheVeshtiCompanyHaremPants1_medium.avif"
-            alt=""
-          />
-          <h4
-            style={{
-              color: "white",
-              background: "#b77b12",
-              borderRadius: "50%",
-              marginLeft: "-25px",
-              zIndex: 0,
-              height: 50,
-              display: "flex",
-              alignItems: "center"
-            }}
-          >
-            33%
-          </h4>
-        </div>
-        <p style={{ paddingTop: 6, marginLeft: "-14px", marginBottom: 0 }}>
-          <b>Terra Fragments</b>
-        </p>
-        <p
-          style={{
-            marginLeft: "-14px",
-            marginBottom: 0,
-            fontWeight: "normal",
-            fontSize: "large"
-          }}
-        >
-          {" "}
-          ₹1,999.00
-        </p>
-        <select
-          name=""
-          id=""
-          style={{
-            border: "3px solid whitesmoke",
-            height: 50,
-            width: "80%",
-            color: "rgba(0, 0, 0, 0.6)",
-            boxShadow: "1px 1px  rgba(0, 0, 0, 0.5)"
-          }}
-        >
-          <option value="black">Black-Beige / Men / Free Size</option>
-          <option value="black">Black-Beige / Women / Free Size</option>
-          <option value="black">Brown / Men / Free Size</option>
-          <option value="black">Brown / Women / Free Size</option>
-          <option value="black">Blue / Men / Free Size</option>
-          <option value="black">Blue / Women / Free Size</option>
-          <option value="black">Orange / Men / Free Size</option>
-          <option value="black">Orange / Women / Free Size</option>
-          <option value="black">Red / Men / Free Size</option>
-          <option value="black">Red / Women / Free Size</option>
-        </select>{" "}
-        <br />
-        <div
-          className="d-flex align-items-center shade justify-content-center"
-          style={{ border: "2px solid rgb(0, 0, 0)", height: 40, width: "80%" }}
-        >
-          <a href="" style={{ textDecoration: "none", color: "rgb(0, 0, 0)" }}>
-            <p style={{ margin: 0 }}>
-              <b>Add to Cart</b>
-            </p>
-          </a>
-        </div>
-      </div>
-      <div className="col-lg-2 col-md-3 col-md-6 d-flex flex-column align-items-center">
-        <div className="d-flex ">
-          <img
-            style={{
-              objectFit: "contain",
-              borderRadius: 16,
-              position: "relative"
-            }}
-            src="assets/img/TheVeshtiCompanyHaremPants1_medium.avif"
-            alt=""
-          />
-          <h4
-            style={{
-              color: "white",
-              background: "#b77b12",
-              borderRadius: "50%",
-              marginLeft: "-25px",
-              zIndex: 0,
-              height: 50,
-              display: "flex",
-              alignItems: "center"
-            }}
-          >
-            33%
-          </h4>
-        </div>
-        <p style={{ paddingTop: 6, marginLeft: "-14px", marginBottom: 0 }}>
-          <b>Terra Fragments</b>
-        </p>
-        <p
-          style={{
-            marginLeft: "-14px",
-            marginBottom: 0,
-            fontWeight: "normal",
-            fontSize: "large"
-          }}
-        >
-          {" "}
-          ₹1,999.00
-        </p>
-        <select
-          name=""
-          id=""
-          style={{
-            border: "3px solid whitesmoke",
-            height: 50,
-            width: "80%",
-            color: "rgba(0, 0, 0, 0.6)",
-            boxShadow: "1px 1px  rgba(0, 0, 0, 0.5)"
-          }}
-        >
-          <option value="black">Black-Beige / Men / Free Size</option>
-          <option value="black">Black-Beige / Women / Free Size</option>
-          <option value="black">Brown / Men / Free Size</option>
-          <option value="black">Brown / Women / Free Size</option>
-          <option value="black">Blue / Men / Free Size</option>
-          <option value="black">Blue / Women / Free Size</option>
-          <option value="black">Orange / Men / Free Size</option>
-          <option value="black">Orange / Women / Free Size</option>
-          <option value="black">Red / Men / Free Size</option>
-          <option value="black">Red / Women / Free Size</option>
-        </select>{" "}
-        <br />
-        <div
-          className="d-flex align-items-center shade justify-content-center"
-          style={{ border: "2px solid rgb(0, 0, 0)", height: 40, width: "80%" }}
-        >
-          <a href="" style={{ textDecoration: "none", color: "rgb(0, 0, 0)" }}>
-            <p style={{ margin: 0 }}>
-              <b>Add to Cart</b>
-            </p>
-          </a>
-        </div>
-      </div>
-      <div className="col-lg-2 col-md-3 col-md-6 d-flex flex-column align-items-center">
-        <div className="d-flex ">
-          <img
-            style={{
-              objectFit: "contain",
-              borderRadius: 16,
-              position: "relative"
-            }}
-            src="assets/img/TheVeshtiCompanyHaremPants1_medium.avif"
-            alt=""
-          />
-          <h4
-            style={{
-              color: "white",
-              background: "#b77b12",
-              borderRadius: "50%",
-              marginLeft: "-25px",
-              zIndex: 0,
-              height: 50,
-              display: "flex",
-              alignItems: "center"
-            }}
-          >
-            33%
-          </h4>
-        </div>
-        <p style={{ paddingTop: 6, marginLeft: "-14px", marginBottom: 0 }}>
-          <b>Terra Fragments</b>
-        </p>
-        <p
-          style={{
-            marginLeft: "-14px",
-            marginBottom: 0,
-            fontWeight: "normal",
-            fontSize: "large"
-          }}
-        >
-          {" "}
-          ₹1,999.00
-        </p>
-        <select
-          name=""
-          id=""
-          style={{
-            border: "3px solid whitesmoke",
-            height: 50,
-            width: "80%",
-            color: "rgba(0, 0, 0, 0.6)",
-            boxShadow: "1px 1px  rgba(0, 0, 0, 0.5)"
-          }}
-        >
-          <option value="black">Black-Beige / Men / Free Size</option>
-          <option value="black">Black-Beige / Women / Free Size</option>
-          <option value="black">Brown / Men / Free Size</option>
-          <option value="black">Brown / Women / Free Size</option>
-          <option value="black">Blue / Men / Free Size</option>
-          <option value="black">Blue / Women / Free Size</option>
-          <option value="black">Orange / Men / Free Size</option>
-          <option value="black">Orange / Women / Free Size</option>
-          <option value="black">Red / Men / Free Size</option>
-          <option value="black">Red / Women / Free Size</option>
-        </select>{" "}
-        <br />
-        <div
-          className="d-flex align-items-center shade justify-content-center"
-          style={{ border: "2px solid rgb(0, 0, 0)", height: 40, width: "80%" }}
-        >
-          <a href="" style={{ textDecoration: "none", color: "rgb(0, 0, 0)" }}>
-            <p style={{ margin: 0 }}>
-              <b>Add to Cart</b>
-            </p>
-          </a>
-        </div>
-      </div>
-      <div className="col-lg-2 col-md-3 col-md-6 d-flex flex-column align-items-center">
-        <div className="d-flex ">
-          <img
-            style={{
-              objectFit: "contain",
-              borderRadius: 16,
-              position: "relative"
-            }}
-            src="assets/img/TheVeshtiCompanyHaremPants1_medium.avif"
-            alt=""
-          />
-          <h4
-            style={{
-              color: "white",
-              background: "#b77b12",
-              borderRadius: "50%",
-              marginLeft: "-25px",
-              zIndex: 0,
-              height: 50,
-              display: "flex",
-              alignItems: "center"
-            }}
-          >
-            33%
-          </h4>
-        </div>
-        <p style={{ paddingTop: 6, marginLeft: "-14px", marginBottom: 0 }}>
-          <b>Terra Fragments</b>
-        </p>
-        <p
-          style={{
-            marginLeft: "-14px",
-            marginBottom: 0,
-            fontWeight: "normal",
-            fontSize: "large"
-          }}
-        >
-          {" "}
-          ₹1,999.00
-        </p>
-        <select
-          name=""
-          id=""
-          style={{
-            border: "3px solid whitesmoke",
-            height: 50,
-            width: "80%",
-            color: "rgba(0, 0, 0, 0.6)",
-            boxShadow: "1px 1px  rgba(0, 0, 0, 0.5)"
-          }}
-        >
-          <option value="black">Black-Beige / Men / Free Size</option>
-          <option value="black">Black-Beige / Women / Free Size</option>
-          <option value="black">Brown / Men / Free Size</option>
-          <option value="black">Brown / Women / Free Size</option>
-          <option value="black">Blue / Men / Free Size</option>
-          <option value="black">Blue / Women / Free Size</option>
-          <option value="black">Orange / Men / Free Size</option>
-          <option value="black">Orange / Women / Free Size</option>
-          <option value="black">Red / Men / Free Size</option>
-          <option value="black">Red / Women / Free Size</option>
-        </select>{" "}
-        <br />
-        <div
-          className="d-flex align-items-center shade justify-content-center"
-          style={{ border: "2px solid rgb(0, 0, 0)", height: 40, width: "80%" }}
-        >
-          <a href="" style={{ textDecoration: "none", color: "rgb(0, 0, 0)" }}>
-            <p style={{ margin: 0 }}>
-              <b>Add to Cart</b>
-            </p>
-          </a>
-        </div>
-      </div>
-      <div className="col-lg-2 col-md-3 col-md-6 d-flex flex-column align-items-center">
-        <div className="d-flex ">
-          <img
-            style={{
-              objectFit: "contain",
-              borderRadius: 16,
-              position: "relative"
-            }}
-            src="assets/img/TheVeshtiCompanyHaremPants1_medium.avif"
-            alt=""
-          />
-          <h4
-            style={{
-              color: "white",
-              background: "#b77b12",
-              borderRadius: "50%",
-              marginLeft: "-25px",
-              zIndex: 0,
-              height: 50,
-              display: "flex",
-              alignItems: "center"
-            }}
-          >
-            33%
-          </h4>
-        </div>
-        <p style={{ paddingTop: 6, marginLeft: "-14px", marginBottom: 0 }}>
-          <b>Terra Fragments</b>
-        </p>
-        <p
-          style={{
-            marginLeft: "-14px",
-            marginBottom: 0,
-            fontWeight: "normal",
-            fontSize: "large"
-          }}
-        >
-          {" "}
-          ₹1,999.00
-        </p>
-        <select
-          name=""
-          id=""
-          style={{
-            border: "3px solid whitesmoke",
-            height: 50,
-            width: "80%",
-            color: "rgba(0, 0, 0, 0.6)",
-            boxShadow: "1px 1px  rgba(0, 0, 0, 0.5)"
-          }}
-        >
-          <option value="black">Black-Beige / Men / Free Size</option>
-          <option value="black">Black-Beige / Women / Free Size</option>
-          <option value="black">Brown / Men / Free Size</option>
-          <option value="black">Brown / Women / Free Size</option>
-          <option value="black">Blue / Men / Free Size</option>
-          <option value="black">Blue / Women / Free Size</option>
-          <option value="black">Orange / Men / Free Size</option>
-          <option value="black">Orange / Women / Free Size</option>
-          <option value="black">Red / Men / Free Size</option>
-          <option value="black">Red / Women / Free Size</option>
-        </select>{" "}
-        <br />
-        <div
-          className="d-flex align-items-center shade justify-content-center"
-          style={{ border: "2px solid rgb(0, 0, 0)", height: 40, width: "80%" }}
-        >
-          <a href="" style={{ textDecoration: "none", color: "rgb(0, 0, 0)" }}>
-            <p style={{ margin: 0 }}>
-              <b>Add to Cart</b>
-            </p>
-          </a>
-        </div>
-      </div> */}
     </div>
   </div>
-</section>
-
+    </section>
   </>);
 }
 
