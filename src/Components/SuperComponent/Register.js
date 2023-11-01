@@ -91,7 +91,7 @@ function RegistrationForm() {
 
   return (
     <div className="mt-5 mb-5 pt-5 pb-5">
-      <Container>
+      {/* <Container> */}
         <Row className="vh-100 d-flex justify-content-center align-items-center">
           <Col md={8} lg={6} xs={12}>
             <div className="border border-2 border-primary"></div>
@@ -225,7 +225,7 @@ function RegistrationForm() {
             </Card>
           </Col>
         </Row>
-      </Container>
+      {/* </Container> */}
     </div>
   );
 }
