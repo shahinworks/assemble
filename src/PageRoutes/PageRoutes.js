@@ -69,6 +69,7 @@ function PageRoutes() {
         <Route exact path='/wishlist' element={<Wishlist />} />
         <Route exact path='/cart' element={<CartFull />} />
         <Route exact path='/profile' element={<Profile />} />
+        <Route exact path='/faq' element={<FAQ />} />
       </Route>
      
       <Route exact path="admin" element={<AdminDashboard />} > 
@@ -121,7 +122,7 @@ function PageRoutes() {
       
     
 
-      <Route exact path='/faq' element={<FAQ />} />
+     
       <Route path='/login' element={<Login />}/>
       <Route path='/register' element={<Register />}/>
       <Route path='/forgot' element={<Forgot />}/>
