@@ -129,7 +129,7 @@ function Home() {
              <div className="carousel-item active">
              <div className="row row1">
               {/* <Swiper product={product} /> */}
-             {product && product?.getAllProducts?.map((data, index) => index< 3 &&<div key={data.id}  className="col-lg-4 col-md-4 col-sm-6">
+             {product && product?.getAllProducts?.map((data, index) => index< 3 && <div key={data.id}  className="col-lg-4 col-md-4 col-sm-6">
                  <img src={data?.images[0]?.imagePath[0]} alt=""/>
                 <Link to={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </Link>
                  <h4 className="fs-5 text-center">
