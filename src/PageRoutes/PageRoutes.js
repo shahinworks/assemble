@@ -43,6 +43,7 @@ import UpdateProduct from '../Components/Admin/Product/UpdateProduct';
 import ListGender from '../Components/Admin/Gender/ListGender';
 import CreateGender from '../Components/Admin/Gender/CreateGender';
 import Swiper from '../Components/Home/Swiper';
+import FAQ from '../Components/Sections/FAQ';
 
 // Custom route guard HOC
 function PrivateRoute({ element, requiredRole }) {
@@ -120,7 +121,7 @@ function PageRoutes() {
       
     
 
-      
+      <Route exact path='/faq' element={<FAQ />} />
       <Route path='/login' element={<Login />}/>
       <Route path='/register' element={<Register />}/>
       <Route path='/forgot' element={<Forgot />}/>
