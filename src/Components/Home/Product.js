@@ -299,7 +299,7 @@ const [fish, setFish ] = useState();
 
   const imageBorder = {
     border: "2px solid black",
-    objectFit: "contain"
+    objectFit: "contain",
   }
 
   const noBorder = {
