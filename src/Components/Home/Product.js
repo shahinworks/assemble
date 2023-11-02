@@ -378,7 +378,7 @@ const [fish, setFish ] = useState();
              
               <p className="text-disable">Tax included.</p>
               <hr />
-              <div className="container">
+              <div className="container mx-0 px-0">
                 <p>
                   <b>
                   {product?.getProduct?.description}
