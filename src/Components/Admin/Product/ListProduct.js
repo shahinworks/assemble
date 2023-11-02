@@ -250,9 +250,9 @@ const { data: genderData } = useQuery(GET_ALL_GENDER);
 
   return (<>
     <Row className="mx-auto my-5">
-      <Col>
-        <Card>
-          <Card.Body>
+      <Col className="ms-0">
+        <Card className="ms-0">
+          <Card.Body className="ms-0">
             <h2>Table of Product List</h2>
             <Table bordered hover responsive className="mt-2">
               <thead>
