@@ -201,6 +201,7 @@ function CartFull() {
     <Card key={index} style={{border: "none"}}>
       <Card.Body className='mx-4'>
       <Row className='my-2'>
+        <Col className='col-md-1'></Col>
         <Col className=' mx-1 px-1 col-md-2'>
           <img style={{height: "100px", width:"70px", border: "2px solid black"}} 
            src={item?.image } alt="s"/>
