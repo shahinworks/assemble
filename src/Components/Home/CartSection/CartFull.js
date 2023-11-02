@@ -57,21 +57,26 @@ function CartFull() {
     if(cartData){
       console.log("cartData", cartData);
     }
-
+  
+    const [tempCartValues, setTempCartValues] = useState([]);
     useEffect(() => {
-      
-      const tempCartValues =  cartData?.cart?.cartProducts?.map((item) => {
+      const temp =  cartData?.cart?.cartProducts?.map((item) => {
         const unit = item?.productId?.images?.filter((r) => r.color === item.color && r.gender === item?.gender);
           return {
             image : unit[0]?.imagePath[0],
             color: item?.color ,
             size: item?.size ,
             gender: item?.gender,
-            productName: item?.productId?.productName          
+            productName: item?.productId?.productName,
+            quantity : item?.quantity,
+            sellingPrice : item?.productId?.sellingPrice,
+            id: item?.productId?.id
+            
           }
         });
 
-        console.log("temp", tempCartValues);
+        setTempCartValues(temp);
+
     }, [cartData]);
 
 
@@ -192,10 +197,37 @@ function CartFull() {
     <div style={{paddingTop: "10%"}}> 
       <h1 className='mx-4 text-center mb-5' style={{fontSize: "40px", fontWeight:"bold"}}> Cart </h1>
 
-      {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
+      {cartData?.cart?.cartProducts?.length > 0 && tempCartValues?.map((item, index) => 
     <Card key={index} style={{border: "none"}}>
       <Card.Body className='mx-4'>
       <Row className='my-2'>
+        <Col className=' mx-1 px-1 col-md-2'>
+          <img style={{height: "100px", width:"70px", border: "2px solid black"}} 
+           src={item?.image } alt="s"/>
+          {/* // src={item?.productId?.images[0]?.imagePath[0] } alt="s"/> */}
+        </Col> 
+        <Col className='col-md-4 mx-1 px-1'>
+          <p className='fs-6 my-0 py-0'>{item?.productId?.productName}</p>
+          <p className='fs-6 my-0 py-0'>{item?.size}</p>
+          <p className='fs-6 my-0 py-0'>{item?.color}</p>
+          <p className='fs-6 my-0 py-0'>{item?.gender}</p> 
+        </Col>
+        <Col className='mx-1 px-1 col-md-2'>
+          <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} 
+          onClick={() => CartDecrement(item?.id, item?.size, item?.gender, item?.color)}>-</Button>
+           <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
+          <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.id, item?.size, item?.gender, item?.color)}>+</Button>
+        </Col>
+        <Col className='fw-bold mx-1 px-1 col-md-1'>₹ {item?.quantity * item?.sellingPrice}</Col>
+        <Col className='mt-0 pt-0 mx-1 px-1 col-md-1'>
+          <Button onClick={() => handleRemove(item?.id, 
+                  item?.color, item?.gender, item?.size )} 
+            style={{marginRight: "0px", border: "none"}} 
+            className='d-inline me-md-0 ms-md-5 mt-0 pt-0 mx-1 px-1' 
+            variant='outline-danger' > Remove  </Button>
+        </Col> 
+       </Row>
+      {/* <Row className='my-2'>
         <Col className=' mx-1 px-1 col-md-2'>
           <img style={{height: "100px", width:"70px", border: "2px solid black"}} 
           src={item?.productId?.images[0]?.imagePath[0] } alt="s"/>
@@ -219,7 +251,7 @@ function CartFull() {
             className='d-inline me-md-0 ms-md-5 mt-0 pt-0 mx-1 px-1' 
             variant='outline-danger' > Remove  </Button>
         </Col> 
-       </Row>
+       </Row> */}
       </Card.Body>
     </Card> )}
       
