@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Cart } from 'react-bootstrap-icons';
+import { Cart, DashLg, PlusLg } from 'react-bootstrap-icons';
 import { gql, useQuery, useLazyQuery, useMutation } from '@apollo/client';
 import { Button, Col, Row , Modal, Card} from 'react-bootstrap';
 import toast from 'react-hot-toast';
@@ -208,16 +208,21 @@ function CartFull() {
           {/* // src={item?.productId?.images[0]?.imagePath[0] } alt="s"/> */}
         </Col> 
         <Col className='col-md-4 mx-1 px-1'>
-          <p className='fs-6 my-0 py-0'>{item?.productName}</p>
-          <p className='fs-6 my-0 py-0'>{item?.size}</p>
+          <p className='fs-5  fw-bold my-0 py-0'>{item?.productName}</p>
+          <p className='fs-6 fw-bold my-0 py-0'>{item?.size} / {item?.color} / {item?.gender} </p>
+          {/* <p className='fs-6 my-0 py-0'>{item?.size}</p>
           <p className='fs-6 my-0 py-0'>{item?.color}</p>
-          <p className='fs-6 my-0 py-0'>{item?.gender}</p> 
+          <p className='fs-6 my-0 py-0'>{item?.gender}</p>  */}
         </Col>
         <Col className='mx-1 px-1 col-md-2'>
           <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} 
-          onClick={() => CartDecrement(item?.id, item?.size, item?.gender, item?.color)}>-</Button>
+          onClick={() => CartDecrement(item?.id, item?.size, item?.gender, item?.color)}>
+            <DashLg />
+            </Button>
            <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
-          <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.id, item?.size, item?.gender, item?.color)}>+</Button>
+          <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.id, item?.size, item?.gender, item?.color)}>
+            <PlusLg />
+          </Button>
         </Col>
         <Col className='fw-bold mx-1 px-1 col-md-1'>₹ {item?.quantity * item?.sellingPrice}</Col>
         <Col className='mt-0 pt-0 mx-1 px-1 col-md-1'>
