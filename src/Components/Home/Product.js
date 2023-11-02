@@ -388,7 +388,6 @@ const [fish, setFish ] = useState();
               <br />
 
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
-
               <div className='ms-0 d-flex'>
               {product?.getProduct && product?.getProduct?.color.map((color, index) =>
                <div 
