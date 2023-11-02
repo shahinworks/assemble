@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Button } from 'react-bootstrap';
-import { ArrowRight, Calendar, Cart, Airplane , Balloon, Speedometer, List} from 'react-bootstrap-icons';
+import { ArrowRight, Calendar, Cart, Airplane , Balloon, Speedometer, List, Person, BagHeart, LayoutWtf, PaletteFill, GenderTrans, Rulers, Image, Receipt} from 'react-bootstrap-icons';
 
 function AdminSideBar() {
 
@@ -25,14 +25,14 @@ function AdminSideBar() {
           <MenuItem component={<Link to="/" />} active icon={<Speedometer color='black' size={20} />}>
             Home 
           </MenuItem>
-          <SubMenu active label="User" icon={<Balloon color='black' size={20} />}>
+          <SubMenu active label="User" icon={<Person color='black' size={20} />}>
             <MenuItem component={<Link to="/admin/User" />} >User</MenuItem>
           </SubMenu>
-          <SubMenu active label="Category" icon={<Balloon color='black' size={20} />}>
+          <SubMenu active label="Category" icon={<LayoutWtf color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateCategory" />} > Create Category</MenuItem>
           <MenuItem component={<Link to="/admin/ListCategory" />} > List Category</MenuItem>
           </SubMenu>
-          <SubMenu active label="Product" icon={<Balloon color='black' size={20} />}>
+          <SubMenu active label="Product" icon={<BagHeart color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateProduct" />} > Create Product </MenuItem>
           <MenuItem component={<Link to="/admin/ListProduct" />} > List Product </MenuItem>
           <MenuItem component={<Link to="/admin/UpdateProduct" />} >Update Product </MenuItem>
@@ -41,23 +41,23 @@ function AdminSideBar() {
           <MenuItem component={<Link to="/admin/CreateSubCategory" />} >Create SubCategory </MenuItem>
           <MenuItem component={<Link to="/admin/ListSubCategory" />} >List SubCategory </MenuItem>
           </SubMenu> */}
-          <SubMenu active label="Color" icon={<Balloon color='black' size={20} />}>
+          <SubMenu active label="Color" icon={<PaletteFill color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateColor" />} >Create Color </MenuItem>
           <MenuItem component={<Link to="/admin/ListColor" />} >List Color </MenuItem>
           </SubMenu>
-          <SubMenu active label="Gender" icon={<Balloon color='black' size={20} />}>
+          <SubMenu active label="Gender" icon={<GenderTrans color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateGender" />} >Create Gender </MenuItem>
           <MenuItem component={<Link to="/admin/ListGender" />} >List Gender </MenuItem>
           </SubMenu>
-          <SubMenu active label="Size" icon={<Balloon color='black' size={20} />}>
+          <SubMenu active label="Size" icon={<Rulers color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSize" />} >Create Size </MenuItem>
           <MenuItem component={<Link to="/admin/ListSize" />} >List Size </MenuItem>
           </SubMenu>
-          <SubMenu active label="Slider" icon={<Balloon color='black' size={20} />}>
+          <SubMenu active label="Slider" icon={<Image color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSlider" />} >Add Slider</MenuItem>
           <MenuItem component={<Link to="/admin/ListSlider" />} >List Slider</MenuItem>
           </SubMenu>
-          <SubMenu active label="Order" icon={<Balloon color='black' size={20} />}>
+          <SubMenu active label="Order" icon={<Receipt color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/ListOrder" />} >List Order</MenuItem>
           {/* <MenuItem component={<Link to="/admin/ListSlider" />} >List Slider</MenuItem> */}
           </SubMenu>
