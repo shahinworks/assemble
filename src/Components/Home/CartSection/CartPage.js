@@ -201,7 +201,7 @@ const handleRemove = async (id, color, gender, size) => {
           src={item?.image} alt="s"/></Col>
         <Col className='col-9'>
           <div className='fs-6' >{item?.productName} 
-          <div className='d-inline position-absolute' style={{right:"1.5rem", zIndex: "1"}}>
+          <div className='d-inline position-absolute' style={{left:"15rem", zIndex: "1", top: "0.1rem"}}>
           <Button style={{border: "none"}} 
           onClick={() => handleRemove(item?.id, item?.color, item?.gender, item?.size )}
             className='my-0 py-0 d-inline px-1 mx-0' variant='outline-danger' > X </Button>
