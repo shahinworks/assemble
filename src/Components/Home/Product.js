@@ -299,7 +299,7 @@ const [fish, setFish ] = useState();
 
   const imageBorder = {
     border: "2.5px solid black",
-    // objectFit: "contain",
+    objectFit: "contain",
   }
 
   const noBorder = {
@@ -344,7 +344,7 @@ const [fish, setFish ] = useState();
                     />
                   </div>  */}
                   {/* {product?.getProduct?.images?.imagePath?.map((image, index) => index > 0 &&  */}
-                  {imageArray &&  imageArray?.map((image, index) => 
+                  {imageArray &&  imageArray?.map((image, index) => index < 5 &&
                   <div key={index}
                     className="variant"
                     id="act"
