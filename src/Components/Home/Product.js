@@ -80,9 +80,12 @@ function Product() {
 
   const [img, setImg] = useState("");
   const [size, setSize] = useState(product?.getProduct?.size[0]);
-  const [color, setColor] = useState("");
-  const [gender, setGender] = useState("");
+  const [color, setColor] = useState(product?.getProduct?.color[0]);
+  const [gender, setGender] = useState(product?.getProduct?.gender[0]);
   const [ imageArray, setImageArray ] = useState(product?.getProduct?.images[0]?.imagePath);
+
+
+  console.log("imageArray", imageArray);
 
   useEffect(() => {
     if(product?.getProduct?.images[0]?.imagePath)
@@ -185,7 +188,9 @@ function Product() {
   }
 
   const changeImage = (path) => {
-    setImg(path)
+
+    console.log(path);
+    setImg(path);
 
     // if(img){
     //   setImg(path);
@@ -207,6 +212,7 @@ function Product() {
 
   const handleSizeArray = (arr) => {
     setImageArray(arr);
+    console.log("handleSizeArray Called")
   }
   
   // Style when Color is selected
@@ -259,6 +265,35 @@ function Product() {
   const genderNotSelectedStyle = {
     border: "1px solid black",
   }
+function Demo(){
+  console.log("Called Demo")
+}
+
+
+const [fish, setFish ] = useState();
+ 
+  const handleSumDrama = async (x) => { 
+    const s = product?.getProduct?.images?.filter((img) => img?.color === x && img?.gender === gender);
+    console.log(s);
+ 
+    handleSizeArray(s[0]?.imagePath);
+    changeImage(s[0]?.imagePath[0]);
+    handleCartColor(s[0]?.color);
+  }
+
+  const handleGenderDrama = (g) => {
+
+    setGender(g)
+
+    const s = product?.getProduct?.images?.filter((img) => img?.color === color && img?.gender === g);
+    console.log(s);
+ 
+    handleSizeArray(s[0]?.imagePath);
+    changeImage(s[0]?.imagePath[0]);
+    handleCartColor(s[0]?.color);
+
+  }
+
 
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
@@ -336,14 +371,41 @@ function Product() {
               <br />
 
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
+
               <div className='ms-0 d-flex'>
-              {product?.getProduct && product?.getProduct?.images.map((color, index) =>
+              {product?.getProduct && product?.getProduct?.color.map((color, index) =>
+               <div 
+              //  onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
+               key={color}
+               onClick={() => { handleSumDrama(color); handleSelection(index)}}
+                className='mx-2 my-2 px-3 py-2 hoverable'  
+               style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
+              {color}
+            </div>)}
+              {/* 
+ {product?.getProduct && product?.getProduct?.images.map((color, index) => color?.color === 
                <div onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
                key={color.color} 
                className='mx-2 my-2 px-3 py-2 hoverable'  
                style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
               {color.color}
-            </div>)}
+            </div>)} */}
+
+              {/* {product?.getProduct && product?.getProduct?.color.map((color, index) => 
+              product?.getProduct?.images?.filter((img) => img?.color === color)?.imagePath[0]  &&
+                <div    key={color} 
+                onClick={() => {
+                  handleSelection(index);
+                  // changeImage(color?.imagePath[0]);
+   changeImage();
+         
+                  handleCartColor(color); 
+                  handleSizeArray(color?.imagePath) }} 
+            
+               className='mx-2 my-2 px-3 py-2 hoverable'  
+               style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
+              {color}
+            </div>)} */}
             </div>
               <h6 className='fw-bold mx-2 text-left'>
                 Gender
@@ -352,7 +414,9 @@ function Product() {
                {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
               <div key={gender} 
               style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
-               onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}}  className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
+              onClick={() => { handleGenderSeletion(index); handleCartGender(gender); handleGenderDrama(gender) }}
+              //  onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}} 
+                className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
               </div>
              
               <h6 className='fw-bold mx-2 text-left'>
