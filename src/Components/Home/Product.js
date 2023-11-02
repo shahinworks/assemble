@@ -363,8 +363,6 @@ const [fish, setFish ] = useState();
                 <p>
                   <b>
                   {product?.getProduct?.description}
-                    {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Inventore, vel ratione. */}
                   </b>
                 </p>
               </div>
