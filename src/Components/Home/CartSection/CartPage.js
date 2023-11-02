@@ -200,9 +200,13 @@ const handleRemove = async (id, color, gender, size) => {
           <img style={{height: "100px", width:"70px", border: "2px solid black"}} 
           src={item?.image} alt="s"/></Col>
         <Col className='col-9'>
-          <div className='fs-6'>{item?.productName} 
-          <Button onClick={() => handleRemove(item?.id, item?.color, item?.gender, item?.size )} style={{marginRight: "0px", border: "none"}} className='my-0 py-0 d-inline me-0 ms-5' variant='outline-danger' > X </Button>
-         </div> 
+          <div className='fs-6' >{item?.productName} 
+          {/* <div className='d-inline position-absolute' style={{right:"1.5rem", zIndex: "1"}}> */}
+          <Button style={{border: "none"}} 
+          onClick={() => handleRemove(item?.id, item?.color, item?.gender, item?.size )}
+            className='my-0 py-0 d-inline px-1 mx-0' variant='outline-danger' > X </Button>
+            </div>
+         {/* </div>  */}
           <Row>
             <Col>
               <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.id, item?.size, item?.gender, item?.color)}>-</Button>
