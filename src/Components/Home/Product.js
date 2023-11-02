@@ -332,8 +332,10 @@ const [fish, setFish ] = useState();
                     className="variant"
                     id="act"
                     data-image="assets/img/31.jpg"
-                    onClick={() =>{ changeImage(image); 
-                      handleCartColor(image?.color)}}
+                    onClick={() => {
+                      changeImage(image); 
+                      handleCartColor(image?.color)
+                    }}
                   >
                     <img
                       style={{ objectFit: "contain" }}
@@ -341,7 +343,6 @@ const [fish, setFish ] = useState();
                       alt=""
                     />
                   </div>)}
-                 
                   {/* Add more color divs as needed */}
                 </div>
               </div>
