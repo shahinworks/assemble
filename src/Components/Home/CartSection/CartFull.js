@@ -57,6 +57,24 @@ function CartFull() {
     if(cartData){
       console.log("cartData", cartData);
     }
+
+    useEffect(() => {
+      
+      const tempCartValues =  cartData?.cart?.cartProducts?.map((item) => {
+        const unit = item?.productId?.images?.filter((r) => r.color === item.color && r.gender === item?.gender);
+          return {
+            image : unit[0]?.imagePath[0],
+            color: item?.color ,
+            size: item?.size ,
+            gender: item?.gender,
+            productName: item?.productId?.productName          
+          }
+        });
+
+        console.log("temp", tempCartValues);
+    }, [cartData]);
+
+
   // const REMOVE_FROM_CART = gql`
   //   mutation RemoveFromCart($productId: ID) {
   //     removeFromCart(productId: $productId) {
