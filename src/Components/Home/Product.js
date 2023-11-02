@@ -298,7 +298,7 @@ const [fish, setFish ] = useState();
   const [selImageId, setSelImageId] = useState("");
 
   const imageBorder = {
-    border: "2px solid black",
+    border: "2.5px solid black",
     objectFit: "contain",
   }
 
