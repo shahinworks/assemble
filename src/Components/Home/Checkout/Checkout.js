@@ -646,6 +646,8 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
           <p className='fs-6  my-0 py-0'>{item?.gender}</p>  </Col>
         <Col className='col-2'> 
           {/* <Row> */}
+
+          <p>{item?.quantity} Pc</p>
        
           <p className='fw-bold'>₹ {item?.quantity * item?.sellingPrice} </p>
           
