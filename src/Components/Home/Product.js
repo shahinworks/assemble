@@ -344,7 +344,7 @@ const [fish, setFish ] = useState();
                     />
                   </div>  */}
                   {/* {product?.getProduct?.images?.imagePath?.map((image, index) => index > 0 &&  */}
-                  {imageArray &&  imageArray?.map((image, index) => index < 5 &&
+                  {imageArray &&  imageArray?.map((image, index) => index < 4 &&
                   <div key={index}
                     className="variant"
                     id="act"
