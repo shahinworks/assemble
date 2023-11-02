@@ -202,9 +202,9 @@ function CartFull() {
         </Col> 
         <Col className='col-md-4 mx-1 px-1'>
           <p className='fs-6 my-0 py-0'>{item?.productId?.productName}</p>
-          <p className='fs-6  my-0 py-0'>{item?.size}</p>
-          <p className='fs-6  my-0 py-0'>{item?.color}</p>
-          <p className='fs-6  my-0 py-0'>{item?.gender}</p> 
+          <p className='fs-6 my-0 py-0'>{item?.size}</p>
+          <p className='fs-6 my-0 py-0'>{item?.color}</p>
+          <p className='fs-6 my-0 py-0'>{item?.gender}</p> 
         </Col>
         <Col className='mx-1 px-1 col-md-2'>
           <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
