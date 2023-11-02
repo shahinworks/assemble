@@ -25,22 +25,10 @@ function AdminSideBar() {
           <MenuItem component={<Link to="/" />} active icon={<Speedometer color='black' size={20} />}>
             Home 
           </MenuItem>
-          <SubMenu active label="User" icon={<Person color='black' size={20} />}>
-            <MenuItem component={<Link to="/admin/User" />} >User</MenuItem>
-          </SubMenu>
           <SubMenu active label="Category" icon={<LayoutWtf color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateCategory" />} > Create Category</MenuItem>
           <MenuItem component={<Link to="/admin/ListCategory" />} > List Category</MenuItem>
           </SubMenu>
-          <SubMenu active label="Product" icon={<BagHeart color='black' size={20} />}>
-          <MenuItem component={<Link to="/admin/CreateProduct" />} > Create Product </MenuItem>
-          <MenuItem component={<Link to="/admin/ListProduct" />} > List Product </MenuItem>
-          <MenuItem component={<Link to="/admin/UpdateProduct" />} >Update Product </MenuItem>
-          </SubMenu>
-          {/* <SubMenu active label="SubCategory" icon={<Balloon color='black' size={20} />}>
-          <MenuItem component={<Link to="/admin/CreateSubCategory" />} >Create SubCategory </MenuItem>
-          <MenuItem component={<Link to="/admin/ListSubCategory" />} >List SubCategory </MenuItem>
-          </SubMenu> */}
           <SubMenu active label="Color" icon={<PaletteFill color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateColor" />} >Create Color </MenuItem>
           <MenuItem component={<Link to="/admin/ListColor" />} >List Color </MenuItem>
@@ -48,6 +36,14 @@ function AdminSideBar() {
           <SubMenu active label="Gender" icon={<GenderTrans color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateGender" />} >Create Gender </MenuItem>
           <MenuItem component={<Link to="/admin/ListGender" />} >List Gender </MenuItem>
+          </SubMenu>
+          <SubMenu active label="Order" icon={<Receipt color='black' size={20} />}>
+          <MenuItem component={<Link to="/admin/ListOrder" />} >List Order</MenuItem>
+          </SubMenu>
+          <SubMenu active label="Product" icon={<BagHeart color='black' size={20} />}>
+          <MenuItem component={<Link to="/admin/CreateProduct" />} > Create Product </MenuItem>
+          <MenuItem component={<Link to="/admin/ListProduct" />} > List Product </MenuItem>
+          <MenuItem component={<Link to="/admin/UpdateProduct" />} >Update Product </MenuItem>
           </SubMenu>
           <SubMenu active label="Size" icon={<Rulers color='black' size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSize" />} >Create Size </MenuItem>
@@ -57,17 +53,9 @@ function AdminSideBar() {
           <MenuItem component={<Link to="/admin/CreateSlider" />} >Add Slider</MenuItem>
           <MenuItem component={<Link to="/admin/ListSlider" />} >List Slider</MenuItem>
           </SubMenu>
-          <SubMenu active label="Order" icon={<Receipt color='black' size={20} />}>
-          <MenuItem component={<Link to="/admin/ListOrder" />} >List Order</MenuItem>
-          {/* <MenuItem component={<Link to="/admin/ListSlider" />} >List Slider</MenuItem> */}
+          <SubMenu active label="User" icon={<Person color='black' size={20} />}>
+            <MenuItem component={<Link to="/admin/User" />} >User</MenuItem>
           </SubMenu>
-          {/* <SubMenu active label="Cart" icon={<Cart color='black' size={20} />}>
-          <MenuItem component={<Link to="/CreateCart" />} >Create Cart</MenuItem>
-          <MenuItem component={<Link to="/ListCart" />} >List Cart</MenuItem>
-          </SubMenu>
-          <MenuItem active icon={<Cart color='black' size={20}  />}>
-          Cart
-          </MenuItem> */}
         </Menu>
       </Sidebar>
       <main style={{ padding: 10 }}>
