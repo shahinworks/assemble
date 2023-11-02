@@ -360,8 +360,8 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
   return (<>
     <div className='my-5 mx-5 d-flex'>
       <h5>THE ASSEMBLE CLOTHING</h5> 
-      <Button variant='link' className='d-inline mr-0 pr-0 me-0' style={{marginLeft: "74%"}} onClick={() => goToCart()}>
-        <Cart color='black' size={26}/>
+      <Button variant='outline-dark' style={{border: "none", marginLeft: "74%"}}  className='d-inline' onClick={() => goToCart()}>
+        <Cart size={26}/>
       </Button>
     </div>
     <hr className='my-0 py-0'/>
