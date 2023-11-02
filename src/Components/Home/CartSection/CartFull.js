@@ -207,7 +207,7 @@ function CartFull() {
           {/* // src={item?.productId?.images[0]?.imagePath[0] } alt="s"/> */}
         </Col> 
         <Col className='col-md-4 mx-1 px-1'>
-          <p className='fs-6 my-0 py-0'>{item?.productId?.productName}</p>
+          <p className='fs-6 my-0 py-0'>{item?.productName}</p>
           <p className='fs-6 my-0 py-0'>{item?.size}</p>
           <p className='fs-6 my-0 py-0'>{item?.color}</p>
           <p className='fs-6 my-0 py-0'>{item?.gender}</p> 
