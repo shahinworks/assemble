@@ -52,6 +52,21 @@ function CartPop({show, onHide}) {
 
   const goToCheckOut = async () => {
 
+    const temp =  cartData?.cart?.cartProducts?.map((item) => {
+      const unit = item?.productId?.images?.filter((r) => r.color === item.color && r.gender === item?.gender);
+        return {
+          image : unit[0]?.imagePath[0],
+          color: item?.color ,
+          size: item?.size ,
+          gender: item?.gender,
+          productName: item?.productId?.productName,
+          quantity : item?.quantity,
+          sellingPrice : item?.productId?.sellingPrice,
+          id: item?.productId?.id
+          
+        }
+      });
+
     const newArray =  cartData?.cart?.cartProducts?.map((item) => {
       return {
           price : item?.productId?.sellingPrice,
@@ -60,7 +75,14 @@ function CartPop({show, onHide}) {
         }
     });
 
-    navigate('/checkout', {state: newArray });
+    const StateValue = {
+      newArray : newArray,
+      temp: temp
+
+    }
+
+    navigate('/checkout', {state: StateValue });
+    // navigate('/checkout', {state:  {state : newArray, temp: temp }} );
     onHide();
   }
 

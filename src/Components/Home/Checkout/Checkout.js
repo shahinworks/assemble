@@ -9,12 +9,21 @@ import { useFormik } from 'formik';
 
 function Checkout(props) {
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const location = useLocation();
+
+  console.log("Location", location);
+
+ 
+  const temp = location?.state?.temp;
+
+  const state = location?.state?.newArray;
+
+  console.log("Temp", temp);
+  console.log("state", state);
 
   const [modal, showModal] = useState(false);
 
   const [payNowCheck, setPayNowCheck] = useState(true);
-
 
   const [ totalAmount, setTotalAmount] = useState(state?.reduce((acc, curr) => acc + curr?.quantity * curr?.price, 0));
   // setTotalAmount(state?.reduce((acc, curr) => acc + curr?.quantity * curr?.price, 0));
@@ -619,25 +628,26 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
     <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
       {/* Cart Summary  */}
       <div className='mt-5'></div>
-    {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
+    {/* {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) =>  */}
+    {cartData?.cart?.cartProducts?.length > 0 && temp?.map((item, index) => 
     <div key={index} className='mb-1 mx-1 px-0 mt-1'> 
       <Row className='my-2'>
         <Col className='col-3 mx-1'>
           <img 
           style={{height: "100px", width:"70px", border: "2px solid black"}} 
           className='ms-3' 
-          src={item?.productId?.images[0]?.imagePath[0] } 
+          src={item?.image} 
           alt="s"/>
         </Col>
         <Col className='col-5 mx-2'>
-          <p className='fs-6 my-0 py-0'>{item?.productId?.productName}</p>
+          <p className='fs-6 my-0 py-0'>{item?.productName}</p>
           <p className='fs-6  my-0 py-0'>{item?.size}</p>
           <p className='fs-6  my-0 py-0'>{item?.color}</p>
           <p className='fs-6  my-0 py-0'>{item?.gender}</p>  </Col>
         <Col className='col-2'> 
           {/* <Row> */}
-         
-          <p className='fw-bold'>₹ {item?.quantity * item?.productId?.sellingPrice} </p>
+       
+          <p className='fw-bold'>₹ {item?.quantity * item?.sellingPrice} </p>
           
           {/* </Row> */}
         </Col>
