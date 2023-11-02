@@ -6,16 +6,17 @@ import { Button, Col, Row , Modal, Card} from 'react-bootstrap';
 import toast from 'react-hot-toast';
 
 function CartFull() {
-
-
   const [ quantity, setQuantity] =  useState(0);
-
-    const { state } = useLocation();
-    const navigate = useNavigate();
-    console.log("state", state);
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  console.log("state", state);
     const goToCart = () => {
         navigate('/cart', {state});
       }
+
+
+      const [ demo, setDemo ] = useState();
+      // const demo = {};
 
   const CART = gql`
     query Cart {
@@ -53,6 +54,9 @@ function CartFull() {
       getCartData();
     }, []);
 
+    if(cartData){
+      console.log("cartData", cartData);
+    }
   // const REMOVE_FROM_CART = gql`
   //   mutation RemoveFromCart($productId: ID) {
   //     removeFromCart(productId: $productId) {
@@ -175,7 +179,8 @@ function CartFull() {
       <Card.Body className='mx-4'>
       <Row className='my-2'>
         <Col className=' mx-1 px-1 col-md-2'>
-   <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={item?.productId?.images[0]?.imagePath[0] } alt="s"/>
+          <img style={{height: "100px", width:"70px", border: "2px solid black"}} 
+          src={item?.productId?.images[0]?.imagePath[0] } alt="s"/>
         </Col> 
         <Col className='col-md-4 mx-1 px-1'>
           <p className='fs-6 my-0 py-0'>{item?.productId?.productName}</p>
@@ -183,19 +188,19 @@ function CartFull() {
           <p className='fs-6  my-0 py-0'>{item?.color}</p>
           <p className='fs-6  my-0 py-0'>{item?.gender}</p> 
         </Col>
-             <Col className='mx-1 px-1 col-md-2'>
-               <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
-                 <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
-               <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
-             </Col>
-             <Col className='fw-bold mx-1 px-1 col-md-1'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
-             <Col className='mt-0 pt-0 mx-1 px-1 col-md-1'>
-               <Button 
-                 onClick={() => handleRemove(item?.productId?.id, item?.color, item?.gender, item?.size )} 
-                style={{marginRight: "0px", border: "none"}} 
-                 className='d-inline me-md-0 ms-md-5 mt-0 pt-0 mx-1 px-1' 
-                 variant='outline-danger' > Remove  </Button>
-             </Col> 
+        <Col className='mx-1 px-1 col-md-2'>
+          <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} onClick={() => CartDecrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>-</Button>
+           <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
+          <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.productId?.id, item?.size, item?.gender, item?.color)}>+</Button>
+        </Col>
+        <Col className='fw-bold mx-1 px-1 col-md-1'>₹ {item?.quantity * item?.productId?.sellingPrice}</Col>
+        <Col className='mt-0 pt-0 mx-1 px-1 col-md-1'>
+          <Button onClick={() => handleRemove(item?.productId?.id, 
+                  item?.color, item?.gender, item?.size )} 
+            style={{marginRight: "0px", border: "none"}} 
+            className='d-inline me-md-0 ms-md-5 mt-0 pt-0 mx-1 px-1' 
+            variant='outline-danger' > Remove  </Button>
+        </Col> 
        </Row>
       </Card.Body>
     </Card> )}
