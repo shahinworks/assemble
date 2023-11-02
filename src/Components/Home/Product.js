@@ -356,7 +356,6 @@ const [fish, setFish ] = useState();
                     }}
                   >
                     <img
-                      // style={{ objectFit: "contain" }}
                       src={image}
                       alt=""
                       style={selImageId === index? imageBorder: noBorder}
