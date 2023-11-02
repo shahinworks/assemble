@@ -295,6 +295,23 @@ const [fish, setFish ] = useState();
   }
 
 
+  const [selImageId, setSelImageId] = useState("");
+
+  const imageBorder = {
+    border: "2px solid black",
+    objectFit: "contain"
+  }
+
+  const noBorder = {
+    objectFit: "contain"
+  }
+ 
+  const handleImageSelectedForDisplay = (id) => {
+    setSelImageId(id)
+
+  }
+
+
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
     <div className="container" >
@@ -334,13 +351,15 @@ const [fish, setFish ] = useState();
                     data-image="assets/img/31.jpg"
                     onClick={() => {
                       changeImage(image); 
-                      handleCartColor(image?.color)
+                      handleCartColor(image?.color);
+                      handleImageSelectedForDisplay(index);
                     }}
                   >
                     <img
-                      style={{ objectFit: "contain" }}
+                      // style={{ objectFit: "contain" }}
                       src={image}
                       alt=""
+                      style={selImageId === index? imageBorder: noBorder}
                     />
                   </div>)}
                   {/* Add more color divs as needed */}
