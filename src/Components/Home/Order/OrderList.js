@@ -88,9 +88,10 @@ function OrderList() {
     console.log("UserOrders", orderData);
   }
 
-  return (
-    <div>OrderList</div>
-  )
+  return (<>
+   <h4 style={{marginTop: "10%"}} className='text-center mb-5'>LIST OF ORDERS</h4>
+   
+  </>)
 }
 
 export default OrderList;
