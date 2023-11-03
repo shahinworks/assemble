@@ -38,8 +38,8 @@ function Shop() {
 
   return (<>
     <section className="slider" style={{ paddingTop: "10%" }}>
-      <h1 className="text-center ">All Products</h1>
-      <div className="container mx-3">
+      <h1 className="text-center mb-5">All Products</h1>
+      <div className="container mx-3 mt-5">
         <div className="row">
         {product && product?.getAllProducts?.map((data, index) => 
           <div key={data.id} className="flexslider col-lg-3 col-md-6 col-sm-12" >
@@ -48,7 +48,7 @@ function Shop() {
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
                   <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
-                    <img style={{ height: 350, objectFit: "contain" }} src={data?.images[0]?.imagePath[0]} />
+                    <img style={{ height: 350, objectFit: "contain"}} src={data?.images[0]?.imagePath[0]} />
                   </a>
                 </li>
                 <div className='text-center'>
