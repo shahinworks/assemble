@@ -312,6 +312,10 @@ const [fish, setFish ] = useState();
   }
 
 
+  
+
+const showStock = 1;
+
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
     <div className="container" >
@@ -481,7 +485,8 @@ const [fish, setFish ] = useState();
               </svg>
               <p style={{ paddingLeft: 13, marginTop: "-3px" }}>
                 {" "}
-               Stock:  { product?.getProduct?.stock[0]?.quantity}
+               Stock: {showStock} 
+               {/* { product?.getProduct?.stock[0]?.quantity} */}
                {/* {product?.getProduct?.stock} */}
                {/* In stock, ready to ship */}
               </p>
