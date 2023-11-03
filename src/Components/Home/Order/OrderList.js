@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { gql, useLazyQuery, useMutation, useQuery } from '@apollo/client';
+import React from 'react';
+import { gql, useQuery } from '@apollo/client';
 import { Card, Col, Row, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -94,10 +94,10 @@ function OrderList() {
     <h4 style={{marginTop: "10%"}} className='text-center mb-5'>LIST OF ORDERS</h4>
 
     <Row className="g-0 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
-      <Col md="2" className="d-flex flex-column mb-lg-0 pe-1 justify-content-center">
+      <Col md="4" className="d-flex flex-column mb-lg-0 pe-1 justify-content-center">
         <div className=" text-md cursor-pointer fs-5"> Order ID </div>
       </Col>
-      <Col md="3" className="d-flex flex-column pe-1 justify-content-center ">
+      <Col md="2" className="d-flex flex-column pe-1 justify-content-center ">
         <div className=" text-md cursor-pointer fs-5"> NAME </div>
       </Col>
       <Col  md="2" className="d-flex flex-column pe-1 justify-content-center">
@@ -116,13 +116,13 @@ function OrderList() {
           <Card key={index} className="mb-2 hover-border-primary mx-1" >
             <Card.Body className="pt-0 pb-0 sh-21 sh-md-8 my-3"  >
               <Row className="g-0 align-content-center cursor-default">
-                <Col xs="11" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
+                <Col xs="11" md="4" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
                   <div className="text-muted text-small d-md-none">Id</div>
                   <Link to={`/admin/order/detail/${order?.id}`} className="text-truncate h-100 d-flex align-items-center">
-                    <span maxLength={2}>{order?.id?.substring(0, 12)}...</span>
+                    <span maxLength={2}>{order?.id}</span>
                   </Link>
                 </Col>
-                <Col xs="6" md="3" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-3 order-md-2">
+                <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-3 order-md-2">
                   <div className="text-muted text-small d-md-none">Name</div>
                   <div className="text-alternate">
                     {order?.user?.firstName} {order?.user?.lastName}
