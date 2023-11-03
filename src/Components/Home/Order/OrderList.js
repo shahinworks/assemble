@@ -116,7 +116,7 @@ function OrderList() {
           <Card key={index} className="mb-2 hover-border-primary mx-1" >
             <Card.Body className="pt-0 pb-0 sh-21 sh-md-8 my-3"  >
               <Row className="g-0 align-content-center cursor-default">
-                <Col xs="11" md="4" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
+                <Col xs="11" md="3" className="ms-5 me-5 d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
                   <div className="text-muted text-small d-md-none">Id</div>
                   <Link to={`/admin/order/detail/${order?.id}`} className="text-truncate h-100 d-flex align-items-center">
                     <span maxLength={2}>{order?.id}</span>
