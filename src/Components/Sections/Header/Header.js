@@ -108,10 +108,13 @@ function Header() {
     navigate('/wishlist');
   }
 
-
   const goToProfile = () => {
     navigate('profile');
     setProfileModal(false);
+  }
+
+  const goToOrderPage  = () => {
+     navigate('order');
   }
 
   const goToFAQPage = () => {
@@ -367,7 +370,7 @@ function Header() {
     <Modal.Body className='mx-0 px-0'>
       <ul>
         <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold' onClick={() => goToProfile()} >Profile</li>
-        <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold' >Order</li>
+        <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold'  onClick={() => goToOrderPage()}>Order</li>
       </ul>
 
      {!loggedIn && <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mb-1 fs-5 fw-bold w-100' onClick={() => goToLoginPage()} >LOGIN</Button> }
