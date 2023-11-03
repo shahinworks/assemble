@@ -109,11 +109,64 @@ function ListSize() {
     refetch();
   }, [refetch])
 
-  return (
-    <>
-      <Row>
-        <Col className="mx-auto my-5">
-          <Card>
+  return (<>
+  <h2 className="my-5">List of Sizes</h2>
+
+<Row className="g-0 align-content-left d-none d-lg-flex ps-1 pe-5 mb-1 custom-sort">
+      <Col md="2" className="d-flex flex-column mb-lg-0 pe-1 justify-content-left">
+        <div className=" text-md cursor-pointer fs-5"> Index No </div>
+      </Col>
+      <Col md="2" className="d-flex flex-column justify-content-center ">
+        <div className=" text-md cursor-pointer fs-5"> Size </div>
+      </Col>
+      <Col md="4" className="d-flex flex-column justify-content-center">
+        {/* <div className=" text-md cursor-pointer fs-5"> Edit </div>
+      </Col>
+      <Col md="1" className="d-flex flex-column pe-1 justify-content-center"> */}
+        <div className=" text-md cursor-pointer fs-5"> Actions </div>
+      </Col>
+    </Row>
+    <Row>
+      <Col className="mx-auto my-5">
+        
+      {data && data?.getAllSize?.map((item, index) => (
+      <Card key={index} className="mb-2 hover-border-primary mx-1" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >
+          <Card.Body className="pt-0 pb-0 sh-21 sh-md-8 my-1"  >
+         
+          <Row className="g-0 align-content-center cursor-default">
+              {/* <Col xs="11" md="3" className="ms-5 me-5 d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
+                <div className="text-muted text-small d-md-none">Id</div>
+                <Link to={`/admin/order/detail/${order?.id}`} className="text-truncate h-100 d-flex align-items-center">
+                  <span maxLength={2}>{order?.id}</span>
+                </Link>
+              </Col> */}
+              
+              <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1">
+                <div className="text-alternate">{index}
+                </div>
+              </Col> 
+              <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-2 me-5">
+                {/* <div className="text-muted text-small d-md-none">Date</div> */}
+                <div className="text-alternate">{item?.sizeName}</div>
+              </Col>
+              <Col xs="6" md="1" className=" d-flex flex-column justify-content-center mb-2 mb-md-0 order-3 order-md-3">
+              <Button className="btn btn-sm mx-4 btn-light" onClick={() => hadleEdit(item.id,item.sizeName )}>
+                           <Pencil size={20} color="black"/>
+                        </Button>
+              </Col>
+              <Col xs="6" md="1" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-4 order-md-4">
+              <Button className="btn btn-sm mx-4 btn-light" onClick={() => handleDelete(item.id, item.sizeName)} >
+                          <Trash size={20} color="black" />
+                        </Button>
+              </Col>
+              {/* <Col xs="6" md="2" className="d-flex flex-column justify-content-center mb-2 mb-md-0 order-last order-md-5">
+                <div className="text-muted text-small d-md-none">Status</div>
+                <div><Badge className="badge bg-dark">{order?.status}</Badge></div>
+              </Col> */}
+            </Row>
+          </Card.Body>
+        </Card> ))}
+          {/* <Card>
             <Card.Body>
 
               <h2>Table of size</h2>
@@ -147,7 +200,7 @@ function ListSize() {
                 </tbody>
               </table>
             </Card.Body>
-          </Card>
+          </Card> */}
 
           <Modal
             className="modal-right scroll-out-negative"
