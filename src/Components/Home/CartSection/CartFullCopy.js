@@ -260,9 +260,6 @@ function CartFull() {
        </Row> */}
       </Card.Body>
     </Card> )}
-
-
-    
       
     {/* <Button variant='link' onClick={() => goToCart()}> <Cart/> </Button> */}
     {/* {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
