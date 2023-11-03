@@ -109,20 +109,20 @@ function Header() {
   }
 
   const goToProfile = () => {
-    navigate('profile');
+    navigate('/profile');
     setProfileModal(false);
   }
 
   const goToOrderPage  = () => {
-     navigate('order');
+     navigate('/order');
   }
 
   const goToFAQPage = () => {
-    navigate('faq');
+    navigate('/faq');
   }
 
   const goToReturnPage = () => {
-    navigate('return');
+    navigate('/return');
   }
 
 

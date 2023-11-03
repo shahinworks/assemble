@@ -284,12 +284,9 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
     //   history.push('/user/orders', { tabvalue: 'cod' });
     // }
 
-    // if(response?.data && response?.data?.createOrder?.paymentMethod === "COD") {
-    //   navigate('');
-    // }
-
-    
-   
+    if(response?.data && response?.data?.createOrder?.paymentMethod === "COD") {
+      navigate('/order');
+    }
 
     if(response?.data && response?.data?.createOrder?.user && response?.data?.createOrder?.totalAmount && response?.data?.createOrder?.paymentMethod === "ONLINE"){
       await createPayment({
