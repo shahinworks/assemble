@@ -48,8 +48,6 @@ function Product() {
     }
   });
 
-  console.log("product", product);
-
   const [ discount, setDiscount ] = useState(product?.getProduct?.discount);
   const [ sellingPrice, setSellingPrice ] = useState(product?.getProduct?.sellingPrice);
 
@@ -84,8 +82,15 @@ function Product() {
   const [gender, setGender] = useState(product?.getProduct?.gender[0]);
   const [ imageArray, setImageArray ] = useState(product?.getProduct?.images[0]?.imagePath);
 
+  const StockTemp =  product?.getProduct?.stock?.filter((s) => 
+  s?.color === color && s?.gender === gender && s?.size === size);
 
-  console.log("imageArray", imageArray);
+  const [ showStock, setShowStock ] = useState(1);
+  useEffect(() => {
+    if(StockTemp)  {
+      setShowStock(StockTemp[0]?.quantity);
+    }
+  }, [StockTemp]);
 
   useEffect(() => {
     if(product?.getProduct?.images[0]?.imagePath)
@@ -188,15 +193,7 @@ function Product() {
   }
 
   const changeImage = (path) => {
-
-    console.log(path);
     setImg(path);
-
-    // if(img){
-    //   setImg(path);
-    // } else if(imageArray){
-    //   setImg(imageArray[0]);
-    // }
   }
 
   const handleCartColor = (colour) => {
@@ -212,7 +209,6 @@ function Product() {
 
   const handleSizeArray = (arr) => {
     setImageArray(arr);
-    console.log("handleSizeArray Called")
   }
   
   // Style when Color is selected
@@ -265,33 +261,21 @@ function Product() {
   const genderNotSelectedStyle = {
     border: "1px solid black",
   }
-function Demo(){
-  console.log("Called Demo")
-}
 
-
-const [fish, setFish ] = useState();
- 
   const handleSumDrama = async (x) => { 
     const s = product?.getProduct?.images?.filter((img) => img?.color === x && img?.gender === gender);
-    console.log(s);
- 
     handleSizeArray(s[0]?.imagePath);
     changeImage(s[0]?.imagePath[0]);
     handleCartColor(s[0]?.color);
   }
 
   const handleGenderDrama = (g) => {
-
     setGender(g)
-
     const s = product?.getProduct?.images?.filter((img) => img?.color === color && img?.gender === g);
-    console.log(s);
- 
+  
     handleSizeArray(s[0]?.imagePath);
     changeImage(s[0]?.imagePath[0]);
     handleCartColor(s[0]?.color);
-
   }
 
 
@@ -311,10 +295,15 @@ const [fish, setFish ] = useState();
 
   }
 
+   
 
-  
-
-const showStock = 1;
+  useEffect(() => {
+    const stock = product?.getProduct?.stock?.filter((s) => s?.color === color && s?.gender === gender 
+    && s?.size === size);
+    if(stock){
+      setShowStock(stock[0]?.quantity);
+    }
+  }, [color, size, gender]);
 
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
