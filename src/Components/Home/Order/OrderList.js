@@ -6,4 +6,4 @@ function OrderList() {
   )
 }
 
-export default OrderList
+export default OrderList;
