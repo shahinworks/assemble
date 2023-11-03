@@ -113,8 +113,8 @@ query GetAllColor {
                 <thead className="table-head">
                   <tr className="border">
                     <th className="border">Sr No</th>
-                    <th className="border">color</th>
-                    <th className="border">edit</th>
+                    <th className="border">Color</th>
+                    <th className="border">Edit</th>
                     <th className="border">Delete</th>
                   </tr>
                 </thead>
