@@ -378,7 +378,7 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
       {/* <Card>
       <Card.Body> */}
       <div className="accordion" id="accordionExample">
-  <div className="accordion-item">
+        <div className="accordion-item">
     <h2 className="accordion-header" id="headingOne">
       <button
         className="accordion-button"
@@ -399,38 +399,28 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
     >
       <div className="accordion-body">
         
-      {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
+    {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
     <Card key={address.id} className="mb-5 mt-2" >
-                  <Card.Body className="mb-3">
-                    <Row>
-                        <div className="mb-3">
-                          <div className="text-md text-muted mb-2">Address {index + 1}</div>
-                          <div>
-                            {address.firstName} {address.lastName}
-                          </div>
-                          <div>
-                            {address.addressLine1}, {address.addressLine2}
-                          </div>
-                          <div>
-                            {address.city}, {address.postalCode}
-                          </div>
-                          <div>
-                            {address.state}, {address.country}
-                          </div>
-                          <div>{address.mobileNo}</div>
-                        </div>
-                   
-      <Form.Check type='checkbox' className='ms-0 me-3 px-4' onChange={() => setAddressForShipping(address.id)}/>
-        <p className='px-2 mx-4'> Select this Address for Shipping</p>
-  </Row>
-  </Card.Body>
+      <Card.Body className="mb-3">
+        <Row>
+          <div className="mb-3">
+            <div className="text-md text-muted mb-2">Address {index + 1}</div>
+            <div> {address.firstName} {address.lastName} </div>
+            <div> {address.addressLine1}, {address.addressLine2} </div>
+            <div> {address.city}, {address.postalCode} </div>
+            <div> {address.state}, {address.country} </div>
+            <div>{address.mobileNo}</div>
+          </div>
+          <Form.Check type='radio' className='ms-0 me-3 px-4' value={address.id} name='address' onChange={() => setAddressForShipping(address.id)}/>
+          <p className='px-2 mx-4'> Select this Address for Shipping</p>
+        </Row>
+      </Card.Body>
     </Card> )}
-    <Button onClick={() => showModal(true)} className='my-2' variant='outline-dark' > Add NEW ADDRESS </Button>
-        
+    <Button onClick={() => showModal(true)} className='my-2' variant='outline-dark' > ADD NEW ADDRESS </Button>     
       </div>
     </div>
-  </div>
-  <div className="accordion-item">
+        </div>
+        <div className="accordion-item">
     <h2 className="accordion-header" id="headingTwo">
       <button
         className="accordion-button collapsed"
@@ -464,7 +454,7 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
         </Card>
       </div>
     </div>
-  </div>
+        </div>
   {/* <div className="accordion-item">
     <h2 className="accordion-header" id="headingThree">
       <button
@@ -496,7 +486,7 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
       </div>
     </div>
   </div> */}
-</div>
+      </div>
 
       {/* </Card.Body>
     </Card> */}
