@@ -191,7 +191,7 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
   // Mutations and Query
   const [ paymentMethod, setPaymentMethod] = useState("");
 
-  // console.log("paymentMethod", paymentMethod);
+  console.log("paymentMethod", paymentMethod);
   const {data: cartData} = useQuery(CART);
   const {data: billingAddress} = useQuery(GET_BILLING_ADDRESS);
   const [createOrder, {data: orderData}] = useMutation(CREATE_ORDER, {
@@ -207,6 +207,7 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
   const [createPayment, {data: paymentData}] = useMutation( MAKE_PAYMENT, {
     onCompleted: () => {
       toast("Redirecting to payment Gateway");
+      console.log("Create Payment Success")
     },
     onError: (err) => {
       console.error(err.message);
@@ -254,45 +255,56 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
   console.log("addressForShipping", addressForShipping);
 
   useEffect(() => {
-    if( totalAmount && state &&  addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id ){
+    if( totalAmount && state && paymentMethod && addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id ){
       setPayNowCheck(false);
     }
    
-  }, [totalAmount, state, addressForShipping, billingAddress?.getAllAddressesByUser[0]?.id  ]);
+  }, [paymentMethod, totalAmount, state, addressForShipping, billingAddress?.getAllAddressesByUser[0]?.id  ]);
  
   const handleOrder = async () => {
-    if( totalAmount && state &&  addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id )
-    {
-      await createOrder({
+    // if( totalAmount && state && paymentMethod && addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id )
+    // {
+    const response =  await createOrder({
         variables: {
           paymentMethod: paymentMethod,
           totalAmount: totalAmount,
           orderProducts: state,
           shippingAddress : addressForShipping,
-          // shippingAddress,
-          // shippingAddress: shippingData?.createAddress?.id,
           billingAddress: billingAddress?.getAllAddressesByUser[0]?.id,
           status: "pending"
         }
       });
-    }
-    else {
-      toast.error("SOME ERROR OCCURRED ");
-    } 
-  }
+    // }
+    // else {
+    //   toast.error("SOME ERROR OCCURRED ");
+    // } 
 
-  useEffect(() => {
-    if(orderData?.createOrder?.user  && totalAmount){
-      createPayment({
-        variables : {
-          amount:  String(totalAmount),
-          firstname: orderData?.createOrder?.user?.firstName,
-          email: orderData?.createOrder?.user?.email,
-          phone: orderData?.createOrder?.user?.mobileNo,
+   
+
+    if(response?.data && response?.data?.createOrder?.user && response?.data?.createOrder?.totalAmount && response?.data?.createOrder?.paymentMethod === "ONLINE"){
+      await createPayment({
+        variables : {    
+          amount: String(response?.data?.createOrder?.totalAmount),
+          firstname: response?.data?.createOrder?.user?.firstName,
+          email: response?.data?.createOrder?.user?.email,
+          phone: response?.data?.createOrder?.user?.mobileNo,
         }
       });
-      }
-  }, [orderData?.createOrder?.user]);
+    }
+  }
+
+  // useEffect(() => {
+  //   if(orderData?.createOrder?.user && orderData?.createOrder?.totalAmount && orderData?.createOrder?.paymentMethod){
+  //     createPayment({
+  //       variables : {    
+  //         amount: String(orderData?.createOrder?.totalAmount),
+  //         firstname: orderData?.createOrder?.user?.firstName,
+  //         email: orderData?.createOrder?.user?.email,
+  //         phone: orderData?.createOrder?.user?.mobileNo,
+  //       }
+  //     });
+  //     }
+  // }, [orderData?.createOrder?.user]);
 
   const goToCart = () => {
     navigate('/cart', {state});
@@ -443,11 +455,11 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
         <Card>
           <Card.Body>
           <label className="container">ONLINE
-            <input checked="checked" type="radio" name='radio' id="online" value="ONLINE" onChange={(e) => setPaymentMethod(e.target.value)} />
+            <input type="radio" value="ONLINE" name='paymentMethod' onChange={(e) => setPaymentMethod(e.target.value)} />
             <span className="checkmark"></span>
           </label>
           <label className="container">Cash On Delivery
-            <input type="radio" name='radio' id="cod" value="COD" onChange={(e) => setPaymentMethod(e.target.value)}/>
+            <input type="radio" value="COD" name='paymentMethod' onChange={(e) => setPaymentMethod(e.target.value)}/>
             <span className="checkmark"></span>
           </label>
           </Card.Body>
