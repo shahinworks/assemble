@@ -249,16 +249,15 @@ function CartFull() {
                     <p className='fs-6 fw-bold my-0 py-0'>{item?.size} / {item?.color} / {item?.gender} </p>
                     </Col>
                     <Col xs="5" lg="3" className=" justify-content-center mb-2 mb-lg-0 order-3 order-lg-3 align-items-lg-center">
-<Button variant='outline-dark' className='d-inline' disabled={item?.quantity <= 1} style={{border: "none"}} 
-          onClick={() => CartDecrement(item?.id, item?.size, item?.gender, item?.color)}>
-            <DashLg />
-  </Button>
-            <input   onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2 d-inline" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
-            <Button variant='outline-dark' className='d-inline' style={{border: "none"}} onClick={() => CartIncrement(item?.id, item?.size, item?.gender, item?.color)}>
-            <PlusLg />
-          </Button> 
+                      <Button variant='outline-dark' className='d-inline' disabled={item?.quantity <= 1} style={{border: "none"}} 
+                        onClick={() => CartDecrement(item?.id, item?.size, item?.gender, item?.color)}>
+                        <DashLg />
+                      </Button>
+                    <input onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2 d-inline" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
+                    <Button variant='outline-dark' className='d-inline' style={{border: "none"}} onClick={() => CartIncrement(item?.id, item?.size, item?.gender, item?.color)}>
+                      <PlusLg />
+                    </Button> 
                     </Col>
-                    
                     <Col xs="7" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5 align-items-lg-center">
                        <Button onClick={() => handleRemove(item?.id, 
                   item?.color, item?.gender, item?.size )} 
