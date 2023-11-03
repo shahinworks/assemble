@@ -279,6 +279,16 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
     //   toast.error("SOME ERROR OCCURRED ");
     // } 
 
+
+    // if (response?.data && paymentType === 'COD') {
+    //   history.push('/user/orders', { tabvalue: 'cod' });
+    // }
+
+    // if(response?.data && response?.data?.createOrder?.paymentMethod === "COD") {
+    //   navigate('');
+    // }
+
+    
    
 
     if(response?.data && response?.data?.createOrder?.user && response?.data?.createOrder?.totalAmount && response?.data?.createOrder?.paymentMethod === "ONLINE"){
