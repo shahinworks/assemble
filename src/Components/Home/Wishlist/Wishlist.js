@@ -3,9 +3,11 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 import { Row, Col, Button , Overlay, Tooltip, OverlayTrigger} from 'react-bootstrap';
 import { Cart, Heart, Trash } from 'react-bootstrap-icons';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Wishlist() {  
+
+  const navigate = useNavigate();
 
   const GET_WISHLIST_ITEMS = gql`
     query Wishlist {
@@ -109,6 +111,12 @@ function Wishlist() {
     });
   }
 
+
+  // const handleSendToProductPage = (id) => {
+  //   navigate(`/product/${id}`);
+
+  // }
+
   return (<>
     <h4 style={{marginTop: "10%"}} className='text-center mb-5'>Wishlist Item</h4>
 
@@ -123,12 +131,24 @@ function Wishlist() {
             </Row>
           </Col>
           <Col className='col-3'>
-          <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip-left">Add To Cart</Tooltip>}>
+          {/* <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip-left">Add To Cart</Tooltip>}>
             <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
             onClick = {() => handleAddToCart(wish?.productId?.id)} >
             <Cart size={20} color="white"/>
           </Button>
-           </OverlayTrigger>
+           </OverlayTrigger> */}
+
+          <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip-left">Add To Cart</Tooltip>}>
+            <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
+            // onClick = {() => handleAddToCart(wish?.productId?.id)} 
+            // onClick={() => handleSendToProductPage(wish?.productId?.id)}
+            
+            >
+            <Cart size={20} color="white"/>
+            </Button>
+          </OverlayTrigger>
+
+
            <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip-left">Remove from Wishlist</Tooltip>}>
           <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
             onClick={() => handleRemoveFromWishlist(wish?.productId?.id)} >
