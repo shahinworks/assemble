@@ -261,6 +261,41 @@ function CartFull() {
       </Card.Body>
     </Card> )}
 
+    {cartData?.cart?.cartProducts?.length > 0 && tempCartValues?.map((item, index) => 
+    <Card key={index} className="mb-2 hover-border-primary">
+                <Card.Body className="pt-0 pb-0 sh-30 sh-lg-8">
+                  <Row className="g-0 h-100 align-content-center">
+                    <Col xs="10" lg="3" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-1 order-lg-1 ">
+                    <img style={{height: "100px", width:"70px", border: "2px solid black"}} 
+                     src={item?.image } alt="s"/>
+                    </Col>
+                    <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-3 order-lg-2 align-items-lg-center">
+                    <p className='fs-5  fw-bold my-0 py-0'>{item?.productName}</p>
+                    <p className='fs-6 fw-bold my-0 py-0'>{item?.size} / {item?.color} / {item?.gender} </p>
+                    </Col>
+                    <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-4 order-lg-3 align-items-lg-center">
+                    <Button variant='outline-dark' disabled={item?.quantity <= 1} style={{border: "none"}} 
+          onClick={() => CartDecrement(item?.id, item?.size, item?.gender, item?.color)}>
+            <DashLg />
+            </Button>
+            <input  onChange={(e) => setQuantity(e.target.value)} value={item?.quantity} className="mx-2" style={{background: "none", border: "none", width: "30%", textAlign: "center"}} type='text'  min="0" pattern="[0-9]*"/>
+            <Button variant='outline-dark' style={{border: "none"}} onClick={() => CartIncrement(item?.id, item?.size, item?.gender, item?.color)}>
+            <PlusLg />
+          </Button>
+                    </Col>
+                    
+                    <Col xs="6" lg="2" className="d-flex flex-column justify-content-center mb-2 mb-lg-0 order-5 order-lg-5 align-items-lg-center">
+                       <Button onClick={() => handleRemove(item?.id, 
+                  item?.color, item?.gender, item?.size )} 
+            style={{marginRight: "0px", border: "none"}} 
+            className='d-inline me-md-0 ms-md-5 mt-0 pt-0 mx-1 px-1' 
+            variant='outline-danger' > Remove  </Button>
+                    </Col>
+
+                  </Row>
+                </Card.Body>
+              </Card> )}
+
 
     
       
