@@ -11,15 +11,15 @@ function Checkout(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log("Location", location);
+ // console.log("Location", location);
 
  
   const temp = location?.state?.temp;
 
   const state = location?.state?.newArray;
 
-  console.log("Temp", temp);
-  console.log("state", state);
+ // console.log("Temp", temp);
+ // console.log("state", state);
 
   const [modal, showModal] = useState(false);
 
@@ -244,11 +244,14 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
 
   useEffect(() => {
     if(paymentData?.makePayment?.success){
-      navigate(paymentData?.makePayment?.redirectUrl);
+      // navigate(paymentData?.makePayment?.redirectUrl);
+      window.location.href = paymentData?.makePayment?.redirectUrl;
     }
   }, [paymentData?.makePayment]);
 
   const [addressForShipping,  setAddressForShipping] = useState("");
+
+  console.log("addressForShipping", addressForShipping);
 
   useEffect(() => {
     if( totalAmount && state &&  addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id ){
