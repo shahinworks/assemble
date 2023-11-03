@@ -111,10 +111,8 @@ function Wishlist() {
     });
   }
 
-
   const handleSendToProductPage = (id) => {
-   // navigate(`/product/${id}`);
-
+    navigate(`/product/${id}`);
   }
 
   return (<>
