@@ -1,76 +1,89 @@
-import React from 'react'
+import React, { useState } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { gql, useQuery } from '@apollo/client'; 
+import { useEffect } from "react";
 
 function Demo() {
-  return (
-    <div>Demo</div>
-  )
+
+  const GET_ALL_PRODUCT = gql`
+  query GetAllProducts {
+    getAllProducts {
+      id
+      color
+      description
+      discount
+      gender
+      gst
+      priveiwName
+      productName
+      sellingPrice
+      size
+      stock {
+        quantity
+        gender
+        color
+        size
+      }
+      images {
+        imagePath
+        color
+        gender
+      }
+    }
+  }
+`;
+
+
+const [data, setData ] = useState([]);
+
+const { data: product, refetch } = useQuery(GET_ALL_PRODUCT);
+
+
+useEffect(() => {
+  setData(product?.getAllProducts);
+}, [product]);
+
+
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
+  return (<>
+    {data && <Carousel responsive={responsive}>
+    {data && data?.map((data, index) => <div key={index} >
+          <img src={data?.images[0]?.imagePath[0]} alt="Image 2" />
+        </div> )}
+       
+    </Carousel>}
+  </>);
 }
 
-export default Demo
-
-// import React from 'react';
-// import { Splide, SplideSlide } from '@splidejs/react-splide';
-// // Default theme
-// import '@splidejs/react-splide/css';
+export default Demo;
 
 
-// // or other themes
-// import '@splidejs/react-splide/css/skyblue';
-// import '@splidejs/react-splide/css/sea-green';
-
-
-// // or only core styles
-// import '@splidejs/react-splide/css/core';
-
-// function Demo() {
-
-//     // GETTING DATA
-//     const GET_ALL_PRODUCT = gql`
-//     query GetAllProducts {
-//       getAllProducts {
-//         id
-//         color
-//         description
-//         discount
-//         gender
-//         gst
-//         priveiwName
-//         productName
-//         sellingPrice
-//         size
-//         stock {
-//           quantity
-//           gender
-//           color
-//           size
-//         }
-//         images {
-//           imagePath
-//           color
-//           gender
-//         }
-//       }
-//     }
-//   `;
-
-//   const { data: product, refetch } = useQuery(GET_ALL_PRODUCT);
-
-//   return (<>
-//     <div className="slider ">
-//     <Swiper modules={[Navigation, Pagination, Scrollbar, A11y]} spaceBetween={0} slidesPerView={2  } navigation pagination={{ clickable: true }}
-//     onSwiper={(swiper) => console.log(swiper)} onSlideChange={() => console.log('slide change')} >
-//     {event && event.map((data) =>
-//         <SwiperSlide key={data._id} >
-//             <div className="card mt-3" style={{ width: "9rem", height: '9rem' }}>
-//                 <img src={data.Image} className="card-img-top px-3 pt-3 mt-1"  style={{ borderRadius: '20px' ,height:'7rem' }} alt="..." />
-//                 <div className="">
-//                     <div className=" text-center pt-2" style={{ fontSize: 10, fontWeight: 500 }} >{data.name}</div>
-//                 </div>
-//             </div>
-//         </SwiperSlide>)}
-// </Swiper>
-//     </div>
-//   </>);
-// }
-
-// export default Demo;
+  //  <div  >
+  //         <img src="https://source.unsplash.com/300x300/?perth" alt="Image 2" />
+  //       </div>
+  //       <div  >
+  //         <img src="https://source.unsplash.com/300x300/?fremantle,australia" alt="Image 1" />
+  //       </div>
+  //       <div  >
+  //         <img src="https://source.unsplash.com/300x300/?perth" alt="Image 3" />
+  //       </div>
