@@ -80,9 +80,9 @@ function Home() {
   `;
 
   const {data: homePageSlider} = useQuery(GET_HOME_PAGE_SLIDER);
-  if(homePageSlider){
-    console.log("homePageSlider", homePageSlider);
-  }
+  // if(homePageSlider){
+  //   console.log("homePageSlider", homePageSlider);
+  // }
 
   // onClick={() => goToProductPage(data.id)}
 

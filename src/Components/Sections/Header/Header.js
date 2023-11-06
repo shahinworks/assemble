@@ -125,6 +125,10 @@ function Header() {
     navigate('/return');
   }
 
+  const goToAdmin = () => {
+    navigate('/admin');
+  }
+
 
   return (   
     <>
@@ -368,7 +372,8 @@ function Header() {
   <Modal.Title className='fw-bold' as="h5">Profile</Modal.Title>
     </Modal.Header>
     <Modal.Body className='mx-0 px-0'>
-      <ul>
+      <ul> 
+        <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold' onClick={() => goToAdmin()} >Admin Dashboard</li>
         <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold' onClick={() => goToProfile()} >Profile</li>
         <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold'  onClick={() => goToOrderPage()}>Order</li>
       </ul>
