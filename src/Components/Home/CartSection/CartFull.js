@@ -193,6 +193,7 @@ function CartFull() {
     });
     navigate('/checkout', { state: newArray });
   }
+
   return (<>
     <div style={{paddingTop: "10%"}}> 
       <h1 className='mx-4 text-center mb-5' style={{fontSize: "40px", fontWeight:"bold"}}> Cart </h1>
@@ -269,7 +270,7 @@ function CartFull() {
 
                   </Row>
                 </Card.Body>
-              </Card> )}
+    </Card> )}
 
     {/* <Button variant='link' onClick={() => goToCart()}> <Cart/> </Button> */}
     {/* {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
@@ -321,7 +322,7 @@ function CartFull() {
       <Modal.Footer className="border-0" style={{ justifyContent: "center" }}>
          <Button style={{backgroundColor: "black", color: "white", border: "1px solid black", width: "60%"}} 
          className='fs-5 fw-bold px-4 mx-5 mb-2 ' onClick={() => goToCheckOut()}>CHECKOUT</Button> 
-      </Modal.Footer>}
+    </Modal.Footer>}
   </>);
 }
 
