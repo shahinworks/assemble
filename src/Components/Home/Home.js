@@ -3,11 +3,11 @@ import {Speedometer, List, Person, Search, Cart, Bag, CaretLeft, CaretRight, Che
 import { Button, Modal, Card, Row, Col } from 'react-bootstrap';
 import { gql, useQuery } from '@apollo/client';
 import { useNavigate, Link } from 'react-router-dom';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 import './Home.css';
 import MediaQuery from 'react-responsive';
-import Header from '../Sections/Header/Header';
-import Swiper from './Swiper';
 
 function Home() {
 
@@ -94,6 +94,26 @@ function Home() {
   
   // handlePrev
   // handleNext
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
   return (<>
   {/* <Header /> */}
     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
@@ -122,107 +142,21 @@ function Home() {
     <section id="about" className="about">
       <p className="text-center">#BEDRESSPONSIBLE</p>
       <h1 className="text-center">The Vagabond Hipster Series</h1> <br /> <br />
-      <div className="container">
+      {/* <div className="container">
         <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
           <div className="carousel-inner">
             
              <div className="carousel-item active">
              <div className="row row1">
-              {/* <Swiper product={product} /> */}
              {product && product?.getAllProducts?.map((data, index) => index< 3 && <div key={data.id}  className="col-lg-4 col-md-4 col-sm-6">
                  <img src={data?.images[0]?.imagePath[0]} alt=""/>
                 <Link to={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </Link>
                  <h4 className="fs-5 text-center">
                    ₹ {data.sellingPrice }</h4>
                </div> )}
-
-               {/* <div className="col-lg-4 col-md-4 col-sm-6">
-               <img src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp" alt="" />
-              <h4 className="text-center">Lorem, ipsum dolor.</h4>
-           <p className="text-center">
-             <del>4534534</del>999
-           </p>
-               </div> */}
-               {/* <div className="col-lg-4 col-md-4 col-sm-6">
-           <img
-             src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp"
-             alt=""
-           />
-           <h4 className="text-center">Lorem, ipsum dolor.</h4>
-           <p className="text-center">0932 </p>
-               </div> */}
-             </div>
+               </div>
            </div>
-           
-              {/* <div className="carousel-item">
-          <div className="row row1">
-           <MediaQuery minWidth={769} >
-            <div className="col-lg-4 col-md-4 col-sm-6">
-              <img
-                src='assets/img/31.jpg'
-                alt=""
-              />
-              <h4 className="text-center">Lorem, ipsum dolor.</h4>
-              <p className="text-center">
-                <del>333333</del>999
-              </p>
-            </div> </MediaQuery>
-            <div className="col-lg-4 col-md-4 col-sm-6">
-              <img
-                src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp"
-                alt=""
-              />
-              <h4 className="text-center">Lorem, ipsum dolor.</h4>
-              <p className="text-center">
-555555              </p>
             </div>
-            <div className="col-lg-4 col-md-4 col-sm-6">
-              <img
-                src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp"
-                alt=""
-              />
-              <h4 className="text-center">Lorem, ipsum dolor.</h4>
-              <p className="text-center">
-                <del>10000</del>999
-              </p>
-            </div>
-          </div>
-              </div>
-              <div className="carousel-item">
-          <div className="row row1">
-          <MediaQuery minWidth={769} > 
-            <div className="col-lg-4 col-md-4 col-sm-6">
-              <img
-                src="assets/img/TheVeshtiCompanyHaremPants50_540x.webp"
-                alt=""
-              />
-              <h4 className="text-center">Lorem, ipsum dolor.</h4>
-              <p className="text-center">
-                <del>7777777777</del>999
-              </p>
-            </div> </MediaQuery>
-            <div className="col-lg-4 col-md-4 col-sm-6">
-              <img
-                src="assets/img/TheVeshticompanyHaremPants5_705544aa-d64f-46ae-bdcd-78bf2fe50905_540x.webp"
-                alt=""
-              />
-              <h4 className="text-center">Lorem, ipsum dolor.</h4>
-              <p className="text-center">
-888888888888888              </p>
-            </div>
-            <div className="col-lg-4 col-md-4 col-sm-6">
-              <img
-                src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp"
-                alt=""
-              />
-              <h4 className="text-center">Lorem, ipsum dolor.</h4>
-              <p className="text-center">
-                <del>99999999</del>999
-              </p>
-            </div>
-          </div>
-              </div> */}
-          </div>
           <MediaQuery minWidth={576} >
           <a className="carousel-control-prev" href="#carouselExampleControlsDamn" role="button"  data-slide="prev" onClick={() => handlePrev()} >
               <ChevronLeft color='black' size={33} />
@@ -232,7 +166,27 @@ function Home() {
           </a>
           </MediaQuery>
         </div>
-      </div>
+      </div> */}
+      <div className="container">
+      <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
+      <div className="carousel-inner">
+      <div className="carousel-item active">
+        <div className="row row1">
+    {product && <Carousel responsive={responsive} >
+    {product && product?.getAllProducts?.map((data, index) => 
+    <div key={index} className='mx-5' >
+          <img src={data?.images[0]?.imagePath[0]} alt="Image 2" />
+          <Link to={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </Link>
+          <h4 className="fs-5 text-center">
+                   ₹ {data.sellingPrice }</h4>
+        </div> )}
+       
+    </Carousel>}
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
     </section>
       <MediaQuery minWidth={769} >
         <Row className='SideRow' >
