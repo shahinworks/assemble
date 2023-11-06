@@ -271,9 +271,6 @@ function CartFull() {
                 </Card.Body>
               </Card> )}
 
-
-    
-      
     {/* <Button variant='link' onClick={() => goToCart()}> <Cart/> </Button> */}
     {/* {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) => 
     <Card key={index} style={{border: "none"}}>
@@ -311,11 +308,6 @@ function CartFull() {
       </Card.Body>
     </Card> )} */}
 
-
-
-
-   
-  
     <Row className='my-2'>
       <Col className='col-md-8 col-3' />
       <Col className='col-md-auto col-8 ' >
@@ -329,11 +321,8 @@ function CartFull() {
       <Modal.Footer className="border-0" style={{ justifyContent: "center" }}>
          <Button style={{backgroundColor: "black", color: "white", border: "1px solid black", width: "60%"}} 
          className='fs-5 fw-bold px-4 mx-5 mb-2 ' onClick={() => goToCheckOut()}>CHECKOUT</Button> 
-       </Modal.Footer>
-       }
-
-
-  </>)
+      </Modal.Footer>}
+  </>);
 }
 
 export default CartFull;
