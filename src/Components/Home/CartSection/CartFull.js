@@ -317,8 +317,8 @@ function CartFull() {
    
   
     <Row className='my-2'>
-      <Col className='col-8' />
-      <Col className='col-auto' >
+      <Col className='col-md-8 col-1' />
+      <Col className='col-md-auto col-10 ' >
       <p className='fw-bold d-inline fs-5' style={{marginRight: "0", paddingRight: "0"}}>SUBTOTAL </p>
       <p className='fw-bold d-inline fs-5' style={{marginRight: "0", paddingRight: "0", alignItems: "end", alignContent: "end"}}> ₹ {sum}</p>
       </Col>
