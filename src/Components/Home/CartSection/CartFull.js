@@ -318,10 +318,9 @@ function CartFull() {
     </Row>
     </div>
 
-    {cartData?.cart?.cartProducts?.length > 0 &&
-      <Modal.Footer className="border-0" style={{ justifyContent: "center" }}>
-         <Button style={{backgroundColor: "black", color: "white", border: "1px solid black", width: "60%"}} 
-         className='fs-5 fw-bold px-4 mx-5 mb-2 ' onClick={() => goToCheckOut()}>CHECKOUT</Button> 
+    {cartData?.cart?.cartProducts?.length > 0 && <Modal.Footer className="border-0" style={{ justifyContent: "center" }}>
+      <Button style={{backgroundColor: "black", color: "white", border: "1px solid black", width: "60%"}} 
+        className='fs-5 fw-bold px-4 mx-5 mb-2 ' onClick={() => goToCheckOut()}>CHECKOUT</Button> 
     </Modal.Footer>}
   </>);
 }
