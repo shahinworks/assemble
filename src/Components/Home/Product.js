@@ -174,7 +174,8 @@ function Product() {
       toast.success("Added to Wishlist");
     }, 
     onError : (error) => {
-      if(error.message ===  "Authorization header is missing"){
+      console.error(error.message);
+      if(error.message ===  "jwt expired"){
         navigate('/login');
         toast.error("Login and TRY AGAIN!");
       }  else if(error.message ===  "Failed to add product to wishlist") 
