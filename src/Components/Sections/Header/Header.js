@@ -16,6 +16,10 @@ function Header() {
   const navigate = useNavigate();
   const token = localStorage.getItem('token');
   const [loggedIn, setLoggedIn] = useState(false);
+
+  
+  const userRole =  localStorage.getItem('userRole');
+
   useEffect(() => {
     if(token) {
       setLoggedIn(true);
@@ -31,7 +35,6 @@ function Header() {
     localStorage.removeItem('role');
     setLoggedIn(false);
   }
-
 
 
   const ice = {
@@ -373,7 +376,7 @@ function Header() {
     </Modal.Header>
     <Modal.Body className='mx-0 px-0'>
       <ul> 
-        <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold' onClick={() => goToAdmin()} >Admin Dashboard</li>
+       {userRole === "admin" && <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold' onClick={() => goToAdmin()} >Admin Dashboard</li>}
         <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold' onClick={() => goToProfile()} >Profile</li>
         <li style={{listStyle: "none", fontSize: "20px"}} className='fw-bold'  onClick={() => goToOrderPage()}>Order</li>
       </ul>
