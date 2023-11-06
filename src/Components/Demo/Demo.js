@@ -66,23 +66,14 @@ useEffect(() => {
     }
   };
   return (<>
-  <div className="container">
-        <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
-          <div className="carousel-inner">
-            
-             <div className="carousel-item active">
-             <div className="row row1">
+  
     {data && <Carousel responsive={responsive}>
     {data && data?.map((data, index) => <div key={index} >
           <img src={data?.images[0]?.imagePath[0]} alt="Image 2" />
         </div> )}
        
     </Carousel>}
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+   
   </>);
 }
 
