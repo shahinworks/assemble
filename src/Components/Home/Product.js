@@ -372,14 +372,14 @@ function Product() {
              
               <p className="text-disable">Tax included.</p>
               <hr />
-              <div className="container mx-0 px-0">
+              {/* <div className="container mx-0 px-0">
                 <p>
                   <b>
                   {product?.getProduct?.description}
                   </b>
                 </p>
               </div>
-              <br />
+              <br /> */}
 
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
               <div className='ms-0 d-flex'>
@@ -569,7 +569,7 @@ function Product() {
           </Tab>
           <Tab eventKey="description" title="Description">
             <div className="my-3" style={{fontWeight: "bold" , textAlign: "left"}}>
-            Elevate your style and feel oh so comfortable in the Tribal Stone pants! These harem pants are everything you need and more to feel truly comfortable and at easy. The pants are made of 100% cotton and feature a full elasticated waist. Pair the pants with a simple&nbsp;tank top and some comfortable&nbsp;footwear for a complete look. Treat yourself to comfort today!
+            {product?.getProduct?.description}
             </div>
           </Tab>
           <Tab eventKey="size" title="Size">
