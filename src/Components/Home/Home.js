@@ -168,25 +168,23 @@ function Home() {
         </div>
       </div> */}
       <div className="container">
-      <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
-      <div className="carousel-inner">
-      <div className="carousel-item active">
-        <div className="row row1">
-    {product && <Carousel responsive={responsive} >
-    {product && product?.getAllProducts?.map((data, index) => 
-    <div key={index} className='mx-5' >
-          <img src={data?.images[0]?.imagePath[0]} alt="Image 2" />
-          <Link to={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </Link>
-          <h4 className="fs-5 text-center">
-                   ₹ {data.sellingPrice }</h4>
-        </div> )}
-       
-    </Carousel>}
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+        <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
+          <div className="carousel-inner">
+            <div className="carousel-item active">
+              <div className="row row1">
+                {product && <Carousel responsive={responsive} >
+                  {product && product?.getAllProducts?.map((data, index) => 
+                    <div key={index} className='mx-5' >
+                      <img src={data?.images[0]?.imagePath[0]} alt="Image 2" />
+                      <Link to={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </Link>
+                      <h4 className="fs-5 text-center"> ₹ {data.sellingPrice }</h4>
+                   </div>)}
+                </Carousel>}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
       <MediaQuery minWidth={769} >
         <Row className='SideRow' >
