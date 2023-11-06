@@ -634,6 +634,10 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
         <Button  disabled={payNowCheck} className='py-3 ' style={{backgroundColor: "black", color: "white", fontSize: "20px", border: "1px solid black"}} onClick={() => { handleOrder(); setShowProcessBtn(true)}}>PAY NOW</Button>
     </Row>}
 
+    {showProcessBtn && <Row className='mt-5 mb-5 mx-4 px-4'> 
+        <Button disabled={payNowCheck} className='py-3 ' style={{backgroundColor: "black", color: "white", fontSize: "20px", border: "1px solid black"}} >PROCESSING...</Button>
+    </Row>}
+
     </Col>
  
     <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
