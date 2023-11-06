@@ -261,7 +261,12 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
    
   }, [paymentMethod, totalAmount, state, addressForShipping, billingAddress?.getAllAddressesByUser[0]?.id  ]);
  
+    const [showProcessBtn, setShowProcessBtn] = useState(false);
+
   const handleOrder = async () => {
+    // toast("Processing Further, Please Wait ... ");
+
+    // setShowProcessBtn(true);
     // if( totalAmount && state && paymentMethod && addressForShipping &&  billingAddress?.getAllAddressesByUser[0]?.id )
     // {
     const response =  await createOrder({
@@ -620,21 +625,15 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
                     </div>
                   </form>
            </>} */}
-          
-
-
-
-
-         
-
         </div>
     
     {/* <h3 className='mt-5 mb-5'>Checkout</h3> */}
     
      
-    <Row className='mt-5 mb-5 mx-4 px-4'> 
-        <Button  disabled={payNowCheck} className='py-3 ' style={{backgroundColor: "black", color: "white", fontSize: "20px"}} onClick={() => handleOrder()}>Pay Now</Button>
-    </Row>
+   {!showProcessBtn && <Row className='mt-5 mb-5 mx-4 px-4'> 
+        <Button  disabled={payNowCheck} className='py-3 ' style={{backgroundColor: "black", color: "white", fontSize: "20px", border: "1px solid black"}} onClick={() => { handleOrder(); setShowProcessBtn(true)}}>PAY NOW</Button>
+    </Row>}
+
     </Col>
  
     <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
