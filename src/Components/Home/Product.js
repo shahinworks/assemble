@@ -132,7 +132,7 @@ function Product() {
         setEditModal(true);
     },
     onError : (error) => {
-      if(error.message === "JsonWebTokenError: jwt malformed")
+      if(error.message === "TokenExpiredError: jwt expired")
       {
         navigate("/login");
         toast.error("Error Occured, Login and try Again");
