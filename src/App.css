@@ -885,3 +885,28 @@
     border-radius: 50%;
     background: white;
 } 
+ 
+.carousel-inner .carousel-item {
+  transition-duration: 0.3s;
+}
+
+/* Add this CSS to your project's CSS file */
+.carousel-item {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.carousel-item.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.carousel-item-next, .carousel-item-prev, .carousel-item.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.carousel-item-next.carousel-item-left, .carousel-item-prev.carousel-item-right {
+  transform: translateX(0);
+}
