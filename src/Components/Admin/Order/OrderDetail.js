@@ -393,8 +393,7 @@ const OrdersDetail = () => {
     }
   }, [selectedPackageIdentifiers]);
 
-  return (
-    <>
+  return (<>
       <div className="page-title-container">
         <Row className="g-0">
           {/* Title Start */}
@@ -944,8 +943,7 @@ const OrdersDetail = () => {
           </Form>
         </Modal.Body>
       </Modal>
-    </>
-  );
+  </>);
 };
 
 export default OrdersDetail;
