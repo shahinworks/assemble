@@ -312,7 +312,7 @@ function Header() {
   <div className="justify align-items-left" style={{alignContent: "left", justifyItems: "left", marginRight: "60px"}}>
   <div id="logo" className='logo'>
     <a href="index.html">
-      <img className='mt-2 logo-img' style={{ height: "10px", width: "10px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+      <img className='mt-2 logo-img' style={{ height: "10px", width: "10px", borderRadius: "3px"}} src={logo1} alt='Logo'/>
     </a>
   </div>
   </div>
