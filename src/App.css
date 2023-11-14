@@ -315,7 +315,19 @@
         }
 
 
-        @media only screen and (min-width: 255px) and (max-width: 375px)  {
+        /* @media only screen and (min-width: 255px) and (max-width: 325px)   {
+          .row1 {
+            margin-left: -2px;
+          }
+        } */
+
+        /* @media only screen and (min-width: 255px) and (max-width: 768px)   {
+          .row1 {
+            margin-left: -40px;
+          }
+        } */
+
+        @media only screen and (min-width: 255px) and (max-width: 376px)  {
           .logo-img { 
             height: 30px !important;
             width:  30px !important;
@@ -331,7 +343,7 @@
         }
 
         
-        @media only screen and (min-width: 376px) and (max-width: 426px)  {
+        @media only screen and (min-width: 377px) and (max-width: 426px)  {
           .logo-img { 
             height: 28px !important;
             width:  28px !important;
@@ -754,7 +766,8 @@
           background-color: black;
           color: white;
       }
-      
+     
+
   .variant-options {
       display: flex;
       gap: 35px;
