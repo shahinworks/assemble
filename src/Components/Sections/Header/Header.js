@@ -317,7 +317,7 @@ function Header() {
   </div>
   </div>
   <div style={{marginRight: "0px", paddingRight: "0px"}}>
-    {!nav &&  <List onClick={() => setNav(true)} className='me-4 mt-0 pt-0' color='black' size={28}  />}
+    {!nav &&  <List onClick={() => setNav(true)} className='me-4 mt-0 pt-0 list-btn' color='black' size={28}  />}
   </div>
   </MediaQuery>
 </header> 

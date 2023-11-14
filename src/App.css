@@ -342,14 +342,19 @@
           }
         }
 
-        @media only screen and (min-width: 425px) and (max-width: 768px)  {
+        @media only screen and (min-width: 450px) and (max-width: 500px)  {
           .logo-img { 
             height: 30px !important;
             width:  30px !important;
             align-items: start !important; 
-            margin-left: -60px;
+            margin-left: -140px;
             margin-bottom: 60px;
             border-radius: 7px;
+          }
+ 
+          .list-btn
+          {
+            margin-bottom: 60px;
           }
         }
 
