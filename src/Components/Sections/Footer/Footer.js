@@ -216,8 +216,39 @@ function Footer() {
       </button>
     </h2>
     <div style={{backgroundColor: "black", color: "white"}} id="collapseOne" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div style={{backgroundColor: "black", color: "white"}} className="accordion-body">
-        <strong style={{backgroundColor: "black", color: "white"}}>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+    <div style={{backgroundColor: "black", color: "white", listStyle: "none"}} className="accordion-body">
+      <ul style={{ listStyle: "none", color: "white", fontSize: "20px", fontWeight: "600"}} className='text-white'>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">Home</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#"> All Products</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">New Arrivals</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">The Vagabond</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">Hipster Series</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">BoHo Shorts (Out of Stock)</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">The TEAM</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">Track My Order</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">Returns Center</a>
+        </li>
+        <li className='my-2'>
+          <a style={{color: "white"}} href="#">Help Centre</a>
+        </li>
+      </ul>
       </div>
     </div>
   </div>
