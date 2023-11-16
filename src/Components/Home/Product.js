@@ -296,7 +296,7 @@ function Product() {
 
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
-    <MediaQuery minWidth={769}>
+    <MediaQuery minWidth={768}>
     <div className="container">
     <section className="slider" style={{ paddingTop: "10%" }}>
       <div className="container" id="container">
@@ -595,11 +595,11 @@ function Product() {
           {/* image section */}
           <div className="col-lg-6 col-md-6 col-sm-12 mb-5">
             <div className="d-flex justify-content-center flex-row-reverse">
-              <div className="image-display-small"  style={{marginTop: "18%"}}>
+              <div className="image-display-small"  style={{marginTop: "10%"}}>
                 <img id="selected-image" src={img || product?.getProduct?.images[0]?.imagePath[0]} alt="Selected Image"/>
               <div />
               </div>
-              <div className="variant-options-small "  style={{marginTop: "18%"}}>
+              <div className="variant-options-small "  style={{marginTop: "10%"}}>
                 <div
                   style={{
                   display: "flex",
