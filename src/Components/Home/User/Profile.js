@@ -610,7 +610,13 @@ function Profile() {
 
       
 
-          <h2 className='mx-2'>Orders</h2>
+       
+        </Col> 
+      </Row>
+    </div>
+
+
+    <h2 className='mx-2'>Orders</h2>
         <Row className="g-0 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
         <Col  md="2" className="d-flex flex-column mb-lg-0 pe-1 justify-content-center">
           <div className=" text-md cursor-pointer sort" >
@@ -632,7 +638,6 @@ function Profile() {
             Date
           </div>
         </Col>
-
         <Col md="2" className="d-flex flex-column pe-1 justify-content-center">
           <div className=" text-md cursor-pointer sort"  >
            Status
@@ -686,10 +691,6 @@ function Profile() {
           </Card>
         ) )  : <h2 className='text-center my-4 py-4'>Order Not Found</h2>}
         
-        </Col> 
-      </Row>
-    </div>
-
 
    {/* Edit User Detail Modal Start */}
    {data && data.getProfile && (
