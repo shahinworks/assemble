@@ -420,7 +420,7 @@ function Product() {
               <h6 className='fw-bold mx-2 text-left'>
                 Gender
               </h6>
-              <div className='ms-0 d-flex'>
+              <div className='ms-0 d-flex flex-wrap'>
                {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
               <div key={gender} 
               style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
@@ -432,7 +432,7 @@ function Product() {
               <h6 className='fw-bold mx-2 text-left'>
                 Size
               </h6>
-              <div className='ms-0 d-flex'> 
+              <div className='ms-0 d-flex flex-wrap'> 
              {product?.getProduct && product?.getProduct?.size.map((size, index) =>
               <div 
               style={sizeSel === index? sizeSelectedStyle: sizeNotSelectedStyle}
