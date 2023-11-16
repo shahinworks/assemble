@@ -29,7 +29,7 @@ function Footer() {
 
 
   return (<>
-  <MediaQuery minWidth={768} >
+  <MediaQuery minWidth={769} >
     <section style={{ paddingBottom: "0% !important" }}>
     <footer>
       <div className="container">
@@ -174,8 +174,38 @@ function Footer() {
       </button>
     </h2>
     <div style={{backgroundColor: "black", color: "white"}} id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div style={{backgroundColor: "black", color: "white"}} className="accordion-body">
-        <strong style={{backgroundColor: "black", color: "white"}}>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+      <div style={{backgroundColor: "black", color: "white", listStyle: "none"}} className="accordion-body">
+      <ul style={{ listStyle: "none", color: "white", fontSize: "20px", fontWeight: "600" }} className='text-white'>
+              <li>
+                <a style={{color: "white"}} href="#">Search</a>
+              </li>
+              <li>
+                <a style={{color: "white"}} href="#">The TEAM</a>
+              </li>
+              <li>
+                <a  style={{color: "white"}} href="#">
+                  Registered Address : 695A, Sadhasiva Nagar, Vandiyur, Madurai -
+                  625020
+                </a>
+              </li>
+              <li>
+                <a href="#" style={{color: "white"}}>
+                  Email Address :<br /> operations@theveshticompany.com
+                </a>
+              </li>
+              <li>
+                <a href="#" style={{color: "white"}}>About us</a>
+              </li>
+              <li>
+                <a href="#" style={{color: "white"}}>Terms and Conditions</a>
+              </li>
+              <li>
+                <a href="#" style={{color: "white"}}>Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#" style={{color: "white"}}>Refund | Cancellation | Shipping Policy</a>
+              </li>
+            </ul>
       </div>
     </div>
   </div>
