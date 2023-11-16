@@ -9,8 +9,8 @@ function AdminHeader() {
   }
 
   return (<>
-    <div style={{cursor: "pointer"}}  onClick={() => goToHomePage()} >
-    <h1 >Header</h1>
+    <div style={{cursor: "pointer"}} onClick={() => goToHomePage()} >
+      <h1 className='text-center my-2'>ADMIN PANEL</h1>
     </div>
   </>);
 }
