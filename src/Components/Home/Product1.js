@@ -48,8 +48,6 @@ function Product() {
     }
   });
 
-  console.log("product", product);
-
   const [ discount, setDiscount ] = useState(product?.getProduct?.discount);
   const [ sellingPrice, setSellingPrice ] = useState(product?.getProduct?.sellingPrice);
 
@@ -80,9 +78,19 @@ function Product() {
 
   const [img, setImg] = useState("");
   const [size, setSize] = useState(product?.getProduct?.size[0]);
-  const [color, setColor] = useState("");
-  const [gender, setGender] = useState("");
+  const [color, setColor] = useState(product?.getProduct?.color[0]);
+  const [gender, setGender] = useState(product?.getProduct?.gender[0]);
   const [ imageArray, setImageArray ] = useState(product?.getProduct?.images[0]?.imagePath);
+
+  const StockTemp =  product?.getProduct?.stock?.filter((s) => 
+  s?.color === color && s?.gender === gender && s?.size === size);
+
+  const [ showStock, setShowStock ] = useState(1);
+  useEffect(() => {
+    if(StockTemp)  {
+      setShowStock(StockTemp[0]?.quantity);
+    }
+  }, [StockTemp]);
 
   useEffect(() => {
     if(product?.getProduct?.images[0]?.imagePath)
@@ -124,7 +132,7 @@ function Product() {
         setEditModal(true);
     },
     onError : (error) => {
-      if(error.message === "JsonWebTokenError: jwt malformed")
+      if(error.message === "TokenExpiredError: jwt expired")
       {
         navigate("/login");
         toast.error("Error Occured, Login and try Again");
@@ -166,7 +174,8 @@ function Product() {
       toast.success("Added to Wishlist");
     }, 
     onError : (error) => {
-      if(error.message ===  "Authorization header is missing"){
+      console.error(error.message);
+      if(error.message ===  "jwt expired"){
         navigate('/login');
         toast.error("Login and TRY AGAIN!");
       }  else if(error.message ===  "Failed to add product to wishlist") 
@@ -185,13 +194,7 @@ function Product() {
   }
 
   const changeImage = (path) => {
-    setImg(path)
-
-    // if(img){
-    //   setImg(path);
-    // } else if(imageArray){
-    //   setImg(imageArray[0]);
-    // }
+    setImg(path);
   }
 
   const handleCartColor = (colour) => {
@@ -260,6 +263,49 @@ function Product() {
     border: "1px solid black",
   }
 
+  const handleSumDrama = async (x) => { 
+    const s = product?.getProduct?.images?.filter((img) => img?.color === x && img?.gender === gender);
+    handleSizeArray(s[0]?.imagePath);
+    changeImage(s[0]?.imagePath[0]);
+    handleCartColor(s[0]?.color);
+  }
+
+  const handleGenderDrama = (g) => {
+    setGender(g)
+    const s = product?.getProduct?.images?.filter((img) => img?.color === color && img?.gender === g);
+  
+    handleSizeArray(s[0]?.imagePath);
+    changeImage(s[0]?.imagePath[0]);
+    handleCartColor(s[0]?.color);
+  }
+
+
+  const [selImageId, setSelImageId] = useState("");
+
+  const imageBorder = {
+    border: "2.5px solid black",
+    objectFit: "contain",
+  }
+
+  const noBorder = {
+    objectFit: "contain"
+  }
+ 
+  const handleImageSelectedForDisplay = (id) => {
+    setSelImageId(id)
+
+  }
+
+   
+
+  useEffect(() => {
+    const stock = product?.getProduct?.stock?.filter((s) => s?.color === color && s?.gender === gender 
+    && s?.size === size);
+    if(stock){
+      setShowStock(stock[0]?.quantity);
+    }
+  }, [color, size, gender]);
+
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
     <div className="container" >
@@ -292,21 +338,23 @@ function Product() {
                     />
                   </div>  */}
                   {/* {product?.getProduct?.images?.imagePath?.map((image, index) => index > 0 &&  */}
-                  {imageArray &&  imageArray?.map((image, index) => 
+                  {imageArray &&  imageArray?.map((image, index) => index < 4 &&
                   <div key={index}
                     className="variant"
                     id="act"
                     data-image="assets/img/31.jpg"
-                    onClick={() =>{ changeImage(image); 
-                      handleCartColor(image?.color)}}
+                    onClick={() => {
+                      changeImage(image); 
+                      handleCartColor(image?.color);
+                      handleImageSelectedForDisplay(index);
+                    }}
                   >
                     <img
-                      style={{ objectFit: "contain" }}
                       src={image}
                       alt=""
+                      style={selImageId === index? imageBorder: noBorder}
                     />
                   </div>)}
-                 
                   {/* Add more color divs as needed */}
                 </div>
               </div>
@@ -324,41 +372,67 @@ function Product() {
              
               <p className="text-disable">Tax included.</p>
               <hr />
-              <div className="container">
+              {/* <div className="container mx-0 px-0">
                 <p>
                   <b>
                   {product?.getProduct?.description}
-                    {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Inventore, vel ratione. */}
                   </b>
                 </p>
               </div>
-              <br />
+              <br /> */}
 
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
-              <div className='ms-0 d-flex'>
-              {product?.getProduct && product?.getProduct?.images.map((color, index) =>
+              <div className='ms-0 d-flex flex-wrap'>
+              {product?.getProduct && product?.getProduct?.color.map((color, index) =>
+               <div 
+              //  onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
+               key={color}
+               onClick={() => { handleSumDrama(color); handleSelection(index)}}
+                className='mx-2 my-2 px-3 py-2 hoverable'  
+               style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
+              {color}
+            </div>)}
+              {/* 
+ {product?.getProduct && product?.getProduct?.images.map((color, index) => color?.color === 
                <div onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
                key={color.color} 
                className='mx-2 my-2 px-3 py-2 hoverable'  
                style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
               {color.color}
-            </div>)}
+            </div>)} */}
+
+              {/* {product?.getProduct && product?.getProduct?.color.map((color, index) => 
+              product?.getProduct?.images?.filter((img) => img?.color === color)?.imagePath[0]  &&
+                <div    key={color} 
+                onClick={() => {
+                  handleSelection(index);
+                  // changeImage(color?.imagePath[0]);
+   changeImage();
+         
+                  handleCartColor(color); 
+                  handleSizeArray(color?.imagePath) }} 
+            
+               className='mx-2 my-2 px-3 py-2 hoverable'  
+               style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
+              {color}
+            </div>)} */}
             </div>
               <h6 className='fw-bold mx-2 text-left'>
                 Gender
               </h6>
-              <div className='ms-0 d-flex'>
+              <div className='ms-0 d-flex flex-wrap'>
                {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
               <div key={gender} 
               style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
-               onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}}  className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
+              onClick={() => { handleGenderSeletion(index); handleCartGender(gender); handleGenderDrama(gender) }}
+              //  onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}} 
+                className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
               </div>
              
               <h6 className='fw-bold mx-2 text-left'>
                 Size
               </h6>
-              <div className='ms-0 d-flex'> 
+              <div className='ms-0 d-flex flex-wrap'> 
              {product?.getProduct && product?.getProduct?.size.map((size, index) =>
               <div 
               style={sizeSel === index? sizeSelectedStyle: sizeNotSelectedStyle}
@@ -401,9 +475,7 @@ function Product() {
               </svg>
               <p style={{ paddingLeft: 13, marginTop: "-3px" }}>
                 {" "}
-               Stock:  { product?.getProduct?.stock[0]?.quantity}
-               {/* {product?.getProduct?.stock} */}
-               {/* In stock, ready to ship */}
+               Stock: {showStock}
               </p>
             </div>
             <br />
@@ -497,7 +569,7 @@ function Product() {
           </Tab>
           <Tab eventKey="description" title="Description">
             <div className="my-3" style={{fontWeight: "bold" , textAlign: "left"}}>
-            Elevate your style and feel oh so comfortable in the Tribal Stone pants! These harem pants are everything you need and more to feel truly comfortable and at easy. The pants are made of 100% cotton and feature a full elasticated waist. Pair the pants with a simple&nbsp;tank top and some comfortable&nbsp;footwear for a complete look. Treat yourself to comfort today!
+            {product?.getProduct?.description}
             </div>
           </Tab>
           <Tab eventKey="size" title="Size">

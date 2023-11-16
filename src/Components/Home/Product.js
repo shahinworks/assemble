@@ -63,17 +63,7 @@ function Product() {
     }
 
   }, [product]);
- 
-  // const ADD_TO_CART = gql`
-  //   mutation AddToCart($productId: ID!, $quantity: Int!) {
-  //     addToCart(productId: $productId, quantity: $quantity) {
-  //       _id
-  //     }
-  //   }
-  // `;
-
-
-  
+   
   // ADD TO CART 
 
   const [img, setImg] = useState("");
@@ -325,19 +315,6 @@ function Product() {
                   flexDirection: "column",
                   justifyContent: "space-evenly"
                   }} >
-                   {/* <div
-                    className="variant active"
-                    id="act"
-                    data-image="assets/img/31.jpg"
-                    onClick={() => changeImage(product?.getProduct?.images[0]?.imagePath[0])}
-                  > 
-                    <img
-                      style={{ objectFit: "contain" }}
-                      src={product?.getProduct?.images[0]?.imagePath[0]}
-                      alt=""
-                    />
-                  </div>  */}
-                  {/* {product?.getProduct?.images?.imagePath?.map((image, index) => index > 0 &&  */}
                   {imageArray &&  imageArray?.map((image, index) => index < 4 &&
                   <div key={index}
                     className="variant"
@@ -372,50 +349,17 @@ function Product() {
              
               <p className="text-disable">Tax included.</p>
               <hr />
-              {/* <div className="container mx-0 px-0">
-                <p>
-                  <b>
-                  {product?.getProduct?.description}
-                  </b>
-                </p>
-              </div>
-              <br /> */}
+              
 
               <h6 className='fw-bold mx-2 text-left'> Colour </h6>
               <div className='ms-0 d-flex flex-wrap'>
               {product?.getProduct && product?.getProduct?.color.map((color, index) =>
-               <div 
-              //  onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
-               key={color}
+               <div key={color}
                onClick={() => { handleSumDrama(color); handleSelection(index)}}
                 className='mx-2 my-2 px-3 py-2 hoverable'  
                style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
               {color}
             </div>)}
-              {/* 
- {product?.getProduct && product?.getProduct?.images.map((color, index) => color?.color === 
-               <div onClick={() => {handleSelection(index); changeImage(color?.imagePath[0]); handleCartColor(color?.color); handleSizeArray(color?.imagePath) }} 
-               key={color.color} 
-               className='mx-2 my-2 px-3 py-2 hoverable'  
-               style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
-              {color.color}
-            </div>)} */}
-
-              {/* {product?.getProduct && product?.getProduct?.color.map((color, index) => 
-              product?.getProduct?.images?.filter((img) => img?.color === color)?.imagePath[0]  &&
-                <div    key={color} 
-                onClick={() => {
-                  handleSelection(index);
-                  // changeImage(color?.imagePath[0]);
-   changeImage();
-         
-                  handleCartColor(color); 
-                  handleSizeArray(color?.imagePath) }} 
-            
-               className='mx-2 my-2 px-3 py-2 hoverable'  
-               style={select === index? colorSelectedStyle: colorNotSelectedStyle} >
-              {color}
-            </div>)} */}
             </div>
               <h6 className='fw-bold mx-2 text-left'>
                 Gender
@@ -425,7 +369,6 @@ function Product() {
               <div key={gender} 
               style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
               onClick={() => { handleGenderSeletion(index); handleCartGender(gender); handleGenderDrama(gender) }}
-              //  onClick={() => {handleCartGender(gender); handleGenderSeletion(index)}} 
                 className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
               </div>
              
@@ -525,13 +468,6 @@ function Product() {
               </button>
             </div>
             <br />
-            {/* <div className="d-flex justify-content-center">
-              <button className="button2  d-flex justify-content-evenly">
-                <a href="#" className="text-center">
-                  Buy Now
-                </a>
-              </button>
-            </div> */}
             <br />
            
          <Tabs>
