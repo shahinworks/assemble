@@ -467,11 +467,11 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
         <Card>
           <Card.Body>
           <label className="container">ONLINE
-            <input type="radio" value="ONLINE" name='paymentMethod' onChange={(e) => setPaymentMethod(e.target.value)} />
+            <input hidden type="radio" value="ONLINE" name='paymentMethod' onChange={(e) => setPaymentMethod(e.target.value)} />
             <span className="checkmark"></span>
           </label>
           <label className="container">Cash On Delivery
-            <input type="radio" value="COD" name='paymentMethod' onChange={(e) => setPaymentMethod(e.target.value)}/>
+            <input hidden type="radio" value="COD" name='paymentMethod' onChange={(e) => setPaymentMethod(e.target.value)}/>
             <span className="checkmark"></span>
           </label>
           </Card.Body>
