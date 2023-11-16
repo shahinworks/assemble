@@ -414,11 +414,12 @@ function Profile() {
   }
 
   return (<>
-    <div style={{marginTop: "10%"}}>
+    <div style={{marginTop: "15%"}}>
       <Row>
-        <Col className="col-6 mx-2">
+        <Col className="col-sm-5 col-12 ms-sm-5 me-sm-5 mx-2">
         <h2>Hi {data?.getProfile?.firstName}, This is your Profile.</h2>
-        {data && data?.getProfile && <Card style={{border: "none"}}>
+        {data && data?.getProfile && 
+        <Card style={{border: "none"}}>
           <Card.Body>
           <h5>Name :  {data?.getProfile?.firstName} { data?.getProfile?.lastName}</h5>
           <h5>Email :  {data?.getProfile?.email}</h5>
@@ -426,13 +427,13 @@ function Profile() {
           <h5>Role :  {data?.getProfile?.role.join(", ")}</h5>
 
           {/* style={{backgroundColor: "white", border: "1px solid white"}} */}
-          <Button className='btn btn-sm' variant='outline-dark'   onClick={() => handleEditValues( 
+          <Button className='btn btn-sm mb-1 me-1 ms-0' variant='outline-dark'   onClick={() => handleEditValues( 
            data.getProfile.firstName, data.getProfile.lastName, data.getProfile.mobileNo, data.getProfile.email, data.getProfile.profilepic) }> Edit Profile <PencilSquare  size={20} /></Button>
-            <Button className='btn btn-sm mx-1'  variant='outline-dark' 
+            <Button className='btn btn-sm mb-1 me-1 ms-0'  variant='outline-dark' 
             onClick={() => setAddressModal(!addressModal)}> 
             Add Address <HouseAdd  size={20} />
             </Button>
-            <Button className='btn btn-sm'  variant='outline-dark'  
+            <Button className='btn btn-sm mb-1 me-1 ms-0'  variant='outline-dark'  
              onClick={() => setPasswordModal(true)}> 
               Reset Password
             </Button>
@@ -440,8 +441,8 @@ function Profile() {
         </Card>}
 
 
-        {addressModal && <Card className="mb-5 px-5">
-          <h5 className='text-center mt-3 mb-2'>Add Address</h5>
+        {addressModal && <Card className="mb-5 px-5 mx-5">
+          <h5 className='text-center mt-3 mb-2 mx-5'>Add Address</h5>
         <Card.Body className='text-center'>
           <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
             <div className="mb-3 filled form-group tooltip-end-top">
@@ -535,13 +536,12 @@ function Profile() {
        
 
         </Col>
-        <Col className="col-5 mx-2">
+        <Col className="col-lg-5 col-10 mx-sm-2">
 
-        <h5>Address of User</h5>
+        <h3 className='mx-2'>ADDRESS OF USER</h3>
     {addressByUser && addressByUser?.getAllAddressesByUser?.map((address, index) => 
     <Card key={address.id} className="mb-5 mx-2">
                   <Card.Body className="mb-3">
-                    <Row>
                       <Col lg="10">
                         <div className="mb-3">
                           <div className="text-md text-muted mb-2">Address {index + 1}</div>
@@ -605,13 +605,12 @@ function Profile() {
             </Button>
                        
                       </Col>
-                    </Row>
                   </Card.Body>
     </Card> )} 
 
       
 
-          <h2>Orders</h2>
+          <h2 className='mx-2'>Orders</h2>
         <Row className="g-0 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
         <Col  md="2" className="d-flex flex-column mb-lg-0 pe-1 justify-content-center">
           <div className=" text-md cursor-pointer sort" >
@@ -687,24 +686,8 @@ function Profile() {
           </Card>
         ) )  : <h2 className='text-center my-4 py-4'>Order Not Found</h2>}
         
-        </Col>
-
+        </Col> 
       </Row>
-      
-
-
-
-      {/* <Card className="mb-5">
-        <Card.Body>
-          <form id="sellerForm" className="tooltip-end-bottom" onSubmit={handleSubmit}>
-            <Form.Label>First name</Form.Label>
-            <Form.Control type="text" autoComplete="firstName" name="firstName" onChange={handleChange} placeholder="Enter First Name" value={values.firstName} />
-          </form>
-        </Card.Body>
-      </Card> */}
-
-     
-      
     </div>
 
 
