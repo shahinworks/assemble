@@ -595,11 +595,11 @@ function Product() {
           {/* image section */}
           <div className="col-lg-6 col-md-6 col-sm-12 mb-5">
             <div className="d-flex justify-content-center flex-row-reverse">
-              <div className="image-display-small"  style={{marginTop: "10%"}}>
+              <div className="image-display-small"  style={{marginTop: "18%"}}>
                 <img id="selected-image" src={img || product?.getProduct?.images[0]?.imagePath[0]} alt="Selected Image"/>
               <div />
               </div>
-              <div className="variant-options-small "  style={{marginTop: "10%"}}>
+              <div className="variant-options-small "  style={{marginTop: "18%"}}>
                 <div
                   style={{
                   display: "flex",
