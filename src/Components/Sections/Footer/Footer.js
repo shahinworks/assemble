@@ -31,7 +31,7 @@ function Footer() {
 
   return (<>
   <MediaQuery minWidth={769} >
-    <section style={{ paddingBottom: "0% !important" }}>
+    <section style={{ paddingBottom: "0", marginBottom: "0" }} >
     <footer>
       <div className="container">
         <div className="row">
