@@ -135,8 +135,8 @@ padding-top: 40px;
 .modal-container {
             position: fixed;
             top: 0;
-            right: -300px; /* Off-screen initially */
-            width: 300px;
+            /* right: -300px;  
+            width: 300px; */
             height: 100%;
             background-color: #fff;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
