@@ -1157,7 +1157,7 @@
 /* Hide the browser's default radio button */
 .container input {
   position: absolute;
-  opacity: 0;
+  /* opacity: 0; */
   cursor: pointer;
 }
 
