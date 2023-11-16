@@ -63,7 +63,7 @@ function Product() {
     }
 
   }, [product]);
-   
+
   // ADD TO CART 
 
   const [img, setImg] = useState("");
@@ -282,12 +282,9 @@ function Product() {
   }
  
   const handleImageSelectedForDisplay = (id) => {
-    setSelImageId(id)
-
+    setSelImageId(id);
   }
-
-   
-
+  
   useEffect(() => {
     const stock = product?.getProduct?.stock?.filter((s) => s?.color === color && s?.gender === gender 
     && s?.size === size);
