@@ -169,40 +169,40 @@ function Footer() {
   <div className="accordion" id="accordionExample" style={{backgroundColor: "black", color: "white"}}>
   <div className="accordion-item"  style={{backgroundColor: "black", color: "white", border: "2px solid black"}}>
     <h2 className="accordion-header"  style={{backgroundColor: "black", color: "white"}}>
-      <button style={{backgroundColor: "black", color: "white"}} className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      <button style={{backgroundColor: "black", color: "white"}} className="fs-3 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         Main Menu
       </button>
     </h2>
     <div style={{backgroundColor: "black", color: "white"}} id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
       <div style={{backgroundColor: "black", color: "white", listStyle: "none"}} className="accordion-body">
       <ul style={{ listStyle: "none", color: "white", fontSize: "20px", fontWeight: "600" }} className='text-white'>
-              <li>
+              <li className='my-2'>
                 <a style={{color: "white"}} href="#">Search</a>
               </li>
-              <li>
+              <li className='my-2'>
                 <a style={{color: "white"}} href="#">The TEAM</a>
               </li>
-              <li>
+              <li className='my-2'>
                 <a  style={{color: "white"}} href="#">
                   Registered Address : 695A, Sadhasiva Nagar, Vandiyur, Madurai -
                   625020
                 </a>
               </li>
-              <li>
+              <li className='my-2'>
                 <a href="#" style={{color: "white"}}>
                   Email Address :<br /> operations@theveshticompany.com
                 </a>
               </li>
-              <li>
+              <li className='my-2'>
                 <a href="#" style={{color: "white"}}>About us</a>
               </li>
-              <li>
+              <li className='my-2'>
                 <a href="#" style={{color: "white"}}>Terms and Conditions</a>
               </li>
-              <li>
+              <li className='my-2'>
                 <a href="#" style={{color: "white"}}>Privacy Policy</a>
               </li>
-              <li>
+              <li className='my-2'>
                 <a href="#" style={{color: "white"}}>Refund | Cancellation | Shipping Policy</a>
               </li>
             </ul>
@@ -211,7 +211,7 @@ function Footer() {
   </div>
   <div style={{backgroundColor: "black", color: "white", border: "2px solid black"}} className="accordion-item ">
     <h2 style={{backgroundColor: "black", color: "white"}} className="accordion-header">
-      <button style={{backgroundColor: "black", color: "white"}} className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+      <button style={{backgroundColor: "black", color: "white"}} className="fs-3 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
        Footer Menu
       </button>
     </h2>
@@ -223,7 +223,7 @@ function Footer() {
   </div>
   <div style={{backgroundColor: "black", color: "white", border: "2px solid black"}} className="accordion-item">
     <h2 style={{backgroundColor: "black", color: "white"}} className="accordion-header">
-      <button style={{backgroundColor: "black", color: "white"}} className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+      <button style={{backgroundColor: "black", color: "white"}} className="fs-3 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         Sign up and Save
       </button>
     </h2>
