@@ -176,7 +176,8 @@ function Home() {
                   {product && product?.getAllProducts?.map((data, index) => 
                     <div key={index} className='mx-5' >
                       <img src={data?.images[0]?.imagePath[0]} alt="Image 2" />
-                      <Link to={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </Link>
+                      <a href={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </a>
+                      {/* <Link to={`/product/${data.id}`} className='stretched-link'> <h4 className="text-center text-black">{data.productName}</h4> </Link> */}
                       <h4 className="fs-5 text-center"> ₹ {data.sellingPrice }</h4>
                    </div>)}
                 </Carousel>}
