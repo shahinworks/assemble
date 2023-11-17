@@ -2,6 +2,18 @@ import React, { useEffect, useState } from 'react'
 
 function Instagram() {
 
+      // Steps: GO TO nocodeapi and 
+    // create instagram api
+
+    // GO TO meta developer site
+    // create a new project 
+    // go to instagram BASIC API
+    // create a test instagram user
+    // give access
+    // get token
+
+    // paste token in nocodeapi
+
     const [ insta, setInsta ] = useState([]);
 
 
