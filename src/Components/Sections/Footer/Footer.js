@@ -65,9 +65,7 @@ function Footer() {
                 <a href="/privacy">Privacy Policy</a>
               </li>
               <li>
-                <a href="/refund">Refund | </a> 
-                <a  href="/cancel"> Cancellation | </a>
-                <a  href="/shipping"> Shipping </a>
+                <a href="/refund">Refund | Cancellation | Shipping </a>
               </li>
             </ul>
           </div>
@@ -210,9 +208,7 @@ function Footer() {
                 <a  href="/privacy" style={{color: "white"}}>Privacy Policy</a>
               </li>
               <li className='my-2'>
-                <a href="/refund" style={{color: "white"}}>Refund | </a>
-                <a href="/cancel" style={{color: "white"}}>Cancellation | </a>
-                <a href="/shipping" style={{color: "white"}}>Shipping Policy</a>
+                <a href="/refund" style={{color: "white"}}>Refund | Cancellation | Shipping Policy</a>
               </li>
             </ul>
       </div>
