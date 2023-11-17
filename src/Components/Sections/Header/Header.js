@@ -118,6 +118,7 @@ function Header() {
 
   const goToOrderPage  = () => {
      navigate('/order');
+     setProfileModal(false);
   }
 
   const goToFAQPage = () => {
@@ -133,8 +134,7 @@ function Header() {
   }
 
 
-  return (   
-    <>
+  return (<>
     <header className={header}>
     <div className="d-flex justify-content-between align-items-center">
    
@@ -395,8 +395,7 @@ function Header() {
     </Modal.Body>
     <Modal.Footer className="border-0"></Modal.Footer>
   </Modal>
-</>
-  )
+  </>)
 }
 
 export default Header;
