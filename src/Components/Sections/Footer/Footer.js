@@ -56,16 +56,18 @@ function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#">About us</a>
+                <a href="/about">About us</a>
               </li>
               <li>
-                <a href="#">Terms and Conditions</a>
+                <a href="/terms">Terms and Conditions</a>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <a href="/privacy">Privacy Policy</a>
               </li>
               <li>
-                <a href="#">Refund | Cancellation | Shipping Policy</a>
+                <a href="/refund">Refund | </a> 
+                <a  href="/cancel"> Cancellation | </a>
+                <a  href="/shipping"> Shipping </a>
               </li>
             </ul>
           </div>
@@ -170,7 +172,7 @@ function Footer() {
   </section>
   </MediaQuery>
 
-<MediaQuery maxWidth={768} >
+  <MediaQuery maxWidth={768} >
   <div className="accordion" id="accordionExample" style={{backgroundColor: "black", color: "white"}}>
   <div className="accordion-item"  style={{backgroundColor: "black", color: "white", border: "2px solid black"}}>
     <h2 className="accordion-header"  style={{backgroundColor: "black", color: "white"}}>
@@ -199,16 +201,18 @@ function Footer() {
                 </a>
               </li>
               <li className='my-2'>
-                <a href="#" style={{color: "white"}}>About us</a>
+                <a href="/about" style={{color: "white"}}>About us</a>
               </li>
               <li className='my-2'>
-                <a href="#" style={{color: "white"}}>Terms and Conditions</a>
+                <a href="/terms" style={{color: "white"}}>Terms and Conditions</a>
               </li>
               <li className='my-2'>
-                <a href="#" style={{color: "white"}}>Privacy Policy</a>
+                <a  href="/privacy" style={{color: "white"}}>Privacy Policy</a>
               </li>
               <li className='my-2'>
-                <a href="#" style={{color: "white"}}>Refund | Cancellation | Shipping Policy</a>
+                <a href="/refund" style={{color: "white"}}>Refund | </a>
+                <a href="/cancel" style={{color: "white"}}>Cancellation | </a>
+                <a href="/shipping" style={{color: "white"}}>Shipping Policy</a>
               </li>
             </ul>
       </div>
@@ -317,7 +321,7 @@ function Footer() {
     </div>
             </div>
  
-</MediaQuery >
+  </MediaQuery >
 
   </>)
 }
