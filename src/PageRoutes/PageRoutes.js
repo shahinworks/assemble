@@ -49,6 +49,9 @@ import OrderList from '../Components/Home/Order/OrderList';
 import TermsandConditions from '../Components/Sections/FooterComponent/TermsandConditions';
 import ContactUs from '../Components/Sections/FooterComponent/ContactUs';
 import Privacy from '../Components/Sections/FooterComponent/Privacy';
+import Refund from '../Components/Sections/FooterComponent/Refund';
+import Cancellation from '../Components/Sections/FooterComponent/Cancellation';
+import Shipping from '../Components/Sections/FooterComponent/Shipping';
 
 // Custom route guard HOC
 function PrivateRoute({ element, requiredRole }) {
@@ -80,7 +83,9 @@ function PageRoutes() {
         <Route exact path='/terms' element={<TermsandConditions />} />
         <Route exact path='/contact' element={<ContactUs />} />
         <Route exact path='/privacy' element={<Privacy />} />
-        <Route exact path='/privacy' element={<Privacy />} />
+        <Route exact path='/refund' element={<Refund />} />
+        <Route exact path='/cancel' element={<Cancellation />} />
+        <Route exact path='/shipping' element={<Shipping />} />
 
       </Route>
      
