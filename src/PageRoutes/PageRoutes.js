@@ -80,6 +80,7 @@ function PageRoutes() {
         <Route exact path='/terms' element={<TermsandConditions />} />
         <Route exact path='/contact' element={<ContactUs />} />
         <Route exact path='/privacy' element={<Privacy />} />
+        <Route exact path='/privacy' element={<Privacy />} />
 
       </Route>
      
