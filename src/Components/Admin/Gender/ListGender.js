@@ -104,7 +104,7 @@ function ListGender() {
 
   return (
     <>
-      <Row>
+      {/* <Row> */}
         <Col className="mx-auto my-5">
           <Card>
             <Card.Body>
@@ -163,7 +163,7 @@ function ListGender() {
           </Modal>
 
         </Col>
-      </Row>
+      {/* </Row> */}
     </>
   );
 }

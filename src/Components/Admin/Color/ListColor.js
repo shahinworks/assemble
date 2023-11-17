@@ -103,7 +103,7 @@ query GetAllColor {
 
   return (
     <>
-      <Row>
+      {/* <Row> */}
         <Col className="mx-auto my-5">
           <Card>
             <Card.Body>
@@ -162,7 +162,7 @@ query GetAllColor {
           </Modal>
 
         </Col>
-      </Row>
+      {/* </Row> */}
     </>
   );
 }

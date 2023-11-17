@@ -94,7 +94,7 @@ function ListCategory() {
 
   return (
     <>
-      <Row>
+      {/* <Row> */}
         <Col className="mx-auto my-5">
           <Card className="bg-dark" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
             <Card.Body  style={{ backgroundColor: "black", color: "white", border: "1px solid black" }}>
@@ -132,7 +132,7 @@ function ListCategory() {
             </Card.Body>
           </Card>
         </Col>
-      </Row>
+      {/* </Row> */}
 
 
       <Modal

@@ -123,7 +123,7 @@ function ListSize() {
         <div className=" text-md cursor-pointer fs-5"> Actions </div>
       </Col>
     </Row>
-    <Row>
+    {/* <Row> */}
       <Col className="mx-auto my-5">
         
       {data && data?.getAllSize?.map((item, index) => (
@@ -209,7 +209,7 @@ function ListSize() {
 
 
         </Col>
-      </Row>
+      {/* </Row> */}
     </>
   );
 }

@@ -47,7 +47,7 @@ function CreateColor() {
 
   return (
     <>
-      <Row >
+      {/* <Row > */}
         <Col className="col-8 mx-auto my-5">
           <Card className="mb-5"  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >
             <Card.Body>
@@ -70,7 +70,7 @@ function CreateColor() {
             </Card.Body>
           </Card>
         </Col>
-      </Row>
+      {/* </Row> */}
     </>
   );
 }

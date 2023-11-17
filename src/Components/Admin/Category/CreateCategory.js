@@ -44,9 +44,9 @@ function CreateCategory() {
 
   return (<>
     {/* <Card className='mt-4 mb-2 mx-2 border-0 bg-dark text-light'> */}
-    <Row >
+    {/* <Row > */}
       <Col className="col-8 mx-auto my-5">
-    <Card style={{ backgroundColor: "black", color: "white"}}>
+    <Card style={{ backgroundColor: "black", color: "white"}} >
       <Card.Body>
       <h1>Create Category</h1>
         <Form.Label htmlFor="colorName">Category Name:</Form.Label>
@@ -55,7 +55,7 @@ function CreateCategory() {
       </Card.Body>
     </Card>
     </Col>
-    </Row>
+    {/* </Row> */}
   </>)
 }
 

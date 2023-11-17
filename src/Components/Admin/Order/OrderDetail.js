@@ -394,78 +394,52 @@ const OrdersDetail = () => {
   }, [selectedPackageIdentifiers]);
 
   return (<>
-      <div className="page-title-container">
-        <Row className="g-0">
-          {/* Title Start */}
-          <Col className="col-auto mb-3 mb-sm-0 me-auto">
-            <NavLink
-              className="muted-link pb-1 d-inline-block hidden breadcrumb-back"
-              to="/seller/order/list"
-            >
-              <span className="align-middle text-small ms-1">Seller</span>
-            </NavLink>
-            <h1 className="mb-0 pb-0 display-4" id="title">
-              {title}
-            </h1>
-          </Col>
-          {/* Title End */}
+    <div className="page-title-container">
+      <Row className="g-0">
+        <Col className="col-auto mb-3 mb-sm-0 me-auto">
+          <NavLink className="muted-link pb-1 d-inline-block hidden breadcrumb-back"
+              to="/seller/order/list">
+            <span className="align-middle text-small ms-1">Seller</span>
+          </NavLink>
+          <h1 className="mb-0 pb-0 display-4" id="title">{title}</h1>
+        </Col>
+        {orderDetailData?.getOrder && (
+        <Col xs="12" sm="auto" className="d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3">
+          <Dropdown onSelect={handleSelect} className="w-100 w-md-auto">
+            <Dropdown.Toggle className="w-100 w-md-auto" variant="outline-primary">
+            Status: {orderStatus}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item eventKey="pending">
+                  Status: Pending
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="shipped">
+                Status: Shipped
+              </Dropdown.Item>
+              <Dropdown.Item eventKey="delivered">
+                Status: Delivered
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown className="ms-1">
+            <Dropdown.Toggle className="btn-icon btn-icon-only dropdown-toggle-no-arrow" variant="outline-primary" ></Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item>
+                  <NavLink to={`/invoice?orderID=${orderID}`}> View Invoice </NavLink>
+                </Dropdown.Item>
+                <Dropdown.Item> Track Package </Dropdown.Item>
+              </Dropdown.Menu>
+          </Dropdown>
+        </Col>)}
+      </Row>
+    </div>
 
-          {/* Top Buttons Start */}
-          {orderDetailData?.getOrder && (
-            <Col
-              xs="12"
-              sm="auto"
-              className="d-flex align-items-end justify-content-end mb-2 mb-sm-0 order-sm-3"
-            >
-              <Dropdown onSelect={handleSelect} className="w-100 w-md-auto">
-                <Dropdown.Toggle
-                  className="w-100 w-md-auto"
-                  variant="outline-primary"
-                >
-                  Status: {orderStatus}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item eventKey="pending">
-                    Status: Pending
-                  </Dropdown.Item>
-                  <Dropdown.Item eventKey="shipped">
-                    Status: Shipped
-                  </Dropdown.Item>
-                  <Dropdown.Item eventKey="delivered">
-                    Status: Delivered
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <Dropdown className="ms-1">
-                <Dropdown.Toggle
-                  className="btn-icon btn-icon-only dropdown-toggle-no-arrow"
-                  variant="outline-primary"
-                ></Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item>
-                    <NavLink to={`/invoice?orderID=${orderID}`}>
-                      View Invoice
-                    </NavLink>
-                  </Dropdown.Item>
-                  <Dropdown.Item>
-                    {/* <NavLink to="#"></NavLink> */}
-                    Track Package
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </Col>
-          )}
-          {/* Top Buttons End */}
-        </Row>
-      </div>
-
-      {orderDetailData?.getOrder && (
-        <Row>
-          <Col xl="8" xxl="9">
-            {/* Status Start */}
-            <h2 className="small-title">Status</h2>
-            <Row className="g-2 mb-5">
-              <Col sm="6">
+    {orderDetailData?.getOrder && (
+      <Row>
+        <Col xl="8" xxl="9">
+          <h2 className="small-title">Status</h2>
+          <Row className="g-2 mb-5">
+            <Col sm="6">
                 <Card className="sh-13 sh-lg-15 sh-xl-14">
                   <Card.Body className="h-100 py-3 d-flex align-items-center">
                     <Row className="g-0 align-items-center">
@@ -483,8 +457,8 @@ const OrdersDetail = () => {
                     </Row>
                   </Card.Body>
                 </Card>
-              </Col>
-              <Col sm="6">
+            </Col>
+            <Col sm="6">
                 <Card className="sh-13 sh-lg-15 sh-xl-14">
                   <Card.Body className="h-100 py-3 d-flex align-items-center">
                     <Row className="g-0 align-items-center">
@@ -502,9 +476,9 @@ const OrdersDetail = () => {
                     </Row>
                   </Card.Body>
                 </Card>
-              </Col>
-              <Col sm="6">
-                <Card className="sh-13 sh-lg-15 sh-xl-14">
+            </Col>
+            <Col sm="6">
+              <Card className="sh-13 sh-lg-15 sh-xl-14">
                   <Card.Body className="h-100 py-3 d-flex align-items-center">
                     <Row className="g-0 align-items-center">
                       <Col xs="auto" className="pe-3">
@@ -523,9 +497,9 @@ const OrdersDetail = () => {
                       </Col>
                     </Row>
                   </Card.Body>
-                </Card>
-              </Col>
-              <Col sm="6">
+              </Card>
+            </Col>
+            <Col sm="6">
                 <Card className="sh-13 sh-lg-15 sh-xl-14">
                   <Card.Body className="h-100 py-3 d-flex align-items-center">
                     <Row className="g-0 align-items-center">
@@ -541,94 +515,78 @@ const OrdersDetail = () => {
                     </Row>
                   </Card.Body>
                 </Card>
-              </Col>
-            </Row>
-            {/* Status End */}
+            </Col>
+          </Row>
+          {/* Status End */}
 
-            {/* Cart Start */}
-            <h2 className="small-title mt-3">Cart</h2>
-            <Card className="mb-5">
-              <Card.Body>
-                <div className="mb-5">
-                  {orderDetailData.getOrder.orderProducts.length > 0 && (
-                    <table className="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">Product Name</th>
-                          <th scope="col"></th>
-                          <th scope="col"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {orderDetailData.getOrder.orderProducts.map(
-                          (product, index) => (
-                            <tr key={index}>
-                              <td>
-                                <div className="d-flex align-items-center">
-                                  <div className="ps-3">
-                                    <div>{product.productId.productName}</div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td>
-                                <Row className="g-0">
-                                  <Col
-                                    xs="6"
-                                    className="d-flex flex-row pe-2 align-items-end text-alternate"
-                                  >
-                                    <span>{product.quantity}</span>
-                                    <span className="text-muted ms-1 me-1">
-                                      x
-                                    </span>
-                                    <span>
-                                      {/* {product.price / product.quantity} */}
-                                      {product.price}
-                                    </span>
-                                  </Col>
-                                  <Col
-                                    xs="6"
-                                    className="d-flex flex-row align-items-end justify-content-end text-alternate"
-                                  >
-                                    <span>
-                                      <span className="text-small">₹ </span>
-                                      {product.quantity * product.price}
-                                    </span>
-                                  </Col>
-                                </Row>
-                              </td>
-                            </tr>
-                          )
-                        )}
-                      </tbody>
-                    </table>
-                  )}
-                </div>
+          {/* Cart Start */}
+          <h2 className="small-title mt-3">Cart</h2>
+          <Card className="mb-5">
+            <Card.Body>
+              <div className="mb-5">
+                {orderDetailData.getOrder.orderProducts.length > 0 && (
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orderDetailData.getOrder.orderProducts.map((product, index) => (
+                        <tr key={index}>
+                          <td>
+                            <div className="d-flex align-items-center">
+                              <div className="ps-3">
+                                <div>{product.productId.productName}</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <Row className="g-0">
+                              <Col xs="6" className="d-flex flex-row pe-2 align-items-end text-alternate" >
+                                <span>{product.quantity}</span>
+                                <span className="text-muted ms-1 me-1"> x </span>
+                                <span> {product.price}  </span>
+                              </Col>
+                              <Col xs="6" className="d-flex flex-row align-items-end justify-content-end text-alternate" >
+                                <span>
+                                <span className="text-small">₹ </span>
+                                {product.quantity * product.price}
+                                </span>
+                              </Col>
+                            </Row>
+                          </td>
+                      </tr>))}
+                    </tbody>
+                  </table>)}
+              </div>
 
-                <div>
-                  <Row className="g-0 mb-2">
-                    <Col xs="auto" className="ms-auto ps-3 text-muted">
-                      Total
-                    </Col>
-                    <Col xs="auto" className="sw-13 text-end">
-                      <span>
-                        <span className="text-muted">₹ </span>
-                        {totalCartValue && totalCartValue}
-                      </span>
-                    </Col>
-                  </Row>
-                </div>
-              </Card.Body>
-            </Card>
+              <div>
+                <Row className="g-0 mb-2">
+                  <Col xs="auto" className="ms-auto ps-3 text-muted pe-2">
+                    Total {"  "}
+                  </Col>
+                  <Col xs="auto" className="sw-13 text-end">
+                    <span>
+                      <span className="text-muted">₹ </span>
+                      {totalCartValue && totalCartValue}
+                    </span>
+                  </Col>
+                </Row>
+              </div>
+            </Card.Body>
+          </Card>
             {/* Cart End */}
-          </Col>
+        </Col>
 
-          <Col xl="4" xxl="3">
-            {/* Address Start */}
-            <h2 className="small-title">Address</h2>
+        <Col xl="4" xxl="3">
+          {/* Address Start */}
+          <h2 className="small-title">Address</h2>
             <Card className="mb-5">
               <Card.Body className="mb-n5">
-                {orderDetailData.getOrder?.user && (
-                  <div className="mb-5">
+                {orderDetailData.getOrder?.user && (<div className="mb-5">
                     <p className="text-small text-muted mb-2">CUSTOMER</p>
                     <Row className="g-0 mb-2">
                       <Col xs="auto">
@@ -647,10 +605,8 @@ const OrdersDetail = () => {
                         {orderDetailData.getOrder.user.email}
                       </Col>
                     </Row>
-                  </div>
-                )}
-                {orderDetailData.getOrder.shippingAddress && (
-                  <div className="mb-5">
+                </div>)}
+                {orderDetailData.getOrder.shippingAddress && (<div className="mb-5">
                     <p className="text-small text-muted mb-2">
                       SHIPPING ADDRESS
                     </p>
@@ -685,8 +641,7 @@ const OrdersDetail = () => {
                         {orderDetailData.getOrder.shippingAddress.mobileNo}
                       </Col>
                     </Row>
-                  </div>
-                )}
+                </div>)}
                 {orderDetailData.getOrder.billingAddress && (
                   <div className="mb-5">
                     <p className="text-small text-muted mb-2">

@@ -29,7 +29,7 @@ function ListOrder() {
 
   return (
     <>
-      <h2 className="text-center">Table of Category List</h2>
+      <h2 className="text-center my-5">Table of Category List</h2>
 
       <Row
         className="g-0 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort"
