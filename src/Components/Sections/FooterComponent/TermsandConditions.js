@@ -64,6 +64,14 @@ User agrees that Company shall not be responsible or liable to user, or anyone, 
 conduct of any third party of the service. In sum, in no event shall Company's total liability to the User for
 all damages or/and losses or/and causes of action exceed the amount paid by the User to Company, if
 any, that is related to the cause of action.
+
+DISCLAIMER OF CONSEQUENTIAL DAMAGES
+In no event shall Company or any parties, organisations or entities associated with the brand
+name us or otherwise, mentioned at this Website be liable for any damages whatsoever (including,
+without limitations, incidental and consequential damages, lost profits, or damage to computer hardware
+or loss of data information or business interruption) resulting from the use or inability to use the Website
+and the Website material, whether based on warranty, contract, tort, or any other legal theory, and
+whether or not, such organisation or entities were advised of the possibility of such damages.
   </div>
 
 
