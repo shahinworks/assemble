@@ -8,6 +8,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import './Home.css';
 import MediaQuery from 'react-responsive';
+import Instagram from './Instagram/Instagram';
 
 function Home() {
 
@@ -294,6 +295,8 @@ function Home() {
   </div>
        </div>
       </Row>
+
+      <Instagram />
 
    <section id="instagram">
     <h1 className="text-center mt-5" style={{marginTop: "30px"}}>Check out our Instagram</h1>
