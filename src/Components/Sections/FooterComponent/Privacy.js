@@ -5,14 +5,9 @@ function Privacy() {
 
   return (<>
     <div className='text-left px-3 m-auto mt-5' style={{ paddingTop: "10%", border: "none", width: "70%", borderRadius: "5px"}}>
-      <Card>
-        <Card.Body> 
+      {/* <Card>
+        <Card.Body>  */}
         <h1 className='text-center fw-bold' > Privacy Policy</h1>
-        </Card.Body>
-      </Card>
-    </div>
-    <div style={{ paddingTop: "10%" }}>
-      <h1 className='text-center fw-bold'> Privacy Policy </h1>
       <p className='text-left mx-5'> The Veshti Company Privacy Policy </p>
         <br/>
         <p className='text-left mx-5'>This Privacy Policy describes 
@@ -99,7 +94,10 @@ legitimate business interests listed above. Additionally, please note that your 
             <p className='text-left mx-5'>For more information about our privacy practices, if you have questions, or if you would like to make a complaint,
             please contact us by e-mail at operations@theveshticompany.com or by mail using the details provided below:
             59/11, 1st floor, South Avani Moola Street, Madurai - 625001 </p><br/>
+        {/* </Card.Body>
+      </Card> */}
     </div>
+   
   </>)
 }
 
