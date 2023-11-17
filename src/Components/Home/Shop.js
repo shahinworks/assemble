@@ -52,7 +52,7 @@ function Shop() {
                   </a>
                 </li>
                 <div className='text-center'>
-                  <h2 className='mt-2 text-black' style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}}> {data.productName}</h2>
+                  <h2 className='mt-2 text-center text-black' style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}}> {data.productName}</h2>
                   <div>
                   <h4 className="text-black fs-5 text-center">
                   {/* <del> ₹3,000</del> */}
