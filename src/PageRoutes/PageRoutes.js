@@ -46,6 +46,7 @@ import Swiper from '../Components/Home/Swiper';
 import FAQ from '../Components/Sections/FAQ';
 import Return from '../Components/Sections/Return';
 import OrderList from '../Components/Home/Order/OrderList';
+import TermsandConditions from '../Components/Sections/FooterComponent/TermsandConditions';
 
 // Custom route guard HOC
 function PrivateRoute({ element, requiredRole }) {
@@ -74,6 +75,7 @@ function PageRoutes() {
         <Route exact path='/faq' element={<FAQ />} />
         <Route exact path='/return' element={<Return />} />
         <Route exact path='/order' element={<OrderList />} />
+        <Route exact path='/order' element={<TermsandConditions />} />
       </Route>
      
       <Route exact path="admin" element={<AdminDashboard />} > 
