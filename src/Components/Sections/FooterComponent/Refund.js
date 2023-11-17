@@ -2,9 +2,9 @@ import React from 'react'
 
 function Refund() {
   return (<>
-  <div style={{ paddingTop: "10%" }}>
-  <h1 className='text-center'>  Refund </h1> </div>
-  <div>
+   <div className='text-left px-3 m-auto mt-5' style={{ paddingTop: "10%", border: "none", width: "70%", borderRadius: "5px"}}>
+  <h1 className='text-center'>  Refund </h1> 
+   
   FAQs. General Information
 How long will my order take to ship?
 We usually ship them within 24-48 hours.
