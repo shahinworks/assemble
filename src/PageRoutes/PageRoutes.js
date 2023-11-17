@@ -75,7 +75,7 @@ function PageRoutes() {
         <Route exact path='/faq' element={<FAQ />} />
         <Route exact path='/return' element={<Return />} />
         <Route exact path='/order' element={<OrderList />} />
-        <Route exact path='/order' element={<TermsandConditions />} />
+        <Route exact path='/terms' element={<TermsandConditions />} />
       </Route>
      
       <Route exact path="admin" element={<AdminDashboard />} > 
