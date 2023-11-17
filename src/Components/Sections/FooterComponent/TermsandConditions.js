@@ -1,8 +1,11 @@
 import React from 'react';
 
 function TermsandConditions() {
-  return (
-    <div>Terms&Conditions</div>
+  return (<>
+  <h1> Terms and Conditions</h1>
+
+
+  </>
   )
 }
 
