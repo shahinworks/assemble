@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 
 function Cancellation() {
-  return (
-    <div>Cancellation</div>
-  )
+  return (<>
+  <div style={{ paddingTop: "10%" }}>
+  <h1 className='text-center'> Cancellation </h1> </div>
+  </>)
 }
 
-export default Cancellation
+export default Cancellation;
