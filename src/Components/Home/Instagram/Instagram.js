@@ -22,48 +22,13 @@ function Instagram() {
 
     // const [ insta, setInsta ] = useState([]);
 
-
-
-    // const [ insta, setInsta ] = useState({caption
-    //   : 
-    //   "दशहरे के पावन पर्व की हार्दिक शुभकामनाएँ।",
-    //   id
-    //   : 
-    //   "17977692260373201",
-    //   media_type
-    //   : 
-    //   "VIDEO",
-    //   media_url
-    //   : 
-    //   "https://scontent.cdninstagram.com/o1/v/t16/f1/m82/AA4B001EE5AD0530B891267F0451D88F_video_dashinit.mp4?efg=eyJ2ZW5jb2RlX3RhZyI6InZ0c192b2RfdXJsZ2VuLmNsaXBzLnVua25vd24tQzMuNzIwLmRhc2hfYmFzZWxpbmVfMV92MSJ9&_nc_ht=scontent.cdninstagram.com&_nc_cat=106&vs=1420721118505408_1155515649&_nc_vs=HBksFQIYT2lnX3hwdl9yZWVsc19wZXJtYW5lbnRfcHJvZC9BQTRCMDAxRUU1QUQwNTMwQjg5MTI2N0YwNDUxRDg4Rl92aWRlb19kYXNoaW5pdC5tcDQVAALIAQAVAhg6cGFzc3Rocm91Z2hfZXZlcnN0b3JlL0dQQk5neGVnMTdfdXJrUUJBRzRvRlVEeWR4TU5icV9FQUFBRhUCAsgBACgAGAAbAYgHdXNlX29pbAExFQAAJsTgoIvx58s%2FFQIoAkMzLBdALiPXCj1wpBgSZGFzaF9iYXNlbGluZV8xX3YxEQB1AAA%3D&ccb=9-4&oh=00_AfByfcRL_71qC_vMuz93jxDeTs-9Ql7E3BkVOOVMu52g0A&oe=655D2CC7&_nc_sid=1d576d&_nc_rid=a681d7cd4c",
-    //   permalink
-    //   : 
-    //   "https://www.instagram.com/reel/Cyw2UDGxEbJ/",
-    //   thumbnail_url
-    //   : 
-    //   "https://scontent.cdninstagram.com/v/t51.29350-15/394691112_320297084058161_1276413800792809892_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=c4dd86&_nc_ohc=9rIU1wkHz9AAX-OpqSM&_nc_ht=scontent.cdninstagram.com&edm=ANo9K5cEAAAA&oh=00_AfCNWZaXlf88y2DEOiE2u_F2nK7wDuPGkhqr9nloJMmdyw&oe=65600A8E",
-    //   timestamp
-    //   : 
-    //   "2023-10-24T01:36:44+0000",
-    //   username
-    //   : 
-    //   "trp_fits_official"});
-
-
-    const handleGoToInsta = (link) => {
-      navigate(`${link}`);
-    }
-
-
     // Fetch_DATA_Insta
 
   //   useEffect(() => {
   //       fetch('https://v1.nocodeapi.com/assemble/instagram/ygwCsqxcoNGtGxbc').then((response) => response.json()).then((data) => setInsta(data));
   // console.log("insta", insta );
   //   }, []); 
-    
-//    fetch('https://v1.nocodeapi.com/shahinwithani/instagram/wVLopYpTsNwJbNhh').then((response) => response.json()).then((data) => setInsta(data));
-  console.log("insta", insta );
+
  
   return (<> 
     <section id="instagram">
@@ -74,8 +39,9 @@ function Instagram() {
       <div className="container justify-content-center" style={{ marginLeft: "20% !important", paddingLeft: "100px" , paddingRight: "20px"}}>
         <div className="row portfolio text-light">
         {insta && insta?.data?.map((i) =>  i?.media_type === "IMAGE" && 
-        <div className="col-lg-4 col-md-6 col-sm-6 me-1 mb-1" onClick={() => handleGoToInsta(i?.permalink)}>
-          <img style={{height: "280px", width: "280px"}} className='me-1' src={i.media_url} alt="ask "/>
+        <div className="col-lg-4 col-md-6 col-sm-6 me-1 mb-1">
+         <a href={i?.permalink}> 
+           <img style={{height: "280px", width: "280px"}} className='me-1' src={i.media_url} alt="ask "/>
         <div style={{ width: "80%" }} className="minilogo ">
           <svg
               style={{ margin: 10 }}
@@ -113,7 +79,7 @@ function Instagram() {
               fill="#FFF"
             />
           </svg>
-        </div>
+        </div> </a>
         </div>)}
     </div>
   </div>
