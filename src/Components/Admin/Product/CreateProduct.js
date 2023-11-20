@@ -234,11 +234,53 @@ const [genderModal, setGenderModal] = useState(false);
       console.error(err);
     }
 
-    setSizeModal(" ");
+    setSizeModal(false);
     refetchSize();
   };
 
-  // refetchGender
+  // ADD GENDER
+  const CREATE_GENDER_MUTATION = gql`
+    mutation CreateGender($genderName: String) {
+      createGender(genderName: $genderName) {
+        id
+        genderName
+      }
+    }
+  `;
+
+
+
+
+  const [createGender] = useMutation(CREATE_GENDER_MUTATION, {
+    onCompleted : () => {
+      toast.success("Gender Added Successfully");
+      setGenderAdd("");
+    },
+    onError : (error) => {
+      toast.error("Error Occured");
+      console.error("ERROR: ", error.message)
+    }
+  });
+
+
+  const handleSubmitAddGender = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await createGender({
+        variables: {
+          genderName: genderAdd,
+        },
+      });
+    }
+    catch (err) {
+      console.error(err);
+    }
+
+    setGenderModal(false);
+    refetchGender();
+
+  };
 
   const handleAddColour =  () => {
     setColorModal(true);
@@ -359,7 +401,7 @@ const [genderModal, setGenderModal] = useState(false);
         <Form.Label> Size : </Form.Label>
         <Form.Control type="text" name="categoryName" value={sizeAdd} onChange={(e) => setSizeAdd(e.target.value)} />
       </div>
-      <Button variant="outline-light" className="my-3" type="submit"> Submit </Button>
+      <Button variant="outline-dark" className="my-3" type="submit"> Submit </Button>
     </Form>
     </Modal.Body>
     </Modal>
@@ -369,12 +411,12 @@ const [genderModal, setGenderModal] = useState(false);
       <Modal.Title as="h5">Update Product Gender List</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-    <Form onSubmit={handleSubmitAddColor}>
+    <Form onSubmit={handleSubmitAddGender}>
       <div className="mb-3">
-        <Form.Label htmlFor="colorName">Color:</Form.Label>
-        <Form.Control type="text" id="colorName" name="colorName" value={colorAdd} onChange={(e) => setColorAdd(e.target.value)} />
+        <Form.Label htmlFor="genderName">Gender:</Form.Label>
+        <Form.Control type="text" id="genderName" name="genderName" value={genderAdd} onChange={(e) => setGenderAdd(e.target.value)}/>
       </div>
-      <Button variant="outline-dark"  className="my-3" type="submit">  Submit </Button>
+      <Button variant="outline-dark"  className="my-3" type="submit"> Submit </Button>
     </Form>
     </Modal.Body>
     </Modal>
