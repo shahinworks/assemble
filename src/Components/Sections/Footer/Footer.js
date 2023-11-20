@@ -59,6 +59,9 @@ function Footer() {
                 <a href="/about">About us</a>
               </li>
               <li>
+                <a href="/contact">About us</a>
+              </li>
+              <li>
                 <a href="/terms">Terms and Conditions</a>
               </li>
               <li>
