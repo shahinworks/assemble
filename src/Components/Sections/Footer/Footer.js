@@ -115,9 +115,9 @@ function Footer() {
               lifetime deals.
             </p>
             <br />
-            <div style={{border: "1px solid white", borderRadius: "3px"}} className='pb-1'>
+            <div style={{border: "1px solid white", borderRadius: "3px"}} className='pb-1 d-flex flex-wrap'>
             <span className='mx-3'>  <Envelope color='white' size={20}/> </span>
-            <input type="email" placeholder="Enter Your Email here" />
+            <input type="email" placeholder="Enter Your Email here" className='pe-2' />
             </div>
             {/* <div className="start-info">
               <div className="input text-center" style={{textAlign: "center"}}>

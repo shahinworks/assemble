@@ -298,7 +298,7 @@ function Home() {
 
       <Instagram />
 
-   <section id="instagram">
+   {/* <section id="instagram">
     <h1 className="text-center mt-5" style={{marginTop: "30px"}}>Check out our Instagram</h1>
     <p className="text-center">#BeDressponsible</p>
     <br />
@@ -658,7 +658,7 @@ function Home() {
         </div>
       </div>
     </div>
-  </section>
+  </section> */}
 
 
   
