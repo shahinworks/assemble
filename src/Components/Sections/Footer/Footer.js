@@ -59,7 +59,7 @@ function Footer() {
                 <a href="/about">About us</a>
               </li>
               <li>
-                <a href="/contact">About us</a>
+                <a href="/contact">Contact us</a>
               </li>
               <li>
                 <a href="/terms">Terms and Conditions</a>
@@ -203,6 +203,9 @@ function Footer() {
               </li>
               <li className='my-2'>
                 <a href="/about" style={{color: "white"}}>About us</a>
+              </li>
+              <li className='my-2'>
+                <a href="/contact" style={{color: "white"}}>Contact us</a>
               </li>
               <li className='my-2'>
                 <a href="/terms" style={{color: "white"}}>Terms and Conditions</a>
