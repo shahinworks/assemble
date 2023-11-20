@@ -103,6 +103,7 @@ const OrdersDetail = () => {
     file: null,
     packedDate: "",
   };
+
   const initialshippedFormData = {
     orderShippedId: orderID,
     status: "",
@@ -112,6 +113,7 @@ const OrdersDetail = () => {
     trackingUrl: "",
     shippedDate: "",
   };
+
   const initialdeliveredFormData = {
     orderDeliveredId: orderID,
     status: "",
@@ -119,9 +121,11 @@ const OrdersDetail = () => {
   };
 
   const [packedFormData, setpackedFormData] = useState(initialFormData);
+
   const [shippedformData, setshippedFormData] = useState(
     initialshippedFormData
   );
+
   const [deliveredformData, setdeliveredFormData] = useState(
     initialdeliveredFormData
   );
@@ -129,6 +133,7 @@ const OrdersDetail = () => {
   const [checkProductList, setcheckProductList] = useState({
     orderProducts: [],
   });
+
   const [selectedPackageIdentifiers, setSelectedPackageIdentifiers] = useState(
     []
   );
@@ -337,6 +342,7 @@ const OrdersDetail = () => {
       },
     }
   );
+
   const handledeliveredItemChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "file") {
@@ -411,7 +417,7 @@ const OrdersDetail = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <Dropdown.Item eventKey="pending">
-                  Status: Pending
+                Status: Pending
               </Dropdown.Item>
               <Dropdown.Item eventKey="shipped">
                 Status: Shipped
