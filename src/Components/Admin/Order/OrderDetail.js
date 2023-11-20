@@ -7,6 +7,40 @@ import { gql, useLazyQuery, useMutation } from "@apollo/client";
 const OrdersDetail = () => {
   const title = "Order Detail";
   const { orderID } = useParams();
+  
+  // const GET_ORDER = gql`
+  // query GetOrder($getOrderId: ID!) {
+  //   getOrder(id: $getOrderId) {
+  //     id
+  //     user {
+  //       lastName
+  //       id
+  //       firstName
+  //     }
+  //     paymentMethod
+  //     totalAmount
+  //     orderProducts {
+  //       productId {
+  //         id
+  //         priveiwName
+  //         productName
+  //       }
+  //     }
+  //     shippingAddress {
+  //       firstName
+  //       id
+  //     }
+  //     billingAddress {
+  //       id
+  //       firstName
+  //     }
+  //     status
+  //     paymentStatus
+  //     paymentProof
+  //     paymentId
+  //   }
+  // }`;
+
 
   const GET_ORDER = gql`
     query GetOrder($getOrderId: ID!) {
@@ -41,6 +75,7 @@ const OrdersDetail = () => {
           productId {
             id
             productName
+            priveiwName
           }
           price
           quantity
@@ -108,7 +143,6 @@ const OrdersDetail = () => {
     orderShippedId: orderID,
     status: "",
     file: null,
-    shippedBy: "",
     trackingNo: "",
     trackingUrl: "",
     shippedDate: "",
@@ -236,30 +270,37 @@ const OrdersDetail = () => {
   // order shipped
 
   const ORDER_SHIPPED = gql`
-    mutation OrderShipped(
-      $orderShippedId: ID
-      $status: String
-      $file: Upload
-      $shippedBy: String
-      $trackingNo: String
-      $trackingUrl: String
-      $shippedDate: String
-      $orderProducts: [OrderProducts]
-    ) {
-      orderShipped(
-        id: $orderShippedId
-        status: $status
-        file: $file
-        shippedBy: $shippedBy
-        trackingNo: $trackingNo
-        trackingUrl: $trackingUrl
-        shippedDate: $shippedDate
-        orderProducts: $orderProducts
-      ) {
-        id
-      }
+  mutation OrderShipped($orderShippedId: ID, $status: String, $orderProducts: [OrderProducts], $file: Upload, $trackingNo: String, $trackingUrl: String, $shippedDate: String) {
+    orderShipped(id: $orderShippedId, status: $status, orderProducts: $orderProducts, file: $file, trackingNo: $trackingNo, trackingUrl: $trackingUrl, shippedDate: $shippedDate) {
+      id
     }
-  `;
+  }`;
+
+  // const ORDER_SHIPPED = gql`
+  //   mutation OrderShipped(
+  //     $orderShippedId: ID
+  //     $status: String
+  //     $file: Upload
+  //     $shippedBy: String
+  //     $trackingNo: String
+  //     $trackingUrl: String
+  //     $shippedDate: String
+  //     $orderProducts: [OrderProducts]
+  //   ) {
+  //     orderShipped(
+  //       id: $orderShippedId
+  //       status: $status
+  //       file: $file
+  //       shippedBy: $shippedBy
+  //       trackingNo: $trackingNo
+  //       trackingUrl: $trackingUrl
+  //       shippedDate: $shippedDate
+  //       orderProducts: $orderProducts
+  //     ) {
+  //       id
+  //     }
+  //   }
+  // `;
 
   const [OrderShipped, { loading: shippedLoading }] = useMutation(
     ORDER_SHIPPED,
@@ -300,12 +341,12 @@ const OrdersDetail = () => {
       "checkProductList.orderProducts",
       checkProductList.orderProducts
     );
-    // await OrderShipped({
-    //   variables: {
-    //     ...shippedformData,
-    //     orderProducts: checkProductList.orderProducts,
-    //   },
-    // });
+    await OrderShipped({
+      variables: {
+        ...shippedformData,
+        orderProducts: checkProductList.orderProducts,
+      },
+    });
   };
 
   // handle delivered item
@@ -838,7 +879,7 @@ const OrdersDetail = () => {
             </div>
 
             <div className="mb-3">
-              {orderDetailData?.getOrder?.orderProducts.length > 0 && (
+              {orderDetailData?.getOrder?.orderProducts?.length > 0 && (
                 <table className="table">
                   <thead>
                     <tr>
@@ -847,28 +888,28 @@ const OrdersDetail = () => {
                   </thead>
                   <tbody>
                     {orderDetailData.getOrder.orderProducts
-                      .filter(
-                        (item) =>
-                          item.shipped === true && !item.delivered === true
-                      )
+                      // .filter(
+                      //   (item) =>
+                      //     item.shipped === true && !item.delivered === true
+                      // )
                       .map((product, index) => (
                         <tr key={index}>
                           <td>
                             <div className="d-flex align-items-center justify-content-between">
                               <div className="ps-3">
-                                <div>{product.productId.previewName}</div>
+                                <div>{product?.productId?.productName}</div>
                                 {/* <div className="text-muted text-small">{}</div> */}
-                                <Row className="g-0">
+                                {/* <Row className="g-0">
                                   <Col
                                     xs="6"
                                     className="d-flex flex-row pe-2 align-items-end text-alternate"
                                   >
                                     {product.variantId.variantName}
                                   </Col>
-                                </Row>
-                                <div className="text-muted text-small">
+                                </Row> */}
+                                {/* <div className="text-muted text-small">
                                   {product.packageIdentifier}
-                                </div>
+                                </div> */}
                               </div>
                               <div className="mb-2 ms-5">
                                 <Form.Check
@@ -877,11 +918,11 @@ const OrdersDetail = () => {
                                   inline
                                   onChange={() =>
                                     handlemultipleCheckboxChange(
-                                      product.packageIdentifier
+                                      product?.productId?.id
                                     )
                                   }
                                   checked={selectedPackageIdentifiers.includes(
-                                    product.packageIdentifier
+                                    product?.productId?.id
                                   )}
                                 />
                               </div>

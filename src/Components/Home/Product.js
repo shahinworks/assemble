@@ -296,7 +296,7 @@ function Product() {
 
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
-    <MediaQuery minWidth={768}>
+    <MediaQuery minWidth={769}>
     <div className="container">
     <section className="slider" style={{ paddingTop: "10%" }}>
       <div className="container" id="container">
