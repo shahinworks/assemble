@@ -302,10 +302,10 @@ const [genderModal, setGenderModal] = useState(false);
     </Form>
     </Modal.Body>
     </Modal>
-    <Modal style={{width: "100%"}}  show={colorModal} onHide={() => setColorModal(false)}
+    <Modal style={{width: "100%"}}  show={sizeModal} onHide={() => setSizeModal(false)}
        scrollable dialogClassName="full" >
     <Modal.Header closeButton>
-      <Modal.Title as="h5">Update Product Color List</Modal.Title>
+      <Modal.Title as="h5">Update Product Size List</Modal.Title>
     </Modal.Header>
     <Modal.Body>
     <Form onSubmit={handleSubmitAddColor}>
@@ -317,10 +317,10 @@ const [genderModal, setGenderModal] = useState(false);
     </Form>
     </Modal.Body>
     </Modal>
-    <Modal style={{width: "100%"}}  show={colorModal} onHide={() => setColorModal(false)}
+    <Modal style={{width: "100%"}}  show={genderModal} onHide={() => setGenderModal(false)}
        scrollable dialogClassName="full" >
     <Modal.Header closeButton>
-      <Modal.Title as="h5">Update Product Color List</Modal.Title>
+      <Modal.Title as="h5">Update Product Gender List</Modal.Title>
     </Modal.Header>
     <Modal.Body>
     <Form onSubmit={handleSubmitAddColor}>
