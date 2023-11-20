@@ -143,19 +143,30 @@ function CreateProduct() {
 
   const { data: genderData } = useQuery(GET_ALL_GENDER);
 
+  const handleAddColour =  () => {
+
+  }
+
+  const handleAddSize =  () => {
+
+  }
+  const handleAddGender =  () => {
+
+  }
+
 
   return (
     <Row className="mx-auto my-5">
       <Col>
         <Card style={{ backgroundColor: "black", color: "white"}}>
           <Card.Body style={{ backgroundColor: "black", color: "white"}}>
-          <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
+          <Button variant="outline-light" onClick={() => handleAddColour()} className="mt-2 me-2 mb-2">
             ADD COLOUR
           </Button>
-          <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
+          <Button variant="outline-light" onClick={() => handleAddSize()} className="mt-2 me-2 mb-2">
             ADD SIZE
           </Button>
-          <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
+          <Button variant="outline-light" onClick={() => handleAddGender()} className="mt-2 me-2 mb-2">
             ADD GENDER
           </Button>
            
