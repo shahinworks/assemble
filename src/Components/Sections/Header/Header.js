@@ -223,10 +223,10 @@ function Header() {
    <div className="nav-item d-flex ">
      <ul>
        {/* <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li> */}
-       <li> <Search  className='  mx-1'  size={20} /> </li>
-       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList()}  className='mx-1' size={20} /></li>
-       <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1'  size={20} /></li>
+       <li> <Search className='mx-1' size={20} /> </li>
+       <li> <Bag onClick={() => setEditModal(true)} className='mx-1' size={20} /></li>
+       <li> <Heart onClick={() => goToWishList()} className='mx-1' size={20} /></li>
+       <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' size={20} /></li>
      </ul>   
    </div> 
    </nav>
@@ -243,17 +243,17 @@ function Header() {
      <ul className="links" >
        <li style={{ paddingLeft: "0px"}} onClick={() => goToHomePage()}> <a style={{fontSize: "0.85rem", paddingLeft: "0px", marginLeft: "0px"}} className="link-item nav-link scrollto" > Home </a> </li>
        <li onClick={() => goToShop()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" >  Shop </a> </li>
-       <li  onClick={() => goToReturnPage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" > Returns/Exchange </a> </li>
+       <li onClick={() => goToReturnPage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" > Returns/Exchange </a> </li>
        <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" > Track </a> </li>
-       <li  onClick={() => goToFAQPage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto"> FAQ's </a> </li>
+       <li onClick={() => goToFAQPage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto"> FAQ's </a> </li>
        <li onClick={() => goToAbout()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "0.85rem"}} className="link-item nav-link scrollto" >  About US </a> </li>
      </ul>
    <div className="nav-item d-flex ">
      <ul>
        {/* <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li> */}
-       <li> <Search  className='mx-1'  size={20} /> </li>
-       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList()}  className='mx-1'  size={20} /></li>
+       <li> <Search className='mx-1' size={20} /> </li>
+       <li> <Bag onClick={() => setEditModal(true)} className='mx-1' size={20} /></li>
+       <li> <Heart onClick={() => goToWishList()} className='mx-1' size={20} /></li>
        <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' size={20} /></li>
      </ul>   
    </div> 
@@ -279,9 +279,9 @@ function Header() {
    <div className="nav-item d-flex ">
      <ul>
        {/* <li onClick={() => goToLoginPage()}> <Person className=' mx-1' color='black' size={20} /></li> */}
-       <li> <Search  className='  mx-1' size={20} /> </li>
-       <li> <Bag  onClick={() => setEditModal(true)}  className='mx-1' size={20} /></li>
-       <li> <Heart  onClick={() => goToWishList()}  className='mx-1'  size={20} /></li>
+       <li> <Search className='  mx-1' size={20} /> </li>
+       <li> <Bag onClick={() => setEditModal(true)}  className='mx-1' size={20} /></li>
+       <li> <Heart onClick={() => goToWishList()}  className='mx-1'  size={20} /></li>
        <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1'   size={20} /></li>
      </ul>   
    </div> 
@@ -300,9 +300,9 @@ function Header() {
      <ul className="links" >
        <li onClick={() => goToHomePage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem", paddingLeft: "0px", marginLeft: "0px"}} className="link-item nav-link scrollto"  > Home </a> </li>
        <li onClick={() => goToShop()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" >  Shop </a> </li>
-       <li  onClick={() => goToReturnPage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto"  > Returns/Exchange </a> </li>
+       <li onClick={() => goToReturnPage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto"  > Returns/Exchange </a> </li>
        <li style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" > Track </a> </li>
-       <li  onClick={() => goToFAQPage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" > FAQ's </a> </li>
+       <li onClick={() => goToFAQPage()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" > FAQ's </a> </li>
        <li onClick={() => goToAbout()} style={{ paddingLeft: "0px"}}> <a style={{fontSize: "1.1rem"}} className="link-item nav-link scrollto" >  About US </a> </li>
      </ul>
    <div className="nav-item d-flex ">

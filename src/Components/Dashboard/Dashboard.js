@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Footer from '../Sections/Footer/Footer';
 
 function Dashboard() {
-  return (
-    <div>Dashboard</div>
-  )
+  return (<>
+  <Outlet/>
+  <Footer />
+
+  </>)
 }
 
 export default Dashboard;
