@@ -149,18 +149,17 @@ function CreateProduct() {
       <Col>
         <Card style={{ backgroundColor: "black", color: "white"}}>
           <Card.Body style={{ backgroundColor: "black", color: "white"}}>
-             
-         <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
-               ADD COLOUR
-            </Button>
-           <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
-                ADD SIZE 
-            </Button> 
-         <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
-               ADD GENDER
-            </Button> 
+          <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
+            ADD COLOUR
+          </Button>
+          <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
+            ADD SIZE
+          </Button>
+          <Button variant="outline-light"  type="submit" className="mt-2 me-2 mb-2">
+            ADD GENDER
+          </Button>
            
-            <h2>Add Product</h2>
+          <h2>Add Product</h2>
             <Form onSubmit={handleSubmit}>
 
                 <Form.Label className="my-1">Product Full Name</Form.Label>
