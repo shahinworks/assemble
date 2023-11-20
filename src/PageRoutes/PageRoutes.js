@@ -89,7 +89,8 @@ function PageRoutes() {
 
       </Route>
      
-      <Route exact path="admin" element={<AdminDashboard />} > 
+   
+      <Route exact path="admin" element={<PrivateRoute element={<AdminDashboard />} requiredRole="admin" />} > 
       <Route exact path='User' element={<PrivateRoute element={<User/>} requiredRole="admin" />} /> 
       <Route exact path='CreateProduct' element={<PrivateRoute element={<CreateProduct />} requiredRole="admin" />} />
       <Route exact path='ListProduct' element={<PrivateRoute element={<ListProduct />} requiredRole="admin" />} />
