@@ -143,24 +143,25 @@ function CreateProduct() {
 
   const { data: genderData, refetch: refetchGender } = useQuery(GET_ALL_GENDER);
  
+
+  const [colorAdd, setColorAdd] = useState("");
+  const [sizeAdd, setSizeAdd] = useState("");
+  const [genderAdd, setGenderAdd] = useState("");
+
+  const [colorModal, setColorModal] = useState(false);
+  const [sizeModal, setSizeModal] = useState(false);
+  const [genderModal, setGenderModal] = useState(false);
+
+  // ADD COLOR
+
   const CREATE_COLOR_MUTATION = gql`
-  mutation CreateColor($colorName: String) {
-    createColor(colorName: $colorName) {
-      id
-      colorName
+    mutation CreateColor($colorName: String) {
+      createColor(colorName: $colorName) {
+        id
+        colorName
+      }
     }
-  }
-`;
-
-const [colorAdd, setColorAdd] = useState("");
-const [sizeAdd, setSizeAdd] = useState("");
-const [genderAdd, setGenderAdd] = useState("");
-
-
-const [colorModal, setColorModal] = useState(false);
-const [sizeModal, setSizeModal] = useState(false);
-const [genderModal, setGenderModal] = useState(false);
-
+  `;
 
   const [createColor] = useMutation(CREATE_COLOR_MUTATION, {
   onCompleted : () => {
@@ -192,10 +193,7 @@ const [genderModal, setGenderModal] = useState(false);
   };
 
 
-  // Create Size
-
-  
-
+  // ADD SIZE
   const CREATE_SIZE_MUTATION = gql`
     mutation CreateSize($sizeName: String) {
       createSize(sizeName: $sizeName) {
@@ -219,16 +217,13 @@ const [genderModal, setGenderModal] = useState(false);
 
   const handleSubmitAddSize = async (e) => {
     e.preventDefault();
-
     try {
       const { data } = await createSize({
         variables: {
           sizeName: sizeAdd
         },
       });
-
       console.log(data.createSize);
-
     }
     catch (err) {
       console.error(err);
@@ -247,9 +242,6 @@ const [genderModal, setGenderModal] = useState(false);
       }
     }
   `;
-
-
-
 
   const [createGender] = useMutation(CREATE_GENDER_MUTATION, {
     onCompleted : () => {
@@ -279,7 +271,6 @@ const [genderModal, setGenderModal] = useState(false);
 
     setGenderModal(false);
     refetchGender();
-
   };
 
   const handleAddColour =  () => {
