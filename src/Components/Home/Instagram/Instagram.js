@@ -24,6 +24,12 @@ function Instagram() {
 
     // Fetch_DATA_Insta
 
+
+    /////////////////////////////////////////////
+    /////////////////////////////////////////////
+    /////////// UNCOMMENT BELOW CODE ////////////
+    /////////////////////////////////////////////
+
   //   useEffect(() => {
   //       fetch('https://v1.nocodeapi.com/assemble/instagram/ygwCsqxcoNGtGxbc').then((response) => response.json()).then((data) => setInsta(data));
   // console.log("insta", insta );
