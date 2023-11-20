@@ -130,7 +130,7 @@ function CreateProduct() {
     }
   `;
 
-  const { data: sizedata } = useQuery(GET_ALL_SIZE);
+  const { data: sizedata, refetch: refetchSize } = useQuery(GET_ALL_SIZE);
 
   const GET_ALL_GENDER = gql`
     query Query {
@@ -141,7 +141,7 @@ function CreateProduct() {
     }
   `;
 
-  const { data: genderData } = useQuery(GET_ALL_GENDER);
+  const { data: genderData, refetch: refetchGender } = useQuery(GET_ALL_GENDER);
  
   const CREATE_COLOR_MUTATION = gql`
   mutation CreateColor($colorName: String) {
@@ -192,7 +192,53 @@ const [genderModal, setGenderModal] = useState(false);
   };
 
 
+  // Create Size
+
   
+
+  const CREATE_SIZE_MUTATION = gql`
+    mutation CreateSize($sizeName: String) {
+      createSize(sizeName: $sizeName) {
+        sizeName
+        id
+      }
+    }
+  `;
+
+  const [createSize] = useMutation(CREATE_SIZE_MUTATION, {
+    onCompleted : () => {
+      toast.success("Size Added Successfully");
+      setSizeAdd("");
+
+    },
+    onError : (error) => {
+      toast.error("Error Occured");
+      console.error("ERROR: ", error.message)
+    }
+  });
+
+  const handleSubmitAddSize = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await createSize({
+        variables: {
+          sizeName: sizeAdd
+        },
+      });
+
+      console.log(data.createSize);
+
+    }
+    catch (err) {
+      console.error(err);
+    }
+
+    setSizeModal(" ");
+    refetchSize();
+  };
+
+  // refetchGender
 
   const handleAddColour =  () => {
     setColorModal(true);
@@ -308,12 +354,12 @@ const [genderModal, setGenderModal] = useState(false);
       <Modal.Title as="h5">Update Product Size List</Modal.Title>
     </Modal.Header>
     <Modal.Body>
-    <Form onSubmit={handleSubmitAddColor}>
+    <Form onSubmit={handleSubmitAddSize}>
       <div className="mb-3">
-        <Form.Label htmlFor="colorName">Color:</Form.Label>
-        <Form.Control type="text" id="colorName" name="colorName" value={colorAdd} onChange={(e) => setColorAdd(e.target.value)} />
+        <Form.Label> Size : </Form.Label>
+        <Form.Control type="text" name="categoryName" value={sizeAdd} onChange={(e) => setSizeAdd(e.target.value)} />
       </div>
-      <Button variant="outline-dark"  className="my-3" type="submit">  Submit </Button>
+      <Button variant="outline-light" className="my-3" type="submit"> Submit </Button>
     </Form>
     </Modal.Body>
     </Modal>
