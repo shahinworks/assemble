@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Col, Row, Button, Form } from "react-bootstrap";
+import { Card, Col, Row, Button, Form, Modal } from "react-bootstrap";
 import { gql, useMutation, useQuery } from "@apollo/client";
 import toast from "react-hot-toast";
 
@@ -119,7 +119,7 @@ function CreateProduct() {
     }
   `;
 
-  const { data: color } = useQuery(GET_ALL_COLOUR);
+  const { data: color, refetch } = useQuery(GET_ALL_COLOUR);
 
   const GET_ALL_SIZE = gql`
     query GetAllSize {
@@ -142,20 +142,72 @@ function CreateProduct() {
   `;
 
   const { data: genderData } = useQuery(GET_ALL_GENDER);
+ 
+  const CREATE_COLOR_MUTATION = gql`
+  mutation CreateColor($colorName: String) {
+    createColor(colorName: $colorName) {
+      id
+      colorName
+    }
+  }
+`;
+
+const [colorAdd, setColorAdd] = useState("");
+const [sizeAdd, setSizeAdd] = useState("");
+const [genderAdd, setGenderAdd] = useState("");
+
+
+const [colorModal, setColorModal] = useState(false);
+const [sizeModal, setSizeModal] = useState(false);
+const [genderModal, setGenderModal] = useState(false);
+
+
+  const [createColor] = useMutation(CREATE_COLOR_MUTATION, {
+  onCompleted : () => {
+    toast.success("Color Added Successfully");
+    setColorAdd("");
+  },
+  onError : (error) => {
+    toast.error("Error Occured");
+    console.error("ERROR: ", error.message)
+  }
+  });
+
+
+  const handleSubmitAddColor = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await createColor({
+        variables: {
+          colorName: colorAdd,
+        },
+      });
+    }
+    catch (err) {
+      console.error(err);
+    }
+    setColorModal(false);
+    refetch();
+  };
+
+
+  
 
   const handleAddColour =  () => {
-
+    setColorModal(true);
   }
 
   const handleAddSize =  () => {
-
+    setSizeModal(true);
   }
+
   const handleAddGender =  () => {
-
+    setGenderModal(true);
   }
 
 
-  return (
+  return (<>
     <Row className="mx-auto my-5">
       <Col>
         <Card style={{ backgroundColor: "black", color: "white"}}>
@@ -234,7 +286,53 @@ function CreateProduct() {
         </Card>
       </Col>
     </Row>
-  );
+
+    <Modal style={{width: "100%"}}  show={colorModal} onHide={() => setColorModal(false)}
+       scrollable dialogClassName="full" >
+    <Modal.Header closeButton>
+      <Modal.Title as="h5">Update Product Color List</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+    <Form onSubmit={handleSubmitAddColor}>
+      <div className="mb-3">
+        <Form.Label htmlFor="colorName">Color:</Form.Label>
+        <Form.Control type="text" id="colorName" name="colorName" value={colorAdd} onChange={(e) => setColorAdd(e.target.value)} />
+      </div>
+      <Button variant="outline-dark"  className="my-3" type="submit">  Submit </Button>
+    </Form>
+    </Modal.Body>
+    </Modal>
+    <Modal style={{width: "100%"}}  show={colorModal} onHide={() => setColorModal(false)}
+       scrollable dialogClassName="full" >
+    <Modal.Header closeButton>
+      <Modal.Title as="h5">Update Product Color List</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+    <Form onSubmit={handleSubmitAddColor}>
+      <div className="mb-3">
+        <Form.Label htmlFor="colorName">Color:</Form.Label>
+        <Form.Control type="text" id="colorName" name="colorName" value={colorAdd} onChange={(e) => setColorAdd(e.target.value)} />
+      </div>
+      <Button variant="outline-dark"  className="my-3" type="submit">  Submit </Button>
+    </Form>
+    </Modal.Body>
+    </Modal>
+    <Modal style={{width: "100%"}}  show={colorModal} onHide={() => setColorModal(false)}
+       scrollable dialogClassName="full" >
+    <Modal.Header closeButton>
+      <Modal.Title as="h5">Update Product Color List</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+    <Form onSubmit={handleSubmitAddColor}>
+      <div className="mb-3">
+        <Form.Label htmlFor="colorName">Color:</Form.Label>
+        <Form.Control type="text" id="colorName" name="colorName" value={colorAdd} onChange={(e) => setColorAdd(e.target.value)} />
+      </div>
+      <Button variant="outline-dark"  className="my-3" type="submit">  Submit </Button>
+    </Form>
+    </Modal.Body>
+    </Modal>
+  </>);
 }
 
 export default CreateProduct;
