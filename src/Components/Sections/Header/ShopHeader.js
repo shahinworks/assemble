@@ -46,11 +46,11 @@ function ShopHeader() {
     
   
     const [header, setHeader] = useState("headerFirst");
-    const [logo, setLogo] = useState(logo2);
+    const [logo, setLogo] = useState(logo1);
   
     const listenScrollEvent = event => {
       if (window.scrollY < 73) {
-        return setHeader("headerFirst"), setLogo(logo2);
+        return setHeader("headerFirst"), setLogo(logo1);
   
       } else if (window.scrollY > 70) {
         return setHeader("header2"), setLogo(logo1);
@@ -151,7 +151,7 @@ function ShopHeader() {
       <MediaQuery minWidth={1200}>
       <div id="logo" className='logo'>
         <a href="/">
-          <img className='mt-2 logo-img' style={{ height: "80px", width: "80px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+          <img className='mt-2 logo-img' style={{ height: "80px", width: "80px", borderRadius: "15px"}} src={logo} alt='Logo'/>
         </a>
       </div>
       <nav id="navbar" className="navbar mx-2" > 
@@ -177,7 +177,7 @@ function ShopHeader() {
         <MediaQuery minWidth={1035} maxWidth={1199}>
         <div id="logo" className='logo'>
         <a href="/">
-          <img className='mt-2 logo-img' style={{ height: "100px", width: "100px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+          <img className='mt-2 logo-img' style={{ height: "100px", width: "100px", borderRadius: "15px"}} src={logo} alt='Logo'/>
         </a>
       </div>
        
@@ -205,7 +205,7 @@ function ShopHeader() {
       <MediaQuery minWidth={769} maxWidth={800}>
       <div id="logo" className='logo'>
         <a href="/">
-          <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+          <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo} alt='Logo'/>
         </a>
       </div>
        
@@ -233,7 +233,7 @@ function ShopHeader() {
        <MediaQuery minWidth={801} maxWidth={875}>
       <div id="logo" className='logo'>
         <a href="/">
-          <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+          <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo} alt='Logo'/>
         </a>
       </div>
        
@@ -261,7 +261,7 @@ function ShopHeader() {
        <MediaQuery minWidth={876} maxWidth={950}>
       <div id="logo" className='logo'>
         <a href="/">
-          <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+          <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo} alt='Logo'/>
         </a>
       </div>
        
@@ -290,7 +290,7 @@ function ShopHeader() {
        <MediaQuery minWidth={951} maxWidth={1034}>
       <div id="logo" className='logo'>
         <a href="/">
-          <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo1} alt='Logo'/>
+          <img className='mt-2 logo-img' style={{ height: "60px", width: "60px", borderRadius: "15px"}} src={logo} alt='Logo'/>
         </a>
       </div>
        
@@ -322,7 +322,7 @@ function ShopHeader() {
       <div className="justify align-items-left" style={{alignContent: "left", justifyItems: "left", marginRight: "60px"}}>
       <div id="logo" className='logo'>
         <a href="/">
-          <img className='mt-2 logo-img' style={{ height: "10px", width: "10px", borderRadius: "3px"}} src={logo1} alt='Logo'/>
+          <img className='mt-2 logo-img' style={{ height: "10px", width: "10px", borderRadius: "3px"}} src={logo} alt='Logo'/>
         </a>
       </div>
       </div>
