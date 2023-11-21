@@ -52,6 +52,7 @@ import Privacy from '../Components/Sections/FooterComponent/Privacy';
 import Refund from '../Components/Sections/FooterComponent/Refund';
 import Cancellation from '../Components/Sections/FooterComponent/Cancellation';
 import Shipping from '../Components/Sections/FooterComponent/Shipping';
+import Dexter from '../Components/Dashboard/Dexter';
 
 // Custom route guard HOC
 function PrivateRoute({ element, requiredRole }) {
@@ -70,44 +71,46 @@ function PageRoutes() {
   return (
     <Routes>
       <Route path='/' element={<UserDashboard />} >
-        <Route index  element={<Home />} />
-        <Route exact path='/shop' element={<Shop />} />
-        <Route exact path='/about' element={<About />} />
-        <Route exact path='/product/:id' element={<Product />} />
-        <Route exact path='/wishlist' element={<Wishlist />} />
-        <Route exact path='/cart' element={<CartFull />} />
-        <Route exact path='/profile' element={<Profile />} />
-        <Route exact path='/faq' element={<FAQ />} />
-        <Route exact path='/return' element={<Return />} />
-        <Route exact path='/order' element={<OrderList />} />
-        <Route exact path='/terms' element={<TermsandConditions />} />
-        <Route exact path='/contact' element={<ContactUs />} />
-        <Route exact path='/privacy' element={<Privacy />} />
-        <Route exact path='/refund' element={<Refund />} />
-        <Route exact path='/cancel' element={<Cancellation />} />
-        <Route exact path='/shipping' element={<Shipping />} />
+        <Route index element={<Home />} />
+      </Route>
+
+      <Route path='shop' element={<Dexter />}  >
+        <Route index element={<Shop />} />
+        <Route exact path='/shop/about' element={<About />} />
+        <Route exact path='/shop/product/:id' element={<Product />} />
+        <Route exact path='/shop/wishlist' element={<Wishlist />} />
+        <Route exact path='/shop/cart' element={<CartFull />} />
+        <Route exact path='/shop/profile' element={<Profile />} />
+        <Route exact path='/shop/faq' element={<FAQ />} />
+        <Route exact path='/shop/return' element={<Return />} />
+        <Route exact path='/shop/order' element={<OrderList />} />
+        <Route exact path='/shop/terms' element={<TermsandConditions />} />
+        <Route exact path='/shop/contact' element={<ContactUs />} />
+        <Route exact path='/shop/privacy' element={<Privacy />} />
+        <Route exact path='/shop/refund' element={<Refund />} />
+        <Route exact path='/shop/cancel' element={<Cancellation />} />
+        <Route exact path='/shop/shipping' element={<Shipping />} />
       </Route>
      
-   
-      <Route exact path="admin" element={<PrivateRoute element={<AdminDashboard />} requiredRole="admin" />} > 
-        <Route exact path='User' element={<PrivateRoute element={<User/>} requiredRole="admin" />} /> 
-        <Route exact path='CreateProduct' element={<PrivateRoute element={<CreateProduct />} requiredRole="admin" />} />
-        <Route exact path='ListProduct' element={<PrivateRoute element={<ListProduct />} requiredRole="admin" />} />
-        <Route exact path='UpdateProduct' element={<PrivateRoute element={<UpdateProduct />} requiredRole="admin" />} />
-        <Route exact path='CreateSubCategory' element={<PrivateRoute element={<CreateSubCategory />} requiredRole="admin" />} />
-        <Route exact path='ListSubCategory' element={<PrivateRoute element={<ListSubCategory />} requiredRole="admin"/>} />
-        <Route exact path='CreateCategory' element={<PrivateRoute element={<CreateCategory />} requiredRole="admin" />} />
-        <Route exact path='ListCategory' element={<PrivateRoute element={<ListCategory />} requiredRole="admin" />} />
-        <Route exact path='CreateSize' element={<PrivateRoute element={<CreateSize />} requiredRole="admin" />} />
-        <Route exact path='ListSize' element={<PrivateRoute element={<ListSize />} requiredRole="admin" />} />
-        <Route exact path='CreateColor' element={<PrivateRoute element={<CreateColor />} requiredRole="admin" />} />
-        <Route exact path='ListColor' element={<PrivateRoute element={<ListColor />} requiredRole="admin" />} />
-        <Route exact path='CreateGender' element={<PrivateRoute element={<CreateGender />} requiredRole="admin" />} />
-        <Route exact path='ListGender' element={<PrivateRoute element={<ListGender />} requiredRole="admin" />} />
-        <Route exact path='CreateSlider' element={<PrivateRoute element={<HomePageSlider />} requiredRole="admin" />} />
-        <Route exact path='ListSlider' element={<PrivateRoute element={<ListSlider />} requiredRole="admin" />} />
-        <Route exact path='ListOrder' element={<PrivateRoute element={<ListOrder />} requiredRole="admin" />} />
-        <Route exact path='orderdetail/:orderID' element={<PrivateRoute element={<OrderDetail />} requiredRole="admin" />} />
+      <Route exact path="admin" element={<AdminDashboard />} > 
+      <Route exact path='User' element={<PrivateRoute element={<User/>} requiredRole="admin" />} /> 
+      <Route exact path='CreateProduct' element={<PrivateRoute element={<CreateProduct />} requiredRole="admin" />} />
+      <Route exact path='ListProduct' element={<PrivateRoute element={<ListProduct />} requiredRole="admin" />} />
+      <Route exact path='UpdateProduct' element={<PrivateRoute element={<UpdateProduct />} requiredRole="admin" />} />
+      <Route exact path='CreateSubCategory' element={<PrivateRoute element={<CreateSubCategory />} requiredRole="admin" />} />
+      <Route exact path='ListSubCategory' element={<PrivateRoute element={<ListSubCategory />} requiredRole="admin"/>} />
+      <Route exact path='CreateCategory' element={<PrivateRoute element={<CreateCategory />} requiredRole="admin" />} />
+      <Route exact path='ListCategory' element={<PrivateRoute element={<ListCategory />} requiredRole="admin" />} />
+      <Route exact path='CreateSize' element={<PrivateRoute element={<CreateSize />} requiredRole="admin" />} />
+      <Route exact path='ListSize' element={<PrivateRoute element={<ListSize />} requiredRole="admin" />} />
+      <Route exact path='CreateColor' element={<PrivateRoute element={<CreateColor />} requiredRole="admin" />} />
+      <Route exact path='ListColor' element={<PrivateRoute element={<ListColor />} requiredRole="admin" />} />
+      <Route exact path='CreateGender' element={<PrivateRoute element={<CreateGender />} requiredRole="admin" />} />
+      <Route exact path='ListGender' element={<PrivateRoute element={<ListGender />} requiredRole="admin" />} />
+      <Route exact path='CreateSlider' element={<PrivateRoute element={<HomePageSlider />} requiredRole="admin" />} />
+      <Route exact path='ListSlider' element={<PrivateRoute element={<ListSlider />} requiredRole="admin" />} />
+      <Route exact path='ListOrder' element={<PrivateRoute element={<ListOrder />} requiredRole="admin" />} />
+      <Route exact path='orderdetail/:orderID' element={<PrivateRoute element={<OrderDetail />} requiredRole="admin" />} />
 
 
       {/* <Route exact path='CreateProduct' element={<CreateProduct />}/>
@@ -128,7 +131,9 @@ function PageRoutes() {
       <Route exact path='ListOrder' element={<ListOrder />}/>
       <Route exact path='orderdetail/:orderID' element={<OrderDetail />}/> */}
       </Route>
- 
+
+
+
       <Route path='/CreateCart' element={<CreateCart />}/>
       <Route path='/ListCart' element={<ListCart />}/>
       <Route path='/rough' element={<Demo />}/>

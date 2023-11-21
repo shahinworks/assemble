@@ -5,7 +5,7 @@ import Footer from '../Sections/Footer/Footer';
 function Dashboard() {
   return (<>
   <Outlet/>
-  <Footer />
+  
 
   </>)
 }
