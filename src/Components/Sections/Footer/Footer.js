@@ -33,41 +33,41 @@ function Footer() {
   <MediaQuery minWidth={769} >
     <section style={{ paddingBottom: "0", marginBottom: "0" }} >
     <footer>
-      <div className="container">
+      <div className='mx-5'>
         <div className="row">
           <div className="col-lg-4 col-md-4 col-sm-6 text-start">
             <h4>Footer Menu</h4>
             <ul>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">Search</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">The TEAM</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">
                   Registered Address : 695A, Sadhasiva Nagar, Vandiyur, Madurai -
                   625020
                 </a>
               </li>
-              <li>
+              <li style={{fontSize: "1rem"}}>
                 <a href="#">
                   Email Address :<br /> operations@theveshticompany.com
                 </a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="/about">About us</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="/shop/contact">Contact us</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="/shop/terms">Terms and Conditions</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="/shop/privacy">Privacy Policy</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="/shop/refund">Refund | Cancellation | Shipping </a>
               </li>
             </ul>
@@ -75,34 +75,34 @@ function Footer() {
           <div className="col-lg-4 col-md-4 col-sm-6 text-start">
             <h4>Main Menu</h4>
             <ul>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">Home</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">All Products</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">New Arrivals</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">The Vagabond</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">Hipster Series</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">BoHo Shorts (Out of Stock)</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">The TEAM</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">Track My Order</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">Returns Center</a>
               </li>
-              <li>
+              <li style={{fontSize: "16px"}}>
                 <a href="#">Help Centre</a>
               </li>
             </ul>
@@ -110,13 +110,13 @@ function Footer() {
           <div className="col-lg-4 col-md-4 col-sm-6">
             <h4>Sign up and save</h4>
             <br />
-            <p>
+            <p style={{fontSize: "16px"}}>
               Subscribe to get special offers, free giveaways, and once in a
               lifetime deals.
             </p>
             <br />
             <div style={{border: "1px solid white", borderRadius: "3px"}} className='pb-1 d-flex flex-wrap'>
-            <span className='mx-3'>  <Envelope color='white' size={20}/> </span>
+            <span className='ms-1 me-0'>  <Envelope color='white' size={20} className='mx-0 px-0'/> </span>
             <input type="email" placeholder="Enter Your Email here" className='pe-2' />
             </div>
             {/* <div className="start-info">
