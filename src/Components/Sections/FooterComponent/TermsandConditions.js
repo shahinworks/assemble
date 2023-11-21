@@ -2,8 +2,9 @@ import React from 'react';
 
 function TermsandConditions() {
   return (<>
-  <h1> Terms and Conditions</h1>
-  <div>
+  
+  <div className='text-left px-3 m-auto mt-5' style={{ paddingTop: "10%", border: "none", width: "70%", borderRadius: "5px"}}>
+  <h1 className='text-center fw-bold' >  Terms and Conditions</h1>
   The terms "We" / "Us" / "Our"/"Company" individually and collectively refer to The Veshti Company an
 the terms "Visitor" "User" refer to the users.
 This page states the Terms and Conditions under which you (Visitor) may visit this website ("Website").
