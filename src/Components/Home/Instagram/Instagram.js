@@ -70,7 +70,7 @@ function Instagram() {
         {insta && insta?.data?.map((i) =>  i?.media_type === "IMAGE" && 
         <div className="col-lg-4 col-md-6 col-sm-6 me-1 mb-1">
          <a href={i?.permalink}> 
-           <img style={{height: "280px", width: "280px"}} className='me-1' src={i.media_url} alt="ask "/>
+           <img style={{height: "280px", width: "280px"}} className='me-1 shadowInsta' src={i.media_url} alt="ask "/>
         <div style={{ width: "80%" }} className="minilogo ">
           <svg
               style={{ margin: 10 }}
@@ -113,15 +113,84 @@ function Instagram() {
     </div>
       </div>
       </MediaQuery>
-      
 
-      <MediaQuery maxWidth={768}>
+      <MediaQuery minWidth={657} maxWidth={768}>
+
+{insta && <Carousel responsive={responsive} >
+  {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
+    <div key={i} className='mx-3 mb-5' >
+      <a href={i?.permalink}>
+      <img style={{height: "280px", width: "280px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
+    </div>)}
+  </Carousel>}
+  </MediaQuery>
+
+      <MediaQuery minWidth={601} maxWidth={656}>
+
+{insta && <Carousel responsive={responsive} >
+  {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
+    <div key={i} className='mx-3 mb-5' >
+      <a href={i?.permalink}>
+      <img style={{height: "260px", width: "260px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
+    </div>)}
+  </Carousel>}
+  </MediaQuery>
+
+      <MediaQuery minWidth={556} maxWidth={600}>
+
+{insta && <Carousel responsive={responsive} >
+  {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
+    <div key={i} className='mx-3 mb-5' >
+      <a href={i?.permalink}>
+      <img style={{height: "250px", width: "250px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
+    </div>)}
+  </Carousel>}
+  </MediaQuery>
+
+
+      <MediaQuery minWidth={464} maxWidth={555}>
+
+{insta && <Carousel responsive={responsive} >
+  {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
+    <div key={i} className='mx-3 mb-5' >
+      <a href={i?.permalink}>
+      <img style={{height: "200px", width: "200px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
+    </div>)}
+  </Carousel>}
+
+</MediaQuery>
+
+      <MediaQuery minWidth={401} maxWidth={463}>
+
+{insta && <Carousel responsive={responsive} >
+  {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
+    <div key={i} className='mx-3 mb-5' >
+      <a href={i?.permalink}>
+      <img style={{height: "380px", width: "380px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
+    </div>)}
+  </Carousel>}
+
+</MediaQuery>
+      
+      <MediaQuery minWidth={341} maxWidth={400}>
+
+{insta && <Carousel responsive={responsive} >
+  {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
+    <div key={i} className='mx-3 mb-5' >
+      <a href={i?.permalink}>
+      <img style={{height: "320px", width: "320px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
+    </div>)}
+  </Carousel>}
+
+</MediaQuery>
+
+      <MediaQuery maxWidth={340}>
 
       {insta && <Carousel responsive={responsive} >
         {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
           <div key={i} className='mx-3 mb-5' >
             <a href={i?.permalink}>
-            <img style={{height: "280px", width: "280px"}} className='mx-2' src={i.media_url} alt="ask "/> </a>
+            <img style={{height: "280px", width: "280px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
           </div>)}
         </Carousel>}
 
