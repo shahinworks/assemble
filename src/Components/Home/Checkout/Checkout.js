@@ -319,7 +319,7 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
   // }, [orderData?.createOrder?.user]);
 
   const goToCart = () => {
-    navigate('/cart', {state});
+    navigate('/shop/cart', {state});
   }
   
 

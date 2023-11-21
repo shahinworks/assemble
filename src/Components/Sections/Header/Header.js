@@ -108,25 +108,25 @@ function Header() {
   // }
 
   const goToWishList = () => {
-    navigate('/wishlist');
+    navigate('/shop/wishlist');
   }
 
   const goToProfile = () => {
-    navigate('/profile');
+    navigate('/shop/profile');
     setProfileModal(false);
   }
 
   const goToOrderPage  = () => {
-     navigate('/order');
+     navigate('/shop/order');
      setProfileModal(false);
   }
 
   const goToFAQPage = () => {
-    navigate('/faq');
+    navigate('/shop/faq');
   }
 
   const goToReturnPage = () => {
-    navigate('/return');
+    navigate('/shop/return');
   }
 
   const goToAdmin = () => {
@@ -142,7 +142,7 @@ function Header() {
   }
 
   const goToAbout = () => {
-    navigate('/about');
+    navigate('/shop/about');
   }
 
   return (<>

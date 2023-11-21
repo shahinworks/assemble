@@ -43,11 +43,11 @@ function Shop() {
         <div className="row">
         {product && product?.getAllProducts?.map((data, index) => 
           <div key={data.id} className="flexslider col-lg-3 col-md-6 col-sm-12" >
-           <Link to={`/product/${data.id}`}  className='stretched-link'>  </Link> 
+           <Link to={`/shop/product/${data.id}`}  className='stretched-link'>  </Link> 
              <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/shop/product" >
                     <img style={{ height: 350, objectFit: "contain"}} src={data?.images[0]?.imagePath[0]} />
                   </a>
                 </li>

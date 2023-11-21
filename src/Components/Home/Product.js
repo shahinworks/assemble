@@ -890,7 +890,7 @@ function Product() {
             <div className="flexslider">
               <ul className="slides" style={{listStyle: "none"}} >
                 <li data-thumb="assets/img/1.jpg">
-                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/product" >
+                  <a data-fslightbox="mygalley" className="rounded-4" target="_blank" data-type="image" href="/shop/product" >
                     <img style={{ height: 350, objectFit: "contain" }} src="assets/img/1.jpg" />
                   </a>
                 </li>

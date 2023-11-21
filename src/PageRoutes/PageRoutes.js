@@ -53,6 +53,7 @@ import Refund from '../Components/Sections/FooterComponent/Refund';
 import Cancellation from '../Components/Sections/FooterComponent/Cancellation';
 import Shipping from '../Components/Sections/FooterComponent/Shipping';
 import Dexter from '../Components/Dashboard/Dexter';
+import ShopDashboard from '../Components/Dashboard/ShopDashboard';
 
 // Custom route guard HOC
 function PrivateRoute({ element, requiredRole }) {
@@ -72,9 +73,24 @@ function PageRoutes() {
     <Routes>
       <Route path='/' element={<UserDashboard />} >
         <Route index element={<Home />} />
+        {/* <Route exact path='/shop' element={<Shop />} />
+        <Route exact path='/about' element={<About />} />
+        <Route exact path='/product/:id' element={<Product />} />
+        <Route exact path='/wishlist' element={<Wishlist />} />
+        <Route exact path='/cart' element={<CartFull />} />
+        <Route exact path='/profile' element={<Profile />} />
+        <Route exact path='/faq' element={<FAQ />} />
+        <Route exact path='/return' element={<Return />} />
+        <Route exact path='/order' element={<OrderList />} />
+        <Route exact path='/terms' element={<TermsandConditions />} />
+        <Route exact path='/contact' element={<ContactUs />} />
+        <Route exact path='/privacy' element={<Privacy />} />
+        <Route exact path='/refund' element={<Refund />} />
+        <Route exact path='/cancel' element={<Cancellation />} />
+        <Route exact path='/shipping' element={<Shipping />} /> */}
       </Route>
 
-      <Route path='shop' element={<Dexter />}  >
+      <Route path='shop' element={<ShopDashboard />}  >
         <Route index element={<Shop />} />
         <Route exact path='/shop/about' element={<About />} />
         <Route exact path='/shop/product/:id' element={<Product />} />

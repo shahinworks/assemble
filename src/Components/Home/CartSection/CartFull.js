@@ -11,7 +11,7 @@ function CartFull() {
   const navigate = useNavigate();
   console.log("state", state);
     const goToCart = () => {
-        navigate('/cart', {state});
+        navigate('/shop/cart', {state});
       }
 
 

@@ -112,7 +112,7 @@ function Wishlist() {
   }
 
   const handleSendToProductPage = (id) => {
-    navigate(`/product/${id}`);
+    navigate(`/shop/product/${id}`);
   }
 
   return (<>
@@ -122,8 +122,8 @@ function Wishlist() {
       <div key={wish?.productId?.id} className='mb-1 mx-1 px-0 mt-1'>
         <Row className='my-2'>
           <Col className='col-2' />
-          <Col className='col-3'> <Link to={`/product/${wish?.productId?.id}`} className='stretched-link'>  <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={wish?.productId?.images[0]?.imagePath[0] } alt="s"/> </Link></Col>
-          <Col className='col-4'> <Link to={`/product/${wish?.productId?.id}`} className='stretched-link'>  <p className='fs-6 text-black'>{wish?.productId?.productName}</p> </Link>
+          <Col className='col-3'> <Link to={`/shop/product/${wish?.productId?.id}`} className='stretched-link'>  <img style={{height: "100px", width:"70px", border: "2px solid black"}} src={wish?.productId?.images[0]?.imagePath[0] } alt="s"/> </Link></Col>
+          <Col className='col-4'> <Link to={`/shop/product/${wish?.productId?.id}`} className='stretched-link'>  <p className='fs-6 text-black'>{wish?.productId?.productName}</p> </Link>
             <Row>
               <Col className='fw-bold'> ₹ {wish?.productId?.sellingPrice}</Col>
             </Row>
