@@ -240,6 +240,7 @@
           letter-spacing: 3px;
           text-transform: uppercase;
         }
+        
         .header {
           position: absolute;
           top: 0;
@@ -251,6 +252,11 @@
           height: 120px;
           background-color: transparent;
           color: white !important;
+          /* text-shadow: black 5px 5px 5px !important; */ 
+           /* rgba(10, 10, 10, 0.35) */
+           /* rgb(31, 28, 28) */
+          /* text-shadow: rgba(10, 10, 10, 0.35) 13px 40px 70px !important; */
+          text-shadow: black 2px 2px 5px;
           transform: translateY(0);
           transition: transform 0.1s ease;
           z-index: 2;
@@ -698,7 +704,8 @@
         .navbar .active,
         .navbar .active:focus,
         .navbar li:hover>a {
-          color: #000000;
+          color: #000000 !important;
+          text-shadow: #d8d8d8 1px 1px 10px !important;
         }
         
         .navbar .dropdown ul {
