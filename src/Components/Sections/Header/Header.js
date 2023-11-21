@@ -66,8 +66,7 @@ function Header() {
   }, []);
 
   const [ editModal, setEditModal] = useState(false);
-  const [profileModal, setProfileModal] = useState(false)
-;
+  const [profileModal, setProfileModal] = useState(false);
   const [nav, setNav] = useState(false);
 
   const goToLoginPage = () => {
