@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import insta from './insta.json';
+import MediaQuery from 'react-responsive';
+import Carousel from "react-multi-carousel";
 
 function Instagram() { 
   const navigate = useNavigate();
@@ -35,6 +37,26 @@ function Instagram() {
   // console.log("insta", insta );
   //   }, []); 
 
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
  
   return (<> 
     <section id="instagram">
@@ -42,6 +64,7 @@ function Instagram() {
       <p className="text-center">#BeDressponsible</p>
       <br />
       <br />
+      <MediaQuery minWidth={769}>
       <div className="container justify-content-center" style={{ marginLeft: "20% !important", paddingLeft: "100px" , paddingRight: "20px"}}>
         <div className="row portfolio text-light">
         {insta && insta?.data?.map((i) =>  i?.media_type === "IMAGE" && 
@@ -88,7 +111,21 @@ function Instagram() {
         </div> </a>
         </div>)}
     </div>
-  </div>
+      </div>
+      </MediaQuery>
+      
+
+      <MediaQuery maxWidth={768}>
+
+      {insta && <Carousel responsive={responsive} >
+        {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
+          <div key={i} className='mx-3 mb-5' >
+            <a href={i?.permalink}>
+            <img style={{height: "280px", width: "280px"}} className='mx-2' src={i.media_url} alt="ask "/> </a>
+          </div>)}
+        </Carousel>}
+
+      </MediaQuery>
 </section>
   </>
     
