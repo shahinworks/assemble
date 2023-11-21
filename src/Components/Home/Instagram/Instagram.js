@@ -45,11 +45,11 @@ function Instagram() {
       items: 5
     },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 992, min: 769 },
       items: 3
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 768, min: 464 },
       items: 2
     },
     mobile: {
@@ -64,14 +64,14 @@ function Instagram() {
       <p className="text-center">#BeDressponsible</p>
       <br />
       <br />
-      <MediaQuery minWidth={769}>
+      <MediaQuery minWidth={992}>
       <div className="container justify-content-center" style={{ marginLeft: "20% !important", paddingLeft: "100px" , paddingRight: "20px"}}>
         <div className="row portfolio text-light">
-        {insta && insta?.data?.map((i) =>  i?.media_type === "IMAGE" && 
-        <div className="col-lg-4 col-md-6 col-sm-6 me-1 mb-1">
+        {insta && insta?.data?.map((i) => i?.media_type === "IMAGE" && 
+        <div className="col-sm-4 me-1 mb-1">
          <a href={i?.permalink}> 
            <img style={{height: "280px", width: "280px"}} className='me-1 shadowInsta' src={i.media_url} alt="ask "/>
-        <div style={{ width: "80%" }} className="minilogo ">
+        {/* <div style={{ width: "80%" }} className="minilogo ">
           <svg
               style={{ margin: 10 }}
               xmlns="http://www.w3.org/2000/svg"
@@ -108,10 +108,22 @@ function Instagram() {
               fill="#FFF"
             />
           </svg>
-        </div> </a>
+        </div> */}
+         </a>
         </div>)}
     </div>
       </div>
+      </MediaQuery>
+
+      <MediaQuery minWidth={769} maxWidth={992}>
+
+{insta && <Carousel responsive={responsive} >
+  {insta && insta?.data?.map((i, index) => i?.media_type === "IMAGE" && 
+    <div key={i} className='mx-3 mb-5' >
+      <a href={i?.permalink}>
+      <img style={{height: "230px", width: "230px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
+    </div>)}
+  </Carousel>}
       </MediaQuery>
 
       <MediaQuery minWidth={657} maxWidth={768}>
@@ -123,7 +135,7 @@ function Instagram() {
       <img style={{height: "280px", width: "280px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
     </div>)}
   </Carousel>}
-  </MediaQuery>
+      </MediaQuery>
 
       <MediaQuery minWidth={601} maxWidth={656}>
 
@@ -134,7 +146,7 @@ function Instagram() {
       <img style={{height: "260px", width: "260px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
     </div>)}
   </Carousel>}
-  </MediaQuery>
+      </MediaQuery>
 
       <MediaQuery minWidth={556} maxWidth={600}>
 
@@ -145,8 +157,7 @@ function Instagram() {
       <img style={{height: "250px", width: "250px"}} className='mx-2 shadowInsta' src={i.media_url} alt="ask "/> </a>
     </div>)}
   </Carousel>}
-  </MediaQuery>
-
+      </MediaQuery>
 
       <MediaQuery minWidth={464} maxWidth={555}>
 
@@ -158,7 +169,7 @@ function Instagram() {
     </div>)}
   </Carousel>}
 
-</MediaQuery>
+      </MediaQuery>
 
       <MediaQuery minWidth={401} maxWidth={463}>
 
@@ -170,7 +181,7 @@ function Instagram() {
     </div>)}
   </Carousel>}
 
-</MediaQuery>
+      </MediaQuery>
       
       <MediaQuery minWidth={341} maxWidth={400}>
 
@@ -182,7 +193,7 @@ function Instagram() {
     </div>)}
   </Carousel>}
 
-</MediaQuery>
+      </MediaQuery>
 
       <MediaQuery maxWidth={340}>
 
@@ -195,10 +206,8 @@ function Instagram() {
         </Carousel>}
 
       </MediaQuery>
-</section>
-  </>
-    
-  )
+    </section>
+  </>)
 }
 
-export default Instagram
+export default Instagram;
