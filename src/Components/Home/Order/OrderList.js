@@ -84,15 +84,22 @@ function OrderList() {
         }
       }
     `;
-  const {data: orderData} = useQuery(USER_ORDERS);
+  const {data: orderData, loading} = useQuery(USER_ORDERS);
 
   if(orderData){
     console.log("UserOrders", orderData);
   }
+if(loading){
+  console.log("loading", loading);
+}
 
+  
   return (<>
-    <h4 style={{marginTop: "10%"}} className='text-center mb-5'>LIST OF ORDERS</h4>
+   {loading && <h1 className='text-center' style={{marginTop: "10%", marginBottom: "5%" }}>Loading...</h1>} 
+   
 
+    {orderData?.getUserorder?.length > 0 ?
+    <> <h4 style={{marginTop: "10%"}} className='text-center mb-5'>LIST OF ORDERS</h4>
     <Row className="g-0 align-content-center d-none d-lg-flex ps-5 pe-5 mb-2 custom-sort">
       <Col md="4" className="d-flex flex-column mb-lg-0 pe-1 justify-content-center">
         <div className=" text-md cursor-pointer fs-5"> Order ID </div>
@@ -109,11 +116,11 @@ function OrderList() {
       <Col md="2" className="d-flex flex-column pe-1 justify-content-center">
         <div className=" text-md cursor-pointer fs-5"> Status </div>
       </Col>
-    </Row>
+    </Row> </> : <></>}
 
     {orderData && orderData?.getUserorder?.length > 0 ?
-        orderData?.getUserorder?.map((order, index) => (
-          <Card key={index} className="mb-2 hover-border-primary mx-1" >
+      orderData?.getUserorder?.map((order, index) => (
+        <Card key={index} className="mb-2 hover-border-primary mx-1" >
             <Card.Body className="pt-0 pb-0 sh-21 sh-md-8 my-3"  >
               <Row className="g-0 align-content-center cursor-default">
                 <Col xs="11" md="3" className="ms-5 me-5 d-flex flex-column justify-content-center mb-2 mb-md-0 order-1 order-md-1 h-md-100 position-relative">
@@ -149,8 +156,8 @@ function OrderList() {
                 </Col>
               </Row>
             </Card.Body>
-          </Card>
-    )) : <h2 className='text-center my-4 py-4'>Order Not Found</h2>}
+        </Card>
+    )) : <>{ !loading && <h2 className='text-center mb-5' style={{marginTop: "10%"}} >Order Not Found</h2>}</>}
    
   </>);
 }
