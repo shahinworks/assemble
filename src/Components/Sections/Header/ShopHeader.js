@@ -13,68 +13,57 @@ import CartPage from '../../Home/CartSection/CartPage';
 import CartPop from '../../Home/CartSection/CartPop';
 
 function ShopHeader() {
-    const navigate = useNavigate();
-    const token = localStorage.getItem('token');
-    const [loggedIn, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  const [loggedIn, setLoggedIn] = useState(false);  
+  const userRole =  localStorage.getItem('userRole');
   
-    
-    const userRole =  localStorage.getItem('userRole');
-  
-    useEffect(() => {
-      if(token) {
-        setLoggedIn(true);
-      }
-      else {
-        setLoggedIn(false);
-      }
-    }, [token]);
-  
-    const logout = () => {
-      localStorage.removeItem('token');
-      localStorage.removeItem('userRole');
-      localStorage.removeItem('role');
+  useEffect(() => {
+    if(token) {
+      setLoggedIn(true);
+    }
+    else {
       setLoggedIn(false);
     }
+  }, [token]);
   
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('role');
+    setLoggedIn(false);
+  }
+  const ice = {
+    maxWidth: "1000px",
+    margin: "0 auto"
+  }
+
+  const [header, setHeader] = useState("headerFirst");
+  const [logo, setLogo] = useState(logo1);
   
-    const ice = {
-      maxWidth: "1000px",
-      margin: "0 auto"
+  const listenScrollEvent = event => {
+    if (window.scrollY < 73) {
+      return setHeader("headerFirst"), setLogo(logo1);
+    } else if (window.scrollY > 70) {
+      return setHeader("header2"), setLogo(logo1);
     }
+  };
   
+  useEffect(() => {
+    window.addEventListener("scroll", listenScrollEvent);
+    return () => window.removeEventListener("scroll", listenScrollEvent);
+  }, []);
   
+  const [ editModal, setEditModal] = useState(false);
+  const [profileModal, setProfileModal] = useState(false);
+  const [nav, setNav] = useState(false);
+  
+  const goToLoginPage = () => {
+    navigate('/login');
+  }
     
-  
-    const [header, setHeader] = useState("headerFirst");
-    const [logo, setLogo] = useState(logo1);
-  
-    const listenScrollEvent = event => {
-      if (window.scrollY < 73) {
-        return setHeader("headerFirst"), setLogo(logo1);
-  
-      } else if (window.scrollY > 70) {
-        return setHeader("header2"), setLogo(logo1);
-      }
-    };
-  
-    useEffect(() => {
-      window.addEventListener("scroll", listenScrollEvent);
-  
-      return () => window.removeEventListener("scroll", listenScrollEvent);
-    }, []);
-  
-    const [ editModal, setEditModal] = useState(false);
-    const [profileModal, setProfileModal] = useState(false)
-  ;
-    const [nav, setNav] = useState(false);
-  
-    const goToLoginPage = () => {
-      navigate('/login');
-  
-    }
-    
-    // GETTING CART ITEMS
-    const CART = gql`
+  // GETTING CART ITEMS
+  const CART = gql`
       query Cart {
         cart {
           _id
@@ -90,62 +79,54 @@ function ShopHeader() {
           }
         }
       }
-    `;
+  `;
   
-    const [getCartData, {data: cartData}] = useLazyQuery(CART);
+  const [getCartData, {data: cartData}] = useLazyQuery(CART);
   
-    useEffect(() => {
-      getCartData();
-    }, []);
+  useEffect(() => {
+    getCartData();
+  }, []);
   
-    // const goToHomePage = () => {
-    //   navigate('/');
-    // }
+  const goToWishList = () => {
+    navigate('/shop/wishlist');
+  }
   
-    
-    // const handleNavbar = () => {
-    //   console.log("handleNavbar");
-    // }
+  const goToProfile = () => {
+    navigate('/shop/profile');
+    setProfileModal(false);
+  }
   
-    const goToWishList = () => {
-      navigate('/shop/wishlist');
-    }
+  const goToOrderPage  = () => {
+    navigate('/shop/order');
+    setProfileModal(false);
+  }
   
-    const goToProfile = () => {
-      navigate('/shop/profile');
-      setProfileModal(false);
-    }
+  const goToFAQPage = () => {
+    navigate('/shop/faq');
+  }
   
-    const goToOrderPage  = () => {
-       navigate('/shop/order');
-       setProfileModal(false);
-    }
+  const goToReturnPage = () => {
+    navigate('/shop/return');
+  }
   
-    const goToFAQPage = () => {
-      navigate('/shop/faq');
-    }
+  const goToAdmin = () => {
+    navigate('/admin');
+  }
   
-    const goToReturnPage = () => {
-      navigate('/shop/return');
-    }
+  const goToHomePage = () => {
+    navigate('/');
+  }
   
-    const goToAdmin = () => {
-      navigate('/admin');
-    }
+  const goToShop = () => {
+    navigate('/shop');
+  }
   
-    const goToHomePage = () => {
-      navigate('/');
-    }
-  
-    const goToShop = () => {
-      navigate('/shop');
-    }
-  
-    const goToAbout = () => {
-      navigate('/shop/about');
-    }
-    return (<>
-        <header className={header}>
+  const goToAbout = () => {
+    navigate('/shop/about');
+  }
+
+  return (<>
+    <header className={header}>
         <div className="d-flex justify-content-between align-items-center">
        
       <MediaQuery minWidth={1200}>
@@ -330,9 +311,7 @@ function ShopHeader() {
         {!nav &&  <List onClick={() => setNav(true)} className='me-4 mt-0 pt-0 list-btn' color='black' size={28}  />}
       </div>
       </MediaQuery>
-    </header> 
-    
-    {/* modal-right scroll-out-negative   */}
+    </header>
     
     <MediaQuery maxWidth={768}>
     <Modal className="px-0 mx-0 toggle" show={nav} onHide={() => setNav(false)} scrollable dialogClassName="full">
@@ -365,22 +344,9 @@ function ShopHeader() {
     </Modal>
     </MediaQuery>
     
-     <CartPop show={editModal} onHide={() => setEditModal(false)}  />
-    
-      {/* <Modal className="modal-right scroll-out-negative" show={editModal} onHide={() => setEditModal(false)} scrollable dialogClassName="full">
-        <Modal.Header closeButton>
-      <Modal.Title className='fw-bold' as="h5">Cart</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className='mx-0 px-0'>
-          {cartData?.cart?.cartProducts?.length > 0 ? 
-          <CartPage /> 
-         :  <div>
-          <p className='fs-6'> Your Cart is Currently Empty </p> <Button className='btn-dark' onClick={() => goToHomePage()}>Shop Now</Button></div>}
-        </Modal.Body>
-        <Modal.Footer className="border-0"></Modal.Footer>
-      </Modal> */}
-    
-       <Modal className="modal-right scroll-out-negative" show={profileModal} onHide={() => setProfileModal(false)} scrollable dialogClassName="full">
+    <CartPop show={editModal} onHide={() => setEditModal(false)}  />
+
+    <Modal className="modal-right scroll-out-negative" show={profileModal} onHide={() => setProfileModal(false)} scrollable dialogClassName="full">
         <Modal.Header closeButton>
       <Modal.Title className='fw-bold' as="h5">Profile</Modal.Title>
         </Modal.Header>
@@ -393,19 +359,11 @@ function ShopHeader() {
     
          {!loggedIn && <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mb-1 fs-5 fw-bold w-100' onClick={() => goToLoginPage()} >LOGIN</Button> }
          {loggedIn && <Button style={{backgroundColor: "black", color: "white", border: "1px solid black"}} className='mt-1 fs-5 fw-bold w-100' onClick={() =>{ logout(); setProfileModal(false)}} >LOGOUT</Button>} 
-    
-    
-        {/* <Button onClick={() => goToLoginPage()}  style={{borderRadius: "50px", backgroundColor: "black", border: "1px solid black"}} > 
-         <Person onClick={() => goToLoginPage()} color='white' size={34} />  
-          </Button>
-          <br />
-          THIS is your Profile Modal
-          <Button onClick={() => goToLoginPage()}>Login</Button>
-          <Button onClick={() => goToProfile()}>Profile Section</Button> */}
+
         </Modal.Body>
         <Modal.Footer className="border-0"></Modal.Footer>
-      </Modal>
-      </>);
+    </Modal>
+  </>);
 }
 
 export default ShopHeader;
