@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import Cartitems from 'globalValue/CartItems/Cartitems';
+import { useNavigate } from 'react-router-dom';
+// import Cartitems from 'globalValue/CartItems/Cartitems';
 import img from './success.png';
 
 function Success() {
-  const { refetch } = Cartitems();
-  const history = useHistory();
+//   const { refetch } = Cartitems();
+  const navigate = useNavigate();
   useEffect(() => {
-    refetch();
+    // refetch();
     setTimeout(() => {
-      history.push('/shop/order');
+      navigate('/shop/order');
     }, [4000]);
   }, []);
   return (
