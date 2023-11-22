@@ -36,14 +36,14 @@ function AdminHeader() {
     margin: "0 auto"
   }
 
-  const [header, setHeader] = useState("headerFirst");
+  const [header, setHeader] = useState("headerAdmin");
   const [logo, setLogo] = useState(logo1);
   
   const listenScrollEvent = event => {
     if (window.scrollY < 73) {
-      return setHeader("headerFirst"), setLogo(logo1);
+      return setHeader("headerAdmin"), setLogo(logo1);
     } else if (window.scrollY > 70) {
-      return setHeader("header2"), setLogo(logo1);
+      return setHeader("headerAdmin"), setLogo(logo1);
     }
   };
   
@@ -124,7 +124,10 @@ function AdminHeader() {
   }
 
   return (<>
-    <header className={header}>
+   <div style={{cursor: "pointer"}} onClick={() => goToHomePage()} >
+      <h1 className='text-center my-2'>ADMIN PANEL</h1>
+      </div>
+    <header className="headerAdmin">
         <div className="d-flex justify-content-between align-items-center">
        
       <MediaQuery minWidth={1200}>
