@@ -275,7 +275,7 @@
           color: black !important;
           transform: translateY(0);
           transition: transform 0.1s ease;
-          z-index: 2;
+          z-index: 4;
 
         }
 
@@ -292,7 +292,7 @@
           color: black !important;
           transform: translateY(0);
           transition: transform 0.1s ease;
-          z-index: 4;
+          z-index: 3;
 
         }
         
@@ -585,23 +585,27 @@
           padding-left: 150px;
           margin-right: 25px;
           font-size: 24px;
+          overflow-x: hidden;
         }
         
         .SideRow {
           padding-top: 100px;
           margin-right: 0;
           margin-top: 30px;
+          overflow-x: hidden;
         }
         
         .SideColRight {
           padding-right: 80px;
           margin-right: 25px;
           font-size: 24px;
+          overflow-x: hidden;
         }
         
         .SideColLeftImage {
           padding-left: 150px;
           margin-right: 25px;
+          overflow-x: hidden;
         }
         
         .SideColRightImage {
@@ -609,12 +613,14 @@
           margin-right: 0px;
           margin-left: 30px;
           padding-right: 0px;
+          overflow-x: hidden;
         }
         footer {
           background: #111111;
           padding: 90px 0 30px 0;
           color: #fff;
           font-size: 14px;
+          overflow-x: hidden;
         
         }
         footer input{
@@ -1273,6 +1279,9 @@
   transform: translateX(0);
 }
 
+.insta{
+  z-index: -1;
+}
 
 .shadowInsta {
   /* border: 3px solid orangered; */

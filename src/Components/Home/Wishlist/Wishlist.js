@@ -137,14 +137,14 @@ function Wishlist() {
            </OverlayTrigger> */}
 
           <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip-left">Add To Cart</Tooltip>}>
-            <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
+            <Button className="btn btn-sm mx-1 mb-1" style={{backgroundColor: "black", border: "1px solid black"}}
             // onClick = {() => handleAddToCart(wish?.productId?.id)} 
             onClick={() => handleSendToProductPage(wish?.productId?.id)}>
             <Cart size={20} color="white"/>
             </Button>
           </OverlayTrigger>
            <OverlayTrigger placement="top" overlay={<Tooltip id="tooltip-left">Remove from Wishlist</Tooltip>}>
-          <Button className="btn btn-sm mx-1" style={{backgroundColor: "black", border: "1px solid black"}}
+          <Button className="btn btn-sm mx-1 mb-1" style={{backgroundColor: "black", border: "1px solid black"}}
             onClick={() => handleRemoveFromWishlist(wish?.productId?.id)} >
             <Trash size={20} color="white" />
           </Button>

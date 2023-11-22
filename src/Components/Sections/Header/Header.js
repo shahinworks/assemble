@@ -110,6 +110,8 @@ function Header() {
 
   const goToWishList = () => {
     navigate('/shop/wishlist');
+    setProfileModal(false);
+    setNav(false);
   }
 
   const goToProfile = () => {
@@ -343,8 +345,8 @@ function Header() {
   <ul  className="links nav-item d-flex"  style={{listStyle: "none", textAlign: "left"}}>
        {/* <li> <Person  onClick={() => goToLoginPage()} className=' mx-1' color='black' size={30} /></li> */}
        <li> <Search className='  mx-1'  size={30} /> </li>
-       <li> <Bag onClick={() => setEditModal(true)} className='mx-1' size={30} /></li>
-       <li> <Heart onClick={() => goToWishList(true)} className='mx-1' size={30} /></li>
+       <li> <Bag onClick={() => {setEditModal(true); setNav(false)}} className='mx-1' size={30} /></li>
+       <li> <Heart onClick={() => {goToWishList(true); setNav(true)}} className='mx-1' size={30} /></li>
        <li> <PersonCircle onClick={() => setProfileModal(true)} className='mx-1' size={30}  /></li> </ul> 
 </Modal.Header>
 <Modal.Body  style={ice} className='px-0 mx-0 modalBod'>

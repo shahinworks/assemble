@@ -153,9 +153,12 @@ function Footer() {
   </MediaQuery>
 
   <MediaQuery maxWidth={768} >
-  <div className="accordion" id="accordionExample" style={{backgroundColor: "black", color: "white"}}>
-  <div className="accordion-item"  style={{backgroundColor: "black", color: "white", border: "2px solid black"}}>
-    <h2 className="accordion-header"  style={{backgroundColor: "black", color: "white"}}>
+  {/* <section style={{ paddingBottom: "0", marginBottom: "0", backgroundColor: "black", position: "relative", bottom: "0", left: "0", width: "100%"}} >
+    <footer style={{backgroundColor: "black"}}> */}
+    <div style={{backgroundColor: "black", color: "white", marginBottom: "0px", position: "relative", bottom: "0", left: "0", width: "100%"}}>
+    <div className="accordion pb-0" id="accordionExample" style={{backgroundColor: "black", color: "white"}}>
+      <div className="accordion-item pb-0"  style={{backgroundColor: "black", color: "white", border: "2px solid black"}}>
+        <h2 className="accordion-header"  style={{backgroundColor: "black", color: "white"}}>
       <button style={{backgroundColor: "black", color: "white"}} className="fs-3 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         Main Menu
       </button>
@@ -199,7 +202,7 @@ function Footer() {
       </div>
     </div>
   </div>
-  <div style={{backgroundColor: "black", color: "white", border: "2px solid black"}} className="accordion-item ">
+  <div style={{backgroundColor: "black", color: "white", border: "2px solid black"}} className="accordion-item pb-0">
     <h2 style={{backgroundColor: "black", color: "white"}} className="accordion-header">
       <button style={{backgroundColor: "black", color: "white"}} className="fs-3 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
        Footer Menu
@@ -242,7 +245,7 @@ function Footer() {
       </div>
     </div>
   </div>
-  <div style={{backgroundColor: "black", color: "white", border: "2px solid black"}} className="accordion-item">
+  <div style={{backgroundColor: "black", color: "white", border: "2px solid black"}} className="accordion-item pb-0">
     <h2 style={{backgroundColor: "black", color: "white"}} className="accordion-header">
       <button style={{backgroundColor: "black", color: "white"}} className="fs-3 accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
         Sign up and Save
@@ -279,11 +282,13 @@ function Footer() {
       </div>
     </div>
     </div>
-            </div>
- 
-  </MediaQuery >
+    </div> 
+    </div> 
+    {/* </footer>
+    </section> */}
+  </MediaQuery>
 
-  </>)
+  </>);
 }
 
 export default Footer;

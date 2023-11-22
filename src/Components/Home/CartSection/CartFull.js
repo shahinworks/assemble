@@ -309,7 +309,7 @@ function CartFull() {
       </Card.Body>
     </Card> )} */}
 
-    <Row className='my-2'>
+    <Row className='my-2 mr-0'>
       <Col className='col-md-8 col-3' />
       <Col className='col-md-auto col-8 ' >
       <p className='fw-bold d-inline fs-5' style={{marginRight: "0", paddingRight: "0"}}>SUBTOTAL </p>
