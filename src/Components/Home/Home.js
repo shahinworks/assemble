@@ -120,11 +120,11 @@ function Home() {
     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
       <div className="carousel-inner">
       {homePageSlider?.getAllHomePageSlider && homePageSlider?.getAllHomePageSlider[0]?.images && <div className="carousel-item active">
-          <img className="d-block w-100" src={homePageSlider?.getAllHomePageSlider[0]?.images} alt="First slide" />
+          <img className="d-block w-100" style={{height: "700px", width: "1200px"}} src={homePageSlider?.getAllHomePageSlider[0]?.images} alt="First slide" />
         </div>}
       {homePageSlider?.getAllHomePageSlider &&  homePageSlider?.getAllHomePageSlider?.map((item, index) => index > 0 &&
         <div key={item.id} className="carousel-item">
-          <img className="d-block w-100" src={item.images} alt="Second slide" />
+          <img className="d-block w-100"  style={{height: "700px", width: "1200px"}} src={item.images} alt="Second slide" />
         </div>)}
     {/* <div className="carousel-item">
       <img className="d-block w-100" src="assets/img/VeshtiCompanyHaremPants1_c404fad7-cfa0-4ae3-a4f0-789c30a0c43b_540x.webp" alt="Third slide" />
