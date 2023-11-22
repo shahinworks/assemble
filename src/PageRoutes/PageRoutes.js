@@ -56,6 +56,7 @@ import Dexter from '../Components/Dashboard/Dexter';
 import ShopDashboard from '../Components/Dashboard/ShopDashboard';
 import Success from '../Components/Home/CheckOutResponse/Success';
 import Failure from '../Components/Home/CheckOutResponse/Failure';
+import HandleResponse from '../Components/Home/CheckOutResponse/HandleResponse';
 
 // Custom route guard HOC
 function PrivateRoute({ element, requiredRole }) {
@@ -158,6 +159,7 @@ function PageRoutes() {
       <Route path='/checkout' element={<Checkout />}/>
       <Route path='/checkout/success' element={<Success />}/>
       <Route path='/checkout/failure' element={<Failure />}/>
+      <Route path='/checkout/handleResponse/:txnID' element={<HandleResponse />}/>
      
       
     

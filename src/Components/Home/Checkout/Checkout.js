@@ -131,22 +131,34 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
 
   // MAKE PAYMENT
   const MAKE_PAYMENT = gql`
-    mutation Mutation($amount: String, $firstname: String, $email: String, $phone: String) {
-      makePayment(amount: $amount, firstname: $firstname, email: $email, phone: $phone) {
+    mutation MakePayment($orderId: String, $amount: String, $firstname: String, $email: String, $phone: String) {
+      makePayment(orderId: $orderId, amount: $amount, firstname: $firstname, email: $email, phone: $phone) {
         success
         message
         redirectUrl
       }
     }
   `;
+
+
+
+  // const MAKE_PAYMENT = gql`
+  //   mutation Mutation($amount: String, $firstname: String, $email: String, $phone: String) {
+  //     makePayment(amount: $amount, firstname: $firstname, email: $email, phone: $phone) {
+  //       success
+  //       message
+  //       redirectUrl
+  //     }
+  //   }
+  // `;
   
   // CREATE SHIPPING ADDRESS
   const CREATE_SHIPPING_ADDRESS = gql`
-  mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $addressLine2: String, $mobileNo: String, $lastName: String, $firstName: String) {
-    createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, addressLine2: $addressLine2, mobileNo: $mobileNo, lastName: $lastName, firstName: $firstName) {
-      id
+    mutation CreateAddress($addressLine1: String!, $city: String!, $state: String!, $postalCode: String!, $country: String!, $addressLine2: String, $mobileNo: String, $lastName: String, $firstName: String) {
+      createAddress(addressLine1: $addressLine1, city: $city, state: $state, postalCode: $postalCode, country: $country, addressLine2: $addressLine2, mobileNo: $mobileNo, lastName: $lastName, firstName: $firstName) {
+        id
+      }
     }
-  }
   `;
 
 
@@ -235,9 +247,9 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
   //   console.log("billingAddress", billingAddress?.getAllAddressesByUser[0]?.id);
   // }
 
-  // if(paymentData){
-  //   console.log("paymentData", paymentData);
-  // }
+  if(paymentData){
+    console.log("paymentData", paymentData);
+  }
 
   // if(shippingData){
   //   console.log(shippingData?.createAddress?.id)
@@ -295,7 +307,8 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
 
     if(response?.data && response?.data?.createOrder?.user && response?.data?.createOrder?.totalAmount && response?.data?.createOrder?.paymentMethod === "ONLINE"){
       await createPayment({
-        variables : {    
+        variables : { 
+          orderId:  response?.data?.createOrder?.id,
           amount: String(response?.data?.createOrder?.totalAmount),
           firstname: response?.data?.createOrder?.user?.firstName,
           email: response?.data?.createOrder?.user?.email,
