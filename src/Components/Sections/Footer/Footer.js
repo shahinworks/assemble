@@ -56,7 +56,7 @@ function Footer() {
                 </a>
               </li>
               <li style={{fontSize: "16px"}}>
-                <a href="/about">About us</a>
+                <a href="/shop/about">About us</a>
               </li>
               <li style={{fontSize: "16px"}}>
                 <a href="/shop/contact">Contact us</a>
@@ -181,7 +181,7 @@ function Footer() {
                 </a>
               </li>
               <li className='my-2'>
-                <a href="/about" style={{color: "white"}}>About us</a>
+                <a href="/shop/about" style={{color: "white"}}>About us</a>
               </li>
               <li className='my-2'>
                 <a href="/shop/contact" style={{color: "white"}}>Contact us</a>
