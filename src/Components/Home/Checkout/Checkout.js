@@ -412,7 +412,7 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
 
     <hr className='my-0 py-0'/>
     <Row className='mx-3'>
-      <Col className="col-lg-7">
+      <Col className="col-lg-7 col-12">
 
       {/* <Card>
       <Card.Body> */}
@@ -655,7 +655,7 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
 
       </Col>
  
-      <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
+      <Col className="col-lg-5 col-12 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
       {/* Cart Summary  */}
       <div className='mt-5'></div>
     {/* {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) =>  */}
@@ -687,12 +687,18 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
       </Row>
     </div>)}
     <hr/>
-    <div className='my-2'>
+    <Row className='my-2'>
+      <Col className='fs-5 fw-bold mx-1 col-7 col-lg-8 col-md-9 '> SUBTOTAL </Col>
+      {/* col-lg-7 col-md-5  */}
+      <Col className='fs-5 fw-bold mx-1 col-4 d-inline col-lg-3 col-md-2'> ₹ {totalAmount}</Col>
+      {/* col-lg-3 col-md-1 */}
+    </Row>
+    {/* <div className='my-2'>
       <p className='fw-bold d-inline fs-5 ms-3' style={{marginRight: "40px", paddingRight: "50px"}}>SUBTOTAL </p>
       <p className='fw-bold d-inline fs-5' style={{ marginLeft: "140px", alignItems: "end", alignContent: "end"}}>
          ₹ {totalAmount}
       </p>
-    </div>
+    </div> */}
       </Col>
     </Row>
 
