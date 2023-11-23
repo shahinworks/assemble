@@ -129,7 +129,7 @@ function Home() {
     </div> 
 
     <section id="about" className="about">
-      <p className="text-center"> Assemble TRP</p>
+      <p className="text-center"> #ALLASSEMBLEHERE</p>
       <h1 className="text-center">The Vagabond Hipster Series</h1> <br /> <br />
       <div className="container">
         <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
@@ -180,7 +180,7 @@ function Home() {
           </Col>
           <Col className='col-lg-5 col-md-5 col-sm-12 d-flex SideColRight ' > 
             <Row>
-              <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}} className='mx-4 text-left'>#BEDRESSPONSIBLE</h4>
+              <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}} className='mx-4 text-left'>#ALLASSEMBLEHERE</h4>
               <h5 style={{fontSize: "50px", fontFamily: "league gothic"}} className='mx-4 text-left'>The Vagabond</h5>
               <p style={{ fontFamily: "raleway", fontSize: "20px"}} className='mx-4 text-left'> 
            Inspired from the earthy roots of Bohemian Culture, The vagabond collection transcends the realm of ordinary fashion with bewitching bohemian harem pants.
@@ -219,7 +219,7 @@ function Home() {
         </Row>
         <Row className='my-5'> <img src="assets/img/HD-wallpaper-d-red-model-shopping-yellow-woman-laptop-girl-funny-white-thumbnail.jpg" alt="" /></Row>
         <Row className='mx-2'>
-        <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}} className='mx-4 text-left'>#BEDRESSPONSIBLE</h4>
+        <h4 style={{fontSize: "20px", fontWeight: "bold", fontFamily: "raleway", letterSpacing: "2px"}} className='mx-4 text-left'>#ALLASSEMBLEHERE</h4>
             <h5 style={{fontSize: "50px", fontFamily: "league gothic"}} className='mx-4 text-left'>The Vagabond</h5>
            <p style={{ fontFamily: "raleway", fontSize: "20px"}} className='mx-4 text-left'> 
            Inspired from the earthy roots of Bohemian Culture, The vagabond collection transcends the realm of ordinary fashion with bewitching bohemian harem pants.
@@ -254,9 +254,9 @@ function Home() {
       />
 
  <div className='text-left position-absolute' style={{paddingLeft: "80px", paddingTop:"80px"}}>
-   <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>#BE</h1>
-   <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>DRESS</h1>
-   <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>PONSIBLE</h1>
+   <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>#ALL</h1>
+   <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>ASSEMBLE</h1>
+   <h1 style={{fontSize: "80px", fontWeight: 'bold'}}>HERE</h1>
   </div>
        </div>
       </Row>
