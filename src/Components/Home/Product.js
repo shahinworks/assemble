@@ -258,16 +258,19 @@ function Product() {
     const s = product?.getProduct?.images?.filter((img) => img?.color === x && img?.gender === gender);
     handleSizeArray(s[0]?.imagePath);
     changeImage(s[0]?.imagePath[0]);
-    handleCartColor(s[0]?.color);
+  
+    setGender(s[0]?.gender);
+    setColor(x);
   }
 
   const handleGenderDrama = (g) => {
-    setGender(g)
     const s = product?.getProduct?.images?.filter((img) => img?.color === color && img?.gender === g);
-  
+
     handleSizeArray(s[0]?.imagePath);
     changeImage(s[0]?.imagePath[0]);
-    handleCartColor(s[0]?.color);
+    
+    setGender(g);
+    setColor(s[0]?.color);
   }
 
 
@@ -322,7 +325,7 @@ function Product() {
                     data-image="assets/img/31.jpg"
                     onClick={() => {
                       changeImage(image); 
-                      handleCartColor(image?.color);
+                    //  handleCartColor(image?.color);
                       handleImageSelectedForDisplay(index);
                     }}
                   >
@@ -370,7 +373,7 @@ function Product() {
                {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
               <div key={gender} 
               style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
-              onClick={() => { handleGenderSeletion(index); handleCartGender(gender); handleGenderDrama(gender) }}
+              onClick={() => { handleGenderSeletion(index); handleGenderDrama(gender) }}
                 className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
               </div>
              
@@ -613,7 +616,7 @@ function Product() {
                     data-image="assets/img/31.jpg"
                     onClick={() => {
                       changeImage(image); 
-                      handleCartColor(image?.color);
+                    //  handleCartColor(image?.color);
                       handleImageSelectedForDisplay(index);
                     }}
                   >
@@ -661,7 +664,7 @@ function Product() {
                {product?.getProduct && product?.getProduct?.gender.map((gender, index) =>
               <div key={gender} 
               style={genSel === index? genderSelectedStyle: genderNotSelectedStyle}
-              onClick={() => { handleGenderSeletion(index); handleCartGender(gender); handleGenderDrama(gender) }}
+              onClick={() => { handleGenderSeletion(index); handleGenderDrama(gender) }}
                 className='mx-2 my-2 px-3 py-2 hoverable'> {gender} </div>)}
               </div>
              
