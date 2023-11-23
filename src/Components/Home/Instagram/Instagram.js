@@ -61,7 +61,7 @@ function Instagram() {
   return (<> 
     <section id="instagram">
       <h1 className="text-center mt-5" style={{marginTop: "30px"}}>Check out our Instagram</h1>
-      <p className="text-center">#BeDressponsible</p>
+      <p className="text-center">#ALLASSEMBLEHERE</p>
       <br />
       <br />
       <MediaQuery minWidth={992}>
