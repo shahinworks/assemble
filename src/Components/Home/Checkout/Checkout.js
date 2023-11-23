@@ -660,21 +660,22 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
       <div className='mt-5'></div>
     {/* {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) =>  */}
     {cartData?.cart?.cartProducts?.length > 0 && temp?.map((item, index) => 
-    <div key={index} className='mb-1 mx-1 px-0 mt-1'> 
-      <Row className='my-2'>
-        <Col className='col-3 mx-1'>
+    <div key={index} className='mb-1 mx-md-1 mx-0 px-0 mt-1'> 
+      <Row className='my-2 mx-0 '>
+        <Col className='col-md-3 col-4 mx-md-1 mx-0 px-0'>
           <img 
           style={{height: "100px", width:"70px", border: "2px solid black"}} 
           className='ms-3' 
           src={item?.image} 
           alt="s"/>
         </Col>
-        <Col className='col-5 mx-2'>
-          <p className='fs-6 my-0 py-0'>{item?.productName}</p>
-          <p className='fs-6  my-0 py-0'>{item?.size}</p>
-          <p className='fs-6  my-0 py-0'>{item?.color}</p>
-          <p className='fs-6  my-0 py-0'>{item?.gender}</p>  </Col>
-        <Col className='col-2'> 
+        <Col className='col-md-5 col-4 mx-0 mx-md-2 px-0 flex-wrap'>
+          <p className='fs-6 my-0 py-0 mx-1'>{item?.productName}</p>
+          <p className='fs-6 my-0 py-0 mx-1'>{item?.size}</p>
+          <p className='fs-6 my-0 py-0 mx-1'>{item?.color}</p>
+          <p className='fs-6 my-0 py-0 mx-1'>{item?.gender}</p> 
+          </Col>
+        <Col className='col-md-3 col-4'> 
           {/* <Row> */}
 
           <p>{item?.quantity} Pc</p>
