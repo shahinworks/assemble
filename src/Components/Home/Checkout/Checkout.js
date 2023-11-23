@@ -399,16 +399,18 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
 
   return (<>
     <div className='my-5 mx-5 d-flex'>
-      <h5>THE ASSEMBLE CLOTHING</h5> 
-      <Button variant='outline-dark' style={{border: "none", marginLeft: "74%"}}  className='d-inline' onClick={() => goToCart()}>
-        <Cart size={26}/>
-      </Button>
+      <Col className='col-md-10 col-10'>
+        <h5>THE ASSEMBLE CLOTHING</h5>
+      </Col>
+   
+      <Col className='col-md-1 col-1'>
+        <Button variant='outline-dark' style={{border: "none"}}  className='d-inline' onClick={() => goToCart()}>
+          <Cart size={26}/>
+        </Button>
+      </Col>
     </div>
+
     <hr className='my-0 py-0'/>
-
-
-  
-
     <Row className='mx-3'>
       <Col className="col-lg-7">
 
@@ -651,9 +653,9 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
         <Button className='py-3 ' style={{backgroundColor: "black", color: "white", fontSize: "20px", border: "1px solid black"}}> PROCESSING...</Button>
     </Row>}
 
-    </Col>
+      </Col>
  
-    <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
+      <Col className="col-lg-5 my-0 py-0" style={{backgroundColor: "#fafafa"}}>
       {/* Cart Summary  */}
       <div className='mt-5'></div>
     {/* {cartData?.cart?.cartProducts?.length > 0 && cartData?.cart?.cartProducts?.map((item, index) =>  */}
@@ -690,9 +692,8 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
          ₹ {totalAmount}
       </p>
     </div>
-    </Col>
-  </Row>
-
+      </Col>
+    </Row>
 
   <Modal style={{width: "100%"}}  show={modal} onHide={() => showModal(false)} scrollable dialogClassName="full" >
     <Modal.Header closeButton>
@@ -803,7 +804,6 @@ const {data: addressByUser, refetch: refetchAdd} = useQuery(SHOW_ALL_ADDRESS_BY_
       </form>
     </Modal.Body>
   </Modal>
-   
   </>);
 }
 
