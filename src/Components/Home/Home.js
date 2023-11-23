@@ -129,7 +129,7 @@ function Home() {
     </div> 
 
     <section id="about" className="about">
-      <p className="text-center">#BEDRESSPONSIBLE</p>
+      <p className="text-center"> Assemble TRP</p>
       <h1 className="text-center">The Vagabond Hipster Series</h1> <br /> <br />
       <div className="container">
         <div id="carouselExampleControlsDamn" className="carousel slide" data-ride="carousel" >
