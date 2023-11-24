@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import { Heart, Cart } from 'react-bootstrap-icons';
 import CartPop from './CartSection/CartPop';
 import MediaQuery from 'react-responsive';
+import Swiper from 'swiper';
+import Vert from './Vert';
 
 function Product() {
   const navigate = useNavigate();
@@ -296,7 +298,26 @@ function Product() {
       setShowStock(stock[0]?.quantity);
     }
   }, [color, size, gender]);
+  var swiper = new Swiper('.swiper', {
+    slidesPerView: 3,
+    direction: getDirection(),
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    on: {
+      resize: function () {
+        swiper.changeDirection(getDirection());
+      },
+    },
+  });
 
+  function getDirection() {
+    var windowWidth = window.innerWidth;
+    var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+
+    return direction;
+  }
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
     <MediaQuery minWidth={769}>
@@ -318,6 +339,20 @@ function Product() {
                   flexDirection: "column",
                   justifyContent: "space-evenly"
                   }} >
+
+{/* <div className="swiper">
+    <div className="swiper-wrapper">
+    {imageArray &&  imageArray?.map((image) =>   
+
+    <img src={image} className='swiper-slide' alt='gg' style={{height: "70px", width: "60px"}}/>
+    
+      )}
+      </div>
+      <div className="swiper-button-next"></div>
+    <div className="swiper-button-prev"></div>
+      </div>  */}
+
+      
                   {imageArray &&  imageArray?.map((image, index) => index < 4 &&
                   <div key={index}
                     className="variant"

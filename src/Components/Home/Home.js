@@ -5,6 +5,7 @@ import { gql, useQuery } from '@apollo/client';
 import { useNavigate, Link } from 'react-router-dom';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { FloatingWhatsApp } from 'react-floating-whatsapp';
 
 import './Home.css';
 import MediaQuery from 'react-responsive';
@@ -102,7 +103,22 @@ function Home() {
     }
   };
   return (<>
-
+  <FloatingWhatsApp   
+        onClick={() =>  window.location.href="https://wa.me/918829999060?text="} 
+        phoneNumber="918829999060"
+        accountName="The Royal Pajama"
+        statusMessage='Online'
+        allowEsc
+        chatboxHeight={300}
+        chatboxStyle
+      
+        allowClickAway
+        notification={false}
+        notificationSound={false}
+        chatMessage={`Hi There,
+You can contact us here for any suggestion or query!`}
+       
+        /> 
     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
       <div className="carousel-inner">
       {homePageSlider?.getAllHomePageSlider && homePageSlider?.getAllHomePageSlider[0]?.images && <div className="carousel-item active">

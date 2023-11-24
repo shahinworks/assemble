@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Navbar, Button } from 'flowbite-react';
+import { FloatingWhatsApp } from 'react-floating-whatsapp';
 
 function Demo() {
+  const navigate = useNavigate();
+  
+  const mystyle = { 
+    color: "black"
+  }
+  
   return (
     <div>
       <Navbar fluid rounded>
@@ -22,7 +29,23 @@ function Demo() {
         <Navbar.Link href="#">Pricing</Navbar.Link>
         <Navbar.Link href="#">Contact</Navbar.Link>
       </Navbar.Collapse>
-      </Navbar>
+      </Navbar> 
+      <FloatingWhatsApp   
+        onClick={() =>  window.location.href="https://wa.me/918829999060?text="} 
+        phoneNumber="918829999060"
+        accountName="The Royal Pajama"
+        statusMessage='Online'
+        allowEsc
+        chatboxHeight={300}
+        chatboxStyle
+      
+        allowClickAway
+        notification={false}
+        notificationSound={false}
+        chatMessage={`Hi There,
+You can contact us here for any suggestion or query!`}
+       
+        /> 
       {/* <Button outline gradientDuoTone="purpleToPink">
         Purple to Pink
       </Button> */}
