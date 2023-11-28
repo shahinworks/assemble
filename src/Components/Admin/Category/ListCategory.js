@@ -95,26 +95,26 @@ function ListCategory() {
   return (
     <>
       {/* <Row> */}
-        <Col className="mx-auto my-5">
-          <Card className="bg-dark" style={{ backgroundColor: "black", color: "white", border: "1px solid black"}}>
-            <Card.Body  style={{ backgroundColor: "black", color: "white", border: "1px solid black" }}>
+        {/* <Col className="mx-auto my-5" > */}
+          <Card className="my-5 mx-5" style={{backgroundColor: "#ffffff", color: "#C06C84"}}>
+            <Card.Body >
               
               <h2>Table of Category List</h2>
-              <table  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} className="table mt-2 border ">
-                <thead  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} className="table-head">
-                  <tr  style={{ backgroundColor: "black", color: "white", border: "1px solid black", border: "1px solid black"}}  >
-                    <th  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >Index</th>
-                    <th  style={{ backgroundColor: "black", color: "white", border: "1px solid black", border: "1px solid black"}}  >Category Name</th>
-                    <th  style={{ backgroundColor: "black", color: "white", border: "1px solid black", border: "1px solid black"}} >Action</th>
+              <table className="table mt-2 " style={{border: "none"}}>
+                <thead className="table-head" style={{border: "none"}}>
+                  <tr style={{border: "none"}}>
+                    <th style={{border: "none"}}>Index</th>
+                    <th style={{border: "none"}}>Category Name</th>
+                    <th style={{border: "none"}}>Action</th>
                     {/* <th  style={{ backgroundColor: "black", color: "white", border: "1px solid black", border: "1px solid black"}} className="border">Delete</th> */}
                   </tr>
                 </thead>
-                <tbody  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} className="table-body">
+                <tbody  style={{border: "none"}}  className="table-body">
                   { data && data.getAllCategory.map((item , index) => (
-                     <tr  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} key={item.id}>
-                     <td  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >{index + 1}</td>
-                     <td  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >{item.categoryName}</td>
-                     <td  style={{ backgroundColor: "black", color: "white", border: "1px solid black"}} >
+                     <tr style={{border: "none"}} key={item.id}>
+                     <td style={{border: "none"}}>{index + 1}</td>
+                     <td style={{border: "none"}}>{item.categoryName}</td>
+                     <td style={{border: "none"}}>
                        <Button className="btn btn-sm btn-light mx-2" onClick={() => handleEdit(item.id, item.categoryName)}>
                         <Pencil size={20} color="black"/>
                        </Button>
@@ -131,7 +131,7 @@ function ListCategory() {
               </table>
             </Card.Body>
           </Card>
-        </Col>
+        {/* </Col> */}
       {/* </Row> */}
 
 

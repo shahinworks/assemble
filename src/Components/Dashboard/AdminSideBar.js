@@ -8,52 +8,51 @@ function AdminSideBar() {
 
   const [toggled, setToggled] = useState(false);
   const [broken, setBroken] = useState(window.matchMedia('(max-width: 800px)').matches);
-
+ 
   return (<>
-    <div style={{ display: 'flex', height: '100%', backgroundColor: "black" }}>
+    <div style={{ display: 'flex', height: '100%', backgroundColor: "#ffffff" }}>
       <Sidebar onBackdropClick={() => setToggled(false)} toggled={toggled} customBreakPoint="800px" onBreakPoint={setBroken}>
         <Menu
           menuItemStyles={{
             button: ({ level, active, disabled }) => {
                 return {
-                  color: disabled ? 'grey' : 'black',
-                  backgroundColor: active ? 'white' : "whitesmoke",
+                  color: disabled ? 'grey' : '#C06C84',
+                  backgroundColor: active ? '#ffffff' : "whitesmoke",
                 };
             },
-          }}
-        >  
-          <MenuItem component={<Link to="/" />} active icon={<Speedometer color='black' size={20} />}>
+          }} >  
+          <MenuItem component={<Link to="/" />} active icon={<Speedometer color="#C06C84" size={20} />}>
             Home 
           </MenuItem>
-          <SubMenu active label="Category" icon={<LayoutWtf color='black' size={20} />}>
+          <SubMenu active label="Category" icon={<LayoutWtf color="#C06C84" size={20} />}>
           <MenuItem component={<Link to="/admin/CreateCategory" />} > Create Category</MenuItem>
           <MenuItem component={<Link to="/admin/ListCategory" />} > List Category</MenuItem>
           </SubMenu>
-          <SubMenu active label="Color" icon={<PaletteFill color='black' size={20} />}>
+          <SubMenu active label="Color" icon={<PaletteFill color="#C06C84" size={20} />}>
           <MenuItem component={<Link to="/admin/CreateColor" />} >Create Color </MenuItem>
           <MenuItem component={<Link to="/admin/ListColor" />} >List Color </MenuItem>
           </SubMenu>
-          <SubMenu active label="Gender" icon={<GenderTrans color='black' size={20} />}>
+          <SubMenu active label="Gender" icon={<GenderTrans color="#C06C84" size={20} />}>
           <MenuItem component={<Link to="/admin/CreateGender" />} >Create Gender </MenuItem>
           <MenuItem component={<Link to="/admin/ListGender" />} >List Gender </MenuItem>
           </SubMenu>
-          <SubMenu active label="Order" icon={<Receipt color='black' size={20} />}>
+          <SubMenu active label="Order" icon={<Receipt color="#C06C84" size={20} />}>
           <MenuItem component={<Link to="/admin/ListOrder" />} >List Order</MenuItem>
           </SubMenu>
-          <SubMenu active label="Product" icon={<BagHeart color='black' size={20} />}>
+          <SubMenu active label="Product" icon={<BagHeart color="#C06C84" size={20} />}>
           <MenuItem component={<Link to="/admin/CreateProduct" />} > Create Product </MenuItem>
           <MenuItem component={<Link to="/admin/ListProduct" />} > List Product </MenuItem>
           <MenuItem component={<Link to="/admin/UpdateProduct" />} >Update Product </MenuItem>
           </SubMenu>
-          <SubMenu active label="Size" icon={<Rulers color='black' size={20} />}>
+          <SubMenu active label="Size" icon={<Rulers color="#C06C84" size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSize" />} >Create Size </MenuItem>
           <MenuItem component={<Link to="/admin/ListSize" />} >List Size </MenuItem>
           </SubMenu>
-          <SubMenu active label="Slider" icon={<Image color='black' size={20} />}>
+          <SubMenu active label="Slider" icon={<Image color="#C06C84" size={20} />}>
           <MenuItem component={<Link to="/admin/CreateSlider" />} >Add Slider</MenuItem>
           <MenuItem component={<Link to="/admin/ListSlider" />} >List Slider</MenuItem>
           </SubMenu>
-          <SubMenu active label="User" icon={<Person color='black' size={20} />}>
+          <SubMenu active label="User" icon={<Person color="#C06C84" size={20} />}>
             <MenuItem component={<Link to="/admin/User" />} >User</MenuItem>
           </SubMenu>
         </Menu>

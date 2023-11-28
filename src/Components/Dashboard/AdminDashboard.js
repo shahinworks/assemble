@@ -10,10 +10,10 @@ function AdminDashboard() {
       <AdminHeader/>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-3 mx-0 px-0" style={{ backgroundColor: "black", marginTop: "7%"}}>
+          <div className="col-3 mx-0 px-0" style={{  backgroundColor: "#ffffff", marginTop: "7%"}}>
             <AdminSideBar />
           </div>
-          <div className="col-9 mx-0 px-0" style={{ backgroundColor: "black", color: "white", marginTop: "7%"}}>
+          <div className="col-9 mx-0 px-0" style={{ backgroundImage: "linear-gradient(#e66465, #9198e5)", backgroundColor: "#ffffff", color: "#C06C84", marginTop: "7%"}}>
             <Outlet />
           </div>
         </div>

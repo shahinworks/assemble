@@ -12,12 +12,13 @@ function ListColor() {
  
 
   const GET_ALL_COLOUR = gql`
-query GetAllColor {
-  getAllColor {
-    id
-    colorName
-  }
-}`;
+    query GetAllColor {
+      getAllColor {
+        id
+        colorName
+      }
+    }
+  `;
 
   const { data, refetch } = useQuery(GET_ALL_COLOUR);
 
@@ -27,12 +28,14 @@ query GetAllColor {
   //------------------------------------------------------
 
 
-  const EDIT_COLOUR = gql`mutation UpdateColor($updateColorId: ID, $colorName: String) {
-    updateColor(id: $updateColorId, colorName: $colorName) {
-      id
-      colorName
+  const EDIT_COLOUR = gql`
+    mutation UpdateColor($updateColorId: ID, $colorName: String) {
+      updateColor(id: $updateColorId, colorName: $colorName) {
+        id
+        colorName
+      }
     }
-  }`;
+  `;
 
 
   const [EditData] = useMutation(EDIT_COLOUR);
@@ -67,12 +70,14 @@ query GetAllColor {
   // --------------function for handle DELETE start---------
   //------------------------------------------------------
 
-  const DELETE_COLOR = gql`mutation DeleteColor($deleteColorId: ID!) {
-    deleteColor(id: $deleteColorId) {
-      id
-      colorName
+  const DELETE_COLOR = gql`
+    mutation DeleteColor($deleteColorId: ID!) {
+      deleteColor(id: $deleteColorId) {
+        id
+        colorName
+      }
     }
-  }`;
+  `;
 
 
   const [DeleteSize] = useMutation(DELETE_COLOR, {
