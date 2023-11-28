@@ -115,13 +115,13 @@ function ListCategory() {
                      <td style={{border: "none"}}>{index + 1}</td>
                      <td style={{border: "none"}}>{item.categoryName}</td>
                      <td style={{border: "none"}}>
-                       <Button className="btn btn-sm btn-light mx-2" onClick={() => handleEdit(item.id, item.categoryName)}>
-                        <Pencil size={20} color="black"/>
-                       </Button>
+                       <button className="btn btn-sm  btn-outline-info mx-2" onClick={() => handleEdit(item.id, item.categoryName)}>
+                        <Pencil size={20} color="#e46567"/>
+                       </button>
 
-                       <Button className="btn btn-sm btn-light"  onClick={() => handleDelete(item.id)}> 
-                        <Trash size={20} color="black" />
-                       </Button>
+                       <button className="btn btn-sm btn-outline-info"  onClick={() => handleDelete(item.id)}>
+                        <Trash size={20} color="#e46567" />
+                       </button>
                      </td>
                    </tr>
                    
