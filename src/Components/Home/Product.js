@@ -322,14 +322,15 @@ function Product() {
         <div className="row">
           {/* image section */}
           <div className="col-lg-6 col-md-6 col-sm-12"> 
-          {(first > 0) && <CaretUpFill size={40} onClick={() => {setLast(last - 1); setFirst(first - 1); setSelImageId(last-1)}} className='mx-1 mb-0 pb-0' />}
+          {(first > 0) && <CaretUpFill size={40} onClick={() => {setLast(last - 1); setFirst(first - 1); setSelImageId(last-1)}} 
+          className='ms-3 me-2 mb-0 pb-0' />}
  
-            <div className="d-flex justify-content-center flex-row-reverse mt-0">
+            <div className="d-flex justify-content-center flex-row-reverse mt-0 pt-0">
               <div className="image-display">
                 <img id="selected-image" src={img || product?.getProduct?.images[0]?.imagePath[0]} alt="Selected Image"/>
               <div />
               </div>
-              <div className="variant-options mt-0 ">
+              <div className="variant-options mt-0">
                 <div className='mt-0' style={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }} >
                 {imageArray && imageArray?.map((image, index) =>  index >= first && index < last &&
                   <div key={index} className="variant mt-0" id="act"
@@ -341,7 +342,7 @@ function Product() {
             </div> 
           {(last < len ) && 
             <CaretDownFill size={40} onClick={() => {setLast(last + 1); setFirst(first + 1);  
-            setSelImageId(first+1)}} />}
+            setSelImageId(first+1)}} className='ms-3 me-2 mb-0 pb-0' />}
           </div>
 
           {/* name, price, color section */}
