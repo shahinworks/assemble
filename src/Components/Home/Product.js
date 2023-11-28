@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './Product.css';
-import { Tab, TabContainer, TabContent, Tabs } from 'react-bootstrap';
+import { Button, Tab, TabContainer, TabContent, Tabs } from 'react-bootstrap';
 import Header from '../Sections/Header/Header';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, gql, useMutation } from '@apollo/client';
 import toast from "react-hot-toast";
-import { Heart, Cart } from 'react-bootstrap-icons';
+import { Heart, Cart, ArrowDownSquare, ArrowUpSquareFill, ArrowUpSquare, CaretUpFill, CaretDownFill } from 'react-bootstrap-icons';
 import CartPop from './CartSection/CartPop';
 import MediaQuery from 'react-responsive';
 import Swiper from 'swiper';
@@ -74,6 +74,15 @@ function Product() {
   const [color, setColor] = useState(product?.getProduct?.color[0]);
   const [gender, setGender] = useState(product?.getProduct?.gender[0]);
   const [ imageArray, setImageArray ] = useState(product?.getProduct?.images[0]?.imagePath);
+  const [ len, setLen ] = useState(4);
+  // console.log("len", len)
+
+  useEffect(() => {
+    console.log("imageArray LENGTH", imageArray?.length);
+    setLen(imageArray?.length);
+  }, [imageArray]);
+
+
 
   const StockTemp =  product?.getProduct?.stock?.filter((s) => 
   s?.color === color && s?.gender === gender && s?.size === size);
@@ -298,26 +307,12 @@ function Product() {
       setShowStock(stock[0]?.quantity);
     }
   }, [color, size, gender]);
-  var swiper = new Swiper('.swiper', {
-    slidesPerView: 3,
-    direction: getDirection(),
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    on: {
-      resize: function () {
-        swiper.changeDirection(getDirection());
-      },
-    },
-  });
 
-  function getDirection() {
-    var windowWidth = window.innerWidth;
-    var direction = window.innerWidth <= 760 ? 'vertical' : 'horizontal';
+  const [ first, setFirst ] = useState(0);
+  const [ last, setLast ] = useState(4);
+  console.log("first", first);
+  console.log("last", last);
 
-    return direction;
-  }
   return (<>
     <CartPop show={editModal} onHide={() => setEditModal(false)} />
     <MediaQuery minWidth={769}>
@@ -326,54 +321,27 @@ function Product() {
       <div className="container" id="container">
         <div className="row">
           {/* image section */}
-          <div className="col-lg-6 col-md-6 col-sm-12">
-            <div className="d-flex justify-content-center flex-row-reverse">
+          <div className="col-lg-6 col-md-6 col-sm-12"> 
+          {(first > 0) && <CaretUpFill size={40} onClick={() => {setLast(last - 1); setFirst(first - 1); setSelImageId(last-1)}} className='mx-1 mb-0 pb-0' />}
+ 
+            <div className="d-flex justify-content-center flex-row-reverse mt-0">
               <div className="image-display">
                 <img id="selected-image" src={img || product?.getProduct?.images[0]?.imagePath[0]} alt="Selected Image"/>
               <div />
               </div>
-              <div className="variant-options ">
-                <div
-                  style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-evenly"
-                  }} >
-
-{/* <div className="swiper">
-    <div className="swiper-wrapper">
-    {imageArray &&  imageArray?.map((image) =>   
-
-    <img src={image} className='swiper-slide' alt='gg' style={{height: "70px", width: "60px"}}/>
-    
-      )}
-      </div>
-      <div className="swiper-button-next"></div>
-    <div className="swiper-button-prev"></div>
-      </div>  */}
-
-      
-                  {imageArray &&  imageArray?.map((image, index) => index < 4 &&
-                  <div key={index}
-                    className="variant"
-                    id="act"
-                    data-image="assets/img/31.jpg"
-                    onClick={() => {
-                      changeImage(image); 
-                    //  handleCartColor(image?.color);
-                      handleImageSelectedForDisplay(index);
-                    }}
-                  >
-                    <img
-                      src={image}
-                      alt=""
-                      style={selImageId === index? imageBorder: noBorder}
-                    />
-                  </div>)}
-                  {/* Add more color divs as needed */}
+              <div className="variant-options mt-0 ">
+                <div className='mt-0' style={{ display: "flex", flexDirection: "column", justifyContent: "space-evenly" }} >
+                {imageArray && imageArray?.map((image, index) =>  index >= first && index < last &&
+                  <div key={index} className="variant mt-0" id="act"
+                  onClick={() => {changeImage(image); handleImageSelectedForDisplay(index)}}  >
+                    <img src={image} alt="Image" style={selImageId === index? imageBorder: noBorder} />
+                  </div>)} 
                 </div>
               </div>
-            </div>
+            </div> 
+          {(last < len ) && 
+            <CaretDownFill size={40} onClick={() => {setLast(last + 1); setFirst(first + 1);  
+            setSelImageId(first+1)}} />}
           </div>
 
           {/* name, price, color section */}
